@@ -12,38 +12,35 @@ import javax.persistence.Transient;
 
 import javax.validation.constraints.NotEmpty;
 
-public class Elemento {
+@Entity
+@Table(name = "tb_elemento")
+public class Elemento implements Serializable{
 
-	@Entity
-	@Table(name = "tb_elemento")
-	public class Driver implements Serializable{
+	@Transient
+	private static final long serialVersionUID = 1L;
 
-		@Transient
-		private static final long serialVersionUID = 1L;
+	@Id
+	@GeneratedValue(strategy= GenerationType.SEQUENCE)
+	@Column(name = "id_elemento")
+	private Long id;
+	
+	@NotEmpty(message = "Nome não pode ser vazio.")
+	private String name;
+	
+	@NotEmpty(message = "Descrição não pode ser vazia.")
+	private String descricao;
+	
+	@NotEmpty()
+	private String cadastradoPor;
+	
+	public Elemento(String name, String descricao, String cadastradoPor) {
+		super();
+		this.name = name;
+		this.descricao = descricao;
+		this.cadastradoPor = cadastradoPor;
+	}
 
-		@Id
-		@GeneratedValue(strategy= GenerationType.SEQUENCE)
-		@Column(name = "id_elemento")
-		private Long id;
+	public Elemento() {
 		
-		@NotEmpty(message = "Nome não pode ser vazio.")
-		private String name;
-		
-		@NotEmpty(message = "Descrição não pode ser vazia.")
-		private String descricao;
-		
-		@NotEmpty()
-		private String cadastradoPor;
-		
-		public Driver(String name, String descricao, String cadastradoPor) {
-			super();
-			this.name = name;
-			this.descricao = descricao;
-			this.cadastradoPor = cadastradoPor;
-		}
-
-		public Driver() {
-			
-		}
 	}
 }
