@@ -27,7 +27,7 @@ public class Elemento implements Serializable{
 	@NotEmpty(message = "Nome não pode ser vazio.")
 	private String name;
 	
-	@NotEmpty(message = "Descrição não pode ser vazia.")
+	@NotEmpty()
 	private String descricao;
 	
 	@NotEmpty()
@@ -43,4 +43,37 @@ public class Elemento implements Serializable{
 	public Elemento() {
 		
 	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getDescricao() {
+		return descricao;
+	}
+
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
+	}
+
+	public String getCadastradoPor() {
+		return cadastradoPor;
+	}
+
+	public void setCadastradoPor(String cadastradoPor) {
+		this.cadastradoPor = cadastradoPor;
+	}
+	
 }
