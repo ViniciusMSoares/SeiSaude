@@ -24,18 +24,21 @@ public class Elemento implements Serializable{
 	@Column(name = "id_elemento")
 	private Long id;
 	
-	@NotEmpty(message = "Nome não pode ser vazio.")
-	private String name;
+	@NotEmpty()
+	@Column()
+	private String nome;
 	
 	@NotEmpty()
+	@Column()
 	private String descricao;
 	
 	@NotEmpty()
+	@Column()
 	private String cadastradoPor;
 	
 	public Elemento(String name, String descricao, String cadastradoPor) {
 		super();
-		this.name = name;
+		this.nome = name;
 		this.descricao = descricao;
 		this.cadastradoPor = cadastradoPor;
 	}
@@ -53,11 +56,11 @@ public class Elemento implements Serializable{
 	}
 
 	public String getName() {
-		return name;
+		return nome;
 	}
 
 	public void setName(String name) {
-		this.name = name;
+		this.nome = name;
 	}
 
 	public String getDescricao() {
