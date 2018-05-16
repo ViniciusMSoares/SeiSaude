@@ -1,8 +1,10 @@
 package server.servicies;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import server.entities.Elemento;
+import server.entities.DTOs.ElementoDTO;
 
 public interface ElementoService {
 	
@@ -24,11 +26,13 @@ public interface ElementoService {
 	 * @param Elemento
 	 * @return
 	 */
-	Elemento save(Elemento elemento);
+	Elemento save(ElementoDTO elemento);
 	
 	/**
 	 * Delete Elemento by id.
 	 * @param id
 	 */
 	void delete(Long id);
+
+	ArrayList<Elemento> findByName(String name);
 }
