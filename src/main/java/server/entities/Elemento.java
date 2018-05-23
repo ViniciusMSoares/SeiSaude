@@ -7,12 +7,15 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
 import javax.validation.constraints.NotEmpty;
 
 @Entity
+@Inheritance(strategy=InheritanceType.JOINED)
 @Table(name = "tb_elemento")
 public class Elemento implements Serializable{
 

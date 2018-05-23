@@ -12,13 +12,25 @@ import server.entities.Elemento;
 import server.entities.Remedio;
 import server.entities.DTOs.ElementoDTO;
 import server.servicies.ElementoService;
+import server.repositories.AlimentoRepository;
+import server.repositories.ComportamentoRepository;
 import server.repositories.ElementoRepository;
+import server.repositories.RemedioRepository;
 
 @Service
 public class ElementoServiceImpl implements ElementoService {
 
 	@Autowired
 	private ElementoRepository elementoRepository;
+	
+	@Autowired
+	private ComportamentoRepository comportamentoRepository;
+	
+	@Autowired
+	private RemedioRepository remedioRepository;
+	
+	@Autowired
+	private AlimentoRepository alimentoRepository;
 	
 	@Override
 	public Elemento findById(Long id) {
@@ -37,19 +49,16 @@ public class ElementoServiceImpl implements ElementoService {
 		
 		switch (elementoDTO.getTipo()) {
 		case 1:
-			Comportamento comportamento = (Comportamento) elemento;
-			
-			return elementoRepository.save(comportamento);
+			Comportamento comportamento = new Comportamento(elemento);
+			return comportamentoRepository.save(comportamento);
 		case 2:
-			Remedio remedio = (Remedio) elemento;
-			remedio.setFabricante(elementoDTO.getFabricante());
+			Remedio remedio = new Remedio(elemento, elementoDTO.getFabricante());
 			
-			return elementoRepository.save(remedio);
+			return remedioRepository.save(remedio);
 		case 3:
-			Alimento alimento = (Alimento) elemento;
-			alimento.setFabricante(elementoDTO.getFabricante());
+			Alimento alimento = new Alimento(elemento, elementoDTO.getFabricante());
 			
-			return elementoRepository.save(alimento);
+			return alimentoRepository.save(alimento);
 
 		default:
 			return elementoRepository.save(elemento);
