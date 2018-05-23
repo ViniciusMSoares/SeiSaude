@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import server.entities.Elemento;
+import server.entities.DTOs.ComponenteDTO;
 import server.entities.DTOs.ElementoDTO;
 import server.servicies.ElementoService;
 
@@ -24,9 +25,9 @@ public class ElementoController {
 	private ElementoService elementoService;
 	
 	@RequestMapping(value = "/elemento", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
-	public ResponseEntity<Elemento> cadastraElemento(@RequestBody ElementoDTO elemento) {
+	public ResponseEntity<Elemento> cadastraElemento(@RequestBody ElementoDTO elemento, ComponenteDTO componente) {
 
-		return new ResponseEntity<>(elementoService.save(elemento), HttpStatus.CREATED);
+		return new ResponseEntity<>(elementoService.save(elemento, componente), HttpStatus.CREATED);
 	}
 	
 	@GetMapping("/elemento")

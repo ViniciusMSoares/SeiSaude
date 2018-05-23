@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import server.entities.Elemento;
+import server.entities.DTOs.ComponenteDTO;
 import server.entities.DTOs.ElementoDTO;
 
 public interface ElementoService {
@@ -26,7 +27,7 @@ public interface ElementoService {
 	 * @param Elemento
 	 * @return
 	 */
-	Elemento save(ElementoDTO elemento);
+	Elemento save(ElementoDTO elemento, ComponenteDTO componenteDTO);
 	
 	/**
 	 * Delete Elemento by id.
