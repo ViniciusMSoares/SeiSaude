@@ -25,8 +25,7 @@ public class ElementoController {
 	
 	@RequestMapping(value = "/elemento", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public ResponseEntity<Elemento> cadastraElemento(@RequestBody ElementoDTO elemento) {
-		
-		
+
 		return new ResponseEntity<>(elementoService.save(elemento), HttpStatus.CREATED);
 	}
 	

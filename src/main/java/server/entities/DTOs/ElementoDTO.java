@@ -8,6 +8,11 @@ public class ElementoDTO {
 
 	private String cadastradoPor;
 	
+	private int tipo;
+	
+	//Atributos de Produto
+	private String fabricante;
+
 	public ElementoDTO() {
 		
 	}
@@ -34,6 +39,22 @@ public class ElementoDTO {
 
 	public void setCadastradoPor(String cadastradoPor) {
 		this.cadastradoPor = cadastradoPor;
+	}
+	
+	public int getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(int tipo) {
+		this.tipo = tipo;
+	}
+
+	public String getFabricante() {
+		return fabricante;
+	}
+
+	public void setFabricante(String fabricante) {
+		this.fabricante = fabricante;
 	}
 
 }

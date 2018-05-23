@@ -6,7 +6,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import server.entities.Alimento;
+import server.entities.Comportamento;
 import server.entities.Elemento;
+import server.entities.Remedio;
 import server.entities.DTOs.ElementoDTO;
 import server.servicies.ElementoService;
 import server.repositories.ElementoRepository;
@@ -26,12 +29,31 @@ public class ElementoServiceImpl implements ElementoService {
 	public List<Elemento> findAll() {
 		return elementoRepository.findAll();
 	}
-
+	
 	@Override
 	public Elemento save(ElementoDTO elementoDTO) {
 		Elemento elemento = new Elemento(elementoDTO.getName(), elementoDTO.getDescricao(),
 				elementoDTO.getCadastradoPor());
-		return elementoRepository.save(elemento);
+		
+		switch (elementoDTO.getTipo()) {
+		case 1:
+			Comportamento comportamento = (Comportamento) elemento;
+			
+			return elementoRepository.save(comportamento);
+		case 2:
+			Remedio remedio = (Remedio) elemento;
+			remedio.setFabricante(elementoDTO.getFabricante());
+			
+			return elementoRepository.save(remedio);
+		case 3:
+			Alimento alimento = (Alimento) elemento;
+			alimento.setFabricante(elementoDTO.getFabricante());
+			
+			return elementoRepository.save(alimento);
+
+		default:
+			return elementoRepository.save(elemento);
+		}
 	}
 
 	@Override

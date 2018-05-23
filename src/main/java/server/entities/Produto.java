@@ -19,13 +19,13 @@ public class Produto extends Elemento {
 	@Column(name = "id_produto")
 	private Long id;
 	
-	//@NotEmpty
-	//private String fabricante;
+	@NotEmpty
+	private String fabricante;
 	
 	public Produto(String name, String descricao, String cadastradoPor, String fabricante) {
 		super(name, descricao, cadastradoPor);
 		this.id = super.getId();
-		//this.fabricante = fabricante;
+		this.fabricante = fabricante;
 		// TODO Auto-generated constructor stub
 	}
 
@@ -33,4 +33,13 @@ public class Produto extends Elemento {
 		// TODO Auto-generated constructor stub
 	}
 
+	public String getFabricante() {
+		return fabricante;
+	}
+
+	public void setFabricante(String fabricante) {
+		this.fabricante = fabricante;
+	}
+
+	
 }
