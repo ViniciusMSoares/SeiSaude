@@ -6,6 +6,7 @@ import java.util.List;
 import server.entities.Elemento;
 import server.entities.DTOs.ComponenteDTO;
 import server.entities.DTOs.ElementoDTO;
+import server.entities.DTOs.ValorNutricionalDTO;
 
 public interface ElementoService {
 	
@@ -27,7 +28,7 @@ public interface ElementoService {
 	 * @param Elemento
 	 * @return
 	 */
-	Elemento save(ElementoDTO elemento, ComponenteDTO componenteDTO);
+	Elemento save(ElementoDTO elemento, ComponenteDTO componenteDTO, ValorNutricionalDTO valorNutricionalDTO);
 	
 	/**
 	 * Delete Elemento by id.
