@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import server.entities.Elemento;
 import server.entities.DTOs.ComponenteDTO;
 import server.entities.DTOs.ElementoDTO;
+import server.entities.DTOs.ValorNutricionalDTO;
 import server.servicies.ElementoService;
 
 @RestController
@@ -25,14 +26,13 @@ public class ElementoController {
 	private ElementoService elementoService;
 	
 	@RequestMapping(value = "/elemento", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
-	public ResponseEntity<Elemento> cadastraElemento(@RequestBody ElementoDTO elemento, ComponenteDTO componente) {
+	public ResponseEntity<Elemento> cadastraElemento(@RequestBody ElementoDTO elemento, ComponenteDTO componente, ValorNutricionalDTO valorNutricional) {
 
-		return new ResponseEntity<>(elementoService.save(elemento, componente), HttpStatus.CREATED);
+		return new ResponseEntity<>(elementoService.save(elemento, componente, valorNutricional), HttpStatus.CREATED);
 	}
 	
 	@GetMapping("/elemento")
 	public ResponseEntity<ArrayList<Elemento>> getElementosByName(@RequestParam(value = "name") String name) { 
-		System.out.println("NOME:" + name);
 		return new ResponseEntity<ArrayList<Elemento>>(elementoService.findByName(name), HttpStatus.FOUND);
 	}
 

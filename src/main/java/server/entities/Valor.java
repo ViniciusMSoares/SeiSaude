@@ -4,8 +4,10 @@ import java.io.Serializable;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.IdClass;
 
 @Entity
+@IdClass(Valor.class)
 public class Valor implements Serializable{
 
 	private static final long serialVersionUID = 1L;
@@ -18,14 +20,21 @@ public class Valor implements Serializable{
 	
 	private float valorDiario;
 	
-	private String quantidade;
+	private float quantidade;
+	
+	private String unidade;
 
-	public Valor(Long id_valor_nutricional, Long id_alimento, float valorDiario, String quantidade) {
+	public Valor(Long id_valor_nutricional, Long id_alimento, float valorDiario, float quantidade, String unidade) {
 		super();
 		this.id_valor_nutricional = id_valor_nutricional;
 		this.id_alimento = id_alimento;
 		this.valorDiario = valorDiario;
 		this.quantidade = quantidade;
+		this.unidade = unidade;
+	}
+	
+	public Valor () {
+		
 	}
 
 	public Long getId_valor_nutricional() {
@@ -52,12 +61,20 @@ public class Valor implements Serializable{
 		this.valorDiario = valorDiario;
 	}
 
-	public String getQuantidade() {
+	public float getQuantidade() {
 		return quantidade;
 	}
 
-	public void setQuantidade(String quantidade) {
+	public void setQuantidade(float quantidade) {
 		this.quantidade = quantidade;
+	}
+
+	public String getUnidade() {
+		return unidade;
+	}
+
+	public void setUnidade(String unidade) {
+		this.unidade = unidade;
 	}
 	
 	

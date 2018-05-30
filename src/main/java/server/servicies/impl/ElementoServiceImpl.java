@@ -12,8 +12,11 @@ import server.entities.Comportamento;
 import server.entities.Elemento;
 import server.entities.Quantidade;
 import server.entities.Remedio;
+import server.entities.Valor;
+import server.entities.ValorNutricional;
 import server.entities.DTOs.ComponenteDTO;
 import server.entities.DTOs.ElementoDTO;
+import server.entities.DTOs.ValorNutricionalDTO;
 import server.servicies.ElementoService;
 import server.repositories.AlimentoRepository;
 import server.repositories.ComponenteRepository;
@@ -21,6 +24,8 @@ import server.repositories.ComportamentoRepository;
 import server.repositories.ElementoRepository;
 import server.repositories.QuantidadeRepository;
 import server.repositories.RemedioRepository;
+import server.repositories.ValorNutricionalRepository;
+import server.repositories.ValorRepository;
 
 @Service
 public class ElementoServiceImpl implements ElementoService {
@@ -43,6 +48,12 @@ public class ElementoServiceImpl implements ElementoService {
 	@Autowired
 	private QuantidadeRepository quantidadeRepository;
 	
+	@Autowired
+	private ValorNutricionalRepository valorNutricionalRepository;
+	
+	@Autowired
+	private ValorRepository valorRepository;
+	
 	@Override
 	public Elemento findById(Long id) {
 		return elementoRepository.getOne(id);
@@ -54,7 +65,7 @@ public class ElementoServiceImpl implements ElementoService {
 	}
 	
 	@Override
-	public Elemento save(ElementoDTO elementoDTO, ComponenteDTO componenteDTO) {
+	public Elemento save(ElementoDTO elementoDTO, ComponenteDTO componenteDTO, ValorNutricionalDTO valorNutricionalDTO) {
 		Elemento elemento = new Elemento(elementoDTO.getName(), elementoDTO.getDescricao(),
 				elementoDTO.getCadastradoPor());
 		
@@ -86,6 +97,16 @@ public class ElementoServiceImpl implements ElementoService {
 				componenteRepository.save(componenteA);
 				quantidadeA = new Quantidade(componenteA.getId(), alimento.getId(), Float.parseFloat(componenteDTO.getValores()[i]), componenteDTO.getUnidades()[i]);
 				quantidadeRepository.save(quantidadeA);
+			}
+			
+			ValorNutricional valorNutricional;
+			Valor valor;
+			for (int i = 0; i < valorNutricionalDTO.getQuantidades().length; i++) {
+				valorNutricional = new ValorNutricional(valorNutricionalDTO.getName()[i]);
+				valorNutricionalRepository.save(valorNutricional);
+				valor = new Valor(valorNutricional.getId(), alimento.getId(), Float.parseFloat(valorNutricionalDTO.getValores()[i]), 
+						Float.parseFloat(valorNutricionalDTO.getQuantidades()[i]), valorNutricionalDTO.getUnidades()[i]);
+				valorRepository.save(valor);
 			}
 			
 			return alimentoRepository.save(alimento);
