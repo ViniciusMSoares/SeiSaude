@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import server.entities.Componente;
 import server.entities.Elemento;
 import server.entities.DTOs.ComponenteDTO;
 import server.entities.DTOs.ElementoDTO;
@@ -39,6 +40,11 @@ public class ElementoController {
 	@RequestMapping(value = "/all_elemento", method = RequestMethod.GET)
 	public ResponseEntity<ArrayList<Elemento>> getAllElementos() { 
 		return new ResponseEntity<ArrayList<Elemento>>((ArrayList<Elemento>) elementoService.findAll(), HttpStatus.FOUND);
+	}
+	
+	@GetMapping("/elemento/componente")
+	public ResponseEntity<ArrayList<Componente>> getComponentesByName(@RequestParam(value = "name") String name) { 
+		return new ResponseEntity<ArrayList<Componente>>(elementoService.findComponenteByName(name), HttpStatus.FOUND);
 	}
 	
 }

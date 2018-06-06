@@ -58,9 +58,11 @@ public class SituacaoServiceImpl implements SituacaoService{
 	@Override
 	public ArrayList<Situacao> findByName(String name) {
 		ArrayList<Situacao> result = new ArrayList<>();
+		name = name.toLowerCase();
 
 		for (Situacao situacao : situacaoRepository.findAll()) {
-			if (situacao.getName().equals(name)) {
+			String situacaoName = situacao.getName().toLowerCase();
+			if (situacaoName.equals(name) || situacaoName.contains(name)) {
 				result.add(situacao);
 			}
 		}

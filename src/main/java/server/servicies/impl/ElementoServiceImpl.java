@@ -124,13 +124,29 @@ public class ElementoServiceImpl implements ElementoService {
 	@Override
 	public ArrayList<Elemento> findByName(String name) {
 		ArrayList<Elemento> result = new ArrayList<>();
+		name = name.toLowerCase();
 
 		for (Elemento elemento : elementoRepository.findAll()) {
-			if (elemento.getName().equals(name)) {
+			String elementoName = elemento.getName().toLowerCase();
+			if (elementoName.equals(name) || elementoName.contains(name)) {
 				result.add(elemento);
 			}
 		}
 		return result;
 	}
 
+	@Override
+	public ArrayList<Componente> findComponenteByName(String name) {
+		ArrayList<Componente> result = new ArrayList<>();
+		name = name.toLowerCase();
+
+		for (Componente componente : componenteRepository.findAll()) {
+			String elementoName = componente.getNome().toLowerCase();
+			if (elementoName.equals(name) || elementoName.contains(name)) {
+				result.add(componente);
+			}
+		}
+		return result;
+	}
+	
 }

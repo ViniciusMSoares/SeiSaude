@@ -3,6 +3,7 @@ package server.servicies;
 import java.util.ArrayList;
 import java.util.List;
 
+import server.entities.Componente;
 import server.entities.Elemento;
 import server.entities.DTOs.ComponenteDTO;
 import server.entities.DTOs.ElementoDTO;
@@ -37,4 +38,6 @@ public interface ElementoService {
 	void delete(Long id);
 
 	ArrayList<Elemento> findByName(String name);
+	
+	ArrayList<Componente> findComponenteByName(String name);
 }
