@@ -79,7 +79,7 @@ public class ElementoServiceImpl implements ElementoService {
 			remedioRepository.save(remedio);
 			Componente componente;
 			Quantidade quantidade;
-			for (int i = 0; i < componenteDTO.getValores().length; i++) {
+			for (int i = 0; i < componenteDTO.getUnidades().length/2; i++) {
 				componente = new Componente(componenteDTO.getName()[i]);
 				componenteRepository.save(componente);
 				quantidade = new Quantidade(componente.getId(), remedio.getId(), Float.parseFloat(componenteDTO.getValores()[i]), componenteDTO.getUnidades()[i]);
@@ -92,7 +92,7 @@ public class ElementoServiceImpl implements ElementoService {
 			alimentoRepository.save(alimento);
 			Componente componenteA;
 			Quantidade quantidadeA;
-			for (int i = 0; i < componenteDTO.getValores().length; i++) {
+			for (int i = 0; i < componenteDTO.getUnidades().length/2; i++) {
 				componenteA = new Componente(componenteDTO.getName()[i]);
 				componenteRepository.save(componenteA);
 				quantidadeA = new Quantidade(componenteA.getId(), alimento.getId(), Float.parseFloat(componenteDTO.getValores()[i]), componenteDTO.getUnidades()[i]);

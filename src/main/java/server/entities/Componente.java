@@ -27,6 +27,10 @@ public class Componente implements Serializable{
 	public Componente(String nome) {
 		this.nome = nome;
 	}
+	
+	public Componente() {
+		
+	}
 
 	public Long getId() {
 		return id;
