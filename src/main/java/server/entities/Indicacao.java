@@ -35,13 +35,23 @@ public class Indicacao implements Serializable{
 	@NotEmpty()
 	@Column()
 	private String tipo;
+	
+	private Long id_elemento;
+	
+	private Long id_situacao;
+	
+	private Long id_tipoPessoa;
 
-	public Indicacao(float dosagem, String efeito, String unidade, String tipo) {
+	public Indicacao(float dosagem, String efeito, String unidade, String tipo,
+			Long id_elemento, Long id_situacao, Long id_tipoPessoa) {
 		super();
 		this.dosagem = dosagem;
 		this.efeito = efeito;
 		this.unidade = unidade;
 		this.tipo = tipo;
+		this.id_elemento = id_elemento;
+		this.id_situacao = id_situacao;
+		this.id_tipoPessoa = id_tipoPessoa;
 	}
 
 	public Indicacao() {
@@ -86,6 +96,30 @@ public class Indicacao implements Serializable{
 
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
+	}
+
+	public Long getId_elemento() {
+		return id_elemento;
+	}
+
+	public void setId_elemento(Long id_elemento) {
+		this.id_elemento = id_elemento;
+	}
+
+	public Long getId_situacao() {
+		return id_situacao;
+	}
+
+	public void setId_situacao(Long id_situacao) {
+		this.id_situacao = id_situacao;
+	}
+
+	public Long getId_tipoPessoa() {
+		return id_tipoPessoa;
+	}
+
+	public void setId_tipoPessoa(Long id_tipoPessoa) {
+		this.id_tipoPessoa = id_tipoPessoa;
 	}
 	
 }

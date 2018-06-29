@@ -21,7 +21,8 @@ public class IndicacaoServiceImpl implements IndicacaoService{
 
 	@Override
 	public Indicacao save(IndicacaoDTO indicacaoDTO) {
-		Indicacao indicacao = new Indicacao(indicacaoDTO.getDosagem(), indicacaoDTO.getEfeito(), indicacaoDTO.getTipo(), indicacaoDTO.getUnidade());
+		Indicacao indicacao = new Indicacao(indicacaoDTO.getDosagem(), indicacaoDTO.getEfeito(), indicacaoDTO.getTipo(), indicacaoDTO.getUnidade(),
+				indicacaoDTO.getId_elemento(), indicacaoDTO.getId_situacao(), indicacaoDTO.getId_tipoPessoa());
 		return indicacaoRepository.save(indicacao);
 	}
 

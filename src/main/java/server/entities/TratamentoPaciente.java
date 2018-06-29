@@ -27,12 +27,18 @@ public class TratamentoPaciente {
 	
 	@NotEmpty
 	private String feedback;
+	
+	private Long id_tratamento;
+	
+	private Long id_paciente;
 
-	public TratamentoPaciente(@NotEmpty String inicio, String fim, @NotEmpty String feedback) {
+	public TratamentoPaciente(String inicio, String fim, String feedback, Long id_tratamento, Long id_paciente) {
 		super();
 		this.inicio = inicio;
 		this.fim = fim;
 		this.feedback = feedback;
+		this.id_tratamento = id_tratamento;
+		this.id_paciente = id_paciente;
 	}
 
 	public TratamentoPaciente() {
@@ -68,6 +74,22 @@ public class TratamentoPaciente {
 
 	public void setFeedback(String feedback) {
 		this.feedback = feedback;
+	}
+
+	public Long getId_tratamento() {
+		return id_tratamento;
+	}
+
+	public void setId_tratamento(Long id_tratamento) {
+		this.id_tratamento = id_tratamento;
+	}
+
+	public Long getId_paciente() {
+		return id_paciente;
+	}
+
+	public void setId_paciente(Long id_paciente) {
+		this.id_paciente = id_paciente;
 	}
 	
 }

@@ -9,6 +9,12 @@ public class IndicacaoDTO {
 	private String unidade;
 
 	private String tipo;
+	
+	private Long id_elemento;
+	
+	private Long id_situacao;
+	
+	private Long id_tipoPessoa;
 
 	public IndicacaoDTO () {
 		
@@ -44,6 +50,30 @@ public class IndicacaoDTO {
 
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
+	}
+
+	public Long getId_elemento() {
+		return id_elemento;
+	}
+
+	public void setId_elemento(Long id_elemento) {
+		this.id_elemento = id_elemento;
+	}
+
+	public Long getId_situacao() {
+		return id_situacao;
+	}
+
+	public void setId_situacao(Long id_situacao) {
+		this.id_situacao = id_situacao;
+	}
+
+	public Long getId_tipoPessoa() {
+		return id_tipoPessoa;
+	}
+
+	public void setId_tipoPessoa(Long id_tipoPessoa) {
+		this.id_tipoPessoa = id_tipoPessoa;
 	}
 	
 }

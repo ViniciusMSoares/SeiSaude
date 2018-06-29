@@ -42,7 +42,8 @@ public class TratamentoServiceImpl implements TratamentoService {
 
 	@Override
 	public TratamentoPaciente save(TratamentoPacienteDTO tratamentoPacienteDTO) {
-		TratamentoPaciente tratamentoPaciente = new TratamentoPaciente();
+		TratamentoPaciente tratamentoPaciente = new TratamentoPaciente(tratamentoPacienteDTO.getInicio(), tratamentoPacienteDTO.getFim(),
+				tratamentoPacienteDTO.getFeedback(), tratamentoPacienteDTO.getId_tratamento(), tratamentoPacienteDTO.getId_paciente());
 		return tratamentoPacienteRepository.save(tratamentoPaciente);
 	}
 	
