@@ -39,13 +39,16 @@ public class Paciente {
 	@Column()
 	private String tipoSanguineo;
 	
-	public Paciente(String nome, int idade, float peso, float altura, String tipoSanguineo) {
+	private Long id_tipoPessoa;
+	
+	public Paciente(String nome, int idade, float peso, float altura, String tipoSanguineo, Long id_tipoPessoa) {
 		super();
 		this.nome = nome;
 		this.idade = idade;
 		this.peso = peso;
 		this.altura = altura;
 		this.tipoSanguineo = tipoSanguineo;
+		this.id_tipoPessoa = id_tipoPessoa;
 	}
 
 	public Paciente() {
@@ -98,6 +101,14 @@ public class Paciente {
 
 	public void setTipoSanguineo(String tipoSanguineo) {
 		this.tipoSanguineo = tipoSanguineo;
+	}
+
+	public Long getId_tipoPessoa() {
+		return id_tipoPessoa;
+	}
+
+	public void setId_tipoPessoa(Long id_tipoPessoa) {
+		this.id_tipoPessoa = id_tipoPessoa;
 	}
 	
 }

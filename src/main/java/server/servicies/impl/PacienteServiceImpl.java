@@ -28,7 +28,7 @@ public class PacienteServiceImpl implements PacienteService {
 	@Override
 	public Paciente save(PacienteDTO pacienteDTO, TipoPessoaDTO tipoPessoaDTO) {
 		Paciente paciente = new Paciente(pacienteDTO.getNome(), pacienteDTO.getIdade(), pacienteDTO.getPeso(),
-				pacienteDTO.getAltura(), pacienteDTO.getTipoSanguineo());
+				pacienteDTO.getAltura(), pacienteDTO.getTipoSanguineo(), pacienteDTO.getId_tipoPessoa());
 		TipoPessoa tipoPessoa = new TipoPessoa(tipoPessoaDTO.getAlergias(), tipoPessoaDTO.getOutros());
 		
 		tipoPessoaRepository.save(tipoPessoa);

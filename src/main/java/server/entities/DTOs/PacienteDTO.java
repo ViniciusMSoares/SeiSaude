@@ -11,6 +11,8 @@ public class PacienteDTO {
 	private float altura;
 
 	private String tipoSanguineo;
+	
+	private Long id_tipoPessoa;
 
 	public PacienteDTO() {
 
@@ -54,6 +56,14 @@ public class PacienteDTO {
 
 	public void setTipoSanguineo(String tipoSanguineo) {
 		this.tipoSanguineo = tipoSanguineo;
+	}
+
+	public Long getId_tipoPessoa() {
+		return id_tipoPessoa;
+	}
+
+	public void setId_tipoPessoa(Long id_tipoPessoa) {
+		this.id_tipoPessoa = id_tipoPessoa;
 	}
 	
 }
