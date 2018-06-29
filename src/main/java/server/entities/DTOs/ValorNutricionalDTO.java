@@ -2,48 +2,48 @@ package server.entities.DTOs;
 
 public class ValorNutricionalDTO {
 
-	private String[] name;
+	private String[] nomeVNutricional;
 	
-	private String[] valores;
+	private String[] valoresVNutricional;
 	
-	private String[] quantidades;
+	private String[] quantidadesVNutricional;
 	
-	private String[] unidades;
+	private String[] unidadesVNutricional;
 	
 	public ValorNutricionalDTO() {
 		
 	}
 
-	public String[] getName() {
-		return name;
+	public String[] getNomeVNutricional() {
+		return nomeVNutricional;
 	}
 
-	public void setName(String[] name) {
-		this.name = name;
+	public void setNomeVNutricional(String[] nomeVNutricional) {
+		this.nomeVNutricional = nomeVNutricional;
 	}
 
-	public String[] getValores() {
-		return valores;
+	public String[] getValoresVNutricional() {
+		return valoresVNutricional;
 	}
 
-	public void setValores(String[] valores) {
-		this.valores = valores;
+	public void setValoresVNutricional(String[] valoresVNutricional) {
+		this.valoresVNutricional = valoresVNutricional;
 	}
 
-	public String[] getUnidades() {
-		return unidades;
+	public String[] getUnidadesVNutricional() {
+		return unidadesVNutricional;
 	}
 
-	public void setUnidades(String[] unidades) {
-		this.unidades = unidades;
+	public void setUnidadesVNutricional(String[] unidadesVNutricional) {
+		this.unidadesVNutricional = unidadesVNutricional;
 	}
 
-	public String[] getQuantidades() {
-		return quantidades;
+	public String[] getQuantidadesVNutricional() {
+		return quantidadesVNutricional;
 	}
 
-	public void setQuantidades(String[] quantidades) {
-		this.quantidades = quantidades;
+	public void setQuantidadesVNutricional(String[] quantidadesVNutricional) {
+		this.quantidadesVNutricional = quantidadesVNutricional;
 	}
 	
 }

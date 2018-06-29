@@ -2,38 +2,38 @@ package server.entities.DTOs;
 
 public class ComponenteDTO {
 
-	private String[] name;
+	private String[] nomeComponente;
 	
-	private String[] valores;
+	private String[] valoresComponente;
 	
-	private String[] unidades;
+	private String[] unidadesComponente;
 	
 	public ComponenteDTO() {
 		
 	}
 
-	public String[] getName() {
-		return name;
+	public String[] getNomeComponente() {
+		return nomeComponente;
 	}
 
-	public void setName(String[] name) {
-		this.name = name;
+	public void setNomeComponente(String[] nomeComponente) {
+		this.nomeComponente = nomeComponente;
 	}
 
-	public String[] getValores() {
-		return valores;
+	public String[] getValoresComponente() {
+		return valoresComponente;
 	}
 
-	public void setValores(String[] valores) {
-		this.valores = valores;
+	public void setValoresComponente(String[] valoresComponente) {
+		this.valoresComponente = valoresComponente;
 	}
 
-	public String[] getUnidades() {
-		return unidades;
+	public String[] getUnidadesComponente() {
+		return unidadesComponente;
 	}
 
-	public void setUnidades(String[] unidades) {
-		this.unidades = unidades;
+	public void setUnidadesComponente(String[] unidadesComponente) {
+		this.unidadesComponente = unidadesComponente;
 	}
 	
 }
