@@ -21,7 +21,7 @@ app.controller('elementoCtrl', function($http, $window) {
         $http({
             method: 'POST',
             data: novoElemento,
-            url: 'http://localhost:8080/elemento'
+            url: 'https://sei-saude.herokuapp.com/elemento'
         }).then(function (success){
             console.log(success);
 
@@ -34,7 +34,7 @@ app.controller('elementoCtrl', function($http, $window) {
         
         $http({
             method: 'GET',
-            url: 'http://localhost:8080/all_elemento'
+            url: 'https://sei-saude.herokuapp.com/all_elemento'
         }).then(function (success){
             console.log({success});
 
