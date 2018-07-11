@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="pt-br" ng-app="Sei-Saude">
+<head>
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Sei-Saude</title>
+    <!-- Materialize -->
+    <link rel="stylesheet" href="css/materialize.css">
+    <link rel="stylesheet" href="layout.css"/>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!--AngularJS-->
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.4/angular.js"></script>
+
+    <!--Main-->
+    <script src="js/app.js"></script>
+
+    <!--Controllers-->
+    <script src="js/controllers/elementoController.js"></script>
+
+</head>
+
+
+
+    <body>
+        <div class="navbar-fixed">
+            <nav class="menu">
+                <div class="nav-wrapper blue lighten-2">
+                    <a class="brand-logo center">Sei-Saúde
+                            <i class="material-icons">face</i>
+                    </a>
+                    <a href="#" data-target="mobile-demo" class="sidenav-trigger">
+                    <i class="large material-icons">menu</i>
+                    </a>
+                    <ul class="hide-on-med-and-down">
+                        
+                        <li><a >CONSULTA</a>
+                            <ul class="sub-menu blue lighten-2">
+                                <li><a href="#">Sintoma</a></li><br>
+                                <li><a href="#">Doença ou Estado</a></li><br>
+                                <li><a href="#">Elemento</a></li><br>
+                                <li><a href="#">Componente</a></li><br>
+                            </ul>
+                        </li>
+
+                        <li><a>TRATAMENTO</a>
+                            <ul class="sub-menu blue lighten-2">
+                                <li><a href="#">Novo</a></li><br>
+                                <li><a href="#">Em Andamento</a></li><br>
+                            </ul>
+                        </li>
+                        <li><a>CADASTRO</a>
+                            <ul class="sub-menu blue lighten-2">
+                                <li><a>Elemento</a></li><br>
+                                    <ul class="sub-sub-menu">
+                                            <li><a href="produto_form.html" class="waves-effect waves-teal btn-flat">Produto</a></li><br>
+                                            <li><a href="#" class="waves-effect waves-teal btn-flat">Alimento</a></li><br>
+                                            <li><a href="#" class="waves-effect waves-teal btn-flat">Remedio</a></li><br>
+                                            <li><a href="#"class="waves-effect waves-teal btn-flat">Comportamento</a></li><br>
+                                    </ul>
+                                <li><a href="#">Componente</a></li><br>
+                                <li><a href="#">Situação</a></li><br>
+                                <li><a href="#">Indicação</a></li><br>
+                                <li><a href="#">Paciente</a></li><br>
+                                <li><a href="#">Paciente</a></li><br>
+                                <li><a href="#">Tratamento</a></li><br>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+        
+        <!-- Menu mobile-->
+        <ul class="sidenav " id="mobile-demo">
+            
+                <li><a ><h5>CONSULTA</h5></a>
+                    <ul class="sub-menu">
+                        <li><a href="#">Sintoma</a></li>
+                        <li><a href="#">Doença ou Estado</a></li>
+                        <li><a href="#">Elemento</a></li>
+                        <li><a href="#">Componente</a></li>
+                    </ul>
+                </li>
+
+                <li><a><h5>TRATAMENTO</h5></a>
+                    <ul class="sub-menu">
+                        <li><a href="#">Novo</a></li>
+                        <li><a href="#">Em Andamento</a></li>
+                    </ul>
+                </li>
+                <li><a><h5>CADASTRO</h5></a>
+                    <ul class="sub-menu">
+                        <li><a href="#">Elemento</a></li>
+                            <ul class="sub-sub-menu">
+                                <li><a href="produto_form.html" class="waves-effect waves-teal btn-flat">Produto</a></li>
+                                <li><a href="#" class="waves-effect waves-teal btn-flat">Alimento</a></li>
+                                <li><a href="#" class="waves-effect waves-teal btn-flat">Remedio</a></li>
+                                <li><a href="#"class="waves-effect waves-teal btn-flat">Comportamento</a></li>
+                            </ul>
+                        <li><a href="#">Componente</a></li>
+                        <li><a href="#">Situação</a></li>
+                        <li><a href="#">Indicação</a></li>
+                        <li><a href="#">Paciente</a></li>
+                        <li><a href="#">Paciente</a></li>
+                        <li><a href="#">Tratamento</a></li>
+                    </ul>
+                </li>
+        </ul>
+    <!--JavaScript at end of body for optimized loading-->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <!-- Materialize JS -->
+    <script type="text/javascript" src="js/materialize.js"></script>
+    <!-- Menu lateral para mobile js-->
+    <script>$(document).ready(function(){
+            $('.sidenav').sidenav();
+          });</script>
+    </body>
+</html>

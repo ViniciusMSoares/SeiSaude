@@ -39,7 +39,7 @@ public class ElementoController {
 
 	@RequestMapping(value = "/all_elemento", method = RequestMethod.GET)
 	public ResponseEntity<ArrayList<Elemento>> getAllElementos() { 
-		return new ResponseEntity<ArrayList<Elemento>>((ArrayList<Elemento>) elementoService.findAll(), HttpStatus.FOUND);
+		return new ResponseEntity<ArrayList<Elemento>>((ArrayList<Elemento>) elementoService.findAll(), HttpStatus.OK);
 	}
 	
 	@GetMapping("/elemento/componente")
