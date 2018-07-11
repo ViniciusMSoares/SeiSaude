@@ -34,7 +34,7 @@ public class ElementoController {
 	
 	@GetMapping("/elemento")
 	public ResponseEntity<ArrayList<Elemento>> getElementosByName(@RequestParam(value = "name") String name) { 
-		return new ResponseEntity<ArrayList<Elemento>>(elementoService.findByName(name), HttpStatus.FOUND);
+		return new ResponseEntity<ArrayList<Elemento>>(elementoService.findByName(name), HttpStatus.OK);
 	}
 
 	@RequestMapping(value = "/all_elemento", method = RequestMethod.GET)
@@ -44,7 +44,7 @@ public class ElementoController {
 	
 	@GetMapping("/elemento/componente")
 	public ResponseEntity<ArrayList<Componente>> getComponentesByName(@RequestParam(value = "name") String name) { 
-		return new ResponseEntity<ArrayList<Componente>>(elementoService.findComponenteByName(name), HttpStatus.FOUND);
+		return new ResponseEntity<ArrayList<Componente>>(elementoService.findComponenteByName(name), HttpStatus.OK);
 	}
 	
 }

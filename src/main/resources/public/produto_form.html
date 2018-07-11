@@ -33,40 +33,6 @@
             <div class="row">
             <div class="input-field col s3">
                 <textarea id="textarea1" class="materialize-textarea"></textarea>
-                <label for="textarea1">Nome</label>
-            </div>
-            
-            </div>
-        </form>
-            <form class="co2 s5">
-                <div class="row">
-                <div class="input-field col s6">
-                    <textarea id="textarea1" class="materialize-textarea"></textarea>
-                    <label for="textarea1">Descrição</label>
-                </div>
-                
-                </div>
-            </form>
-        
-                <form class="co2 s5">
-                    <div class="row">
-                    <div class="input-field col s3">
-                        <textarea id="textarea1" class="materialize-textarea"></textarea>
-                        <label for="textarea1">Criado Por</label>
-                    </div>
-                    
-                    </div>
-                </form>
-                </div>
-                
-                <button class="btn waves-effect blue lighten-2" type="submit" name="action" ng-click="elemento.listaElementos()">Submit
-                        <i class="material-icons right">send</i>
-                </button>
-
-        <form>
-            <div class="row">
-            <div class="input-field col s3">
-                <textarea id="textarea1" class="materialize-textarea"></textarea>
                 <label for="textarea1">Nome
                     <input ng-model="elemento._novoElemento.name">
                 </label>
@@ -100,17 +66,8 @@
             </div>
             </div>
 
-            <div class="row">
-            <div class="input-field col s3">
-                <textarea id="textarea1" class="materialize-textarea"></textarea>
-                <label for="textarea1">Tipo
-                    <input ng-model="elemento._novoElemento.tipo">
-                </label>
-            </div>
-            </div>
-
-            <button ng-click="elemento.cadastrar()">
-                test
+            <button class="btn waves-effect blue lighten-2" type="submit" name="action" ng-click="elemento.listaElementos()">Submit
+                    <i class="material-icons right">send</i>
             </button>
         </form>
 
