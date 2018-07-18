@@ -7,6 +7,7 @@ app.controller('elementoCtrl', function($http, $window) {
 
     var elemento = this;
     elemento._novoElemento = {};
+    elemento._mensagem = {};
 
     elemento.cadastrar = function cadastraElemento() {
 
@@ -21,12 +22,13 @@ app.controller('elementoCtrl', function($http, $window) {
         $http({
             method: 'POST',
             data: novoElemento,
-            url: 'https://sei-saude.herokuapp.com/elemento'
+            url: 'http://localhost:8080/elemento'
         }).then(function (success){
             console.log(success);
-
+            alert(success.data.name + " cadastrado com sucesso!");
         },function (error){
             console.log(error);
+            alert("Não foi possível cadastrar " + novoElemento.name);
         });
     }
 

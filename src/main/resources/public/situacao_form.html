@@ -20,45 +20,31 @@
     <script src="js/app.js"></script>
 
     <!--Controllers-->
-    <script src="js/controllers/elementoController.js"></script>
+    <script src="js/controllers/situacaoController.js"></script>
 
 </head>
 
 
 
-<body ng-controller="elementoCtrl as elemento">
+<body ng-controller="situacaoCtrl as situacao">
     <a  href="index.html" class="waves-effect blue lighten-2 btn">Home</a>
     <div class="row">
         <form class="co2 s5">
             <div class="row">
             <div class="input-field col s3">
                 Nome
-                <input ng-model="elemento._novoElemento.name">
+                <input ng-model="situacao._novoSituacao.name">
             </div>
             </div>
 
             <div class="row">
             <div class="input-field col s6">
                 Descrição
-                <input ng-model="elemento._novoElemento.descricao">
+                <input ng-model="situacao._novoSituacao.descricao">
             </div>  
             </div>
 
-            <div class="row">
-            <div class="input-field col s3">
-                Fabricante
-                <input ng-model="elemento._novoElemento.fabricante">
-            </div>
-            </div>
-                    
-            <div class="row">
-            <div class="input-field col s3">
-                CadastradoPor
-                <input ng-model="elemento._novoElemento.cadastradoPor">
-            </div>
-            </div>
-
-            <button class="btn waves-effect blue lighten-2" type="submit" name="action" ng-click="elemento.cadastrar()">Submit
+            <button class="btn waves-effect blue lighten-2" type="submit" name="action" ng-click="situacao.cadastrar()">Submit
                     <i class="material-icons right">send</i>
             </button>
         </form>
