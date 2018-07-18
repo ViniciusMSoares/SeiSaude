@@ -20,7 +20,7 @@ app.controller('situacaoCtrl', function($http, $window) {
         $http({
             method: 'POST',
             data: novoSituacao,
-            url: 'http://localhost:8080/situacao'
+            url: 'https://sei-saude.herokuapp.com/situacao'
         }).then(function (success){
             console.log(success);
             alert(success.data.name + " cadastrado com sucesso!");
