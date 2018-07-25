@@ -14,8 +14,10 @@ import server.entities.Quantidade;
 import server.entities.Remedio;
 import server.entities.Valor;
 import server.entities.ValorNutricional;
+import server.entities.DTOs.AlimentoDTO;
 import server.entities.DTOs.ComponenteDTO;
 import server.entities.DTOs.ElementoDTO;
+import server.entities.DTOs.ProdutoDTO;
 import server.entities.DTOs.ValorNutricionalDTO;
 import server.servicies.ElementoService;
 import server.repositories.AlimentoRepository;
@@ -121,6 +123,70 @@ public class ElementoServiceImpl implements ElementoService {
 			return elementoRepository.save(elemento);
 		}
 	}
+	
+	@Override
+	public Elemento save(ElementoDTO elementoDTO) {
+		Elemento elemento = new Elemento(elementoDTO.getName(), elementoDTO.getDescricao(),
+				elementoDTO.getCadastradoPor());
+
+		Comportamento comportamento = new Comportamento(elemento);
+			
+		return comportamentoRepository.save(comportamento);
+	}
+
+	@Override
+	public Elemento save(ProdutoDTO produtoDTO) {
+		Elemento elemento = new Elemento(produtoDTO.getName(), produtoDTO.getDescricao(),
+				produtoDTO.getCadastradoPor());
+		
+		Remedio remedio = new Remedio(elemento, produtoDTO.getFabricante());
+		remedioRepository.save(remedio);
+		Componente componente;
+		Quantidade quantidade;
+		if (produtoDTO.getUnidadesComponente() != null) {
+			for (int i = 0; i < produtoDTO.getUnidadesComponente().length; i++) {
+				componente = new Componente(produtoDTO.getNomeComponente()[i]);
+				componenteRepository.save(componente);
+				quantidade = new Quantidade(componente.getId(), remedio.getId(), Float.parseFloat(produtoDTO.getValoresComponente()[i]), produtoDTO.getUnidadesComponente()[i]);
+				quantidadeRepository.save(quantidade);
+			}
+		}
+
+		return remedioRepository.save(remedio);
+	}
+
+	@Override
+	public Elemento save(AlimentoDTO alimentoDTO) {
+		Elemento elemento = new Elemento(alimentoDTO.getName(), alimentoDTO.getDescricao(),
+				alimentoDTO.getCadastradoPor());
+		
+		Alimento alimento = new Alimento(elemento, alimentoDTO.getFabricante());
+		alimentoRepository.save(alimento);
+		Componente componenteA;
+		Quantidade quantidadeA;
+		if (alimentoDTO.getUnidadesComponente() != null) {
+			for (int i = 0; i < alimentoDTO.getUnidadesComponente().length/2; i++) {
+				componenteA = new Componente(alimentoDTO.getNomeComponente()[i]);
+				componenteRepository.save(componenteA);
+				quantidadeA = new Quantidade(componenteA.getId(), alimento.getId(), Float.parseFloat(alimentoDTO.getValoresComponente()[i]), alimentoDTO.getUnidadesComponente()[i]);
+				quantidadeRepository.save(quantidadeA);
+			}
+		}
+		
+		ValorNutricional valorNutricional;
+		Valor valor;
+		if (alimentoDTO.getQuantidadesVNutricional() != null) {
+			for (int i = 0; i < alimentoDTO.getQuantidadesVNutricional().length; i++) {
+				valorNutricional = new ValorNutricional(alimentoDTO.getNomeVNutricional()[i]);
+				valorNutricionalRepository.save(valorNutricional);
+				valor = new Valor(valorNutricional.getId(), alimento.getId(), Float.parseFloat(alimentoDTO.getValoresVNutricional()[i]), 
+				Float.parseFloat(alimentoDTO.getQuantidadesVNutricional()[i]), alimentoDTO.getUnidadesVNutricional()[i]);
+				valorRepository.save(valor);
+			}
+		}
+		
+		return alimentoRepository.save(alimento);
+	}
 
 	@Override
 	public void delete(Long id) {
@@ -156,3 +222,63 @@ public class ElementoServiceImpl implements ElementoService {
 	}
 	
 }
+
+/*
+	@Override
+	public Elemento save(ElementoDTO elementoDTO, ComponenteDTO componenteDTO, ValorNutricionalDTO valorNutricionalDTO) {
+		Elemento elemento = new Elemento(elementoDTO.getName(), elementoDTO.getDescricao(),
+				elementoDTO.getCadastradoPor());
+		
+		switch (elementoDTO.getTipo()) {
+		case 1:
+			Comportamento comportamento = new Comportamento(elemento);
+			
+			return comportamentoRepository.save(comportamento);
+		case 2:
+			Remedio remedio = new Remedio(elemento, elementoDTO.getFabricante());
+			remedioRepository.save(remedio);
+			Componente componente;
+			Quantidade quantidade;
+			if (componenteDTO.getUnidadesComponente() != null) {
+				for (int i = 0; i < componenteDTO.getUnidadesComponente().length/2; i++) {
+					componente = new Componente(componenteDTO.getNomeComponente()[i]);
+					componenteRepository.save(componente);
+					quantidade = new Quantidade(componente.getId(), remedio.getId(), Float.parseFloat(componenteDTO.getValoresComponente()[i]), componenteDTO.getUnidadesComponente()[i]);
+					quantidadeRepository.save(quantidade);
+				}
+			}
+
+			return remedioRepository.save(remedio);
+		case 3:
+			Alimento alimento = new Alimento(elemento, elementoDTO.getFabricante());
+			alimentoRepository.save(alimento);
+			Componente componenteA;
+			Quantidade quantidadeA;
+			if (componenteDTO.getUnidadesComponente() != null) {
+				for (int i = 0; i < componenteDTO.getUnidadesComponente().length/2; i++) {
+					componenteA = new Componente(componenteDTO.getNomeComponente()[i]);
+					componenteRepository.save(componenteA);
+					quantidadeA = new Quantidade(componenteA.getId(), alimento.getId(), Float.parseFloat(componenteDTO.getValoresComponente()[i]), componenteDTO.getUnidadesComponente()[i]);
+					quantidadeRepository.save(quantidadeA);
+				}
+			}
+			
+			ValorNutricional valorNutricional;
+			Valor valor;
+			if (valorNutricionalDTO.getQuantidadesVNutricional() != null) {
+				for (int i = 0; i < valorNutricionalDTO.getQuantidadesVNutricional().length; i++) {
+					valorNutricional = new ValorNutricional(valorNutricionalDTO.getNomeVNutricional()[i]);
+					valorNutricionalRepository.save(valorNutricional);
+					valor = new Valor(valorNutricional.getId(), alimento.getId(), Float.parseFloat(valorNutricionalDTO.getValoresVNutricional()[i]), 
+					Float.parseFloat(valorNutricionalDTO.getQuantidadesVNutricional()[i]), valorNutricionalDTO.getUnidadesVNutricional()[i]);
+					valorRepository.save(valor);
+				}
+			}
+			
+			return alimentoRepository.save(alimento);
+		default:
+			
+			return elementoRepository.save(elemento);
+		}
+	}
+ */

@@ -15,9 +15,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import server.entities.Componente;
 import server.entities.Elemento;
+import server.entities.DTOs.AlimentoDTO;
 import server.entities.DTOs.ComponenteDTO;
 import server.entities.DTOs.ElementoDTO;
+import server.entities.DTOs.ProdutoDTO;
 import server.entities.DTOs.ValorNutricionalDTO;
+import server.entities.DTOs.SearchDTO;
 import server.servicies.ElementoService;
 
 @RestController
@@ -26,15 +29,34 @@ public class ElementoController {
 	@Autowired
 	private ElementoService elementoService;
 	
-	@RequestMapping(value = "/elemento", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
+/*	@RequestMapping(value = "/elemento", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public ResponseEntity<Elemento> cadastraElemento(@RequestBody ElementoDTO elemento, ComponenteDTO componente, ValorNutricionalDTO valorNutricional) {
 
 		return new ResponseEntity<>(elementoService.save(elemento, componente, valorNutricional), HttpStatus.CREATED);
+	}*/
+	
+	@RequestMapping(value = "/elemento/comportamento", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	public ResponseEntity<Elemento> cadastraComportamento(@RequestBody ElementoDTO elemento) {
+		
+		return new ResponseEntity<>(elementoService.save(elemento), HttpStatus.CREATED);
 	}
 	
-	@GetMapping("/elemento")
-	public ResponseEntity<ArrayList<Elemento>> getElementosByName(@RequestParam(value = "name") String name) { 
-		return new ResponseEntity<ArrayList<Elemento>>(elementoService.findByName(name), HttpStatus.OK);
+	@RequestMapping(value = "/elemento/remedio", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	public ResponseEntity<Elemento> cadastraRemedio(@RequestBody ProdutoDTO remedio) {
+
+		return new ResponseEntity<>(elementoService.save(remedio), HttpStatus.CREATED);
+	}
+	
+	@RequestMapping(value = "/elemento/alimento", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	public ResponseEntity<Elemento> cadastraAlimento(@RequestBody AlimentoDTO alimento) {
+
+		return new ResponseEntity<>(elementoService.save(alimento), HttpStatus.CREATED);
+	}
+	
+	@RequestMapping(value = "/elemento", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	public ResponseEntity<ArrayList<Elemento>> getElementosByName(@RequestBody SearchDTO search) { 
+		System.out.println(search.getName());
+		return new ResponseEntity<ArrayList<Elemento>>(elementoService.findByName(search.getName()), HttpStatus.OK);
 	}
 
 	@RequestMapping(value = "/all_elemento", method = RequestMethod.GET)

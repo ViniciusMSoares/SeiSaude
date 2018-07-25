@@ -5,8 +5,10 @@ import java.util.List;
 
 import server.entities.Componente;
 import server.entities.Elemento;
+import server.entities.DTOs.AlimentoDTO;
 import server.entities.DTOs.ComponenteDTO;
 import server.entities.DTOs.ElementoDTO;
+import server.entities.DTOs.ProdutoDTO;
 import server.entities.DTOs.ValorNutricionalDTO;
 
 public interface ElementoService {
@@ -30,6 +32,27 @@ public interface ElementoService {
 	 * @return
 	 */
 	Elemento save(ElementoDTO elemento, ComponenteDTO componenteDTO, ValorNutricionalDTO valorNutricionalDTO);
+	
+	/**
+	 * Save Elemento in to database.
+	 * @param Elemento
+	 * @return
+	 */
+	Elemento save(ElementoDTO elemento);
+	
+	/**
+	 * Save Elemento in to database.
+	 * @param Elemento
+	 * @return
+	 */
+	Elemento save(ProdutoDTO produto);
+	
+	/**
+	 * Save Elemento in to database.
+	 * @param Elemento
+	 * @return
+	 */
+	Elemento save(AlimentoDTO alimento);
 	
 	/**
 	 * Delete Elemento by id.
