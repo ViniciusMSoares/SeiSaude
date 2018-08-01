@@ -16,10 +16,8 @@ import org.springframework.web.bind.annotation.RestController;
 import server.entities.Componente;
 import server.entities.Elemento;
 import server.entities.DTOs.AlimentoDTO;
-import server.entities.DTOs.ComponenteDTO;
 import server.entities.DTOs.ElementoDTO;
 import server.entities.DTOs.ProdutoDTO;
-import server.entities.DTOs.ValorNutricionalDTO;
 import server.entities.DTOs.SearchDTO;
 import server.servicies.ElementoService;
 
@@ -46,13 +44,19 @@ public class ElementoController {
 	
 	@RequestMapping(value = "/elemento/remedio", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public ResponseEntity<Elemento> cadastraRemedio(@RequestBody ProdutoDTO remedio) {
-
+		if (elementoService.elementoInDataBase(remedio.getName())) {
+			return new ResponseEntity<>(HttpStatus.MULTIPLE_CHOICES);
+		}
+		
 		return new ResponseEntity<>(elementoService.save(remedio), HttpStatus.CREATED);
 	}
 	
 	@RequestMapping(value = "/elemento/alimento", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public ResponseEntity<Elemento> cadastraAlimento(@RequestBody AlimentoDTO alimento) {
-
+		if (elementoService.elementoInDataBase(alimento.getName())) {
+			return new ResponseEntity<>(HttpStatus.MULTIPLE_CHOICES);
+		}
+		
 		return new ResponseEntity<>(elementoService.save(alimento), HttpStatus.CREATED);
 	}
 	
