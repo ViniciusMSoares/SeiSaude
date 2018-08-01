@@ -37,6 +37,9 @@ public class ElementoController {
 	
 	@RequestMapping(value = "/elemento/comportamento", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public ResponseEntity<Elemento> cadastraComportamento(@RequestBody ElementoDTO elemento) {
+		if (elementoService.elementoInDataBase(elemento.getName())) {
+			return new ResponseEntity<>(HttpStatus.MULTIPLE_CHOICES);
+		}
 		
 		return new ResponseEntity<>(elementoService.save(elemento), HttpStatus.CREATED);
 	}

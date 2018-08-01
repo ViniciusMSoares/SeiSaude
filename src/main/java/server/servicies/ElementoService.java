@@ -31,13 +31,6 @@ public interface ElementoService {
 	 * @param Elemento
 	 * @return
 	 */
-	Elemento save(ElementoDTO elemento, ComponenteDTO componenteDTO, ValorNutricionalDTO valorNutricionalDTO);
-	
-	/**
-	 * Save Elemento in to database.
-	 * @param Elemento
-	 * @return
-	 */
 	Elemento save(ElementoDTO elemento);
 	
 	/**
@@ -63,4 +56,6 @@ public interface ElementoService {
 	ArrayList<Elemento> findByName(String name);
 	
 	ArrayList<Componente> findComponenteByName(String name);
+	
+	boolean elementoInDataBase(String nome);
 }

@@ -28,50 +28,21 @@ app.controller('elementoCtrl', function($http, $window) {
                 break;
         }
 
-        var resp = elemento.jaCadastrado(novoElemento.name);
-        console.log(resp);
-
-        if (elemento.jaCadastrado(novoElemento.name) == 0) {
-            alert("tente de novo");
-        } else { 
-            await $http({
-                method: 'POST',
-                data: novoElemento,
-                url: 'http://localhost:8080/elemento' + url
-            }).then(function (success){
-                console.log(success);
-                alert(success.data.name + " cadastrado com sucesso!");
-            },function (error){
-                console.log(error);
-                alert("Não foi possível cadastrar o elemento");
-            }); 
-        }
-
-    }
-
-    elemento.jaCadastrado = async function jaCadastrado(nome) {
-        var resp = 0;
-
-        await $http({
+        $http({
             method: 'POST',
-            data: elemento.searchName(),
-            url: 'http://localhost:8080/elemento'
+            data: novoElemento,
+            url: 'https://sei-saude.herokuapp.com/elemento' + url
         }).then(function (success){
             console.log(success);
-            if (success.data.length > 0) {
-                alert(success.data[0].name + " já cadastrado no sistema.");
-                console.log("opa" + success.data[0].name.localeCompare(nome));
-                resp = success.data[0].name.localeCompare(nome);
-            } else {
-                console.log("ola");
-                resp = 2;
-            }
+            alert(success.data.name + " cadastrado com sucesso!");
         },function (error){
             console.log(error);
-        });
+            if (error.status == 300) {
+                alert("Não foi possível cadastrar o elemento.\nEsse nome já está em uso.");
+            }
+        }); 
         
-        console.log(resp);
-        return resp;
+
     }
 
     elemento.dadosComportamento = function dadosComportamento() {
