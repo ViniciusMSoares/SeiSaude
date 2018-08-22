@@ -58,6 +58,21 @@
             </div>
             </div>
 
+            <script type="text/javascript">
+                //Escrevendo o código-fonte HTML e ocultando os campos criados:
+                for (iLoop = 1; iLoop <= 10; iLoop++) {
+                        document.write("<span id='linha"+iLoop+"' style='display:none'>Nome componente "+iLoop+": <input type='text' id='arq"+iLoop+"' name='arq"+iLoop+"'> <input type='button' value='Remover' ng-click='elemento.removeCampos(\""+iLoop+"\")'></span>");
+                }
+            </script>
+
+            <button class="btn waves-effect blue lighten-2" type="submit" name="action" ng-click="elemento.addCampos()">Adicionar Campos
+                <i class="material-icons right">add</i>
+            </button>
+
+            <br><br><input type="hidden" name="hidden1" id="hidden1">
+
+            <input type="hidden" name="hidden2" id="hidden2">
+
             <button class="btn waves-effect blue lighten-2" type="submit" name="action" ng-click="elemento.cadastrar(3)">Submit
                     <i class="material-icons right">send</i>
             </button>
