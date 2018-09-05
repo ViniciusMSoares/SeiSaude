@@ -67,14 +67,50 @@ app.controller('elementoCtrl', function($http, $window) {
     }
 
     elemento.dadosAlimento = function dadosAlimentos() {
+
+
         var novoElemento = {
             cadastradoPor: elemento._novoElemento.cadastradoPor,
             descricao: elemento._novoElemento.descricao,
             fabricante: elemento._novoElemento.fabricante,
             name: elemento._novoElemento.name,
+            nomeComponente: elemento.nomesComponente(),
+            nomeVNutricional: [],
+            quantidadesVNutricional: [],
             tipo: 3,
+            unidadesComponente: elemento.unidadesComponente(),
+            unidadesVNutricional: [],
+            valoresComponente: elemento.valoresComponente(),
+            valoresVNutricional: [],
         };
         return novoElemento;
+    }
+
+    elemento.nomesComponente = function nomesComponente() {
+        var nomesComponente = [];
+
+        for (let i = 1; i <= iCount; i++) {
+            nomesComponente[i-1] = document.getElementById("NC"+i).value;
+        }
+        return nomesComponente
+    }
+
+    elemento.unidadesComponente = function unidadesComponente() {
+        var unidadesComponente = [];
+
+        for (let i = 1; i <= iCount; i++) {
+            unidadesComponente[i-1] = document.getElementById("UC"+i).value;
+        }
+        return unidadesComponente
+    }
+
+    elemento.valoresComponente = function valoresComponente() {
+        var valoresComponente = [];
+
+        for (let i = 1; i <= iCount; i++) {
+            valoresComponente[i-1] = document.getElementById("VC"+i).value;
+        }
+        return valoresComponente
     }
 
     elemento.searchName = function searchName(){
@@ -159,15 +195,50 @@ app.controller('elementoCtrl', function($http, $window) {
                     }
                     */
             }
+
+            var box = document.getElementById("d"+iCount);
+            var f = document.createTextNode("Componente "+iCount);
+            var z1 = document.createTextNode("Nome Componente");
+            var z = document.createElement('input');
+            z.type = 'text';
+            z.id = 'NC'+iCount;
+            z.name = 'NC'
+            z.value = '';
+
+            var x1 = document.createTextNode("Unidade Componente");
+            var x = document.createElement('input');
+            x.type = 'text';
+            x.id = 'UC'+iCount;
+            x.name = 'UC'
+            x.value = '';
+
+            var y1 = document.createTextNode("Valor Componente");
+            var y = document.createElement('input');
+            y.type = 'text';
+            y.id = 'VC'+iCount;
+            y.name = 'VC'
+            y.value = '';
+
+            var fieldComponente = document.createElement('fieldset');
+            fieldComponente.id = "C"+iCount;
+            fieldComponente.appendChild(f);
+            fieldComponente.appendChild(z1);
+            fieldComponente.appendChild(z);
+            fieldComponente.appendChild(x1);
+            fieldComponente.appendChild(x);
+            fieldComponente.appendChild(y1);
+            fieldComponente.appendChild(y);
+            box.appendChild(fieldComponente);
+            //document.body.appendChild(fieldComponente);
+
     }
     }
 
     elemento.removeCampos = function RemoverCampos(id) {
     //Criando ponteiro para hidden1:        
     var hidden1 = document.getElementById("hidden1");
-
     //Pegar o valor do campo que será excluído:
-    var campoValor = document.getElementById("arq"+id).value;
+    var campoValor = document.getElementById("NC"+id).value;
             //Se o campo não tiver nenhum valor, atribuir a string: vazio:
             if (campoValor == "") {
                     campoValor = "vazio";
@@ -184,6 +255,8 @@ app.controller('elementoCtrl', function($http, $window) {
                     }else{
                             hidden1.value = "";
                     }
+
+                    document.getElementById("C"+id).outerHTML = "";
             }
     }
 

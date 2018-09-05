@@ -105,7 +105,7 @@ public class ElementoServiceImpl implements ElementoService {
 		Componente componenteA;
 		Quantidade quantidadeA;
 		if (alimentoDTO.getUnidadesComponente() != null) {
-			for (int i = 0; i < alimentoDTO.getUnidadesComponente().length/2; i++) {
+			for (int i = 0; i < alimentoDTO.getUnidadesComponente().length; i++) {
 				componenteA = new Componente(alimentoDTO.getNomeComponente()[i]);
 				componenteRepository.save(componenteA);
 				quantidadeA = new Quantidade(componenteA.getId(), alimento.getId(), Float.parseFloat(alimentoDTO.getValoresComponente()[i]), alimentoDTO.getUnidadesComponente()[i]);

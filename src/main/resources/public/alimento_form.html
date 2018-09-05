@@ -60,8 +60,8 @@
 
             <script type="text/javascript">
                 //Escrevendo o código-fonte HTML e ocultando os campos criados:
-                for (iLoop = 1; iLoop <= 10; iLoop++) {
-                        document.write("<span id='linha"+iLoop+"' style='display:none'>Nome componente "+iLoop+": <input type='text' id='arq"+iLoop+"' name='arq"+iLoop+"'> <input type='button' value='Remover' ng-click='elemento.removeCampos(\""+iLoop+"\")'></span>");
+                for (iLoop = 1; iLoop <= 10; iLoop++) {//Nome componente "+iLoop+": <input type='text' id='arq"+iLoop+"' name='arq"+iLoop+"'>
+                        document.write("<span id='linha"+iLoop+"' style='display:none'> <div id='d"+iLoop+"'> <input type='button' value='Remover' ng-click='elemento.removeCampos(\""+iLoop+"\")'></div></span>");
                 }
             </script>
 
