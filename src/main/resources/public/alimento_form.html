@@ -60,12 +60,18 @@
 
             <script type="text/javascript">
                 //Escrevendo o código-fonte HTML e ocultando os campos criados:
-                for (iLoop = 1; iLoop <= 10; iLoop++) {//Nome componente "+iLoop+": <input type='text' id='arq"+iLoop+"' name='arq"+iLoop+"'>
-                        document.write("<span id='linha"+iLoop+"' style='display:none'> <div id='d"+iLoop+"'> <input type='button' value='Remover' ng-click='elemento.removeCampos(\""+iLoop+"\")'></div></span>");
-                }
+                document.write("<div id='componentes'></div>");
             </script>
 
-            <button class="btn waves-effect blue lighten-2" type="submit" name="action" ng-click="elemento.addCampos()">Adicionar Campos
+            <button class="btn waves-effect blue lighten-2" type="submit" name="action" ng-click="elemento.addComponente()">Componente
+                <i class="material-icons right">add</i>
+            </button>
+
+            <script type="text/javascript">
+                document.write("<div id='VNutricional'></div>");
+            </script>
+
+            <button class="btn waves-effect blue lighten-2" type="submit" name="action" ng-click="elemento.addVNutricional()">Valor Nutricional
                 <i class="material-icons right">add</i>
             </button>
 
