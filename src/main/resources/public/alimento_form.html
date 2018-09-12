@@ -99,7 +99,8 @@
             <div class="row">
             <div class="input-field col s6">
                 Descrição
-                <input ng-model="elemento._novoElemento.descricao">
+                <textarea class="materialize-textarea" name="message" ng-model="elemento._novoElemento.descricao">
+                </textarea>
             </div>  
             </div>
 
@@ -118,7 +119,6 @@
             </div>
 
             <script type="text/javascript">
-                //Escrevendo o código-fonte HTML e ocultando os campos criados:
                 document.write("<div id='componentes'></div>");
             </script>
 
@@ -134,11 +134,7 @@
                 <i class="material-icons right">add</i>
             </button>
 
-            <br><br><input type="hidden" name="hidden1" id="hidden1">
-
-            <input type="hidden" name="hidden2" id="hidden2">
-
-            <button class="btn waves-effect blue lighten-2" type="submit" name="action" ng-click="elemento.cadastrar(3)">Submit
+            <button class="btn waves-effect blue lighten-2" type="submit" name="action" ng-click="elemento.cadastrar(3)">Cadastrar
                     <i class="material-icons right">send</i>
             </button>
         </form>

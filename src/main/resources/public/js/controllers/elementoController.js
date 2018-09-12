@@ -64,7 +64,10 @@ app.controller('elementoCtrl', function($http, $window) {
             descricao: elemento._novoElemento.descricao,
             fabricante: elemento._novoElemento.fabricante,
             name: elemento._novoElemento.name,
+            nomeComponente: elemento.nomesComponente(),
             tipo: 2,
+            unidadesComponente: elemento.unidadesComponente(),
+            valoresComponente: elemento.valoresComponente(),
         };
         return novoElemento;
     }
