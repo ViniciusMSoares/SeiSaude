@@ -121,7 +121,7 @@ app.controller('elementoCtrl', function($http, $window) {
     elemento.nomeVNutricional = function nomeVNutricional() {
         var nomeVNutricional = [];
 
-        for (let i = 0; i < limitCount; i++) {
+        for (let i = 0; i < VNLimitCount; i++) {
             nomeVNutricional[i] = document.getElementById("NV"+VNutricionalIDs[i]).value;
         }
         return nomeVNutricional;
@@ -130,7 +130,7 @@ app.controller('elementoCtrl', function($http, $window) {
     elemento.quantidadesVNutricional = function quantidadesVNutricional() {
         var quantidadesVNutricional = [];
 
-        for (let i = 0; i < limitCount; i++) {
+        for (let i = 0; i < VNLimitCount; i++) {
             quantidadesVNutricional[i] = document.getElementById("QV"+VNutricionalIDs[i]).value;
         }
         return quantidadesVNutricional;
@@ -139,7 +139,7 @@ app.controller('elementoCtrl', function($http, $window) {
     elemento.unidadesVNutricional = function unidadesVNutricional() {
         var unidadesVNutricional = [];
 
-        for (let i = 0; i < limitCount; i++) {
+        for (let i = 0; i < VNLimitCount; i++) {
             unidadesVNutricional[i] = document.getElementById("UV"+VNutricionalIDs[i]).value;
         }
         return unidadesVNutricional;
@@ -148,7 +148,7 @@ app.controller('elementoCtrl', function($http, $window) {
     elemento.valoresVNutricional = function valoresVNutricional() {
         var valoresVNutricional = [];
 
-        for (let i = 0; i < limitCount; i++) {
+        for (let i = 0; i < VNLimitCount; i++) {
             valoresVNutricional[i] = document.getElementById("VV"+VNutricionalIDs[i]).value;
         }
         return valoresVNutricional;
