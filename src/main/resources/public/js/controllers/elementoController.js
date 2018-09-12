@@ -189,7 +189,7 @@ app.controller('elementoCtrl', function($http, $window) {
     }
 
     elemento.VNutricionalIDs = function() {
-        for (let i = 0; i <= iCount; i++) {
+        for (let i = 0; i <= VNCount; i++) {
             if (document.getElementById('divVN'+i) != null) {
                 VNutricionalIDs.push(i);
             }
