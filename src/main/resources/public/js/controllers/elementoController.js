@@ -34,7 +34,7 @@ app.controller('elementoCtrl', function($http, $window) {
         $http({
             method: 'POST',
             data: novoElemento,
-            url: 'https://sei-saude.herokuapp.com/elemento' + url
+            url: 'http://localhost:8080/elemento' + url
         }).then(function (success){
             console.log(success);
             alert(success.data.name + " cadastrado com sucesso!");
@@ -43,9 +43,29 @@ app.controller('elementoCtrl', function($http, $window) {
             if (error.status == 300) {
                 alert("Não foi possível cadastrar o elemento.\nEsse nome já está em uso.");
             }
-        }); 
-        
+        });
+    }
 
+    elemento.cadastrarComponentes = function cadastrarComponentes() {
+        elemento.ComponenteIDs();
+        var novosComponentes = {
+            nomeComponente: elemento.nomesComponente(),
+        };
+        elemento.limpaIDs();
+
+        $http({
+            method: 'POST',
+            data: novosComponentes,
+            url: 'http://localhost:8080/elemento/componente'
+        }).then(function (success){
+            console.log(success);
+            alert(success.data + " cadastrado(s) com sucesso!");
+        },function (error){
+            console.log(error);
+            if (error.status == 300) {
+                alert("Não foi possível cadastrar "+ error.data +".\nEsse(s) nome(s) já está(ão) em uso.");
+            }
+        }); 
     }
 
     elemento.dadosComportamento = function dadosComportamento() {
@@ -93,9 +113,10 @@ app.controller('elementoCtrl', function($http, $window) {
 
     elemento.nomesComponente = function nomesComponente() {
         var nomesComponente = [];
-
-        for (let i = 0; i < limitCount; i++) {
-            nomesComponente[i] = document.getElementById("NC"+ComponenteIDs[i]).value;
+        for (let i = 0; i < limitCount+limitNomeCount; i++) {
+            if (document.getElementById("NC"+ComponenteIDs != null)) {
+                nomesComponente[i] = document.getElementById("NC"+ComponenteIDs[i]).value;
+            }
         }
         return nomesComponente;
     }
@@ -181,7 +202,7 @@ app.controller('elementoCtrl', function($http, $window) {
     var VNutricionalIDs = [];
 
     elemento.ComponenteIDs = function() {
-        for (let i = 0; i <= iCount; i++) {
+        for (let i = 0; i <= iCount+nomeCount; i++) {
             if (document.getElementById('divC'+i) != null) {
                 ComponenteIDs.push(i);
             }
@@ -361,5 +382,60 @@ app.controller('elementoCtrl', function($http, $window) {
         }
     }
 
+    var limitNomeCount = 1;
+    var nomeCount = 1; 
+
+    elemento.addNomeComponente = function addNomeComponente() {
+        //Executar apenas se houver possibilidade de inserção de novos campos:
+        if (limitNomeCount < totalCampos) {
+            limitNomeCount++;
+            nomeCount++;
+            var ID = nomeCount;
+
+            var box = document.createElement("div");
+            box.id = 'divC'+nomeCount;
+            var z1 = document.createTextNode("Nome Componente");
+            var z = document.createElement('input');
+            z.type = 'text';
+            z.id = 'NC'+nomeCount;
+            z.name = 'NC'
+            z.value = '';
+
+            var removeButton = document.createElement('input');
+            removeButton.type = 'button';
+            removeButton.value = 'Remover';
+            removeButton.onclick = function () {
+                elemento.removeNomeComponente(ID);
+            };
+
+            var fieldNComponente = document.createElement('fieldset');
+            var legend = document.createElement('legend');
+            var legendText = document.createTextNode("Componente");
+            legend.appendChild(legendText);
+            fieldNComponente.appendChild(legend);
+            fieldNComponente.id = "NCF"+nomeCount;
+            fieldNComponente.appendChild(z1);
+            fieldNComponente.appendChild(z);
+            fieldNComponente.appendChild(removeButton);
+            box.appendChild(fieldNComponente);
+
+            var NComponente = document.getElementById('nomesComponentes');
+            NComponente.appendChild(box);
+        }
+    }
+
+    elemento.removeNomeComponente = function removeNomeComponente(id) {
+        //Pegar o valor do campo que será excluído:
+        var campoValor = document.getElementById("NC"+id).value;
+        //Se o campo não tiver nenhum valor, atribuir a string: vazio:
+        if (campoValor == "") {
+            campoValor = "vazio";
+        }
+
+        if(confirm("O campo que contém o valor:\n» "+campoValor+"\nserá excluído!\n\nDeseja prosseguir?")){
+            limitNomeCount--;
+            document.getElementById("divC"+id).outerHTML = "";
+        }
+    }
 
 });

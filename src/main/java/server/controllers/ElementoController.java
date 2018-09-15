@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import server.entities.Componente;
 import server.entities.Elemento;
 import server.entities.DTOs.AlimentoDTO;
+import server.entities.DTOs.ComponenteDTO;
 import server.entities.DTOs.ElementoDTO;
 import server.entities.DTOs.ProdutoDTO;
 import server.entities.DTOs.SearchDTO;
@@ -76,4 +77,13 @@ public class ElementoController {
 		return new ResponseEntity<ArrayList<Componente>>(elementoService.findComponenteByName(name), HttpStatus.OK);
 	}
 	
+	@RequestMapping(value = "/elemento/componente", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	public ResponseEntity<Object> cadastraComponente(@RequestBody ComponenteDTO componente) {
+		String[] result = elementoService.componenteInDataBase(componente.getNomeComponente());
+		if (result.length > 0) {
+			return new ResponseEntity<>(result, HttpStatus.MULTIPLE_CHOICES);
+		}
+		
+		return new ResponseEntity<>(elementoService.saveComponente(componente), HttpStatus.CREATED);
+	}
 }

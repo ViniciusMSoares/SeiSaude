@@ -15,6 +15,7 @@ import server.entities.Remedio;
 import server.entities.Valor;
 import server.entities.ValorNutricional;
 import server.entities.DTOs.AlimentoDTO;
+import server.entities.DTOs.ComponenteDTO;
 import server.entities.DTOs.ElementoDTO;
 import server.entities.DTOs.ProdutoDTO;
 import server.servicies.ElementoService;
@@ -108,7 +109,8 @@ public class ElementoServiceImpl implements ElementoService {
 			for (int i = 0; i < alimentoDTO.getUnidadesComponente().length; i++) {
 				componenteA = new Componente(alimentoDTO.getNomeComponente()[i]);
 				componenteRepository.save(componenteA);
-				quantidadeA = new Quantidade(componenteA.getId(), alimento.getId(), Float.parseFloat(alimentoDTO.getValoresComponente()[i]), alimentoDTO.getUnidadesComponente()[i]);
+				quantidadeA = new Quantidade(componenteA.getId(), alimento.getId(), Float.parseFloat(alimentoDTO.getValoresComponente()[i]),
+						alimentoDTO.getUnidadesComponente()[i]);
 				quantidadeRepository.save(quantidadeA);
 			}
 		}
@@ -119,8 +121,8 @@ public class ElementoServiceImpl implements ElementoService {
 			for (int i = 0; i < alimentoDTO.getQuantidadesVNutricional().length; i++) {
 				valorNutricional = new ValorNutricional(alimentoDTO.getNomeVNutricional()[i]);
 				valorNutricionalRepository.save(valorNutricional);
-				valor = new Valor(valorNutricional.getId(), alimento.getId(), Float.parseFloat(alimentoDTO.getValoresVNutricional()[i]), 
-				Float.parseFloat(alimentoDTO.getQuantidadesVNutricional()[i]), alimentoDTO.getUnidadesVNutricional()[i]);
+				valor = new Valor(valorNutricional.getId(), alimento.getId(), Float.parseFloat(alimentoDTO.getValoresVNutricional()[i]),
+						Float.parseFloat(alimentoDTO.getQuantidadesVNutricional()[i]), alimentoDTO.getUnidadesVNutricional()[i]);
 				valorRepository.save(valor);
 			}
 		}
@@ -172,6 +174,44 @@ public class ElementoServiceImpl implements ElementoService {
 		}
 		
 		return false;
+	}
+	
+
+	@Override
+	public String[] saveComponente(ComponenteDTO componenteDTO) {
+		Componente componente;
+		if (componenteDTO.getNomeComponente() != null) {
+			for (int i = 0; i < componenteDTO.getNomeComponente().length; i++) {
+				componente = new Componente(componenteDTO.getNomeComponente()[i]);
+				componenteRepository.save(componente);
+			}
+		}
+		return componenteDTO.getNomeComponente();
+	}
+	
+	public String[] componenteInDataBase(String[] nome) {
+		String[] result;
+		String[] parcial = new String[nome.length];
+		int repetidos = 0;
+ 		
+		for (int i = 0; i < nome.length; i++) {
+			nome[i] = nome[i].toLowerCase();
+			
+			for (Componente componente : componenteRepository.findAll()) {
+				String componenteName = componente.getNome().toLowerCase();
+				if (componenteName.equals(nome[i])) {
+					parcial[repetidos] = componente.getNome();
+					repetidos++;
+				}
+			}
+		}
+		
+		result = new String[repetidos];
+		for (int i = 0; i < repetidos; i++) {
+			result[i] = parcial[i];
+		}
+		
+		return result;
 	}
 	
 }
