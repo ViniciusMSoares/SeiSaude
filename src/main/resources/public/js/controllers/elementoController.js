@@ -34,7 +34,7 @@ app.controller('elementoCtrl', function($http, $window) {
         $http({
             method: 'POST',
             data: novoElemento,
-            url: 'http://localhost:8080/elemento' + url
+            url: 'https://sei-saude.herokuapp.com/elemento' + url
         }).then(function (success){
             console.log(success);
             alert(success.data.name + " cadastrado com sucesso!");
@@ -56,7 +56,7 @@ app.controller('elementoCtrl', function($http, $window) {
         $http({
             method: 'POST',
             data: novosComponentes,
-            url: 'http://localhost:8080/elemento/componente'
+            url: 'https://sei-saude.herokuapp.com/elemento/componente'
         }).then(function (success){
             console.log(success);
             alert(success.data + " cadastrado(s) com sucesso!");
