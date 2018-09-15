@@ -68,6 +68,19 @@ app.controller('elementoCtrl', function($http, $window) {
         }); 
     }
 
+    elemento.listaElementos = function() {
+        
+        $http({
+            method: 'GET',
+            url: 'https://sei-saude.herokuapp.com/all_elemento'
+        }).then(function (success){
+            console.log({success});
+
+        },function (error){
+            console.log({error});
+        });
+    }
+
     elemento.dadosComportamento = function dadosComportamento() {
         var novoElemento = {
             cadastradoPor: elemento._novoElemento.cadastradoPor,
@@ -114,7 +127,7 @@ app.controller('elementoCtrl', function($http, $window) {
     elemento.nomesComponente = function nomesComponente() {
         var nomesComponente = [];
         for (let i = 0; i < limitCount+limitNomeCount; i++) {
-            if (document.getElementById("NC"+ComponenteIDs != null)) {
+            if (document.getElementById("NC"+ComponenteIDs[i]) != null) {
                 nomesComponente[i] = document.getElementById("NC"+ComponenteIDs[i]).value;
             }
         }
@@ -181,19 +194,6 @@ app.controller('elementoCtrl', function($http, $window) {
         }
 
         return nomeElemento;
-    }
-
-    elemento.listaElementos = function() {
-        
-        $http({
-            method: 'GET',
-            url: 'https://sei-saude.herokuapp.com/all_elemento'
-        }).then(function (success){
-            console.log({success});
-
-        },function (error){
-            console.log({error});
-        });
     }
 
     //Total máximo de campos que você permitirá criar em seu site:
