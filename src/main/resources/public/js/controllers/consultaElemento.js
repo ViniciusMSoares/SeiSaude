@@ -8,7 +8,7 @@ app.controller('consultaCtrl', function($http, $window) {
     var consulta = this;
     consulta.elemento = {};
 
-    var url = 'http://localhost:8080/';
+    var url = 'https://sei-saude.herokuapp.com/';
 
     consulta.elemento = function() {
         
@@ -19,7 +19,7 @@ app.controller('consultaCtrl', function($http, $window) {
             url: url + 'elemento?name=' + nome
         }).then(function (success){
             console.log({success});
-            
+
         },function (error){
             console.log({error});
         });
