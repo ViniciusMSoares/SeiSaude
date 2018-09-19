@@ -7,9 +7,12 @@ import org.springframework.stereotype.Service;
 
 import server.entities.Doenca;
 import server.entities.Sintoma;
+import server.entities.SintomaDoenca;
 import server.entities.Situacao;
+import server.entities.DTOs.DoencaDTO;
 import server.entities.DTOs.SituacaoDTO;
 import server.repositories.DoencaRepository;
+import server.repositories.SintomaDoencaRepository;
 import server.repositories.SintomaRepository;
 import server.repositories.SituacaoRepository;
 import server.servicies.SituacaoService;
@@ -25,6 +28,9 @@ public class SituacaoServiceImpl implements SituacaoService{
 	
 	@Autowired
 	private DoencaRepository doencaRepository;
+	
+	@Autowired
+	private SintomaDoencaRepository sintomaDoencaRepository;
 
 	@Override
 	public Situacao findById(Long id) {
@@ -34,20 +40,33 @@ public class SituacaoServiceImpl implements SituacaoService{
 	@Override
 	public Situacao save(SituacaoDTO situacaoDTO) {
 		Situacao situacao = new Situacao(situacaoDTO.getName(), situacaoDTO.getDescricao());
+		Sintoma sintoma = new Sintoma(situacao);
 		
-		switch (situacaoDTO.getTipo()) {
-		case 1:
-			Sintoma sintoma = new Sintoma(situacao);
+		return sintomaRepository.save(sintoma);
+	}
+
+	
+	@Override
+	public Doenca save(DoencaDTO doencaDTO) {
+		Situacao situacao = new Situacao(doencaDTO.getName(), doencaDTO.getDescricao());
+		Doenca doenca = new Doenca(situacao);
+		doencaRepository.save(doenca);
+		
+		for (int i = 0; i < doencaDTO.getNomesSintomas().length; i++) {
+			ArrayList<Situacao> sintomas = findByName(doencaDTO.getNomesSintomas()[i]);
+			SintomaDoenca sintomaDoenca;
+			if (sintomas.size() == 0) {//cria novo sintoma caso não encontre um
+				Sintoma sintoma = new Sintoma(doencaDTO.getNomesSintomas()[0], "Este sintoma ainda não possui uma descrição");
+				sintomaRepository.save(sintoma);
+				sintomaDoenca = new SintomaDoenca(sintoma.getId(), doenca.getId());
+			}else {
+				sintomaDoenca = new SintomaDoenca(sintomas.get(0).getId(), doenca.getId());
+			}
 			
-			return sintomaRepository.save(sintoma);
-		case 2:
-			Doenca doenca = new Doenca(situacao);
-			
-			return doencaRepository.save(doenca);
-			
-		default:
-			return situacaoRepository.save(situacao);
+			sintomaDoencaRepository.save(sintomaDoenca);
 		}
+		
+		return doencaRepository.save(doenca);
 	}
 
 	@Override

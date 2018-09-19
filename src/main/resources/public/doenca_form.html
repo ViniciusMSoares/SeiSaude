@@ -31,7 +31,7 @@
     <script>includeHTML()</script>
 
     <div class="row">
-            <h3 class="center">Cadastro Sintoma</h3>
+            <h3 class="center">Cadastro Doença</h3>
         <form class="co2 s5">
             <div class="row">
             <div class="input-field col s3">
@@ -47,7 +47,15 @@
             </div>  
             </div>
 
-            <button class="btn waves-effect blue lighten-2" type="submit" name="action" ng-click="situacao.cadastrar(1)">Cadastrar
+            <script type="text/javascript">
+                document.write("<div id='sintomas'></div>");
+            </script>
+
+            <button class="btn waves-effect blue lighten-2" type="submit" name="action" ng-click="situacao.addSintoma()">Sintoma
+                <i class="material-icons right">add</i>
+            </button>
+
+            <button class="btn waves-effect blue lighten-2" type="submit" name="action" ng-click="situacao.cadastrar(2)">Cadastrar
                     <i class="material-icons right">send</i>
             </button>
         </form>

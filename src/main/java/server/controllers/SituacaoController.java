@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import server.entities.Situacao;
+import server.entities.DTOs.DoencaDTO;
 import server.entities.DTOs.SituacaoDTO;
 import server.servicies.SituacaoService;
 
@@ -23,10 +24,22 @@ public class SituacaoController {
 	@Autowired
 	private SituacaoService situacaoService;
 	
-	@RequestMapping(value = "/situacao", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	/*@RequestMapping(value = "/situacao", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public ResponseEntity<Situacao> cadastraSituacao(@RequestBody SituacaoDTO situacao) {
 
 		return new ResponseEntity<>(situacaoService.save(situacao), HttpStatus.CREATED);
+	}*/
+	
+	@RequestMapping(value = "/situacao/sintoma", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	public ResponseEntity<Situacao> cadastraSintoma(@RequestBody SituacaoDTO sintoma) {
+
+		return new ResponseEntity<>(situacaoService.save(sintoma), HttpStatus.CREATED);
+	}
+	
+	@RequestMapping(value = "/situacao/doenca", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	public ResponseEntity<Situacao> cadastraDoenca(@RequestBody DoencaDTO doenca) {
+
+		return new ResponseEntity<>(situacaoService.save(doenca), HttpStatus.CREATED);
 	}
 	
 	@GetMapping("/situacao")

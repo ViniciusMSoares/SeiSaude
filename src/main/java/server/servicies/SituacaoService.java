@@ -2,7 +2,9 @@ package server.servicies;
 
 import java.util.ArrayList;
 
+import server.entities.Doenca;
 import server.entities.Situacao;
+import server.entities.DTOs.DoencaDTO;
 import server.entities.DTOs.SituacaoDTO;
 
 public interface SituacaoService {
@@ -28,4 +30,6 @@ public interface SituacaoService {
 	void delete(Long id);
 
 	ArrayList<Situacao> findByName(String name);
+
+	Doenca save(DoencaDTO doenca);
 }
