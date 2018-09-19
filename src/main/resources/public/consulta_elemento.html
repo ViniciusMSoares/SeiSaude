@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-br" ng-app="Sei-Saude">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Sei-Saude</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <script src="main.js"></script>
+    <!-- Materialize -->
+    <link rel="stylesheet" href="css/materialize.css">
+    <link rel="stylesheet" href="layout.css"/>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="icon" type="imagem/png" href="./img/enfermeira.png" />
+
+    <!--AngularJS-->
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.4/angular.js"></script>
+
+
+    <!--Main-->
+    <script src="js/app.js"></script>
+
+    <!--Controllers-->
+    <script src="js/controllers/consultaElemento.js"></script>
+
+</head>
+
+
+
+<body ng-controller="consultaCtrl as consulta">
+
+    <div w3-include-html="index.html"></div>
+    <script>includeHTML()</script>
+    
+    <div class="row center">
+        <h3 class="center">Cosulta Elemento</h3>
+        <form class="co2 s5 center">
+            <div class="row center">
+            <div class="input-field col s3 center">
+                Nome Elemento
+                <input ng-model="consulta.elemento.nome">
+            </div>
+            </div>
+
+            <button class="btn waves-effect blue lighten-2" type="submit" name="action" ng-click="consulta.allElemento()">All Elementos
+            </button>
+
+            <button class="btn waves-effect blue lighten-2" type="submit" name="action" ng-click="consulta.elemento()">Pesquisar
+                <i class="material-icons right">search</i>
+            </button>
+        </form>
+
+              
+ <!--JavaScript at end of body for optimized loading-->
+ <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+ <!-- Materialize JS -->
+ <script type="text/javascript" src="js/materialize.js"></script>
+</body>
+</html>
