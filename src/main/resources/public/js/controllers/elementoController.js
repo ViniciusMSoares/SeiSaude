@@ -10,8 +10,8 @@ app.controller('elementoCtrl', function($http, $window) {
     elemento._mensagem = {};
     
     var url;
-    //var path = "https://sei-saude.herokuapp.com/";
-    var path = "http://localhost:8080/"
+    var path = "https://sei-saude.herokuapp.com/";
+    //var path = "http://localhost:8080/"
 
     elemento.cadastrar = async function cadastraElemento(tipo) {
         elemento.ComponenteIDs();

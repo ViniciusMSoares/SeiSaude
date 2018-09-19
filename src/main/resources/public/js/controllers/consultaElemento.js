@@ -8,8 +8,8 @@ app.controller('consultaCtrl', function($http, $window) {
     var consulta = this;
     consulta.elemento = {};
 
-    //var url = 'https://sei-saude.herokuapp.com/';
-    var url = 'http://localhost:8080/';
+    var url = 'https://sei-saude.herokuapp.com/';
+    //var url = 'http://localhost:8080/';
 
     consulta.elemento = function() {
         
