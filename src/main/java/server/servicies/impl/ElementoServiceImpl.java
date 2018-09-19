@@ -176,7 +176,6 @@ public class ElementoServiceImpl implements ElementoService {
 		return false;
 	}
 	
-
 	@Override
 	public String[] saveComponente(ComponenteDTO componenteDTO) {
 		Componente componente;

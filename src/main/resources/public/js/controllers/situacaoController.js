@@ -10,6 +10,8 @@ app.controller('situacaoCtrl', function($http, $window) {
     situacao._consulta = {};
 
     var url;
+    //var path = "https://sei-saude.herokuapp.com/";
+    var path = "http://localhost:8080/"
 
     situacao.cadastrar = function cadastrasituacao(tipo) {
         situacao.SintomasIDs();
@@ -17,11 +19,11 @@ app.controller('situacaoCtrl', function($http, $window) {
         switch (tipo) {
             case 1:
                 novoSituacao = situacao.dadosSintoma();
-                url = '/sintoma';
+                url = 'sintoma';
                 break;
             case 2:
                 novoSituacao = situacao.dadosDoenca();
-                url = '/doenca';
+                url = 'doenca';
                 break;
         }
         situacao.limpaIDs();
@@ -30,13 +32,15 @@ app.controller('situacaoCtrl', function($http, $window) {
         $http({
             method: 'POST',
             data: novoSituacao,
-            url: 'https://sei-saude.herokuapp.com/situacao/' + url
+            url: path + 'situacao/' + url
         }).then(function (success){
             console.log(success);
             alert(success.data.name + " cadastrado com sucesso!");
         },function (error){
             console.log(error);
-            alert("Não foi possível cadastrar " + novoSituacao.name);
+            if (error.status == 300) {
+                alert("Não foi possível cadastrar " + novoSituacao.name + ".\nEsse nome já está em uso.");
+            }
         });
     }
 

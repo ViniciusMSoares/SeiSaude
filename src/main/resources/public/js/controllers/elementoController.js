@@ -10,6 +10,8 @@ app.controller('elementoCtrl', function($http, $window) {
     elemento._mensagem = {};
     
     var url;
+    //var path = "https://sei-saude.herokuapp.com/";
+    var path = "http://localhost:8080/"
 
     elemento.cadastrar = async function cadastraElemento(tipo) {
         elemento.ComponenteIDs();
@@ -18,15 +20,15 @@ app.controller('elementoCtrl', function($http, $window) {
         switch (tipo) {
             case 1:
                 novoElemento = elemento.dadosComportamento();
-                url = '/comportamento';
+                url = 'comportamento';
                 break;
             case 2:
                 novoElemento = elemento.dadosRemedio();
-                url = '/remedio';
+                url = 'remedio';
                 break;
             case 3:
                 novoElemento = elemento.dadosAlimento();
-                url = '/alimento';
+                url = 'alimento';
                 break;
         }
         elemento.limpaIDs();
@@ -34,7 +36,7 @@ app.controller('elementoCtrl', function($http, $window) {
         $http({
             method: 'POST',
             data: novoElemento,
-            url: 'https://sei-saude.herokuapp.com/elemento' + url
+            url: path + 'elemento/' + url
         }).then(function (success){
             console.log(success);
             alert(success.data.name + " cadastrado com sucesso!");
@@ -56,7 +58,7 @@ app.controller('elementoCtrl', function($http, $window) {
         $http({
             method: 'POST',
             data: novosComponentes,
-            url: 'https://sei-saude.herokuapp.com/elemento/componente'
+            url: path + 'elemento/componente'
         }).then(function (success){
             console.log(success);
             alert(success.data + " cadastrado(s) com sucesso!");
@@ -72,7 +74,7 @@ app.controller('elementoCtrl', function($http, $window) {
         
         $http({
             method: 'GET',
-            url: 'https://sei-saude.herokuapp.com/all_elemento'
+            url: path + 'all_elemento'
         }).then(function (success){
             console.log({success});
 

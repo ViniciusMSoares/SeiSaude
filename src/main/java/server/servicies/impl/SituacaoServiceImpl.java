@@ -88,4 +88,17 @@ public class SituacaoServiceImpl implements SituacaoService{
 		return result;
 	}
 	
+	public boolean situacaoInDataBase(String nome) {
+		nome = nome.toLowerCase();
+		
+		for (Situacao situacao : situacaoRepository.findAll()) {
+			String situacaoName = situacao.getName().toLowerCase();
+			if (situacaoName.equals(nome)) {
+				return true;
+			}
+		}
+		
+		return false;
+	}
+	
 }

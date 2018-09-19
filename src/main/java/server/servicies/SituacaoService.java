@@ -32,4 +32,6 @@ public interface SituacaoService {
 	ArrayList<Situacao> findByName(String name);
 
 	Doenca save(DoencaDTO doenca);
+
+	boolean situacaoInDataBase(String name);
 }

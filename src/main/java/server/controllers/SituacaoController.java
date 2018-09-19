@@ -32,13 +32,19 @@ public class SituacaoController {
 	
 	@RequestMapping(value = "/situacao/sintoma", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public ResponseEntity<Situacao> cadastraSintoma(@RequestBody SituacaoDTO sintoma) {
-
+		if (situacaoService.situacaoInDataBase(sintoma.getName())) {
+			return new ResponseEntity<>(HttpStatus.MULTIPLE_CHOICES);
+		}
+		
 		return new ResponseEntity<>(situacaoService.save(sintoma), HttpStatus.CREATED);
 	}
 	
 	@RequestMapping(value = "/situacao/doenca", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public ResponseEntity<Situacao> cadastraDoenca(@RequestBody DoencaDTO doenca) {
-
+		if (situacaoService.situacaoInDataBase(doenca.getName())) {
+			return new ResponseEntity<>(HttpStatus.MULTIPLE_CHOICES);
+		}
+		
 		return new ResponseEntity<>(situacaoService.save(doenca), HttpStatus.CREATED);
 	}
 	
