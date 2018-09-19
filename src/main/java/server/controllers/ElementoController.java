@@ -19,7 +19,6 @@ import server.entities.DTOs.AlimentoDTO;
 import server.entities.DTOs.ComponenteDTO;
 import server.entities.DTOs.ElementoDTO;
 import server.entities.DTOs.ProdutoDTO;
-import server.entities.DTOs.SearchDTO;
 import server.servicies.ElementoService;
 
 @RestController
@@ -61,10 +60,9 @@ public class ElementoController {
 		return new ResponseEntity<>(elementoService.save(alimento), HttpStatus.CREATED);
 	}
 	
-	@RequestMapping(value = "/elemento", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
-	public ResponseEntity<ArrayList<Elemento>> getElementosByName(@RequestBody SearchDTO search) { 
-		System.out.println(search.getName());
-		return new ResponseEntity<ArrayList<Elemento>>(elementoService.findByName(search.getName()), HttpStatus.OK);
+	@RequestMapping(value = "/elemento", method = RequestMethod.GET)
+	public ResponseEntity<ArrayList<Elemento>> getElementosByName(@RequestParam(value = "name")  String search) { 
+		return new ResponseEntity<ArrayList<Elemento>>(elementoService.findByName(search), HttpStatus.OK);
 	}
 
 	@RequestMapping(value = "/all_elemento", method = RequestMethod.GET)
