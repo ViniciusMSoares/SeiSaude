@@ -60,6 +60,13 @@
             </button>
         </form>
 
+    <div >
+        <input type="text" name="sintoma" id="sintoma" ng-model="situacao.sintoma" ng-keyup="situacao.complete(situacao.sintoma)" class="form-control" />  
+        <ul class="list-group" ng-model="situacao.hidethis" ng-hide="situacao.hidethis">
+                <li class="list-group-item" ng-repeat="sintoma in situacao.filterSintoma" ng-click="situacao.fillTextbox(sintoma)">{{sintoma}}</li>  
+        </ul>
+    </div>  
+
               
  <!--JavaScript at end of body for optimized loading-->
  <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>

@@ -163,4 +163,48 @@ app.controller('situacaoCtrl', function($http, $window) {
             document.getElementById("divS"+id).outerHTML = "";
         }
     }
+
+    //autocompletar
+    situacao.list = [];
+    situacao.result = [];
+
+    situacao.hidethis = true;
+    situacao.filterSintoma = [];
+
+    situacao.complete = function(string){  
+        situacao.hidethis = false;
+        var output = [];  
+
+        for (let i = 0; i < 10; i++) {
+            var sintomaString = situacao.list[i];
+            if (sintomaString.toLowerCase().indexOf(string.toLowerCase()) >= 0) {
+                output.push(situacao.list[i]);
+            }
+        }
+        situacao.filterSintoma = output;
+    }
+
+    situacao.fillTextbox = function(string){  
+        situacao.sintoma = string;
+        situacao.hidethis = true;  
+    }
+
+    situacao.listaSintomas = function() {
+     
+        $http({
+            method: 'GET',
+            url: path + 'all_elemento'
+        }).then(function (success){
+            console.log({success});
+            situacao.result = success.data;
+            for (let i = 0; i < 10; i++) {
+                situacao.list[i] = situacao.result[i].name;
+            }
+            return situacao.list;
+        },function (error){
+            console.log({error});
+        });
+    }
+    situacao.listaSintomas();
+
 });
