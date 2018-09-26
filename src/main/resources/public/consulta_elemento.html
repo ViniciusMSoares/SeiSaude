@@ -51,11 +51,11 @@
 
         </form>
         <div class="center" ng-repeat="consultaCtrl as consulta">
-            <div class="id">{{consulta.element.id}}</div>
-            <div class="nome"> Nome: {{consulta.element.nome}}</div>
-            <div class="cadastradoPor"> Cadastrado por: {{consulta.element.cadastradoPor}} </div>
-            <div class="descricao"> Descrição: {{consulta.element.descricao}} </div>
-            <div class="fabricante"> Fabricante: {{consulta.element.fabricante}} </div>
+            <div class="id">{{consulta.element.data.id}}</div>
+            <div class="nome"> Nome: {{consulta.element.data.nome}}</div>
+            <div class="cadastradoPor"> Cadastrado por: {{consulta.element.data.cadastradoPor}} </div>
+            <div class="descricao"> Descrição: {{consulta.element.data.descricao}} </div>
+            <div class="fabricante"> Fabricante: {{consulta.element.data.fabricante}} </div>
           </div>
 
               
