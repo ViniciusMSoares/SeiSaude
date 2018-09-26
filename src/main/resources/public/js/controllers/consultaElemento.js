@@ -10,6 +10,7 @@ app.controller('consultaCtrl', function($http, $window) {
 
     var url = 'https://sei-saude.herokuapp.com/';
     //var url = 'http://localhost:8080/';
+    consulta.element = [];
 
     consulta.elemento = function() {
         
@@ -20,7 +21,7 @@ app.controller('consultaCtrl', function($http, $window) {
             url: url + 'elemento?name=' + nome
         }).then(function (success){
             console.log({success});
-
+            consulta.element = {success};
         },function (error){
             console.log({error});
         });
@@ -34,6 +35,7 @@ app.controller('consultaCtrl', function($http, $window) {
             url: url + 'all_elemento'
         }).then(function (success){
             console.log({success});
+            consulta.element = {success};
         });
     }
 }})
