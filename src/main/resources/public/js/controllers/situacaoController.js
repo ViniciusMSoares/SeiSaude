@@ -11,7 +11,7 @@ app.controller('situacaoCtrl', function($http, $window) {
 
     var url;
     var path = "https://sei-saude.herokuapp.com/";
-    //var path = "http://localhost:8080/"
+    //var path = "http://localhost:8080/";
 
     situacao.cadastrar = function cadastrasituacao(tipo) {
         situacao.SintomasIDs();
@@ -82,8 +82,8 @@ app.controller('situacaoCtrl', function($http, $window) {
     situacao.nomesSintomas = function nomesSintomas() {
         var nomesSintomas = [];
         for (let i = 0; i < limitCount; i++) {
-            if (document.getElementById("NS"+SintomasIDs[i]) != null) {
-                nomesSintomas[i] = document.getElementById("NS"+SintomasIDs[i]).value;
+            if (document.getElementById("S"+SintomasIDs[i]) != null) {
+                nomesSintomas[i] = document.getElementById("S"+SintomasIDs[i]).textContent;
             }
         }
         return nomesSintomas;
@@ -118,6 +118,7 @@ app.controller('situacaoCtrl', function($http, $window) {
             iCount++;
             var ID = iCount;
 
+            /*
             var box = document.createElement("div");
             box.id = 'divS'+iCount;
             var z1 = document.createTextNode("Nome Sintoma");
@@ -127,12 +128,6 @@ app.controller('situacaoCtrl', function($http, $window) {
             z.name = 'NS'
             z.value = '';
 
-            var removeButton = document.createElement('input');
-            removeButton.type = 'button';
-            removeButton.value = 'Remover';
-            removeButton.onclick = function () {
-                situacao.removeSintoma(ID);
-            };
 
             var fieldComponente = document.createElement('fieldset');
             var legend = document.createElement('legend');
@@ -144,21 +139,42 @@ app.controller('situacaoCtrl', function($http, $window) {
             fieldComponente.appendChild(z);
             fieldComponente.appendChild(removeButton);
             box.appendChild(fieldComponente);
+*/
 
             var sintomas = document.getElementById('sintomas');
+
+            var box = document.createElement("div");
+            box.id = 'divS'+iCount;
+            var cardSintoma = document.createElement("fieldset");
+            cardSintoma.id = "S" + iCount;
+
+            var nome = document.getElementById("sintoma");
+            var nomeSintoma = document.createTextNode(nome.value);
+            cardSintoma.appendChild(nomeSintoma);
+
+            var removeButton = document.createElement('input');
+            removeButton.type = 'button';
+            removeButton.value = 'Remover';
+            removeButton.onclick = function () {
+                situacao.removeSintoma(ID);
+            };
+            cardSintoma.appendChild(removeButton);
+
+            box.appendChild(cardSintoma);
             sintomas.appendChild(box);
+            nome.value = "";//limpa o campo
         }
     }
 
     situacao.removeSintoma = function removeSintoma(id) {
         //Pegar o valor do campo que será excluído:
-        var campoValor = document.getElementById("NS"+id).value;
+        var campoValor = "";//document.getElementById("NS"+id).value;
         //Se o campo não tiver nenhum valor, atribuir a string: vazio:
         if (campoValor == "") {
             campoValor = "vazio";
         }
 
-        if(confirm("O campo que contém o valor:\n» "+campoValor+"\nserá excluído!\n\nDeseja prosseguir?")){
+        if(confirm("O campo selecionado será excluído!\n\nDeseja prosseguir?")){
             limitCount--;
             document.getElementById("divS"+id).outerHTML = "";
         }

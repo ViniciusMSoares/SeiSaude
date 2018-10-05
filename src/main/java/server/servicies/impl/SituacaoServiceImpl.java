@@ -56,7 +56,7 @@ public class SituacaoServiceImpl implements SituacaoService{
 			ArrayList<Situacao> sintomas = findByName(doencaDTO.getNomesSintomas()[i]);
 			SintomaDoenca sintomaDoenca;
 			if (sintomas.size() == 0) {//cria novo sintoma caso não encontre um
-				Sintoma sintoma = new Sintoma(doencaDTO.getNomesSintomas()[0], "Este sintoma ainda não possui uma descrição");
+				Sintoma sintoma = new Sintoma(doencaDTO.getNomesSintomas()[i], "Este sintoma ainda não possui uma descrição");
 				sintomaRepository.save(sintoma);
 				sintomaDoenca = new SintomaDoenca(sintoma.getId(), doenca.getId());
 			}else {

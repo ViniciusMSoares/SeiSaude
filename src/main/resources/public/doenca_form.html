@@ -48,8 +48,13 @@
             </div>
 
             <script type="text/javascript">
-                document.write("<div id='sintomas'></div>");
+                document.write("<div id='sintomas'>Sintomas</div>");
             </script>
+
+            <input type="text" name="sintoma" id="sintoma" ng-model="situacao.sintoma" ng-keyup="situacao.complete(situacao.sintoma)" class="form-control" />  
+            <ul class="list-group" ng-model="situacao.hidethis" ng-hide="situacao.hidethis">
+                    <li class="list-group-item" ng-repeat="sintoma in situacao.filterSintoma" ng-click="situacao.fillTextbox(sintoma)">{{sintoma}}</li>  
+            </ul>
 
             <button class="btn waves-effect blue lighten-2" type="submit" name="action" ng-click="situacao.addSintoma()">Sintoma
                 <i class="material-icons right">add</i>
@@ -61,10 +66,8 @@
         </form>
 
     <div >
-        <input type="text" name="sintoma" id="sintoma" ng-model="situacao.sintoma" ng-keyup="situacao.complete(situacao.sintoma)" class="form-control" />  
-        <ul class="list-group" ng-model="situacao.hidethis" ng-hide="situacao.hidethis">
-                <li class="list-group-item" ng-repeat="sintoma in situacao.filterSintoma" ng-click="situacao.fillTextbox(sintoma)">{{sintoma}}</li>  
-        </ul>
+
+
     </div>  
 
               

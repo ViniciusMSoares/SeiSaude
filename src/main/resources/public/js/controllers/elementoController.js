@@ -11,7 +11,7 @@ app.controller('elementoCtrl', function($http, $window) {
     
     var url;
     var path = "https://sei-saude.herokuapp.com/";
-    //var path = "http://localhost:8080/"
+    //var path = "http://localhost:8080/";
 
     elemento.cadastrar = async function cadastraElemento(tipo) {
         elemento.ComponenteIDs();
