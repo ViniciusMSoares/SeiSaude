@@ -37,13 +37,15 @@
             <div class="input-field col s3">
                 Nome
                 <input ng-model="situacao._novoSituacao.name">
+                Complemento
+                <input>
             </div>
             </div>
 
             <div class="row">
             <div class="input-field col s6">
                 Descrição
-                <input ng-model="situacao._novoSituacao.descricao">
+                <textarea ng-model="situacao._novoSituacao.descricao"></textarea>
             </div>  
             </div>
 
@@ -56,7 +58,17 @@
                     <li class="list-group-item" ng-repeat="sintoma in situacao.filterSintoma" ng-click="situacao.fillTextbox(sintoma)">{{sintoma}}</li>  
             </ul>
 
-            <button class="btn waves-effect blue lighten-2" type="submit" name="action" ng-click="situacao.addSintoma()">Sintoma
+            <script>
+                function disableAddSintoma(){
+                    if(this.value.length > 0) { 
+                        document.getElementById('addSintoma').disabled = false; 
+                    } else { 
+                        document.getElementById('addSintoma').disabled = true;
+                    }
+                }
+            </script>
+
+            <button class="btn waves-effect blue lighten-2" type="submit" id="addSintoma" name="action" ng-click="situacao.addSintoma()">Sintoma
                 <i class="material-icons right">add</i>
             </button>
 

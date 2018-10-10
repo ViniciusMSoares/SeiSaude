@@ -111,6 +111,17 @@ app.controller('situacaoCtrl', function($http, $window) {
     var iCount = 0;
     var limitCount = 0;
 
+    situacao.disableAddSintoma = function disableAddSintoma() {
+        if(document.getElementById("sintoma").value==="") { 
+            document.getElementById('addSintoma').disabled = true; 
+        } else { 
+            document.getElementById('addSintoma').disabled = false;
+        }
+    }
+
+    situacao.list = [];
+    situacao.result = [];
+
     situacao.addSintoma = function addSintoma() {
         //Executar apenas se houver possibilidade de inserção de novos campos:
         if (limitCount < totalCampos) {
@@ -152,6 +163,16 @@ app.controller('situacaoCtrl', function($http, $window) {
             var nomeSintoma = document.createTextNode(nome.value);
             cardSintoma.appendChild(nomeSintoma);
 
+            var descricaoSintoma = document.createElement("textarea");
+            descricaoSintoma.placeholder = "Descrição do sintoma";
+            situacao.list.forEach(sintoma => {
+                console.log(sintoma.name === nome.value);
+                if (sintoma.name === nome.value) {
+                    descricaoSintoma.value = sintoma.descricao;
+                }
+            });
+            cardSintoma.appendChild(descricaoSintoma);
+
             var removeButton = document.createElement('input');
             removeButton.type = 'button';
             removeButton.value = 'Remover';
@@ -181,20 +202,19 @@ app.controller('situacaoCtrl', function($http, $window) {
     }
 
     //autocompletar
-    situacao.list = [];
-    situacao.result = [];
+
 
     situacao.hidethis = true;
     situacao.filterSintoma = [];
 
-    situacao.complete = function(string){  
+    situacao.complete = function(string){
         situacao.hidethis = false;
         var output = [];  
 
         for (let i = 0; i < 10; i++) {
-            var sintomaString = situacao.list[i];
+            var sintomaString = situacao.list[i].name;
             if (sintomaString.toLowerCase().indexOf(string.toLowerCase()) >= 0) {
-                output.push(situacao.list[i]);
+                output.push(situacao.list[i].name);
             }
         }
         situacao.filterSintoma = output;
@@ -214,7 +234,7 @@ app.controller('situacaoCtrl', function($http, $window) {
             console.log({success});
             situacao.result = success.data;
             for (let i = 0; i < 10; i++) {
-                situacao.list[i] = situacao.result[i].name;
+                situacao.list[i] = situacao.result[i];
             }
             return situacao.list;
         },function (error){
