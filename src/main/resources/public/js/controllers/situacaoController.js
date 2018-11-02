@@ -74,6 +74,7 @@ app.controller('situacaoCtrl', function($http, $window) {
             descricao: situacao._novoSituacao.descricao,
             name: situacao._novoSituacao.name,
             nomesSintomas: situacao.nomesSintomas(),
+            descSintomas: situacao.descSintomas(),
             tipo: 2,
         };
         return novoSituacao;
@@ -83,10 +84,20 @@ app.controller('situacaoCtrl', function($http, $window) {
         var nomesSintomas = [];
         for (let i = 0; i < limitCount; i++) {
             if (document.getElementById("S"+SintomasIDs[i]) != null) {
-                nomesSintomas[i] = document.getElementById("S"+SintomasIDs[i]).textContent;
+                nomesSintomas[i] = document.getElementById("SN"+SintomasIDs[i]).textContent;
             }
         }
         return nomesSintomas;
+    }
+
+    situacao.descSintomas = function descSintomas() {
+        var descSintomas = [];
+        for (let i = 0; i < limitCount; i++) {
+            if (document.getElementById("S"+SintomasIDs[i]) != null) {
+                descSintomas[i] = document.getElementById("S"+SintomasIDs[i]).textContent;
+            }
+        }
+        return descSintomas;
     }
 
     var totalCampos = 10;
@@ -152,26 +163,29 @@ app.controller('situacaoCtrl', function($http, $window) {
             box.appendChild(fieldComponente);
 */
 
-            var sintomas = document.getElementById('sintomas');
+            var sintomas = document.getElementById('sintomasList');
 
             var box = document.createElement("div");
             box.id = 'divS'+iCount;
-            var cardSintoma = document.createElement("fieldset");
+            box.classList = "card white darken-1";
+            var cardSintoma = document.createElement("div");
             cardSintoma.id = "S" + iCount;
+            cardSintoma.classList = "card-content black-text";
 
             var nome = document.getElementById("sintoma");
+            var title = document.createElement("span");
+            title.classList = "card-title";
+            title.id = "SN" + iCount
             var nomeSintoma = document.createTextNode(nome.value);
-            cardSintoma.appendChild(nomeSintoma);
+            title.appendChild(nomeSintoma);
+            box.appendChild(title);
 
-            var descricaoSintoma = document.createElement("textarea");
-            descricaoSintoma.placeholder = "Descrição do sintoma";
-            situacao.list.forEach(sintoma => {
-                console.log(sintoma.name === nome.value);
-                if (sintoma.name === nome.value) {
-                    descricaoSintoma.value = sintoma.descricao;
-                }
-            });
-            cardSintoma.appendChild(descricaoSintoma);
+            var descricaoSintoma = document.getElementById("sintomaDesc");
+            var descricaoSintomaTextNode = document.createTextNode(descricaoSintoma.value);
+            cardSintoma.appendChild(descricaoSintomaTextNode);
+
+            var action = document.createElement("div");
+            action.classList = "card-action";
 
             var removeButton = document.createElement('input');
             removeButton.type = 'button';
@@ -179,11 +193,13 @@ app.controller('situacaoCtrl', function($http, $window) {
             removeButton.onclick = function () {
                 situacao.removeSintoma(ID);
             };
-            cardSintoma.appendChild(removeButton);
+            action.appendChild(removeButton);
 
             box.appendChild(cardSintoma);
+            box.appendChild(action);
             sintomas.appendChild(box);
             nome.value = "";//limpa o campo
+            descricaoSintoma.value = "";
         }
     }
 
@@ -211,7 +227,7 @@ app.controller('situacaoCtrl', function($http, $window) {
         situacao.hidethis = false;
         var output = [];  
 
-        for (let i = 0; i < 10; i++) {
+        for (let i = 0; i < situacao.list.length; i++) {
             var sintomaString = situacao.list[i].name;
             if (sintomaString.toLowerCase().indexOf(string.toLowerCase()) >= 0) {
                 output.push(situacao.list[i].name);
@@ -222,20 +238,26 @@ app.controller('situacaoCtrl', function($http, $window) {
 
     situacao.fillTextbox = function(string){  
         situacao.sintoma = string;
-        situacao.hidethis = true;  
+        situacao.hidethis = true;
+
+        var descricaoSintoma = document.getElementById("sintomaDesc");
+        descricaoSintoma.placeholder = "Descrição do sintoma";
+        situacao.list.forEach(sintoma => {
+            if (sintoma.name === string) {
+                descricaoSintoma.value = sintoma.descricao;
+            }
+        });
     }
 
     situacao.listaSintomas = function() {
      
         $http({
             method: 'GET',
-            url: path + 'all_elemento'
+            url: path + 'all_sintoma'
         }).then(function (success){
             console.log({success});
             situacao.result = success.data;
-            for (let i = 0; i < 10; i++) {
-                situacao.list[i] = situacao.result[i];
-            }
+            situacao.list = success.data;
             return situacao.list;
         },function (error){
             console.log({error});

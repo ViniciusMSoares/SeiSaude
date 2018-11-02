@@ -56,7 +56,11 @@ public class SituacaoServiceImpl implements SituacaoService{
 			ArrayList<Situacao> sintomas = findByName(doencaDTO.getNomesSintomas()[i]);
 			SintomaDoenca sintomaDoenca;
 			if (sintomas.size() == 0) {//cria novo sintoma caso não encontre um
-				Sintoma sintoma = new Sintoma(doencaDTO.getNomesSintomas()[i], "Este sintoma ainda não possui uma descrição");
+				String descSintoma = doencaDTO.getDescSintomas()[i];
+				if (descSintoma.equals("")) {//checa se a descrição do sintoma foi passado no cadastro
+					descSintoma = "Este sintoma ainda não possui uma descrição";
+				}
+				Sintoma sintoma = new Sintoma(doencaDTO.getNomesSintomas()[i], descSintoma);
 				sintomaRepository.save(sintoma);
 				sintomaDoenca = new SintomaDoenca(sintoma.getId(), doenca.getId());
 			}else {
@@ -99,6 +103,21 @@ public class SituacaoServiceImpl implements SituacaoService{
 		}
 		
 		return false;
+	}
+
+	@Override
+	public ArrayList<Sintoma> findAllSintoma() {
+		ArrayList<Sintoma> sintomas = (ArrayList<Sintoma>) sintomaRepository.findAll();
+		ArrayList<Long> ids = new ArrayList<Long>();
+		ArrayList<Situacao> situacoes = (ArrayList<Situacao>) situacaoRepository.findAll();
+		for (Situacao situacao : situacoes) {
+			if (ids.contains(situacao.getId())) {
+				sintomas.add((Sintoma) situacao);
+				System.out.println(situacao.getName());
+			}
+		}
+		
+		return sintomas;
 	}
 	
 }

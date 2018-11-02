@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import server.entities.Sintoma;
 import server.entities.Situacao;
 import server.entities.DTOs.DoencaDTO;
 import server.entities.DTOs.SituacaoDTO;
@@ -51,6 +52,11 @@ public class SituacaoController {
 	@GetMapping("/situacao")
 	public ResponseEntity<ArrayList<Situacao>> getSituacaoByName(@RequestParam(value = "name") String name) { 
 		return new ResponseEntity<ArrayList<Situacao>>(situacaoService.findByName(name), HttpStatus.FOUND);
+	}
+	
+	@RequestMapping(value = "/all_sintoma", method = RequestMethod.GET)
+	public ResponseEntity<ArrayList<Sintoma>> getAllSintomas() { 
+		return new ResponseEntity<ArrayList<Sintoma>>((ArrayList<Sintoma>) situacaoService.findAllSintoma(), HttpStatus.OK);
 	}
 	
 }
