@@ -123,7 +123,7 @@ app.controller('situacaoCtrl', function($http, $window) {
     situacao.limpaForm = function() {
         situacao._novoSituacao = {};
         document.getElementById("last_name").value = "";
-        document.getElementById("sintomasList").outerHTML = "";
+        document.getElementById("conteudoSintomasList").innerHTML = "";
     }
 
     var iCount = 0;
@@ -170,7 +170,7 @@ app.controller('situacaoCtrl', function($http, $window) {
             box.appendChild(fieldComponente);
 */
 
-            var sintomas = document.getElementById('sintomasList');
+            var sintomas = document.getElementById('conteudoSintomasList');
 
             var box = document.createElement("div");
             box.id = 'divS'+iCount;
