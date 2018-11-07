@@ -10,8 +10,8 @@ app.controller('situacaoCtrl', function($http, $window) {
     situacao._consulta = {};
 
     var url;
-    var path = "https://sei-saude.herokuapp.com/";
-    //var path = "http://localhost:8080/";
+    //var path = "https://sei-saude.herokuapp.com/";
+    var path = "http://localhost:8080/";
 
     situacao.cadastrar = function cadastrasituacao(tipo) {
         situacao.SintomasIDs();
@@ -36,6 +36,7 @@ app.controller('situacaoCtrl', function($http, $window) {
         }).then(function (success){
             console.log(success);
             alert(success.data.name + " cadastrado com sucesso!");
+            situacao.limpaForm();
         },function (error){
             console.log(error);
             if (error.status == 300) {
@@ -54,7 +55,6 @@ app.controller('situacaoCtrl', function($http, $window) {
             url: 'https://sei-saude.herokuapp.com/situacao'
         }).then(function (success){
             console.log({success});
-
         },function (error){
             console.log({error});
         });
@@ -117,6 +117,12 @@ app.controller('situacaoCtrl', function($http, $window) {
 
     situacao.totalCampos = function() {
         return totalCampos;
+    }
+
+    situacao.limpaForm = function() {
+        situacao._novoSituacao = {};
+        document.getElementById("last_name").value = "";
+        document.getElementById("sintomasList").outerHTML = "";
     }
 
     var iCount = 0;
