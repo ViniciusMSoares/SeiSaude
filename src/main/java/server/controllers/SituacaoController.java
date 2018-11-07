@@ -42,7 +42,7 @@ public class SituacaoController {
 	
 	@RequestMapping(value = "/situacao/doenca", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public ResponseEntity<Situacao> cadastraDoenca(@RequestBody DoencaDTO doenca) {
-		if (situacaoService.situacaoInDataBase(doenca.getName())) {
+		if (situacaoService.doencaInDataBase(doenca.getName()+doenca.getComplemento())) {
 			return new ResponseEntity<>(HttpStatus.MULTIPLE_CHOICES);
 		}
 		

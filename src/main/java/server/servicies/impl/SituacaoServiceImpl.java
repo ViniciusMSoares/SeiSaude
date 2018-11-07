@@ -49,7 +49,7 @@ public class SituacaoServiceImpl implements SituacaoService{
 	@Override
 	public Doenca save(DoencaDTO doencaDTO) {
 		Situacao situacao = new Situacao(doencaDTO.getName(), doencaDTO.getDescricao());
-		Doenca doenca = new Doenca(situacao);
+		Doenca doenca = new Doenca(situacao, doencaDTO.getComplemento());
 		doencaRepository.save(doenca);
 		
 		for (int i = 0; i < doencaDTO.getNomesSintomas().length; i++) {
@@ -98,6 +98,22 @@ public class SituacaoServiceImpl implements SituacaoService{
 		for (Situacao situacao : situacaoRepository.findAll()) {
 			String situacaoName = situacao.getName().toLowerCase();
 			if (situacaoName.equals(nome)) {
+				return true;
+			}
+		}
+		
+		return false;
+	}
+	
+	public boolean doencaInDataBase(String nome) {
+		nome = nome.toLowerCase();
+		
+		for (Doenca doenca : doencaRepository.findAll()) {
+			String doencaName = doenca.getName().toLowerCase();
+			if (doenca.getComplemento() != null) {
+				doencaName += doenca.getComplemento().toLowerCase();
+			}
+			if (doencaName.equals(nome)) {
 				return true;
 			}
 		}

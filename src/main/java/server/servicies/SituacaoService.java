@@ -35,6 +35,8 @@ public interface SituacaoService {
 	Doenca save(DoencaDTO doenca);
 
 	boolean situacaoInDataBase(String name);
+	
+	boolean doencaInDataBase(String name);
 
 	ArrayList<Sintoma> findAllSintoma();
 }

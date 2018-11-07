@@ -10,8 +10,8 @@ app.controller('situacaoCtrl', function($http, $window) {
     situacao._consulta = {};
 
     var url;
-    //var path = "https://sei-saude.herokuapp.com/";
-    var path = "http://localhost:8080/";
+    var path = "https://sei-saude.herokuapp.com/";
+    //var path = "http://localhost:8080/";
 
     situacao.cadastrar = function cadastrasituacao(tipo) {
         situacao.SintomasIDs();
@@ -71,6 +71,7 @@ app.controller('situacaoCtrl', function($http, $window) {
 
     situacao.dadosDoenca = function dadosDoenca() {
         var novoSituacao = {
+            complemento: document.getElementById("last_name").value,
             descricao: situacao._novoSituacao.descricao,
             name: situacao._novoSituacao.name,
             nomesSintomas: situacao.nomesSintomas(),
