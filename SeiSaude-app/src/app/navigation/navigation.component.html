@@ -15,10 +15,9 @@
             Consulta
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="#">Action</a>
-            <a class="dropdown-item" href="#">Another action</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">Something else here</a>
+            <li *ngFor="let consulta of consultas">
+              <a class="dropdown-item" href="#"> {{ consulta }} </a>
+            </li>
           </div>
         </li>
         <li class="nav-item dropdown">
@@ -26,10 +25,9 @@
             Tratamento
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="#">Action</a>
-            <a class="dropdown-item" href="#">Another action</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">Something else here</a>
+            <li *ngFor="let tratamento of tratamentos">
+              <a class="dropdown-item" href="#"> {{ tratamento }} </a>
+            </li>
           </div>
         </li>
         <li class="nav-item dropdown">
@@ -37,10 +35,9 @@
             Cadastro
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="#">Action</a>
-            <a class="dropdown-item" href="#">Another action</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">Something else here</a>
+            <li *ngFor="let cadastro of cadastros">
+              <a class="dropdown-item" routerLink="{{ cadastro.path }}"> {{ cadastro.tipo }} </a>
+            </li>
           </div>
         </li>
       </ul>
