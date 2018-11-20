@@ -16,7 +16,7 @@
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <li *ngFor="let consulta of consultas">
-              <a class="dropdown-item" href="#"> {{ consulta }} </a>
+              <a class="dropdown-item" routerLink="{{ consulta.path }}"> {{ consulta.tipo }} </a>
             </li>
           </div>
         </li>
@@ -26,7 +26,7 @@
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <li *ngFor="let tratamento of tratamentos">
-              <a class="dropdown-item" href="#"> {{ tratamento }} </a>
+              <a class="dropdown-item" routerLink="{{ tratamento.path }}"> {{ tratamento.tipo }} </a>
             </li>
           </div>
         </li>

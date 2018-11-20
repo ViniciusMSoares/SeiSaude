@@ -11,9 +11,20 @@ export class NavigationComponent implements OnInit {
   //path deve ser igual ao definido em AppRoutingModule
   cadastros: {}[] = [{tipo: "Comportamento", path: "cadastro-comportamento"},
                      {tipo: "Alimento", path: ""},
-                     {tipo: "Remédio", path: ""}];
-  consultas: string[] = ["Elemento", "Doença", "Sintoma", "Componente"];
-  tratamentos: string[] = ["Novo", "Em andamento"];
+                     {tipo: "Remédio", path: ""},
+                     {tipo: "Componente", path: ""},
+                     {tipo: "Sintoma", path: ""},
+                     {tipo: "Doença", path: ""},
+                     {tipo: "Indicação", path: ""},
+                     {tipo: "Paciente", path: ""}];
+
+  consultas: {}[] = [{tipo: "Elemento", path: ""},
+                     {tipo: "Sintoma", path: ""},
+                     {tipo: "Doença", path: ""},
+                     {tipo: "Componente", path: ""}];
+                     
+  tratamentos: {}[] = [{tipo: "Novo", path: ""},
+                       {tipo: "Em andamento", path: ""}];
 
   constructor( ) { }
 
