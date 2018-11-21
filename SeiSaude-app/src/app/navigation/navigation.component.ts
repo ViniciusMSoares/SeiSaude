@@ -10,7 +10,7 @@ export class NavigationComponent implements OnInit {
 
   //path deve ser igual ao definido em AppRoutingModule
   cadastros: {}[] = [{tipo: "Comportamento", path: "cadastro-comportamento"},
-                     {tipo: "Alimento", path: ""},
+                     {tipo: "Alimento", path: "cadastro-alimento"},
                      {tipo: "Remédio", path: ""},
                      {tipo: "Componente", path: ""},
                      {tipo: "Sintoma", path: ""},
