@@ -1,0 +1,24 @@
+
+<div style="text-align:center">
+  <h1>
+    {{ title }}
+  </h1>
+</div>
+
+<div class="container">
+
+  <form>
+    <div class="form-group">
+      <label for="nomeSintoma">Nome</label>
+      <input type="text" class="form-control" id="nomeSintoma">
+    </div>
+    <div class="form-group">
+      <label for="descricaoSintoma">Descrição</label>
+      <textarea class="form-control" id="descricaoSintoma" rows="3"></textarea>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Finalizar</button>
+  </form>
+
+  <router-outlet></router-outlet>
+</div>
