@@ -8,6 +8,7 @@ import { Comportamento } from '../../../models/comportamento';
 })
 export class CadastroComportamentoComponent implements OnInit {
 
+  public title = 'Cadastro de Comportamento';
   public comportamento = {} as Comportamento;
 
   constructor() { }

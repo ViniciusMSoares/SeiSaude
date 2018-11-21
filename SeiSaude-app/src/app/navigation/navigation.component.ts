@@ -13,8 +13,8 @@ export class NavigationComponent implements OnInit {
                      {tipo: "Alimento", path: "cadastro-alimento"},
                      {tipo: "Remédio", path: ""},
                      {tipo: "Componente", path: ""},
-                     {tipo: "Sintoma", path: ""},
-                     {tipo: "Doença", path: ""},
+                     {tipo: "Sintoma", path: "cadastro-sintoma"},
+                     {tipo: "Doença", path: "cadastro-doenca"},
                      {tipo: "Indicação", path: ""},
                      {tipo: "Paciente", path: ""}];
 
