@@ -5,6 +5,8 @@ import { ComportamentosComponent } from './comportamentos/comportamentos.compone
 import { CadastroComportamentoComponent } from './cadastro-comportamento/cadastro-comportamento.component';
 import { AppRoutingModule } from '../app-routing.module';
 import { CadastroAlimentoComponent } from './cadastro-alimento/cadastro-alimento.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -14,7 +16,10 @@ import { CadastroAlimentoComponent } from './cadastro-alimento/cadastro-alimento
   ],
   imports: [
     CommonModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   exports: [
   ]
