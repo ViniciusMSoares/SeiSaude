@@ -2,18 +2,18 @@ package server.entities.DTOs;
 
 public class SearchDTO {
 	
-	private String name;
+	private String nome;
 	
 	public SearchDTO() {
 		
 	}
 
-	public String getName() {
-		return name;
+	public String getNome() {
+		return nome;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 
 }

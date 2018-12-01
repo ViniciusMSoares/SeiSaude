@@ -67,7 +67,7 @@ public class ElementoServiceImpl implements ElementoService {
 	
 	@Override
 	public Elemento save(ElementoDTO elementoDTO) {
-		Elemento elemento = new Elemento(elementoDTO.getName(), elementoDTO.getDescricao(),
+		Elemento elemento = new Elemento(elementoDTO.getNome(), elementoDTO.getDescricao(),
 				elementoDTO.getCadastradoPor());
 
 		Comportamento comportamento = new Comportamento(elemento);
@@ -77,7 +77,7 @@ public class ElementoServiceImpl implements ElementoService {
 
 	@Override
 	public Elemento save(ProdutoDTO produtoDTO) {
-		Elemento elemento = new Elemento(produtoDTO.getName(), produtoDTO.getDescricao(),
+		Elemento elemento = new Elemento(produtoDTO.getNome(), produtoDTO.getDescricao(),
 				produtoDTO.getCadastradoPor());
 		
 		Remedio remedio = new Remedio(elemento, produtoDTO.getFabricante());
@@ -98,7 +98,7 @@ public class ElementoServiceImpl implements ElementoService {
 
 	@Override
 	public Elemento save(AlimentoDTO alimentoDTO) {
-		Elemento elemento = new Elemento(alimentoDTO.getName(), alimentoDTO.getDescricao(),
+		Elemento elemento = new Elemento(alimentoDTO.getNome(), alimentoDTO.getDescricao(),
 				alimentoDTO.getCadastradoPor());
 		
 		Alimento alimento = new Alimento(elemento, alimentoDTO.getFabricante());

@@ -33,7 +33,7 @@ public class SituacaoController {
 	
 	@RequestMapping(value = "/situacao/sintoma", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public ResponseEntity<Situacao> cadastraSintoma(@RequestBody SituacaoDTO sintoma) {
-		if (situacaoService.situacaoInDataBase(sintoma.getName())) {
+		if (situacaoService.situacaoInDataBase(sintoma.getNome())) {
 			return new ResponseEntity<>(HttpStatus.MULTIPLE_CHOICES);
 		}
 		
@@ -42,7 +42,7 @@ public class SituacaoController {
 	
 	@RequestMapping(value = "/situacao/doenca", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public ResponseEntity<Situacao> cadastraDoenca(@RequestBody DoencaDTO doenca) {
-		if (situacaoService.doencaInDataBase(doenca.getName()+doenca.getComplemento())) {
+		if (situacaoService.doencaInDataBase(doenca.getNome()+doenca.getComplemento())) {
 			return new ResponseEntity<>(HttpStatus.MULTIPLE_CHOICES);
 		}
 		
@@ -50,7 +50,7 @@ public class SituacaoController {
 	}
 	
 	@GetMapping("/situacao")
-	public ResponseEntity<ArrayList<Situacao>> getSituacaoByName(@RequestParam(value = "name") String name) { 
+	public ResponseEntity<ArrayList<Situacao>> getSituacaoByName(@RequestParam(value = "nome") String name) { 
 		return new ResponseEntity<ArrayList<Situacao>>(situacaoService.findByName(name), HttpStatus.FOUND);
 	}
 	

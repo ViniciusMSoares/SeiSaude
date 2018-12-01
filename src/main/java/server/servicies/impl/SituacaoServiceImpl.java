@@ -39,7 +39,7 @@ public class SituacaoServiceImpl implements SituacaoService{
 
 	@Override
 	public Situacao save(SituacaoDTO situacaoDTO) {
-		Situacao situacao = new Situacao(situacaoDTO.getName(), situacaoDTO.getDescricao());
+		Situacao situacao = new Situacao(situacaoDTO.getNome(), situacaoDTO.getDescricao());
 		Sintoma sintoma = new Sintoma(situacao);
 		
 		return sintomaRepository.save(sintoma);
@@ -48,7 +48,7 @@ public class SituacaoServiceImpl implements SituacaoService{
 	
 	@Override
 	public Doenca save(DoencaDTO doencaDTO) {
-		Situacao situacao = new Situacao(doencaDTO.getName(), doencaDTO.getDescricao());
+		Situacao situacao = new Situacao(doencaDTO.getNome(), doencaDTO.getDescricao());
 		Doenca doenca = new Doenca(situacao, doencaDTO.getComplemento());
 		doencaRepository.save(doenca);
 		

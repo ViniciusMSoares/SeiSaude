@@ -37,7 +37,7 @@ public class ElementoController {
 	
 	@RequestMapping(value = "/elemento/comportamento", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public ResponseEntity<Elemento> cadastraComportamento(@RequestBody ElementoDTO elemento) {
-		if (elementoService.elementoInDataBase(elemento.getName())) {
+		if (elementoService.elementoInDataBase(elemento.getNome())) {
 			return new ResponseEntity<>(HttpStatus.MULTIPLE_CHOICES);
 		}
 		
@@ -46,7 +46,7 @@ public class ElementoController {
 	
 	@RequestMapping(value = "/elemento/remedio", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public ResponseEntity<Elemento> cadastraRemedio(@RequestBody ProdutoDTO remedio) {
-		if (elementoService.elementoInDataBase(remedio.getName())) {
+		if (elementoService.elementoInDataBase(remedio.getNome())) {
 			return new ResponseEntity<>(HttpStatus.MULTIPLE_CHOICES);
 		}
 		
@@ -55,7 +55,7 @@ public class ElementoController {
 	
 	@RequestMapping(value = "/elemento/alimento", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public ResponseEntity<Elemento> cadastraAlimento(@RequestBody AlimentoDTO alimento) {
-		if (elementoService.elementoInDataBase(alimento.getName())) {
+		if (elementoService.elementoInDataBase(alimento.getNome())) {
 			return new ResponseEntity<>(HttpStatus.MULTIPLE_CHOICES);
 		}
 		
@@ -63,7 +63,7 @@ public class ElementoController {
 	}
 	
 	@RequestMapping(value = "/elemento", method = RequestMethod.GET)
-	public ResponseEntity<ArrayList<Elemento>> getElementosByName(@RequestParam(value = "name")  String search) { 
+	public ResponseEntity<ArrayList<Elemento>> getElementosByName(@RequestParam(value = "nome")  String search) { 
 		return new ResponseEntity<ArrayList<Elemento>>(elementoService.findByName(search), HttpStatus.OK);
 	}
 
@@ -73,7 +73,7 @@ public class ElementoController {
 	}
 	
 	@GetMapping("/elemento/componente")
-	public ResponseEntity<ArrayList<Componente>> getComponentesByName(@RequestParam(value = "name") String name) { 
+	public ResponseEntity<ArrayList<Componente>> getComponentesByName(@RequestParam(value = "nome") String name) { 
 		return new ResponseEntity<ArrayList<Componente>>(elementoService.findComponenteByName(name), HttpStatus.OK);
 	}
 	
