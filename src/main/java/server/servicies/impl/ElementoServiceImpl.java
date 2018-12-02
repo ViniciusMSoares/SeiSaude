@@ -68,7 +68,7 @@ public class ElementoServiceImpl implements ElementoService {
 	@Override
 	public Elemento save(ElementoDTO elementoDTO) {
 		Elemento elemento = new Elemento(elementoDTO.getNome(), elementoDTO.getDescricao(),
-				elementoDTO.getCadastradoPor());
+				elementoDTO.getCadastradoPor(), elementoDTO.getComplemento());
 
 		Comportamento comportamento = new Comportamento(elemento);
 			
@@ -78,7 +78,7 @@ public class ElementoServiceImpl implements ElementoService {
 	@Override
 	public Elemento save(ProdutoDTO produtoDTO) {
 		Elemento elemento = new Elemento(produtoDTO.getNome(), produtoDTO.getDescricao(),
-				produtoDTO.getCadastradoPor());
+				produtoDTO.getCadastradoPor(), produtoDTO.getComplemento());
 		
 		Remedio remedio = new Remedio(elemento, produtoDTO.getFabricante());
 		remedioRepository.save(remedio);
@@ -86,7 +86,7 @@ public class ElementoServiceImpl implements ElementoService {
 		Quantidade quantidade;
 		if (produtoDTO.getUnidadesComponente() != null) {
 			for (int i = 0; i < produtoDTO.getUnidadesComponente().length; i++) {
-				componente = new Componente(produtoDTO.getNomeComponente()[i]);
+				componente = new Componente(produtoDTO.getNomeComponente()[i], "");//falta complemento
 				componenteRepository.save(componente);
 				quantidade = new Quantidade(componente.getId(), remedio.getId(), Float.parseFloat(produtoDTO.getValoresComponente()[i]), produtoDTO.getUnidadesComponente()[i]);
 				quantidadeRepository.save(quantidade);
@@ -99,7 +99,7 @@ public class ElementoServiceImpl implements ElementoService {
 	@Override
 	public Elemento save(AlimentoDTO alimentoDTO) {
 		Elemento elemento = new Elemento(alimentoDTO.getNome(), alimentoDTO.getDescricao(),
-				alimentoDTO.getCadastradoPor());
+				alimentoDTO.getCadastradoPor(), alimentoDTO.getComplemento());
 		
 		Alimento alimento = new Alimento(elemento, alimentoDTO.getFabricante());
 		alimentoRepository.save(alimento);
@@ -107,7 +107,7 @@ public class ElementoServiceImpl implements ElementoService {
 		Quantidade quantidadeA;
 		if (alimentoDTO.getUnidadesComponente() != null) {
 			for (int i = 0; i < alimentoDTO.getUnidadesComponente().length; i++) {
-				componenteA = new Componente(alimentoDTO.getNomeComponente()[i]);
+				componenteA = new Componente(alimentoDTO.getNomeComponente()[i], "");//falta complemento
 				componenteRepository.save(componenteA);
 				quantidadeA = new Quantidade(componenteA.getId(), alimento.getId(), Float.parseFloat(alimentoDTO.getValoresComponente()[i]),
 						alimentoDTO.getUnidadesComponente()[i]);
@@ -177,18 +177,24 @@ public class ElementoServiceImpl implements ElementoService {
 	}
 	
 	@Override
-	public String[] saveComponente(ComponenteDTO componenteDTO) {
-		Componente componente;
-		if (componenteDTO.getNomeComponente() != null) {
-			for (int i = 0; i < componenteDTO.getNomeComponente().length; i++) {
-				componente = new Componente(componenteDTO.getNomeComponente()[i]);
-				componenteRepository.save(componente);
-			}
-		}
-		return componenteDTO.getNomeComponente();
+	public Componente saveComponente(ComponenteDTO componenteDTO) {
+		Componente componente = new Componente(componenteDTO.getNome(), componenteDTO.getComplemento());
+		return componenteRepository.save(componente);
 	}
 	
-	public String[] componenteInDataBase(String[] nome) {
+	public boolean componenteInDataBase(String nome) {
+		nome = nome.toLowerCase();
+		
+		for (Componente componente : componenteRepository.findAll()) {
+			String componenteName = componente.getNome().toLowerCase();
+			if (componenteName.equals(nome)) {
+				return true;
+			}
+		}
+		
+		return false;
+		
+		/*
 		String[] result;
 		String[] parcial = new String[nome.length];
 		int repetidos = 0;
@@ -211,6 +217,7 @@ public class ElementoServiceImpl implements ElementoService {
 		}
 		
 		return result;
+		*/
 	}
 	
 }

@@ -7,6 +7,10 @@ public class SituacaoDTO {
 	private String descricao;
 	
 	private int tipo;
+	
+	private String complemento;
+	
+	private String cadastradoPor;
 
 	public SituacaoDTO() {
 		
@@ -34,6 +38,22 @@ public class SituacaoDTO {
 
 	public void setTipo(int tipo) {
 		this.tipo = tipo;
+	}
+
+	public String getComplemento() {
+		return complemento;
+	}
+
+	public void setComplemento(String complemento) {
+		this.complemento = complemento;
+	}
+
+	public String getCadastradoPor() {
+		return cadastradoPor;
+	}
+
+	public void setCadastradoPor(String cadastradoPor) {
+		this.cadastradoPor = cadastradoPor;
 	}
 
 }

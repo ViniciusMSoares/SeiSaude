@@ -39,7 +39,7 @@ public class SituacaoServiceImpl implements SituacaoService{
 
 	@Override
 	public Situacao save(SituacaoDTO situacaoDTO) {
-		Situacao situacao = new Situacao(situacaoDTO.getNome(), situacaoDTO.getDescricao());
+		Situacao situacao = new Situacao(situacaoDTO.getNome(), situacaoDTO.getDescricao(), situacaoDTO.getComplemento(), situacaoDTO.getCadastradoPor());
 		Sintoma sintoma = new Sintoma(situacao);
 		
 		return sintomaRepository.save(sintoma);
@@ -48,26 +48,28 @@ public class SituacaoServiceImpl implements SituacaoService{
 	
 	@Override
 	public Doenca save(DoencaDTO doencaDTO) {
-		Situacao situacao = new Situacao(doencaDTO.getNome(), doencaDTO.getDescricao());
-		Doenca doenca = new Doenca(situacao, doencaDTO.getComplemento());
+		Situacao situacao = new Situacao(doencaDTO.getNome(), doencaDTO.getDescricao(), doencaDTO.getComplemento(), doencaDTO.getCadastradoPor());
+		Doenca doenca = new Doenca(situacao);
 		doencaRepository.save(doenca);
 		
-		for (int i = 0; i < doencaDTO.getNomesSintomas().length; i++) {
-			ArrayList<Situacao> sintomas = findByName(doencaDTO.getNomesSintomas()[i]);
-			SintomaDoenca sintomaDoenca;
-			if (sintomas.size() == 0) {//cria novo sintoma caso não encontre um
-				String descSintoma = doencaDTO.getDescSintomas()[i];
-				if (descSintoma.equals("")) {//checa se a descrição do sintoma foi passado no cadastro
-					descSintoma = "Este sintoma ainda não possui uma descrição";
+		if (doencaDTO.getNomesSintomas() != null) {
+			for (int i = 0; i < doencaDTO.getNomesSintomas().length; i++) {
+				ArrayList<Situacao> sintomas = findByName(doencaDTO.getNomesSintomas()[i]);
+				SintomaDoenca sintomaDoenca;
+				if (sintomas.size() == 0) {//cria novo sintoma caso não encontre um
+					String descSintoma = doencaDTO.getDescSintomas()[i];
+					if (descSintoma.equals("")) {//checa se a descrição do sintoma foi passado no cadastro
+						descSintoma = "Este sintoma ainda não possui uma descrição";
+					}
+					Sintoma sintoma = new Sintoma(doencaDTO.getNomesSintomas()[i], descSintoma, "", "");//falta receber complemento e cadastradoPor
+					sintomaRepository.save(sintoma);
+					sintomaDoenca = new SintomaDoenca(sintoma.getId(), doenca.getId());
+				}else {
+					sintomaDoenca = new SintomaDoenca(sintomas.get(0).getId(), doenca.getId());
 				}
-				Sintoma sintoma = new Sintoma(doencaDTO.getNomesSintomas()[i], descSintoma);
-				sintomaRepository.save(sintoma);
-				sintomaDoenca = new SintomaDoenca(sintoma.getId(), doenca.getId());
-			}else {
-				sintomaDoenca = new SintomaDoenca(sintomas.get(0).getId(), doenca.getId());
+				
+				sintomaDoencaRepository.save(sintomaDoenca);
 			}
-			
-			sintomaDoencaRepository.save(sintomaDoenca);
 		}
 		
 		return doencaRepository.save(doenca);

@@ -58,7 +58,7 @@ public interface ElementoService {
 	
 	boolean elementoInDataBase(String nome);
 
-	String[] saveComponente(ComponenteDTO componente);
+	Componente saveComponente(ComponenteDTO componente);
 	
-	String[] componenteInDataBase(String[] nome);
+	boolean componenteInDataBase(String nome);
 }

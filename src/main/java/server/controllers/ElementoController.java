@@ -79,9 +79,8 @@ public class ElementoController {
 	
 	@RequestMapping(value = "/elemento/componente", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public ResponseEntity<Object> cadastraComponente(@RequestBody ComponenteDTO componente) {
-		String[] result = elementoService.componenteInDataBase(componente.getNomeComponente());
-		if (result.length > 0) {
-			return new ResponseEntity<>(result, HttpStatus.MULTIPLE_CHOICES);
+		if (elementoService.componenteInDataBase(componente.getNome())) {
+			return new ResponseEntity<>(HttpStatus.MULTIPLE_CHOICES);
 		}
 		
 		return new ResponseEntity<>(elementoService.saveComponente(componente), HttpStatus.CREATED);

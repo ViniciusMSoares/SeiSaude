@@ -23,9 +23,12 @@ public class Componente implements Serializable{
 	
 	@NotEmpty()
 	private String nome;
+	
+	private String complemento;
 
-	public Componente(String nome) {
+	public Componente(String nome, String complemento) {
 		this.nome = nome;
+		this.complemento = complemento;
 	}
 	
 	public Componente() {
@@ -47,6 +50,13 @@ public class Componente implements Serializable{
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	
+
+	public String getComplemento() {
+		return complemento;
+	}
+
+	public void setComplemento(String complemento) {
+		this.complemento = complemento;
+	}
 	
 }

@@ -6,6 +6,8 @@ import { SintomasComponent } from './sintomas/sintomas.component';
 import { DoencasComponent } from './doencas/doencas.component';
 import { CadastroSintomaComponent } from './cadastro-sintoma/cadastro-sintoma.component';
 import { CadastroDoencaComponent } from './cadastro-doenca/cadastro-doenca.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [SintomasComponent,
@@ -14,7 +16,10 @@ import { CadastroDoencaComponent } from './cadastro-doenca/cadastro-doenca.compo
                  CadastroDoencaComponent],
   imports: [
     CommonModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule
   ]
 })
 export class SituacoesModule { }

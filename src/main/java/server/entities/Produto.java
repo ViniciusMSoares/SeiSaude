@@ -2,7 +2,6 @@ package server.entities;
 
 import javax.persistence.Entity;
 import javax.persistence.Transient;
-import javax.validation.constraints.NotEmpty;
 
 @Entity
 public class Produto extends Elemento {
@@ -10,16 +9,15 @@ public class Produto extends Elemento {
 	@Transient
 	private static final long serialVersionUID = 1L;
 	
-	@NotEmpty
 	private String fabricante;
 	
-	public Produto(String name, String descricao, String cadastradoPor, String fabricante) {
-		super(name, descricao, cadastradoPor);
+	public Produto(String name, String descricao, String cadastradoPor, String fabricante, String complemento) {
+		super(name, descricao, cadastradoPor, complemento);
 		this.fabricante = fabricante;
 	}
 	
 	public Produto(Elemento elemento, String fabricante) {
-		super(elemento.getName(), elemento.getDescricao(), elemento.getCadastradoPor());
+		super(elemento.getName(), elemento.getDescricao(), elemento.getCadastradoPor(), elemento.getComplemento());
 		this.fabricante = fabricante;
 	}
 

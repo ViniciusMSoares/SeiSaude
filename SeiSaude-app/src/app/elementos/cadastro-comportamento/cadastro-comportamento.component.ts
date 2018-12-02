@@ -24,8 +24,9 @@ export class CadastroComportamentoComponent extends FormBaseComponent implements
 
   ngOnInit() {
     this.formulario = this.formBuilder.group({
-      nome: [null, Validators.required],//TODO: mudar 'name' para 'nome'
-      descricao: [null, Validators.required],
+      nome: [null, Validators.required],
+      complemento: [null],
+      descricao: [null],
       cadastradoPor: [null, Validators.required]
     });
     this.testaHTTP();
@@ -35,6 +36,7 @@ export class CadastroComportamentoComponent extends FormBaseComponent implements
     let url = Url.URL_BASE + Url.CADASTRO_COMPORTAMENTO;
     let comportamento = new Comportamento(
       this.formulario.value.nome,
+      this.formulario.value.complemento,
       this.formulario.value.descricao,
       this.formulario.value.cadastradoPor
     );
@@ -45,7 +47,7 @@ export class CadastroComportamentoComponent extends FormBaseComponent implements
       (error: any) => console.log(error)
     );
 
-    console.log("Nome do comportamento:", this.formulario.value);
+    console.log("Comportamento:", this.formulario.value);
   }
 
   testaHTTP() {

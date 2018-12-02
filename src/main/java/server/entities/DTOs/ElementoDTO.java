@@ -12,6 +12,8 @@ public class ElementoDTO {
 	
 	//Atributos de Produto
 	private String fabricante;
+	
+	private String complemento;
 
 	public ElementoDTO() {
 		
@@ -55,6 +57,14 @@ public class ElementoDTO {
 
 	public void setFabricante(String fabricante) {
 		this.fabricante = fabricante;
+	}
+
+	public String getComplemento() {
+		return complemento;
+	}
+
+	public void setComplemento(String complemento) {
+		this.complemento = complemento;
 	}
 
 }

@@ -2,22 +2,12 @@ package server.entities.DTOs;
 
 public class DoencaDTO extends SituacaoDTO{
 	
-	private String complemento;
-	
 	private String[] nomesSintomas;
 	
 	private String[] descSintomas;
 
 	public DoencaDTO() {
 		super();
-	}
-
-	public String getComplemento() {
-		return complemento;
-	}
-
-	public void setComplemento(String complemento) {
-		this.complemento = complemento;
 	}
 	
 	public String[] getNomesSintomas() {

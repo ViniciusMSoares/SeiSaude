@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown/ngx-bootstrap-dropdown';
 
 @Component({
   selector: 'app-navigation',
@@ -11,8 +11,8 @@ export class NavigationComponent implements OnInit {
   //path deve ser igual ao definido em AppRoutingModule
   cadastros: {}[] = [{tipo: "Comportamento", path: "cadastro-comportamento"},
                      {tipo: "Alimento", path: "cadastro-alimento"},
-                     {tipo: "Remédio", path: ""},
-                     {tipo: "Componente", path: ""},
+                     {tipo: "Remédio", path: "cadastro-remedio"},
+                     {tipo: "Componente", path: "cadastro-componente"},
                      {tipo: "Sintoma", path: "cadastro-sintoma"},
                      {tipo: "Doença", path: "cadastro-doenca"},
                      {tipo: "Indicação", path: ""},

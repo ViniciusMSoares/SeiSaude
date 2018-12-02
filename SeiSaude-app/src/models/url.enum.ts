@@ -11,8 +11,8 @@ export enum Url {
 
     SITUACAO = "/situacao",
     TODOS_SINTOMAS = "/all_sintoma",
-    CADASTRO_SINTOMA = "/situacao/doenca",
-    CADASTRO_DOENCA = "/situacao/sintoma",
+    CADASTRO_SINTOMA = "/situacao/sintoma",
+    CADASTRO_DOENCA = "/situacao/doenca",
     
     PACIENTE = "/paciente",
 
