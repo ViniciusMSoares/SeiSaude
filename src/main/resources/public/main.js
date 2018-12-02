@@ -39,6 +39,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _elementos_cadastro_alimento_cadastro_alimento_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./elementos/cadastro-alimento/cadastro-alimento.component */ "./src/app/elementos/cadastro-alimento/cadastro-alimento.component.ts");
 /* harmony import */ var _situacoes_cadastro_sintoma_cadastro_sintoma_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./situacoes/cadastro-sintoma/cadastro-sintoma.component */ "./src/app/situacoes/cadastro-sintoma/cadastro-sintoma.component.ts");
 /* harmony import */ var _situacoes_cadastro_doenca_cadastro_doenca_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./situacoes/cadastro-doenca/cadastro-doenca.component */ "./src/app/situacoes/cadastro-doenca/cadastro-doenca.component.ts");
+/* harmony import */ var _elementos_cadastro_remedio_cadastro_remedio_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./elementos/cadastro-remedio/cadastro-remedio.component */ "./src/app/elementos/cadastro-remedio/cadastro-remedio.component.ts");
+/* harmony import */ var _elementos_cadastro_componente_cadastro_componente_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./elementos/cadastro-componente/cadastro-componente.component */ "./src/app/elementos/cadastro-componente/cadastro-componente.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -51,11 +53,15 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 
 
 
+
+
 var routes = [
+    { path: 'cadastro-alimento', component: _elementos_cadastro_alimento_cadastro_alimento_component__WEBPACK_IMPORTED_MODULE_3__["CadastroAlimentoComponent"] },
+    { path: 'cadastro-remedio', component: _elementos_cadastro_remedio_cadastro_remedio_component__WEBPACK_IMPORTED_MODULE_6__["CadastroRemedioComponent"] },
     { path: 'cadastro-comportamento', component: _elementos_cadastro_comportamento_cadastro_comportamento_component__WEBPACK_IMPORTED_MODULE_2__["CadastroComportamentoComponent"] },
     { path: 'cadastro-sintoma', component: _situacoes_cadastro_sintoma_cadastro_sintoma_component__WEBPACK_IMPORTED_MODULE_4__["CadastroSintomaComponent"] },
     { path: 'cadastro-doenca', component: _situacoes_cadastro_doenca_cadastro_doenca_component__WEBPACK_IMPORTED_MODULE_5__["CadastroDoencaComponent"] },
-    { path: 'cadastro-alimento', component: _elementos_cadastro_alimento_cadastro_alimento_component__WEBPACK_IMPORTED_MODULE_3__["CadastroAlimentoComponent"] }
+    { path: 'cadastro-componente', component: _elementos_cadastro_componente_cadastro_componente_component__WEBPACK_IMPORTED_MODULE_7__["CadastroComponenteComponent"] },
 ];
 var AppRoutingModule = /** @class */ (function () {
     function AppRoutingModule() {
@@ -208,7 +214,7 @@ var AppModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<form>\n  <div class=\"form-group\">\n    <label for=\"exampleInputEmail1\">Email address</label>\n    <input type=\"email\" class=\"form-control\" id=\"exampleInputEmail1\" aria-describedby=\"emailHelp\" placeholder=\"Enter email\">\n    <small id=\"emailHelp\" class=\"form-text text-muted\">We'll never share your email with anyone else.</small>\n  </div>\n  <div class=\"form-group\">\n    <label for=\"exampleInputPassword1\">Password</label>\n    <input type=\"password\" class=\"form-control\" id=\"exampleInputPassword1\" placeholder=\"Password\">\n  </div>\n  <div class=\"form-check\">\n    <input type=\"checkbox\" class=\"form-check-input\" id=\"exampleCheck1\">\n    <label class=\"form-check-label\" for=\"exampleCheck1\">Check me out</label>\n  </div>\n  <button type=\"submit\" class=\"btn btn-primary\">Submit</button>\n</form>\n\n<router-outlet></router-outlet>"
+module.exports = "<form class=\"form-horizontal\" [formGroup]=\"formulario\" (ngSubmit)=\"onSubmit()\">\n  <div style=\"text-align:center\">\n    <h1>\n      {{ title }}\n    </h1>\n  </div>\n  \n  <div class=\"container\">\n\n    <div class=\"form-row\">\n      <div class=\"form-group col-md-6\" [ngClass]=\"aplicaCssErro('nome')\">\n        <label for=\"nome\">Nome</label>\n        <input type=\"text\" class=\"form-control\" id=\"nome\" formControlName=\"nome\">\n      </div>\n      <div class=\"form-group col-md-6\">\n        <label for=\"complemento\">Complemento</label>\n        <input type=\"text\" class=\"form-control\" id=\"complemento\" formControlName=\"complemento\">\n      </div>\n    </div>\n    <div class=\"form-group\">\n      <label for=\"descricao\">Descrição</label>\n      <textarea class=\"form-control\" id=\"descricao\" formControlName=\"descricao\" rows=\"3\"></textarea>\n    </div>\n    <div class=\"form-group\">\n      <label for=\"fabricante\">Fabricante</label>\n      <input type=\"text\" class=\"form-control\" id=\"fabricante\" formControlName=\"fabricante\">\n    </div>\n    <div class=\"form-group\">\n      <label for=\"cadastradoPor\">Cadastrado por</label>\n      <input type=\"text\" class=\"form-control\" id=\"cadastradoPor\" formControlName=\"cadastradoPor\">\n    </div>\n\n    <button type=\"submit\" class=\"btn btn-primary\">Finalizar</button>\n  \n    <router-outlet></router-outlet>\n  </div>\n\n</form>"
 
 /***/ }),
 
@@ -234,6 +240,24 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CadastroAlimentoComponent", function() { return CadastroAlimentoComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _models_alimento__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../models/alimento */ "./src/models/alimento.ts");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var _form_base_form_base_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../form-base/form-base.component */ "./src/app/form-base/form-base.component.ts");
+/* harmony import */ var _models_url_enum__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../models/url.enum */ "./src/models/url.enum.ts");
+var __extends = (undefined && undefined.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    }
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -244,11 +268,37 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
-var CadastroAlimentoComponent = /** @class */ (function () {
-    function CadastroAlimentoComponent() {
-        this.alimento = {};
+
+
+
+
+
+var CadastroAlimentoComponent = /** @class */ (function (_super) {
+    __extends(CadastroAlimentoComponent, _super);
+    function CadastroAlimentoComponent(formBuilder, http) {
+        var _this = _super.call(this) || this;
+        _this.formBuilder = formBuilder;
+        _this.http = http;
+        _this.title = 'Cadastro de Alimento';
+        _this.alimento = {};
+        return _this;
     }
     CadastroAlimentoComponent.prototype.ngOnInit = function () {
+        this.formulario = this.formBuilder.group({
+            nome: [null, _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required],
+            complemento: [null],
+            descricao: [null],
+            fabricante: [null],
+            cadastradoPor: [null, _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required]
+        });
+    };
+    CadastroAlimentoComponent.prototype.submit = function () {
+        var url = _models_url_enum__WEBPACK_IMPORTED_MODULE_5__["Url"].URL_BASE + _models_url_enum__WEBPACK_IMPORTED_MODULE_5__["Url"].CADASTRO_ALIMENTO;
+        var alimento = new _models_alimento__WEBPACK_IMPORTED_MODULE_1__["Alimento"](this.formulario.value.nome, this.formulario.value.complemento, this.formulario.value.descricao, this.formulario.value.fabricante, this.formulario.value.cadastradoPor);
+        this.http.post(url, alimento).subscribe(function (result) {
+            console.log(result);
+        }, function (error) { return console.log(error); });
+        console.log("Alimento:", this.formulario.value);
     };
     CadastroAlimentoComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -256,10 +306,117 @@ var CadastroAlimentoComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./cadastro-alimento.component.html */ "./src/app/elementos/cadastro-alimento/cadastro-alimento.component.html"),
             styles: [__webpack_require__(/*! ./cadastro-alimento.component.scss */ "./src/app/elementos/cadastro-alimento/cadastro-alimento.component.scss")]
         }),
-        __metadata("design:paramtypes", [])
+        __metadata("design:paramtypes", [_angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormBuilder"],
+            _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpClient"]])
     ], CadastroAlimentoComponent);
     return CadastroAlimentoComponent;
-}());
+}(_form_base_form_base_component__WEBPACK_IMPORTED_MODULE_4__["FormBaseComponent"]));
+
+
+
+/***/ }),
+
+/***/ "./src/app/elementos/cadastro-componente/cadastro-componente.component.html":
+/*!**********************************************************************************!*\
+  !*** ./src/app/elementos/cadastro-componente/cadastro-componente.component.html ***!
+  \**********************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<form class=\"form-horizontal\" [formGroup]=\"formulario\" (ngSubmit)=\"onSubmit()\">\n  <div style=\"text-align:center\">\n    <h1>\n      {{ title }}\n    </h1>\n  </div>\n  \n  <div class=\"container\">\n\n    <div class=\"form-row\">\n      <div class=\"form-group col-md-6\" [ngClass]=\"aplicaCssErro('nome')\">\n        <label for=\"nome\">Nome</label>\n        <input type=\"text\" class=\"form-control\" id=\"nome\" formControlName=\"nome\">\n      </div>\n      <div class=\"form-group col-md-6\">\n        <label for=\"complemento\">Complemento</label>\n        <input type=\"text\" class=\"form-control\" id=\"complemento\" formControlName=\"complemento\">\n      </div>\n    </div>\n\n    <button type=\"submit\" class=\"btn btn-primary\">Finalizar</button>\n  \n    <router-outlet></router-outlet>\n  </div>\n\n</form>"
+
+/***/ }),
+
+/***/ "./src/app/elementos/cadastro-componente/cadastro-componente.component.scss":
+/*!**********************************************************************************!*\
+  !*** ./src/app/elementos/cadastro-componente/cadastro-componente.component.scss ***!
+  \**********************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2VsZW1lbnRvcy9jYWRhc3Ryby1jb21wb25lbnRlL2NhZGFzdHJvLWNvbXBvbmVudGUuY29tcG9uZW50LnNjc3MifQ== */"
+
+/***/ }),
+
+/***/ "./src/app/elementos/cadastro-componente/cadastro-componente.component.ts":
+/*!********************************************************************************!*\
+  !*** ./src/app/elementos/cadastro-componente/cadastro-componente.component.ts ***!
+  \********************************************************************************/
+/*! exports provided: CadastroComponenteComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CadastroComponenteComponent", function() { return CadastroComponenteComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _form_base_form_base_component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../form-base/form-base.component */ "./src/app/form-base/form-base.component.ts");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var _models_url_enum__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../models/url.enum */ "./src/models/url.enum.ts");
+/* harmony import */ var _models_componente__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../models/componente */ "./src/models/componente.ts");
+var __extends = (undefined && undefined.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    }
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+
+var CadastroComponenteComponent = /** @class */ (function (_super) {
+    __extends(CadastroComponenteComponent, _super);
+    function CadastroComponenteComponent(formBuilder, http) {
+        var _this = _super.call(this) || this;
+        _this.formBuilder = formBuilder;
+        _this.http = http;
+        _this.title = 'Cadastro de Componente';
+        _this.componente = {};
+        return _this;
+    }
+    CadastroComponenteComponent.prototype.ngOnInit = function () {
+        this.formulario = this.formBuilder.group({
+            nome: [null, _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required],
+            complemento: [null]
+        });
+    };
+    CadastroComponenteComponent.prototype.submit = function () {
+        var url = _models_url_enum__WEBPACK_IMPORTED_MODULE_4__["Url"].URL_BASE + _models_url_enum__WEBPACK_IMPORTED_MODULE_4__["Url"].CADASTRO_COMPONENTE;
+        var componente = new _models_componente__WEBPACK_IMPORTED_MODULE_5__["Componente"](this.formulario.value.nome, this.formulario.value.complemento);
+        this.http.post(url, componente).subscribe(function (result) {
+            console.log(result);
+        }, function (error) { return console.log(error); });
+        console.log("Componente:", this.formulario.value);
+    };
+    CadastroComponenteComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'app-cadastro-componente',
+            template: __webpack_require__(/*! ./cadastro-componente.component.html */ "./src/app/elementos/cadastro-componente/cadastro-componente.component.html"),
+            styles: [__webpack_require__(/*! ./cadastro-componente.component.scss */ "./src/app/elementos/cadastro-componente/cadastro-componente.component.scss")]
+        }),
+        __metadata("design:paramtypes", [_angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormBuilder"],
+            _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpClient"]])
+    ], CadastroComponenteComponent);
+    return CadastroComponenteComponent;
+}(_form_base_form_base_component__WEBPACK_IMPORTED_MODULE_1__["FormBaseComponent"]));
 
 
 
@@ -272,7 +429,7 @@ var CadastroAlimentoComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<form class=\"form-horizontal\" [formGroup]=\"formulario\" (ngSubmit)=\"onSubmit()\">\n  <div style=\"text-align:center\">\n    <h1>\n      {{ title }}\n    </h1>\n  </div>\n  \n  <div class=\"container\">\n  \n    <div class=\"form-group\" [ngClass]=\"aplicaCssErro('name')\">\n      <label for=\"name\">Nome</label>\n      <input type=\"text\" class=\"form-control\" id=\"name\" formControlName=\"name\">\n    </div>\n    <div class=\"form-group\">\n      <label for=\"descricao\">Descrição</label>\n      <textarea class=\"form-control\" id=\"descricao\" formControlName=\"descricao\" rows=\"3\"></textarea>\n    </div>\n    <div class=\"form-group\">\n      <label for=\"cadastradoPor\">Cadastrado por</label>\n      <input type=\"text\" class=\"form-control\" id=\"cadastradoPor\" formControlName=\"cadastradoPor\">\n    </div>\n\n    <button type=\"submit\" class=\"btn btn-primary\">Finalizar</button>\n  \n    <router-outlet></router-outlet>\n  </div>\n\n</form>"
+module.exports = "<form class=\"form-horizontal\" [formGroup]=\"formulario\" (ngSubmit)=\"onSubmit()\">\n  <div style=\"text-align:center\">\n    <h1>\n      {{ title }}\n    </h1>\n  </div>\n  \n  <div class=\"container\">\n\n    <div class=\"form-row\">\n      <div class=\"form-group col-md-6\" [ngClass]=\"aplicaCssErro('nome')\">\n        <label for=\"nome\">Nome</label>\n        <input type=\"text\" class=\"form-control\" id=\"nome\" formControlName=\"nome\">\n      </div>\n      <div class=\"form-group col-md-6\">\n        <label for=\"complemento\">Complemento</label>\n        <input type=\"text\" class=\"form-control\" id=\"complemento\" formControlName=\"complemento\">\n      </div>\n    </div>\n    <div class=\"form-group\">\n      <label for=\"descricao\">Descrição</label>\n      <textarea class=\"form-control\" id=\"descricao\" formControlName=\"descricao\" rows=\"3\"></textarea>\n    </div>\n    <div class=\"form-group\">\n      <label for=\"cadastradoPor\">Cadastrado por</label>\n      <input type=\"text\" class=\"form-control\" id=\"cadastradoPor\" formControlName=\"cadastradoPor\">\n    </div>\n\n    <button type=\"submit\" class=\"btn btn-primary\">Finalizar</button>\n  \n    <router-outlet></router-outlet>\n  </div>\n\n</form>"
 
 /***/ }),
 
@@ -302,6 +459,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _form_base_form_base_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../form-base/form-base.component */ "./src/app/form-base/form-base.component.ts");
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var _models_url_enum__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../models/url.enum */ "./src/models/url.enum.ts");
 var __extends = (undefined && undefined.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
@@ -329,6 +487,7 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+
 var CadastroComportamentoComponent = /** @class */ (function (_super) {
     __extends(CadastroComportamentoComponent, _super);
     function CadastroComportamentoComponent(formBuilder, http) {
@@ -341,25 +500,23 @@ var CadastroComportamentoComponent = /** @class */ (function (_super) {
     }
     CadastroComportamentoComponent.prototype.ngOnInit = function () {
         this.formulario = this.formBuilder.group({
-            name: [null, _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required],
-            descricao: [null, _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required],
+            nome: [null, _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required],
+            complemento: [null],
+            descricao: [null],
             cadastradoPor: [null, _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required]
         });
-    };
-    CadastroComportamentoComponent.prototype.submit = function () {
-        var url = "https://sei-saude.herokuapp.com/elemento/comportamento";
-        var comportamento = new _models_comportamento__WEBPACK_IMPORTED_MODULE_1__["Comportamento"];
-        comportamento.cadastradoPor = this.formulario.value.cadastradoPor; //TODO: adicionar esse campo ao form
-        comportamento.descricao = this.formulario.value.descricao;
-        comportamento.name = this.formulario.value.name;
-        this.http.post(url, comportamento).subscribe(function (result) {
-            console.log(result);
-        }, function (error) { return alert('erro'); });
-        console.log("Nome do comportamento:", this.formulario.value);
         this.testaHTTP();
     };
+    CadastroComportamentoComponent.prototype.submit = function () {
+        var url = _models_url_enum__WEBPACK_IMPORTED_MODULE_5__["Url"].URL_BASE + _models_url_enum__WEBPACK_IMPORTED_MODULE_5__["Url"].CADASTRO_COMPORTAMENTO;
+        var comportamento = new _models_comportamento__WEBPACK_IMPORTED_MODULE_1__["Comportamento"](this.formulario.value.nome, this.formulario.value.complemento, this.formulario.value.descricao, this.formulario.value.cadastradoPor);
+        this.http.post(url, comportamento).subscribe(function (result) {
+            console.log(result);
+        }, function (error) { return console.log(error); });
+        console.log("Comportamento:", this.formulario.value);
+    };
     CadastroComportamentoComponent.prototype.testaHTTP = function () {
-        var url = "https://sei-saude.herokuapp.com/all_elemento";
+        var url = _models_url_enum__WEBPACK_IMPORTED_MODULE_5__["Url"].URL_BASE + _models_url_enum__WEBPACK_IMPORTED_MODULE_5__["Url"].TODOS_ELEMENTOS;
         this.http.get(url).subscribe(function (result) {
             console.log(result);
         }, function (error) { return alert('erro'); });
@@ -375,6 +532,115 @@ var CadastroComportamentoComponent = /** @class */ (function (_super) {
     ], CadastroComportamentoComponent);
     return CadastroComportamentoComponent;
 }(_form_base_form_base_component__WEBPACK_IMPORTED_MODULE_2__["FormBaseComponent"]));
+
+
+
+/***/ }),
+
+/***/ "./src/app/elementos/cadastro-remedio/cadastro-remedio.component.html":
+/*!****************************************************************************!*\
+  !*** ./src/app/elementos/cadastro-remedio/cadastro-remedio.component.html ***!
+  \****************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<form class=\"form-horizontal\" [formGroup]=\"formulario\" (ngSubmit)=\"onSubmit()\">\n  <div style=\"text-align:center\">\n    <h1>\n      {{ title }}\n    </h1>\n  </div>\n  \n  <div class=\"container\">\n\n    <div class=\"form-row\">\n      <div class=\"form-group col-md-6\" [ngClass]=\"aplicaCssErro('nome')\">\n        <label for=\"nome\">Nome</label>\n        <input type=\"text\" class=\"form-control\" id=\"nome\" formControlName=\"nome\">\n      </div>\n      <div class=\"form-group col-md-6\">\n        <label for=\"complemento\">Complemento</label>\n        <input type=\"text\" class=\"form-control\" id=\"complemento\" formControlName=\"complemento\">\n      </div>\n    </div>\n    <div class=\"form-group\">\n      <label for=\"descricao\">Descrição</label>\n      <textarea class=\"form-control\" id=\"descricao\" formControlName=\"descricao\" rows=\"3\"></textarea>\n    </div>\n    <div class=\"form-group\">\n      <label for=\"fabricante\">Fabricante</label>\n      <input type=\"text\" class=\"form-control\" id=\"fabricante\" formControlName=\"fabricante\">\n    </div>\n    <div class=\"form-group\">\n      <label for=\"cadastradoPor\">Cadastrado por</label>\n      <input type=\"text\" class=\"form-control\" id=\"cadastradoPor\" formControlName=\"cadastradoPor\">\n    </div>\n\n    <button type=\"submit\" class=\"btn btn-primary\">Finalizar</button>\n  \n    <router-outlet></router-outlet>\n  </div>\n\n</form>"
+
+/***/ }),
+
+/***/ "./src/app/elementos/cadastro-remedio/cadastro-remedio.component.scss":
+/*!****************************************************************************!*\
+  !*** ./src/app/elementos/cadastro-remedio/cadastro-remedio.component.scss ***!
+  \****************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2VsZW1lbnRvcy9jYWRhc3Ryby1yZW1lZGlvL2NhZGFzdHJvLXJlbWVkaW8uY29tcG9uZW50LnNjc3MifQ== */"
+
+/***/ }),
+
+/***/ "./src/app/elementos/cadastro-remedio/cadastro-remedio.component.ts":
+/*!**************************************************************************!*\
+  !*** ./src/app/elementos/cadastro-remedio/cadastro-remedio.component.ts ***!
+  \**************************************************************************/
+/*! exports provided: CadastroRemedioComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CadastroRemedioComponent", function() { return CadastroRemedioComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _form_base_form_base_component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../form-base/form-base.component */ "./src/app/form-base/form-base.component.ts");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var _models_url_enum__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../models/url.enum */ "./src/models/url.enum.ts");
+/* harmony import */ var _models_remedio__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../models/remedio */ "./src/models/remedio.ts");
+var __extends = (undefined && undefined.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    }
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+
+var CadastroRemedioComponent = /** @class */ (function (_super) {
+    __extends(CadastroRemedioComponent, _super);
+    function CadastroRemedioComponent(formBuilder, http) {
+        var _this = _super.call(this) || this;
+        _this.formBuilder = formBuilder;
+        _this.http = http;
+        _this.title = 'Cadastro de Remédio';
+        _this.remedio = {};
+        return _this;
+    }
+    CadastroRemedioComponent.prototype.ngOnInit = function () {
+        this.formulario = this.formBuilder.group({
+            nome: [null, _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required],
+            complemento: [null],
+            descricao: [null],
+            fabricante: [null],
+            cadastradoPor: [null, _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required]
+        });
+    };
+    CadastroRemedioComponent.prototype.submit = function () {
+        var url = _models_url_enum__WEBPACK_IMPORTED_MODULE_4__["Url"].URL_BASE + _models_url_enum__WEBPACK_IMPORTED_MODULE_4__["Url"].CADASTRO_REMEDIO;
+        var remedio = new _models_remedio__WEBPACK_IMPORTED_MODULE_5__["Remedio"](this.formulario.value.nome, this.formulario.value.complemento, this.formulario.value.descricao, this.formulario.value.fabricante, this.formulario.value.cadastradoPor);
+        this.http.post(url, remedio).subscribe(function (result) {
+            console.log(result);
+        }, function (error) { return console.log(error); });
+        console.log("Remedio:", this.formulario.value);
+    };
+    CadastroRemedioComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'app-cadastro-remedio',
+            template: __webpack_require__(/*! ./cadastro-remedio.component.html */ "./src/app/elementos/cadastro-remedio/cadastro-remedio.component.html"),
+            styles: [__webpack_require__(/*! ./cadastro-remedio.component.scss */ "./src/app/elementos/cadastro-remedio/cadastro-remedio.component.scss")]
+        }),
+        __metadata("design:paramtypes", [_angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormBuilder"],
+            _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpClient"]])
+    ], CadastroRemedioComponent);
+    return CadastroRemedioComponent;
+}(_form_base_form_base_component__WEBPACK_IMPORTED_MODULE_1__["FormBaseComponent"]));
 
 
 
@@ -462,12 +728,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _cadastro_alimento_cadastro_alimento_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./cadastro-alimento/cadastro-alimento.component */ "./src/app/elementos/cadastro-alimento/cadastro-alimento.component.ts");
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var _cadastro_remedio_cadastro_remedio_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./cadastro-remedio/cadastro-remedio.component */ "./src/app/elementos/cadastro-remedio/cadastro-remedio.component.ts");
+/* harmony import */ var _cadastro_componente_cadastro_componente_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./cadastro-componente/cadastro-componente.component */ "./src/app/elementos/cadastro-componente/cadastro-componente.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
+
 
 
 
@@ -484,7 +754,9 @@ var ElementosModule = /** @class */ (function () {
             declarations: [
                 _comportamentos_comportamentos_component__WEBPACK_IMPORTED_MODULE_2__["ComportamentosComponent"],
                 _cadastro_comportamento_cadastro_comportamento_component__WEBPACK_IMPORTED_MODULE_3__["CadastroComportamentoComponent"],
-                _cadastro_alimento_cadastro_alimento_component__WEBPACK_IMPORTED_MODULE_5__["CadastroAlimentoComponent"]
+                _cadastro_alimento_cadastro_alimento_component__WEBPACK_IMPORTED_MODULE_5__["CadastroAlimentoComponent"],
+                _cadastro_remedio_cadastro_remedio_component__WEBPACK_IMPORTED_MODULE_8__["CadastroRemedioComponent"],
+                _cadastro_componente_cadastro_componente_component__WEBPACK_IMPORTED_MODULE_9__["CadastroComponenteComponent"]
             ],
             imports: [
                 _angular_common__WEBPACK_IMPORTED_MODULE_1__["CommonModule"],
@@ -696,8 +968,8 @@ var NavigationComponent = /** @class */ (function () {
         //path deve ser igual ao definido em AppRoutingModule
         this.cadastros = [{ tipo: "Comportamento", path: "cadastro-comportamento" },
             { tipo: "Alimento", path: "cadastro-alimento" },
-            { tipo: "Remédio", path: "" },
-            { tipo: "Componente", path: "" },
+            { tipo: "Remédio", path: "cadastro-remedio" },
+            { tipo: "Componente", path: "cadastro-componente" },
             { tipo: "Sintoma", path: "cadastro-sintoma" },
             { tipo: "Doença", path: "cadastro-doenca" },
             { tipo: "Indicação", path: "" },
@@ -733,7 +1005,7 @@ var NavigationComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n<div style=\"text-align:center\">\n  <h1>\n    {{ title }}\n  </h1>\n</div>\n\n<div class=\"container\">\n\n  <form>\n    <div class=\"form-row\">\n      <div class=\"form-group col-md-6\">\n        <label for=\"nomeDoenca\">Nome</label>\n        <input type=\"text\" class=\"form-control\" id=\"nomeDoenca\" ng-model=\"doenca.nome\">\n        {{ doenca.nome }}\n      </div>\n      <div class=\"form-group col-md-6\">\n        <label for=\"complemento\">Complemento</label>\n        <input type=\"text\" class=\"form-control\" id=\"complemento\" ng-model=\"doenca.complemento\">\n      </div>\n    </div>\n    <div class=\"form-group\">\n      <label for=\"descricaoDoenca\">Descrição</label>\n      <textarea class=\"form-control\" id=\"descricaoDoenca\" rows=\"3\" ng-model=\"doenca.descricao\"></textarea>\n    </div>\n\n    <button type=\"submit\" class=\"btn btn-primary\">Finalizar</button>\n  </form>\n\n  <router-outlet></router-outlet>\n</div>\n"
+module.exports = "<form class=\"form-horizontal\" [formGroup]=\"formulario\" (ngSubmit)=\"onSubmit()\">\n  <div style=\"text-align:center\">\n    <h1>\n      {{ title }}\n    </h1>\n  </div>\n  \n  <div class=\"container\">\n\n    <div class=\"form-row\">\n      <div class=\"form-group col-md-6\" [ngClass]=\"aplicaCssErro('nome')\">\n        <label for=\"nome\">Nome</label>\n        <input type=\"text\" class=\"form-control\" id=\"nome\" formControlName=\"nome\">\n      </div>\n      <div class=\"form-group col-md-6\">\n        <label for=\"complemento\">Complemento</label>\n        <input type=\"text\" class=\"form-control\" id=\"complemento\" formControlName=\"complemento\">\n      </div>\n    </div>\n    <div class=\"form-group\">\n      <label for=\"descricao\">Descrição</label>\n      <textarea class=\"form-control\" id=\"descricao\" formControlName=\"descricao\" rows=\"3\"></textarea>\n    </div>\n    <div class=\"form-group\">\n      <label for=\"cadastradoPor\">Cadastrado por</label>\n      <input type=\"text\" class=\"form-control\" id=\"cadastradoPor\" formControlName=\"cadastradoPor\">\n    </div>\n\n    <button type=\"submit\" class=\"btn btn-primary\">Finalizar</button>\n  \n    <router-outlet></router-outlet>\n  </div>\n\n</form>"
 
 /***/ }),
 
@@ -759,6 +1031,24 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CadastroDoencaComponent", function() { return CadastroDoencaComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _models_doenca__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../models/doenca */ "./src/models/doenca.ts");
+/* harmony import */ var _form_base_form_base_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../form-base/form-base.component */ "./src/app/form-base/form-base.component.ts");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var _models_url_enum__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../models/url.enum */ "./src/models/url.enum.ts");
+var __extends = (undefined && undefined.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    }
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -769,12 +1059,36 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
-var CadastroDoencaComponent = /** @class */ (function () {
-    function CadastroDoencaComponent() {
-        this.title = 'Cadastro de Doença';
-        this.doenca = {};
+
+
+
+
+
+var CadastroDoencaComponent = /** @class */ (function (_super) {
+    __extends(CadastroDoencaComponent, _super);
+    function CadastroDoencaComponent(formBuilder, http) {
+        var _this = _super.call(this) || this;
+        _this.formBuilder = formBuilder;
+        _this.http = http;
+        _this.title = 'Cadastro de Doença';
+        _this.doenca = {};
+        return _this;
     }
     CadastroDoencaComponent.prototype.ngOnInit = function () {
+        this.formulario = this.formBuilder.group({
+            nome: [null, _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required],
+            complemento: [null],
+            descricao: [null],
+            cadastradoPor: [null, _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required]
+        });
+    };
+    CadastroDoencaComponent.prototype.submit = function () {
+        var url = _models_url_enum__WEBPACK_IMPORTED_MODULE_5__["Url"].URL_BASE + _models_url_enum__WEBPACK_IMPORTED_MODULE_5__["Url"].CADASTRO_DOENCA;
+        var doenca = new _models_doenca__WEBPACK_IMPORTED_MODULE_1__["Doenca"](this.formulario.value.nome, this.formulario.value.complemento, this.formulario.value.descricao, this.formulario.value.cadastradoPor);
+        this.http.post(url, doenca).subscribe(function (result) {
+            console.log(result);
+        }, function (error) { return console.log(error); });
+        console.log("Doenca:", this.formulario.value);
     };
     CadastroDoencaComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -782,10 +1096,11 @@ var CadastroDoencaComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./cadastro-doenca.component.html */ "./src/app/situacoes/cadastro-doenca/cadastro-doenca.component.html"),
             styles: [__webpack_require__(/*! ./cadastro-doenca.component.scss */ "./src/app/situacoes/cadastro-doenca/cadastro-doenca.component.scss")]
         }),
-        __metadata("design:paramtypes", [])
+        __metadata("design:paramtypes", [_angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormBuilder"],
+            _angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpClient"]])
     ], CadastroDoencaComponent);
     return CadastroDoencaComponent;
-}());
+}(_form_base_form_base_component__WEBPACK_IMPORTED_MODULE_2__["FormBaseComponent"]));
 
 
 
@@ -798,7 +1113,7 @@ var CadastroDoencaComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n<div style=\"text-align:center\">\n  <h1>\n    {{ title }}\n  </h1>\n</div>\n\n<div class=\"container\">\n\n  <form>\n    <div class=\"form-group\">\n      <label for=\"nomeSintoma\">Nome</label>\n      <input type=\"text\" class=\"form-control\" id=\"nomeSintoma\">\n    </div>\n    <div class=\"form-group\">\n      <label for=\"descricaoSintoma\">Descrição</label>\n      <textarea class=\"form-control\" id=\"descricaoSintoma\" rows=\"3\"></textarea>\n    </div>\n\n    <button type=\"submit\" class=\"btn btn-primary\">Finalizar</button>\n  </form>\n\n  <router-outlet></router-outlet>\n</div>\n"
+module.exports = "<form class=\"form-horizontal\" [formGroup]=\"formulario\" (ngSubmit)=\"onSubmit()\">\n  <div style=\"text-align:center\">\n    <h1>\n      {{ title }}\n    </h1>\n  </div>\n  \n  <div class=\"container\">\n\n    <div class=\"form-row\">\n      <div class=\"form-group col-md-6\" [ngClass]=\"aplicaCssErro('nome')\">\n        <label for=\"nome\">Nome</label>\n        <input type=\"text\" class=\"form-control\" id=\"nome\" formControlName=\"nome\">\n      </div>\n      <div class=\"form-group col-md-6\">\n        <label for=\"complemento\">Complemento</label>\n        <input type=\"text\" class=\"form-control\" id=\"complemento\" formControlName=\"complemento\">\n      </div>\n    </div>\n    <div class=\"form-group\">\n      <label for=\"descricao\">Descrição</label>\n      <textarea class=\"form-control\" id=\"descricao\" formControlName=\"descricao\" rows=\"3\"></textarea>\n    </div>\n    <div class=\"form-group\">\n      <label for=\"cadastradoPor\">Cadastrado por</label>\n      <input type=\"text\" class=\"form-control\" id=\"cadastradoPor\" formControlName=\"cadastradoPor\">\n    </div>\n\n    <button type=\"submit\" class=\"btn btn-primary\">Finalizar</button>\n  \n    <router-outlet></router-outlet>\n  </div>\n\n</form>"
 
 /***/ }),
 
@@ -824,6 +1139,24 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CadastroSintomaComponent", function() { return CadastroSintomaComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _models_sintoma__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../models/sintoma */ "./src/models/sintoma.ts");
+/* harmony import */ var _form_base_form_base_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../form-base/form-base.component */ "./src/app/form-base/form-base.component.ts");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var _models_url_enum__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../models/url.enum */ "./src/models/url.enum.ts");
+var __extends = (undefined && undefined.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    }
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -834,12 +1167,36 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
-var CadastroSintomaComponent = /** @class */ (function () {
-    function CadastroSintomaComponent() {
-        this.title = 'Cadastro de Sintoma';
-        this.sintoma = {};
+
+
+
+
+
+var CadastroSintomaComponent = /** @class */ (function (_super) {
+    __extends(CadastroSintomaComponent, _super);
+    function CadastroSintomaComponent(formBuilder, http) {
+        var _this = _super.call(this) || this;
+        _this.formBuilder = formBuilder;
+        _this.http = http;
+        _this.title = 'Cadastro de Sintoma';
+        _this.sintoma = {};
+        return _this;
     }
     CadastroSintomaComponent.prototype.ngOnInit = function () {
+        this.formulario = this.formBuilder.group({
+            nome: [null, _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required],
+            complemento: [null],
+            descricao: [null],
+            cadastradoPor: [null, _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required]
+        });
+    };
+    CadastroSintomaComponent.prototype.submit = function () {
+        var url = _models_url_enum__WEBPACK_IMPORTED_MODULE_5__["Url"].URL_BASE + _models_url_enum__WEBPACK_IMPORTED_MODULE_5__["Url"].CADASTRO_SINTOMA;
+        var sintoma = new _models_sintoma__WEBPACK_IMPORTED_MODULE_1__["Sintoma"](this.formulario.value.nome, this.formulario.value.complemento, this.formulario.value.descricao, this.formulario.value.cadastradoPor);
+        this.http.post(url, sintoma).subscribe(function (result) {
+            console.log(result);
+        }, function (error) { return console.log(error); });
+        console.log("Sintoma:", this.formulario.value);
     };
     CadastroSintomaComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -847,10 +1204,11 @@ var CadastroSintomaComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./cadastro-sintoma.component.html */ "./src/app/situacoes/cadastro-sintoma/cadastro-sintoma.component.html"),
             styles: [__webpack_require__(/*! ./cadastro-sintoma.component.scss */ "./src/app/situacoes/cadastro-sintoma/cadastro-sintoma.component.scss")]
         }),
-        __metadata("design:paramtypes", [])
+        __metadata("design:paramtypes", [_angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormBuilder"],
+            _angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpClient"]])
     ], CadastroSintomaComponent);
     return CadastroSintomaComponent;
-}());
+}(_form_base_form_base_component__WEBPACK_IMPORTED_MODULE_2__["FormBaseComponent"]));
 
 
 
@@ -999,12 +1357,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _doencas_doencas_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./doencas/doencas.component */ "./src/app/situacoes/doencas/doencas.component.ts");
 /* harmony import */ var _cadastro_sintoma_cadastro_sintoma_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./cadastro-sintoma/cadastro-sintoma.component */ "./src/app/situacoes/cadastro-sintoma/cadastro-sintoma.component.ts");
 /* harmony import */ var _cadastro_doenca_cadastro_doenca_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./cadastro-doenca/cadastro-doenca.component */ "./src/app/situacoes/cadastro-doenca/cadastro-doenca.component.ts");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
+
 
 
 
@@ -1023,7 +1385,10 @@ var SituacoesModule = /** @class */ (function () {
                 _cadastro_doenca_cadastro_doenca_component__WEBPACK_IMPORTED_MODULE_6__["CadastroDoencaComponent"]],
             imports: [
                 _angular_common__WEBPACK_IMPORTED_MODULE_1__["CommonModule"],
-                _app_routing_module__WEBPACK_IMPORTED_MODULE_2__["AppRoutingModule"]
+                _app_routing_module__WEBPACK_IMPORTED_MODULE_2__["AppRoutingModule"],
+                _angular_forms__WEBPACK_IMPORTED_MODULE_7__["FormsModule"],
+                _angular_forms__WEBPACK_IMPORTED_MODULE_7__["ReactiveFormsModule"],
+                _angular_common_http__WEBPACK_IMPORTED_MODULE_8__["HttpClientModule"]
             ]
         })
     ], SituacoesModule);
@@ -1088,6 +1453,53 @@ Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_1__["platformB
 
 /***/ }),
 
+/***/ "./src/models/alimento.ts":
+/*!********************************!*\
+  !*** ./src/models/alimento.ts ***!
+  \********************************/
+/*! exports provided: Alimento */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Alimento", function() { return Alimento; });
+var Alimento = /** @class */ (function () {
+    function Alimento(nome, complemento, descricao, fabricante, cadastradoPor) {
+        this.nome = nome;
+        this.complemento = complemento;
+        this.descricao = descricao;
+        this.fabricante = fabricante;
+        this.cadastradoPor = cadastradoPor;
+    }
+    return Alimento;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/models/componente.ts":
+/*!**********************************!*\
+  !*** ./src/models/componente.ts ***!
+  \**********************************/
+/*! exports provided: Componente */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Componente", function() { return Componente; });
+var Componente = /** @class */ (function () {
+    function Componente(nome, complemento) {
+        this.nome = nome;
+        this.complemento = complemento;
+    }
+    return Componente;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/models/comportamento.ts":
 /*!*************************************!*\
   !*** ./src/models/comportamento.ts ***!
@@ -1099,11 +1511,121 @@ Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_1__["platformB
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Comportamento", function() { return Comportamento; });
 var Comportamento = /** @class */ (function () {
-    function Comportamento() {
+    function Comportamento(nome, complemento, descricao, cadastradoPor) {
+        this.nome = nome;
+        this.complemento = complemento;
+        this.descricao = descricao;
+        this.cadastradoPor = cadastradoPor;
     }
     return Comportamento;
 }());
 
+
+
+/***/ }),
+
+/***/ "./src/models/doenca.ts":
+/*!******************************!*\
+  !*** ./src/models/doenca.ts ***!
+  \******************************/
+/*! exports provided: Doenca */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Doenca", function() { return Doenca; });
+var Doenca = /** @class */ (function () {
+    function Doenca(nome, complemento, descricao, cadastradoPor) {
+        this.nome = nome;
+        this.complemento = complemento;
+        this.descricao = descricao;
+        this.cadastradoPor = cadastradoPor;
+    }
+    return Doenca;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/models/remedio.ts":
+/*!*******************************!*\
+  !*** ./src/models/remedio.ts ***!
+  \*******************************/
+/*! exports provided: Remedio */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Remedio", function() { return Remedio; });
+var Remedio = /** @class */ (function () {
+    function Remedio(nome, complemento, descricao, fabricante, cadastradoPor) {
+        this.nome = nome;
+        this.complemento = complemento;
+        this.descricao = descricao;
+        this.fabricante = fabricante;
+        this.cadastradoPor = cadastradoPor;
+    }
+    return Remedio;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/models/sintoma.ts":
+/*!*******************************!*\
+  !*** ./src/models/sintoma.ts ***!
+  \*******************************/
+/*! exports provided: Sintoma */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Sintoma", function() { return Sintoma; });
+var Sintoma = /** @class */ (function () {
+    function Sintoma(nome, complemento, descricao, cadastradoPor) {
+        this.nome = nome;
+        this.complemento = complemento;
+        this.descricao = descricao;
+        this.cadastradoPor = cadastradoPor;
+    }
+    return Sintoma;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/models/url.enum.ts":
+/*!********************************!*\
+  !*** ./src/models/url.enum.ts ***!
+  \********************************/
+/*! exports provided: Url */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Url", function() { return Url; });
+var Url;
+(function (Url) {
+    Url["URL_BASE"] = "http://localhost:8080";
+    //URL_BASE = "https://sei-saude.herokuapp.com",
+    Url["ELEMENTO"] = "/elemento";
+    Url["TODOS_ELEMENTOS"] = "/all_elemento";
+    Url["CADASTRO_COMPORTAMENTO"] = "/elemento/comportamento";
+    Url["CADASTRO_COMPONENTE"] = "/elemento/componente";
+    Url["CADASTRO_ALIMENTO"] = "/elemento/alimento";
+    Url["CADASTRO_REMEDIO"] = "/elemento/remedio";
+    Url["SITUACAO"] = "/situacao";
+    Url["TODOS_SINTOMAS"] = "/all_sintoma";
+    Url["CADASTRO_SINTOMA"] = "/situacao/sintoma";
+    Url["CADASTRO_DOENCA"] = "/situacao/doenca";
+    Url["PACIENTE"] = "/paciente";
+    Url["INDICACAO"] = "/indicacao";
+    Url["TRATAMENTO"] = "/tratamento";
+    Url["TRATAMENTO_PACIENTE"] = "/tratamento-paciente";
+})(Url || (Url = {}));
 
 
 /***/ }),
