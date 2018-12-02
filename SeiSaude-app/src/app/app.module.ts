@@ -9,11 +9,13 @@ import { SituacoesModule } from './situacoes/situacoes.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FormBaseModule } from './form-base/form-base.module';
 import { HttpClientModule } from '@angular/common/http';
+import { HomePageComponent } from './home-page/home-page.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavigationComponent
+    NavigationComponent,
+    HomePageComponent
   ],
   imports: [
     BrowserModule,

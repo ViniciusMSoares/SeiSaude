@@ -6,6 +6,7 @@ import { CadastroSintomaComponent } from './situacoes/cadastro-sintoma/cadastro-
 import { CadastroDoencaComponent } from './situacoes/cadastro-doenca/cadastro-doenca.component';
 import { CadastroRemedioComponent } from './elementos/cadastro-remedio/cadastro-remedio.component';
 import { CadastroComponenteComponent } from './elementos/cadastro-componente/cadastro-componente.component';
+import { HomePageComponent } from './home-page/home-page.component';
 
 const routes: Routes = [
   { path: 'cadastro-alimento', component: CadastroAlimentoComponent },
@@ -15,6 +16,7 @@ const routes: Routes = [
   { path: 'cadastro-doenca', component: CadastroDoencaComponent },
   { path: 'cadastro-componente', component: CadastroComponenteComponent },
 
+  { path: '', component: HomePageComponent }
 ];
 
 @NgModule({
