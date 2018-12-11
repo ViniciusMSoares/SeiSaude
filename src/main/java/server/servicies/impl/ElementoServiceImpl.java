@@ -168,6 +168,9 @@ public class ElementoServiceImpl implements ElementoService {
 		
 		for (Elemento elemento : elementoRepository.findAll()) {
 			String elementoName = elemento.getName().toLowerCase();
+			if (elemento.getComplemento() != null) {
+				elementoName += elemento.getComplemento().toLowerCase();
+			}
 			if (elementoName.equals(nome)) {
 				return true;
 			}
@@ -187,6 +190,9 @@ public class ElementoServiceImpl implements ElementoService {
 		
 		for (Componente componente : componenteRepository.findAll()) {
 			String componenteName = componente.getNome().toLowerCase();
+			if (componente.getComplemento() != null) {
+				componenteName += componente.getComplemento().toLowerCase();
+			}
 			if (componenteName.equals(nome)) {
 				return true;
 			}

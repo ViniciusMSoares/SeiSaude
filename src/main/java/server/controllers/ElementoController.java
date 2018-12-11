@@ -37,7 +37,7 @@ public class ElementoController {
 	
 	@RequestMapping(value = "/elemento/comportamento", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public ResponseEntity<Elemento> cadastraComportamento(@RequestBody ElementoDTO elemento) {
-		if (elementoService.elementoInDataBase(elemento.getNome())) {
+		if (elementoService.elementoInDataBase(elemento.getNome()+elemento.getComplemento())) {
 			return new ResponseEntity<>(HttpStatus.MULTIPLE_CHOICES);
 		}
 		
@@ -46,7 +46,7 @@ public class ElementoController {
 	
 	@RequestMapping(value = "/elemento/remedio", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public ResponseEntity<Elemento> cadastraRemedio(@RequestBody ProdutoDTO remedio) {
-		if (elementoService.elementoInDataBase(remedio.getNome())) {
+		if (elementoService.elementoInDataBase(remedio.getNome()+remedio.getComplemento())) {
 			return new ResponseEntity<>(HttpStatus.MULTIPLE_CHOICES);
 		}
 		
@@ -55,7 +55,7 @@ public class ElementoController {
 	
 	@RequestMapping(value = "/elemento/alimento", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public ResponseEntity<Elemento> cadastraAlimento(@RequestBody AlimentoDTO alimento) {
-		if (elementoService.elementoInDataBase(alimento.getNome())) {
+		if (elementoService.elementoInDataBase(alimento.getNome()+alimento.getComplemento())) {
 			return new ResponseEntity<>(HttpStatus.MULTIPLE_CHOICES);
 		}
 		
@@ -79,7 +79,7 @@ public class ElementoController {
 	
 	@RequestMapping(value = "/elemento/componente", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public ResponseEntity<Object> cadastraComponente(@RequestBody ComponenteDTO componente) {
-		if (elementoService.componenteInDataBase(componente.getNome())) {
+		if (elementoService.componenteInDataBase(componente.getNome()+componente.getComplemento())) {
 			return new ResponseEntity<>(HttpStatus.MULTIPLE_CHOICES);
 		}
 		
