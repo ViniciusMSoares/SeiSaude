@@ -35,7 +35,11 @@ public class SituacaoController {
 	
 	@RequestMapping(value = "/situacao/sintoma", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public ResponseEntity<Situacao> cadastraSintoma(@RequestBody SituacaoDTO sintoma) {
-		if (situacaoService.situacaoInDataBase(sintoma.getNome()+sintoma.getComplemento())) {
+		String sintomaName = sintoma.getNome();
+		if (sintoma.getComplemento() != null) {
+			sintomaName += sintoma.getComplemento();
+		}
+		if (situacaoService.situacaoInDataBase(sintomaName)) {
 			return new ResponseEntity<>(HttpStatus.MULTIPLE_CHOICES);
 		}
 		
@@ -44,7 +48,11 @@ public class SituacaoController {
 	
 	@RequestMapping(value = "/situacao/doenca", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public ResponseEntity<Situacao> cadastraDoenca(@RequestBody DoencaDTO doenca) {
-		if (situacaoService.doencaInDataBase(doenca.getNome()+doenca.getComplemento())) {
+		String doencaName = doenca.getNome();
+		if (doenca.getComplemento() != null) {
+			doencaName += doenca.getComplemento();
+		}
+		if (situacaoService.doencaInDataBase(doencaName)) {
 			return new ResponseEntity<>(HttpStatus.MULTIPLE_CHOICES);
 		}
 		

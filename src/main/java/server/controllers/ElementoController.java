@@ -37,7 +37,11 @@ public class ElementoController {
 	
 	@RequestMapping(value = "/elemento/comportamento", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public ResponseEntity<Elemento> cadastraComportamento(@RequestBody ElementoDTO elemento) {
-		if (elementoService.elementoInDataBase(elemento.getNome()+elemento.getComplemento())) {
+		String elementoName = elemento.getNome();
+		if (elemento.getComplemento() != null) {
+			elementoName += elemento.getComplemento();
+		}
+		if (elementoService.elementoInDataBase(elementoName)) {
 			return new ResponseEntity<>(HttpStatus.MULTIPLE_CHOICES);
 		}
 		
@@ -46,7 +50,11 @@ public class ElementoController {
 	
 	@RequestMapping(value = "/elemento/remedio", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public ResponseEntity<Elemento> cadastraRemedio(@RequestBody ProdutoDTO remedio) {
-		if (elementoService.elementoInDataBase(remedio.getNome()+remedio.getComplemento())) {
+		String remedioName = remedio.getNome();
+		if (remedio.getComplemento() != null) {
+			remedioName += remedio.getComplemento();
+		}
+		if (elementoService.elementoInDataBase(remedioName)) {
 			return new ResponseEntity<>(HttpStatus.MULTIPLE_CHOICES);
 		}
 		
@@ -55,7 +63,11 @@ public class ElementoController {
 	
 	@RequestMapping(value = "/elemento/alimento", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public ResponseEntity<Elemento> cadastraAlimento(@RequestBody AlimentoDTO alimento) {
-		if (elementoService.elementoInDataBase(alimento.getNome()+alimento.getComplemento())) {
+		String alimentoName = alimento.getNome();
+		if (alimento.getComplemento() != null) {
+			alimentoName += alimento.getComplemento();
+		}
+		if (elementoService.elementoInDataBase(alimentoName)) {
 			return new ResponseEntity<>(HttpStatus.MULTIPLE_CHOICES);
 		}
 		
@@ -79,7 +91,11 @@ public class ElementoController {
 	
 	@RequestMapping(value = "/elemento/componente", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public ResponseEntity<Object> cadastraComponente(@RequestBody ComponenteDTO componente) {
-		if (elementoService.componenteInDataBase(componente.getNome()+componente.getComplemento())) {
+		String componenteName = componente.getNome();
+		if (componente.getComplemento() != null) {
+			componenteName += componente.getComplemento();
+		}
+		if (elementoService.componenteInDataBase(componenteName)) {
 			return new ResponseEntity<>(HttpStatus.MULTIPLE_CHOICES);
 		}
 		
