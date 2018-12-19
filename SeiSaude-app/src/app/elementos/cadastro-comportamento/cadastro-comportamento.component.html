@@ -39,8 +39,10 @@
     <router-outlet></router-outlet>
   </div>
 
+  <div style="margin-top: 20px" *ngIf="formulario" >
+    <div>Detalhes do form</div>
+    <pre>Form válido: {{ formulario.valid }}</pre>
+    <!--pre>Form submetido: {{ form.submitted }}</pre -->
+    <pre>Valores: <br>{{ formulario.value | json }}</pre>
+  </div>
 </form>
-
-<p>
-  Form Status: {{ formulario.status }}
-</p>

@@ -8,6 +8,8 @@ public class ProdutoDTO extends ElementoDTO {
 	
 	private String[] unidadesComponente;
 	
+	private QuantidadeDTO[] componentes;
+	
 	public ProdutoDTO() {
 		super();
 	}
@@ -34,6 +36,14 @@ public class ProdutoDTO extends ElementoDTO {
 
 	public void setUnidadesComponente(String[] unidadesComponente) {
 		this.unidadesComponente = unidadesComponente;
+	}
+
+	public QuantidadeDTO[] getComponentes() {
+		return componentes;
+	}
+
+	public void setComponentes(QuantidadeDTO[] componentes) {
+		this.componentes = componentes;
 	}
 
 }

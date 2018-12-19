@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBaseComponent } from '../../form-base/form-base.component';
-import { FormBuilder, Validators, AsyncValidatorFn, FormGroup, ValidationErrors } from '@angular/forms';
+import { FormBuilder, Validators, AsyncValidatorFn, FormGroup, ValidationErrors, FormControl } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { Url } from '../../../models/url.enum';
 import { Remedio } from '../../../models/remedio';
 import { VerificaNomeService } from '../../services/verifica-nome/verifica-nome.service';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { Quantidade } from '../../../models/quantidade';
 
 @Component({
   selector: 'app-cadastro-remedio',
@@ -17,6 +18,7 @@ export class CadastroRemedioComponent extends FormBaseComponent implements OnIni
 
   public title = 'Cadastro de Remédio';
   public remedio = {} as Remedio;
+  public componentes = [] as Quantidade[];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -34,15 +36,21 @@ export class CadastroRemedioComponent extends FormBaseComponent implements OnIni
       }, { asyncValidator: this.nomeComplemento.bind(this) }),
       descricao: [""],
       fabricante: [""],
-      cadastradoPor: ["", Validators.required]
+      cadastradoPor: ["", Validators.required],
+      componentes: this.buildComponentes()
     });
+  }
+
+  buildComponentes() {
+    const values = this.componentes;
+    return this.formBuilder.array(values);
   }
 
   submit() {
     let url = Url.URL_BASE + Url.CADASTRO_REMEDIO;
     let remedio = new Remedio(
-      this.formulario.value.nome,
-      this.formulario.value.complemento,
+      this.formulario.value.nomeCompleto.nome,
+      this.formulario.value.nomeCompleto.complemento,
       this.formulario.value.descricao,
       this.formulario.value.fabricante,
       this.formulario.value.cadastradoPor
