@@ -220,7 +220,7 @@ var AppModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<form class=\"form-horizontal\" [formGroup]=\"formulario\" (ngSubmit)=\"onSubmit()\">\n  <div style=\"text-align:center\">\n    <h1>\n      {{ title }}\n    </h1>\n  </div>\n  \n  <div class=\"container\">\n\n    <div class=\"form-row\">\n      <div class=\"form-group col-md-6\" [ngClass]=\"aplicaCssErro('nome')\">\n        <label for=\"nome\">Nome</label>\n        <input type=\"text\" class=\"form-control\" id=\"nome\" formControlName=\"nome\">\n      </div>\n      <div class=\"form-group col-md-6\">\n        <label for=\"complemento\">Complemento</label>\n        <input type=\"text\" class=\"form-control\" id=\"complemento\" formControlName=\"complemento\">\n      </div>\n    </div>\n    <div class=\"form-group\">\n      <label for=\"descricao\">Descrição</label>\n      <textarea class=\"form-control\" id=\"descricao\" formControlName=\"descricao\" rows=\"3\"></textarea>\n    </div>\n    <div class=\"form-group\">\n      <label for=\"fabricante\">Fabricante</label>\n      <input type=\"text\" class=\"form-control\" id=\"fabricante\" formControlName=\"fabricante\">\n    </div>\n    <div class=\"form-group\">\n      <label for=\"cadastradoPor\">Cadastrado por</label>\n      <input type=\"text\" class=\"form-control\" id=\"cadastradoPor\" formControlName=\"cadastradoPor\">\n    </div>\n\n    <button type=\"submit\" class=\"btn btn-primary\">Finalizar</button>\n  \n    <router-outlet></router-outlet>\n  </div>\n\n</form>"
+module.exports = "<form class=\"form-horizontal\" [formGroup]=\"formulario\" (ngSubmit)=\"onSubmit()\">\n  <div style=\"text-align:center\">\n    <h1>\n      {{ title }}\n    </h1>\n  </div>\n  \n  <div class=\"container\">\n\n    <div class=\"form-row\" formGroupName=\"nomeCompleto\">\n      <div class=\"form-group col-md-6\" [ngClass]=\"aplicaCssErro('nomeCompleto.nome')\">\n        <label for=\"nome\">Nome</label>\n        <input type=\"text\" class=\"form-control\" id=\"nome\" formControlName=\"nome\">\n      </div>\n      <div class=\"form-group col-md-6\">\n        <label for=\"complemento\">Complemento</label>\n        <input type=\"text\" class=\"form-control\" id=\"complemento\" formControlName=\"complemento\">\n      </div>\n    </div>\n    <div class=\"form-group\">\n      <label for=\"descricao\">Descrição</label>\n      <textarea class=\"form-control\" id=\"descricao\" formControlName=\"descricao\" rows=\"3\"></textarea>\n    </div>\n    <div class=\"form-group\">\n      <label for=\"fabricante\">Fabricante</label>\n      <input type=\"text\" class=\"form-control\" id=\"fabricante\" formControlName=\"fabricante\">\n    </div>\n    <div class=\"form-group\">\n      <label for=\"cadastradoPor\">Cadastrado por</label>\n      <input type=\"text\" class=\"form-control\" id=\"cadastradoPor\" formControlName=\"cadastradoPor\">\n    </div>\n\n    <button type=\"submit\" class=\"btn btn-primary\">Finalizar</button>\n  \n    <router-outlet></router-outlet>\n  </div>\n\n</form>"
 
 /***/ }),
 
@@ -251,6 +251,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
 /* harmony import */ var _form_base_form_base_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../form-base/form-base.component */ "./src/app/form-base/form-base.component.ts");
 /* harmony import */ var _models_url_enum__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../models/url.enum */ "./src/models/url.enum.ts");
+/* harmony import */ var _services_verifica_nome_verifica_nome_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../services/verifica-nome/verifica-nome.service */ "./src/app/services/verifica-nome/verifica-nome.service.ts");
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
 var __extends = (undefined && undefined.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
@@ -279,28 +281,39 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+
+
 var CadastroAlimentoComponent = /** @class */ (function (_super) {
     __extends(CadastroAlimentoComponent, _super);
-    function CadastroAlimentoComponent(formBuilder, http) {
+    function CadastroAlimentoComponent(formBuilder, http, verificaNomeService) {
         var _this = _super.call(this) || this;
         _this.formBuilder = formBuilder;
         _this.http = http;
+        _this.verificaNomeService = verificaNomeService;
         _this.title = 'Cadastro de Alimento';
         _this.alimento = {};
+        _this.nomeComplemento = function (control) {
+            var nome = control.get('nome');
+            var complemento = control.get('complemento');
+            return _this.verificaNomeService.verificarNome(nome.value, complemento.value)
+                .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["map"])(function (nomeExiste) { return nomeExiste ? { nomeInvalido: true } : null; }));
+        };
         return _this;
     }
     CadastroAlimentoComponent.prototype.ngOnInit = function () {
         this.formulario = this.formBuilder.group({
-            nome: [null, _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required],
-            complemento: [null],
-            descricao: [null],
-            fabricante: [null],
-            cadastradoPor: [null, _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required]
+            nomeCompleto: this.formBuilder.group({
+                nome: ["", _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required],
+                complemento: [""]
+            }, { asyncValidator: this.nomeComplemento.bind(this) }),
+            descricao: [""],
+            fabricante: [""],
+            cadastradoPor: ["", _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required]
         });
     };
     CadastroAlimentoComponent.prototype.submit = function () {
         var url = _models_url_enum__WEBPACK_IMPORTED_MODULE_5__["Url"].URL_BASE + _models_url_enum__WEBPACK_IMPORTED_MODULE_5__["Url"].CADASTRO_ALIMENTO;
-        var alimento = new _models_alimento__WEBPACK_IMPORTED_MODULE_1__["Alimento"](this.formulario.value.nome, this.formulario.value.complemento, this.formulario.value.descricao, this.formulario.value.fabricante, this.formulario.value.cadastradoPor);
+        var alimento = new _models_alimento__WEBPACK_IMPORTED_MODULE_1__["Alimento"](this.formulario.value.nomeCompleto.nome, this.formulario.value.nomeCompleto.complemento, this.formulario.value.descricao, this.formulario.value.fabricante, this.formulario.value.cadastradoPor);
         this.http.post(url, alimento).subscribe(function (result) {
             console.log(result);
         }, function (error) { return console.log(error); });
@@ -313,7 +326,8 @@ var CadastroAlimentoComponent = /** @class */ (function (_super) {
             styles: [__webpack_require__(/*! ./cadastro-alimento.component.scss */ "./src/app/elementos/cadastro-alimento/cadastro-alimento.component.scss")]
         }),
         __metadata("design:paramtypes", [_angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormBuilder"],
-            _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpClient"]])
+            _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpClient"],
+            _services_verifica_nome_verifica_nome_service__WEBPACK_IMPORTED_MODULE_6__["VerificaNomeService"]])
     ], CadastroAlimentoComponent);
     return CadastroAlimentoComponent;
 }(_form_base_form_base_component__WEBPACK_IMPORTED_MODULE_4__["FormBaseComponent"]));
@@ -435,7 +449,7 @@ var CadastroComponenteComponent = /** @class */ (function (_super) {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<form class=\"form-horizontal\" [formGroup]=\"formulario\" (ngSubmit)=\"onSubmit()\">\n  <div style=\"text-align:center\">\n    <h1>\n      {{ title }}\n    </h1>\n  </div>\n  \n  <div class=\"container\">\n\n    <div class=\"form-row\">\n      <div class=\"form-group col-md-6\" [ngClass]=\"aplicaCssErro('nome')\">\n        <label for=\"nome\">Nome</label>\n        <input type=\"text\" class=\"form-control\" id=\"nome\" formControlName=\"nome\">\n      </div>\n      <div class=\"form-group col-md-6\">\n        <label for=\"complemento\">Complemento</label>\n        <input type=\"text\" class=\"form-control\" id=\"complemento\" formControlName=\"complemento\">\n      </div>\n    </div>\n    <div class=\"form-group\">\n      <label for=\"descricao\">Descrição</label>\n      <textarea class=\"form-control\" id=\"descricao\" formControlName=\"descricao\" rows=\"3\"></textarea>\n    </div>\n    <div class=\"form-group\">\n      <label for=\"cadastradoPor\">Cadastrado por</label>\n      <input type=\"text\" class=\"form-control\" id=\"cadastradoPor\" formControlName=\"cadastradoPor\">\n    </div>\n\n    <button type=\"submit\" class=\"btn btn-primary\">Finalizar</button>\n  \n    <router-outlet></router-outlet>\n  </div>\n\n</form>"
+module.exports = "<form class=\"form-horizontal\" [formGroup]=\"formulario\" (ngSubmit)=\"onSubmit()\" #formDir=\"ngForm\">\n  <div style=\"text-align:center\">\n    <h1>\n      {{ title }}\n    </h1>\n  </div>\n  \n  <div class=\"container\">\n    <div >\n      <div *ngIf=\"formDir.submitted\" class=\"alert alert-success\" role=\"alert\">\n        Comportamento cadastrado com sucesso!\n        <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">\n          <span aria-hidden=\"true\">&times;</span>\n        </button>\n      </div>\n    </div>\n\n    <div class=\"form-row\" formGroupName=\"nomeCompleto\">\n      <div class=\"form-group col-md-6\" [ngClass]=\"aplicaCssErro('nomeCompleto.nome')\">\n        <label for=\"nome\">Nome</label>\n        <input type=\"text\" class=\"form-control\" id=\"nome\" formControlName=\"nome\">\n      </div>\n      <div class=\"form-group col-md-6\">\n        <label for=\"complemento\">Complemento</label>\n        <input type=\"text\" class=\"form-control\" id=\"complemento\" formControlName=\"complemento\">\n      </div>\n    </div>\n    <div class=\"form-group\">\n      <label for=\"descricao\">Descrição</label>\n      <textarea class=\"form-control\" id=\"descricao\" formControlName=\"descricao\" rows=\"3\"></textarea>\n    </div>\n    <div class=\"form-group\">\n      <label for=\"cadastradoPor\">Cadastrado por</label>\n      <input type=\"text\" class=\"form-control\" id=\"cadastradoPor\" formControlName=\"cadastradoPor\">\n    </div>\n\n    <button type=\"submit\" class=\"btn btn-primary\">Finalizar</button>\n  \n    <router-outlet></router-outlet>\n  </div>\n\n</form>\n\n<p>\n  Form Status: {{ formulario.status }}\n</p>"
 
 /***/ }),
 
@@ -466,6 +480,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
 /* harmony import */ var _models_url_enum__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../models/url.enum */ "./src/models/url.enum.ts");
+/* harmony import */ var _services_verifica_nome_verifica_nome_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../services/verifica-nome/verifica-nome.service */ "./src/app/services/verifica-nome/verifica-nome.service.ts");
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
 var __extends = (undefined && undefined.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
@@ -494,31 +510,52 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+
+
 var CadastroComportamentoComponent = /** @class */ (function (_super) {
     __extends(CadastroComportamentoComponent, _super);
-    function CadastroComportamentoComponent(formBuilder, http) {
+    function CadastroComportamentoComponent(formBuilder, http, verificaNomeService) {
         var _this = _super.call(this) || this;
         _this.formBuilder = formBuilder;
         _this.http = http;
+        _this.verificaNomeService = verificaNomeService;
         _this.title = 'Cadastro de Comportamento';
         _this.comportamento = {};
+        /*validarNome(formControl: FormControl) {
+          return this.verificaNomeService.verificarNome(formControl.value)
+            .pipe(map(nomeExiste => nomeExiste ? { nomeInvalido: true } : null));
+        }*/
+        _this.nomeComplemento = function (control) {
+            console.log("entrei nomecomplemento");
+            var nome = control.get('nome');
+            var complemento = control.get('complemento');
+            return _this.verificaNomeService.verificarNome(nome.value, complemento.value)
+                .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["map"])(function (nomeExiste) { return nomeExiste ? { nomeInvalido: true } : null; }));
+        };
         return _this;
     }
     CadastroComportamentoComponent.prototype.ngOnInit = function () {
         this.formulario = this.formBuilder.group({
-            nome: [null, _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required],
-            complemento: [null],
-            descricao: [null],
-            cadastradoPor: [null, _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required]
+            nomeCompleto: this.formBuilder.group({
+                nome: ["", _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required],
+                complemento: [""]
+            }, { asyncValidator: this.nomeComplemento.bind(this) }),
+            descricao: [""],
+            cadastradoPor: ["", _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required]
         });
         this.testaHTTP();
     };
     CadastroComportamentoComponent.prototype.submit = function () {
+        var _this = this;
         var url = _models_url_enum__WEBPACK_IMPORTED_MODULE_5__["Url"].URL_BASE + _models_url_enum__WEBPACK_IMPORTED_MODULE_5__["Url"].CADASTRO_COMPORTAMENTO;
-        var comportamento = new _models_comportamento__WEBPACK_IMPORTED_MODULE_1__["Comportamento"](this.formulario.value.nome, this.formulario.value.complemento, this.formulario.value.descricao, this.formulario.value.cadastradoPor);
+        var comportamento = new _models_comportamento__WEBPACK_IMPORTED_MODULE_1__["Comportamento"](this.formulario.value.nomeCompleto.nome, this.formulario.value.nomeCompleto.complemento, this.formulario.value.descricao, this.formulario.value.cadastradoPor);
         this.http.post(url, comportamento).subscribe(function (result) {
             console.log(result);
-        }, function (error) { return console.log(error); });
+            _this.success = true;
+        }, function (error) {
+            console.log(error);
+            _this.nomeIndisponivel = true;
+        });
         console.log("Comportamento:", this.formulario.value);
     };
     CadastroComportamentoComponent.prototype.testaHTTP = function () {
@@ -534,7 +571,8 @@ var CadastroComportamentoComponent = /** @class */ (function (_super) {
             styles: [__webpack_require__(/*! ./cadastro-comportamento.component.scss */ "./src/app/elementos/cadastro-comportamento/cadastro-comportamento.component.scss")]
         }),
         __metadata("design:paramtypes", [_angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormBuilder"],
-            _angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpClient"]])
+            _angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpClient"],
+            _services_verifica_nome_verifica_nome_service__WEBPACK_IMPORTED_MODULE_6__["VerificaNomeService"]])
     ], CadastroComportamentoComponent);
     return CadastroComportamentoComponent;
 }(_form_base_form_base_component__WEBPACK_IMPORTED_MODULE_2__["FormBaseComponent"]));
@@ -550,7 +588,7 @@ var CadastroComportamentoComponent = /** @class */ (function (_super) {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<form class=\"form-horizontal\" [formGroup]=\"formulario\" (ngSubmit)=\"onSubmit()\">\n  <div style=\"text-align:center\">\n    <h1>\n      {{ title }}\n    </h1>\n  </div>\n  \n  <div class=\"container\">\n\n    <div class=\"form-row\">\n      <div class=\"form-group col-md-6\" [ngClass]=\"aplicaCssErro('nome')\">\n        <label for=\"nome\">Nome</label>\n        <input type=\"text\" class=\"form-control\" id=\"nome\" formControlName=\"nome\">\n      </div>\n      <div class=\"form-group col-md-6\">\n        <label for=\"complemento\">Complemento</label>\n        <input type=\"text\" class=\"form-control\" id=\"complemento\" formControlName=\"complemento\">\n      </div>\n    </div>\n    <div class=\"form-group\">\n      <label for=\"descricao\">Descrição</label>\n      <textarea class=\"form-control\" id=\"descricao\" formControlName=\"descricao\" rows=\"3\"></textarea>\n    </div>\n    <div class=\"form-group\">\n      <label for=\"fabricante\">Fabricante</label>\n      <input type=\"text\" class=\"form-control\" id=\"fabricante\" formControlName=\"fabricante\">\n    </div>\n    <div class=\"form-group\">\n      <label for=\"cadastradoPor\">Cadastrado por</label>\n      <input type=\"text\" class=\"form-control\" id=\"cadastradoPor\" formControlName=\"cadastradoPor\">\n    </div>\n\n    <button type=\"submit\" class=\"btn btn-primary\">Finalizar</button>\n  \n    <router-outlet></router-outlet>\n  </div>\n\n</form>"
+module.exports = "<form class=\"form-horizontal\" [formGroup]=\"formulario\" (ngSubmit)=\"onSubmit()\">\n  <div style=\"text-align:center\">\n    <h1>\n      {{ title }}\n    </h1>\n  </div>\n  \n  <div class=\"container\">\n\n    <div class=\"form-row\" formGroupName=\"nomeCompleto\">\n      <div class=\"form-group col-md-6\" [ngClass]=\"aplicaCssErro('nomeCompleto.nome')\">\n        <label for=\"nome\">Nome</label>\n        <input type=\"text\" class=\"form-control\" id=\"nome\" formControlName=\"nome\">\n      </div>\n      <div class=\"form-group col-md-6\">\n        <label for=\"complemento\">Complemento</label>\n        <input type=\"text\" class=\"form-control\" id=\"complemento\" formControlName=\"complemento\">\n      </div>\n    </div>\n    <div class=\"form-group\">\n      <label for=\"descricao\">Descrição</label>\n      <textarea class=\"form-control\" id=\"descricao\" formControlName=\"descricao\" rows=\"3\"></textarea>\n    </div>\n    <div class=\"form-group\">\n      <label for=\"fabricante\">Fabricante</label>\n      <input type=\"text\" class=\"form-control\" id=\"fabricante\" formControlName=\"fabricante\">\n    </div>\n    <div class=\"form-group\">\n      <label for=\"cadastradoPor\">Cadastrado por</label>\n      <input type=\"text\" class=\"form-control\" id=\"cadastradoPor\" formControlName=\"cadastradoPor\">\n    </div>\n\n    <button type=\"submit\" class=\"btn btn-primary\">Finalizar</button>\n  \n    <router-outlet></router-outlet>\n  </div>\n\n</form>"
 
 /***/ }),
 
@@ -581,6 +619,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
 /* harmony import */ var _models_url_enum__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../models/url.enum */ "./src/models/url.enum.ts");
 /* harmony import */ var _models_remedio__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../models/remedio */ "./src/models/remedio.ts");
+/* harmony import */ var _services_verifica_nome_verifica_nome_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../services/verifica-nome/verifica-nome.service */ "./src/app/services/verifica-nome/verifica-nome.service.ts");
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
 var __extends = (undefined && undefined.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
@@ -609,23 +649,34 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+
+
 var CadastroRemedioComponent = /** @class */ (function (_super) {
     __extends(CadastroRemedioComponent, _super);
-    function CadastroRemedioComponent(formBuilder, http) {
+    function CadastroRemedioComponent(formBuilder, http, verificaNomeService) {
         var _this = _super.call(this) || this;
         _this.formBuilder = formBuilder;
         _this.http = http;
+        _this.verificaNomeService = verificaNomeService;
         _this.title = 'Cadastro de Remédio';
         _this.remedio = {};
+        _this.nomeComplemento = function (control) {
+            var nome = control.get('nome');
+            var complemento = control.get('complemento');
+            return _this.verificaNomeService.verificarNome(nome.value, complemento.value)
+                .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["map"])(function (nomeExiste) { return nomeExiste ? { nomeInvalido: true } : null; }));
+        };
         return _this;
     }
     CadastroRemedioComponent.prototype.ngOnInit = function () {
         this.formulario = this.formBuilder.group({
-            nome: [null, _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required],
-            complemento: [null],
-            descricao: [null],
-            fabricante: [null],
-            cadastradoPor: [null, _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required]
+            nomeCompleto: this.formBuilder.group({
+                nome: ["", _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required],
+                complemento: [""]
+            }, { asyncValidator: this.nomeComplemento.bind(this) }),
+            descricao: [""],
+            fabricante: [""],
+            cadastradoPor: ["", _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required]
         });
     };
     CadastroRemedioComponent.prototype.submit = function () {
@@ -643,7 +694,8 @@ var CadastroRemedioComponent = /** @class */ (function (_super) {
             styles: [__webpack_require__(/*! ./cadastro-remedio.component.scss */ "./src/app/elementos/cadastro-remedio/cadastro-remedio.component.scss")]
         }),
         __metadata("design:paramtypes", [_angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormBuilder"],
-            _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpClient"]])
+            _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpClient"],
+            _services_verifica_nome_verifica_nome_service__WEBPACK_IMPORTED_MODULE_6__["VerificaNomeService"]])
     ], CadastroRemedioComponent);
     return CadastroRemedioComponent;
 }(_form_base_form_base_component__WEBPACK_IMPORTED_MODULE_1__["FormBaseComponent"]));
@@ -1061,6 +1113,55 @@ var NavigationComponent = /** @class */ (function () {
         __metadata("design:paramtypes", [])
     ], NavigationComponent);
     return NavigationComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/services/verifica-nome/verifica-nome.service.ts":
+/*!*****************************************************************!*\
+  !*** ./src/app/services/verifica-nome/verifica-nome.service.ts ***!
+  \*****************************************************************/
+/*! exports provided: VerificaNomeService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "VerificaNomeService", function() { return VerificaNomeService; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var _models_url_enum__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../models/url.enum */ "./src/models/url.enum.ts");
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+var VerificaNomeService = /** @class */ (function () {
+    function VerificaNomeService(http) {
+        this.http = http;
+    }
+    VerificaNomeService.prototype.verificarNome = function (nome, complemento) {
+        console.log(nome, complemento);
+        return this.http.get(_models_url_enum__WEBPACK_IMPORTED_MODULE_2__["Url"].URL_BASE + _models_url_enum__WEBPACK_IMPORTED_MODULE_2__["Url"].TODOS_ELEMENTOS)
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["delay"])(2000), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(function (dados) { return dados.filter(function (v) { return v.name + v.complemento === nome + complemento; }); }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["tap"])(console.log), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(function (dados) { return dados.length > 0; }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["tap"])(console.log));
+    };
+    VerificaNomeService = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])({
+            providedIn: 'root'
+        }),
+        __metadata("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"]])
+    ], VerificaNomeService);
+    return VerificaNomeService;
 }());
 
 
@@ -1678,8 +1779,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Url", function() { return Url; });
 var Url;
 (function (Url) {
-    //URL_BASE = "http://localhost:8080",
-    Url["URL_BASE"] = "https://sei-saude.herokuapp.com";
+    Url["URL_BASE"] = "http://localhost:8080";
+    //URL_BASE = "https://sei-saude.herokuapp.com",
     Url["ELEMENTO"] = "/elemento";
     Url["TODOS_ELEMENTOS"] = "/all_elemento";
     Url["CADASTRO_COMPORTAMENTO"] = "/elemento/comportamento";

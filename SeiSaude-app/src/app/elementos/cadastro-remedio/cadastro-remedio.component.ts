@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBaseComponent } from '../../form-base/form-base.component';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, Validators, AsyncValidatorFn, FormGroup, ValidationErrors } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { Url } from '../../../models/url.enum';
 import { Remedio } from '../../../models/remedio';
+import { VerificaNomeService } from '../../services/verifica-nome/verifica-nome.service';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-cadastro-remedio',
@@ -17,18 +20,21 @@ export class CadastroRemedioComponent extends FormBaseComponent implements OnIni
 
   constructor(
     private formBuilder: FormBuilder,
-    private http: HttpClient
+    private http: HttpClient,
+    private verificaNomeService: VerificaNomeService
   ) {
     super();
   }
 
   ngOnInit() {
     this.formulario = this.formBuilder.group({
-      nome: [null, Validators.required],
-      complemento: [null],
-      descricao: [null],
-      fabricante: [null],
-      cadastradoPor: [null, Validators.required]
+      nomeCompleto: this.formBuilder.group({
+        nome: ["", Validators.required],
+        complemento: [""]
+      }, { asyncValidator: this.nomeComplemento.bind(this) }),
+      descricao: [""],
+      fabricante: [""],
+      cadastradoPor: ["", Validators.required]
     });
   }
 
@@ -50,5 +56,13 @@ export class CadastroRemedioComponent extends FormBaseComponent implements OnIni
 
     console.log("Remedio:", this.formulario.value);
   }
+
+  nomeComplemento: AsyncValidatorFn = (control: FormGroup): Promise<ValidationErrors | null> | Observable<ValidationErrors | null> => {
+    const nome = control.get('nome');
+    const complemento = control.get('complemento');
+  
+    return this.verificaNomeService.verificarNome(nome.value, complemento.value)
+      .pipe(map(nomeExiste => nomeExiste ? { nomeInvalido: true } : null));
+  };
 
 }

@@ -1,4 +1,4 @@
-<form class="form-horizontal" [formGroup]="formulario" (ngSubmit)="onSubmit()">
+<form class="form-horizontal" [formGroup]="formulario" (ngSubmit)="onSubmit()" #formDir="ngForm">
   <div style="text-align:center">
     <h1>
       {{ title }}
@@ -6,9 +6,17 @@
   </div>
   
   <div class="container">
+    <div *ngIf="formDir.submitted">
+      <div class="alert alert-success" role="alert">
+        Comportamento cadastrado com sucesso!
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    </div>
 
-    <div class="form-row">
-      <div class="form-group col-md-6" [ngClass]="aplicaCssErro('nome')">
+    <div class="form-row" formGroupName="nomeCompleto">
+      <div class="form-group col-md-6" [ngClass]="aplicaCssErro('nomeCompleto.nome')">
         <label for="nome">Nome</label>
         <input type="text" class="form-control" id="nome" formControlName="nome">
       </div>
@@ -32,3 +40,7 @@
   </div>
 
 </form>
+
+<p>
+  Form Status: {{ formulario.status }}
+</p>

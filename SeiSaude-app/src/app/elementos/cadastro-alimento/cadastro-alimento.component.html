@@ -7,8 +7,8 @@
   
   <div class="container">
 
-    <div class="form-row">
-      <div class="form-group col-md-6" [ngClass]="aplicaCssErro('nome')">
+    <div class="form-row" formGroupName="nomeCompleto">
+      <div class="form-group col-md-6" [ngClass]="aplicaCssErro('nomeCompleto.nome')">
         <label for="nome">Nome</label>
         <input type="text" class="form-control" id="nome" formControlName="nome">
       </div>
