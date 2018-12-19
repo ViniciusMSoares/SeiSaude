@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBaseComponent } from '../../form-base/form-base.component';
-import { FormBuilder, Validators, AsyncValidatorFn, FormGroup, ValidationErrors, FormControl } from '@angular/forms';
+import { FormBuilder, Validators, AsyncValidatorFn, FormGroup, ValidationErrors, FormControl, FormArray } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { Url } from '../../../models/url.enum';
 import { Remedio } from '../../../models/remedio';
@@ -18,7 +18,7 @@ export class CadastroRemedioComponent extends FormBaseComponent implements OnIni
 
   public title = 'Cadastro de Remédio';
   public remedio = {} as Remedio;
-  public componentes = [] as Quantidade[];
+  public quantidades = [] as Quantidade[];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -42,7 +42,12 @@ export class CadastroRemedioComponent extends FormBaseComponent implements OnIni
   }
 
   buildComponentes() {
-    const values = this.componentes;
+    //this.quantidades.push(new Quantidade("","",""));
+
+    const values = this.quantidades.map(v => new FormGroup({
+      nome: new FormControl(v.nome),
+      unidade: new FormControl(v.unidade),
+      valor: new FormControl(v.valor)}));
     return this.formBuilder.array(values);
   }
 
@@ -72,5 +77,21 @@ export class CadastroRemedioComponent extends FormBaseComponent implements OnIni
     return this.verificaNomeService.verificarNome(nome.value, complemento.value)
       .pipe(map(nomeExiste => nomeExiste ? { nomeInvalido: true } : null));
   };
+
+  get componentes(): FormArray { return this.formulario.get('componentes') as FormArray; }
+
+  addComponente() {
+    //this.quantidades.push(new Quantidade("","",""))
+    this.componentes.push(new FormGroup({
+      nome: new FormControl(""),
+      unidade: new FormControl(""),
+      valor: new FormControl("")}));
+  }
+
+  removeComponente(i: number) {
+    this.componentes.removeAt(i);
+  }
+ 
+  //setPreset() { this.cities.patchValue(['LA', 'MTV']); }
 
 }

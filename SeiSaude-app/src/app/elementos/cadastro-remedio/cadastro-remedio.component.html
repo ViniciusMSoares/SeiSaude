@@ -6,6 +6,7 @@
   </div>
   
   <div class="container">
+    <div class="container">
 
     <div class="form-row" formGroupName="nomeCompleto">
       <div class="form-group col-md-6" [ngClass]="aplicaCssErro('nomeCompleto.nome')">
@@ -30,7 +31,29 @@
       <input type="text" class="form-control" id="cadastradoPor" formControlName="cadastradoPor">
     </div>
 
-    <button type="submit" class="btn btn-primary">Finalizar</button>
+
+    <div formArrayName="componentes">
+      <div *ngFor="let componente of formulario.get('componentes').controls; index as i">
+        <div class="card" style="width: 18rem;" [formGroup]="componente">
+          <div class="card-body">
+            <h5 class="card-title">Componente
+              <button class="btn" (click)="removeComponente(i)">Remover</button>
+            </h5>
+            <input type="text" class="form-control" id="nome" formControlName="nome" placeholder="Nome">
+            <input type="text" class="form-control" id="unidade" formControlName="unidade" placeholder="Unidade">
+            <input type="number" class="form-control" id="valor" formControlName="valor" placeholder="Valor">
+          </div>
+        </div>
+      </div>
+    </div>
+      
+    <button class="btn" (click)="addComponente()" #scrollBottom>Novo componente</button>
+
+    </div>
+
+    <div style="text-align:center">
+      <button type="submit" class="btn btn-primary">Finalizar</button>
+    </div>
   
     <router-outlet></router-outlet>
   </div>
@@ -38,7 +61,7 @@
   
   <div style="margin-top: 20px" *ngIf="formulario" >
     <div>Detalhes do form</div>
-    <pre>Form válido: {{ formulario.valid }}</pre>
+    <pre>Form válido: {{ formulario.status }}</pre>
     <!--pre>Form submetido: {{ form.submitted }}</pre -->
     <pre>Valores: <br>{{ formulario.value | json }}</pre>
   </div>
