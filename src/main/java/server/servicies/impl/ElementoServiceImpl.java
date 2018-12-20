@@ -84,6 +84,17 @@ public class ElementoServiceImpl implements ElementoService {
 		remedioRepository.save(remedio);
 		Componente componente;
 		Quantidade quantidade;
+		
+		if (produtoDTO.getComponentes() != null) {
+			for (int i = 0; i < produtoDTO.getComponentes().length; i++) {
+				componente = new Componente(produtoDTO.getComponentes()[i].getNome(), "");//falta complemento
+				componenteRepository.save(componente);
+				quantidade = new Quantidade(componente.getId(), remedio.getId(), Float.parseFloat(produtoDTO.getComponentes()[i].getValor()), produtoDTO.getComponentes()[i].getUnidade());
+				quantidadeRepository.save(quantidade);
+			}
+		}
+		
+		/*
 		if (produtoDTO.getUnidadesComponente() != null) {
 			for (int i = 0; i < produtoDTO.getUnidadesComponente().length; i++) {
 				componente = new Componente(produtoDTO.getNomeComponente()[i], "");//falta complemento
@@ -91,7 +102,7 @@ public class ElementoServiceImpl implements ElementoService {
 				quantidade = new Quantidade(componente.getId(), remedio.getId(), Float.parseFloat(produtoDTO.getValoresComponente()[i]), produtoDTO.getUnidadesComponente()[i]);
 				quantidadeRepository.save(quantidade);
 			}
-		}
+		}*/
 
 		return remedioRepository.save(remedio);
 	}
@@ -105,24 +116,24 @@ public class ElementoServiceImpl implements ElementoService {
 		alimentoRepository.save(alimento);
 		Componente componenteA;
 		Quantidade quantidadeA;
-		if (alimentoDTO.getUnidadesComponente() != null) {
-			for (int i = 0; i < alimentoDTO.getUnidadesComponente().length; i++) {
-				componenteA = new Componente(alimentoDTO.getNomeComponente()[i], "");//falta complemento
+		if (alimentoDTO.getComponentes() != null) {
+			for (int i = 0; i < alimentoDTO.getComponentes().length; i++) {
+				componenteA = new Componente(alimentoDTO.getComponentes()[i].getNome(), "");//falta complemento
 				componenteRepository.save(componenteA);
-				quantidadeA = new Quantidade(componenteA.getId(), alimento.getId(), Float.parseFloat(alimentoDTO.getValoresComponente()[i]),
-						alimentoDTO.getUnidadesComponente()[i]);
+				quantidadeA = new Quantidade(componenteA.getId(), alimento.getId(), Float.parseFloat(alimentoDTO.getComponentes()[i].getValor()), alimentoDTO.getComponentes()[i].getUnidade());
 				quantidadeRepository.save(quantidadeA);
 			}
 		}
 		
 		ValorNutricional valorNutricional;
 		Valor valor;
-		if (alimentoDTO.getQuantidadesVNutricional() != null) {
-			for (int i = 0; i < alimentoDTO.getQuantidadesVNutricional().length; i++) {
-				valorNutricional = new ValorNutricional(alimentoDTO.getNomeVNutricional()[i]);
+		
+		if (alimentoDTO.getValNutricionais() != null) {
+			for (int i = 0; i < alimentoDTO.getValNutricionais().length; i++) {
+				valorNutricional = new ValorNutricional(alimentoDTO.getValNutricionais()[i].getNome());
 				valorNutricionalRepository.save(valorNutricional);
-				valor = new Valor(valorNutricional.getId(), alimento.getId(), Float.parseFloat(alimentoDTO.getValoresVNutricional()[i]),
-						Float.parseFloat(alimentoDTO.getQuantidadesVNutricional()[i]), alimentoDTO.getUnidadesVNutricional()[i]);
+				valor = new Valor(valorNutricional.getId(), alimento.getId(), Float.parseFloat(alimentoDTO.getValNutricionais()[i].getValorDiario()),
+						Float.parseFloat(alimentoDTO.getValNutricionais()[i].getQuantidade()), alimentoDTO.getValNutricionais()[i].getUnidade());
 				valorRepository.save(valor);
 			}
 		}
@@ -227,63 +238,3 @@ public class ElementoServiceImpl implements ElementoService {
 	}
 	
 }
-
-/*
-	@Override
-	public Elemento save(ElementoDTO elementoDTO, ComponenteDTO componenteDTO, ValorNutricionalDTO valorNutricionalDTO) {
-		Elemento elemento = new Elemento(elementoDTO.getName(), elementoDTO.getDescricao(),
-				elementoDTO.getCadastradoPor());
-		
-		switch (elementoDTO.getTipo()) {
-		case 1:
-			Comportamento comportamento = new Comportamento(elemento);
-			
-			return comportamentoRepository.save(comportamento);
-		case 2:
-			Remedio remedio = new Remedio(elemento, elementoDTO.getFabricante());
-			remedioRepository.save(remedio);
-			Componente componente;
-			Quantidade quantidade;
-			if (componenteDTO.getUnidadesComponente() != null) {
-				for (int i = 0; i < componenteDTO.getUnidadesComponente().length/2; i++) {
-					componente = new Componente(componenteDTO.getNomeComponente()[i]);
-					componenteRepository.save(componente);
-					quantidade = new Quantidade(componente.getId(), remedio.getId(), Float.parseFloat(componenteDTO.getValoresComponente()[i]), componenteDTO.getUnidadesComponente()[i]);
-					quantidadeRepository.save(quantidade);
-				}
-			}
-
-			return remedioRepository.save(remedio);
-		case 3:
-			Alimento alimento = new Alimento(elemento, elementoDTO.getFabricante());
-			alimentoRepository.save(alimento);
-			Componente componenteA;
-			Quantidade quantidadeA;
-			if (componenteDTO.getUnidadesComponente() != null) {
-				for (int i = 0; i < componenteDTO.getUnidadesComponente().length/2; i++) {
-					componenteA = new Componente(componenteDTO.getNomeComponente()[i]);
-					componenteRepository.save(componenteA);
-					quantidadeA = new Quantidade(componenteA.getId(), alimento.getId(), Float.parseFloat(componenteDTO.getValoresComponente()[i]), componenteDTO.getUnidadesComponente()[i]);
-					quantidadeRepository.save(quantidadeA);
-				}
-			}
-			
-			ValorNutricional valorNutricional;
-			Valor valor;
-			if (valorNutricionalDTO.getQuantidadesVNutricional() != null) {
-				for (int i = 0; i < valorNutricionalDTO.getQuantidadesVNutricional().length; i++) {
-					valorNutricional = new ValorNutricional(valorNutricionalDTO.getNomeVNutricional()[i]);
-					valorNutricionalRepository.save(valorNutricional);
-					valor = new Valor(valorNutricional.getId(), alimento.getId(), Float.parseFloat(valorNutricionalDTO.getValoresVNutricional()[i]), 
-					Float.parseFloat(valorNutricionalDTO.getQuantidadesVNutricional()[i]), valorNutricionalDTO.getUnidadesVNutricional()[i]);
-					valorRepository.save(valor);
-				}
-			}
-			
-			return alimentoRepository.save(alimento);
-		default:
-			
-			return elementoRepository.save(elemento);
-		}
-	}
- */

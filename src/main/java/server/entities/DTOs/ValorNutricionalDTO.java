@@ -2,48 +2,48 @@ package server.entities.DTOs;
 
 public class ValorNutricionalDTO {
 
-	private String[] nomeVNutricional;
+	private String nome;
 	
-	private String[] valoresVNutricional;
+	private String valorDiario;
 	
-	private String[] quantidadesVNutricional;
+	private String quantidade;
 	
-	private String[] unidadesVNutricional;
+	private String unidade;
 	
 	public ValorNutricionalDTO() {
 		
 	}
 
-	public String[] getNomeVNutricional() {
-		return nomeVNutricional;
+	public String getNome() {
+		return nome;
 	}
 
-	public void setNomeVNutricional(String[] nomeVNutricional) {
-		this.nomeVNutricional = nomeVNutricional;
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 
-	public String[] getValoresVNutricional() {
-		return valoresVNutricional;
+	public String getValorDiario() {
+		return valorDiario;
 	}
 
-	public void setValoresVNutricional(String[] valoresVNutricional) {
-		this.valoresVNutricional = valoresVNutricional;
+	public void setValorDiario(String valorDiario) {
+		this.valorDiario = valorDiario;
 	}
 
-	public String[] getUnidadesVNutricional() {
-		return unidadesVNutricional;
+	public String getUnidade() {
+		return unidade;
 	}
 
-	public void setUnidadesVNutricional(String[] unidadesVNutricional) {
-		this.unidadesVNutricional = unidadesVNutricional;
+	public void setUnidade(String unidade) {
+		this.unidade = unidade;
 	}
 
-	public String[] getQuantidadesVNutricional() {
-		return quantidadesVNutricional;
+	public String getQuantidade() {
+		return quantidade;
 	}
 
-	public void setQuantidadesVNutricional(String[] quantidadesVNutricional) {
-		this.quantidadesVNutricional = quantidadesVNutricional;
+	public void setQuantidade(String quantidade) {
+		this.quantidade = quantidade;
 	}
 	
 }

@@ -7,27 +7,68 @@
   
   <div class="container">
 
-    <div class="form-row" formGroupName="nomeCompleto">
-      <div class="form-group col-md-6" [ngClass]="aplicaCssErro('nomeCompleto.nome')">
-        <label for="nome">Nome</label>
-        <input type="text" class="form-control" id="nome" formControlName="nome">
+    <div class="container">
+
+      <div class="form-row" formGroupName="nomeCompleto">
+        <div class="form-group col-md-6" [ngClass]="aplicaCssErro('nomeCompleto.nome')">
+          <label for="nome">Nome</label>
+          <input type="text" class="form-control" id="nome" formControlName="nome">
+        </div>
+        <div class="form-group col-md-6">
+          <label for="complemento">Complemento</label>
+          <input type="text" class="form-control" id="complemento" formControlName="complemento">
+        </div>
       </div>
-      <div class="form-group col-md-6">
-        <label for="complemento">Complemento</label>
-        <input type="text" class="form-control" id="complemento" formControlName="complemento">
+      <div class="form-group">
+        <label for="descricao">Descrição</label>
+        <textarea class="form-control" id="descricao" formControlName="descricao" rows="3"></textarea>
       </div>
-    </div>
-    <div class="form-group">
-      <label for="descricao">Descrição</label>
-      <textarea class="form-control" id="descricao" formControlName="descricao" rows="3"></textarea>
-    </div>
-    <div class="form-group">
-      <label for="fabricante">Fabricante</label>
-      <input type="text" class="form-control" id="fabricante" formControlName="fabricante">
-    </div>
-    <div class="form-group">
-      <label for="cadastradoPor">Cadastrado por</label>
-      <input type="text" class="form-control" id="cadastradoPor" formControlName="cadastradoPor">
+      <div class="form-group">
+        <label for="fabricante">Fabricante</label>
+        <input type="text" class="form-control" id="fabricante" formControlName="fabricante">
+      </div>
+      <div class="form-group">
+        <label for="cadastradoPor">Cadastrado por</label>
+        <input type="text" class="form-control" id="cadastradoPor" formControlName="cadastradoPor">
+      </div>
+  
+  
+      <div class="form-row">
+        <div class="form-group col-md-6" formArrayName="componentes">
+          <div *ngFor="let componente of formulario.get('componentes').controls; index as i">
+            <div class="card" style="width: 18rem;" [formGroup]="componente">
+              <div class="card-body">
+                <h5 class="card-title">Componente
+                  <button class="btn" (click)="removeComponente(i)">Remover</button>
+                </h5>
+                <input type="text" class="form-control" id="nome" formControlName="nome" placeholder="Nome">
+                <input type="number" class="form-control" id="valor" formControlName="valor" placeholder="Valor">
+                <input type="text" class="form-control" id="unidade" formControlName="unidade" placeholder="Unidade">
+              </div>
+            </div>
+          </div>
+          <button class="btn" (click)="addComponente()" #scrollBottom>Novo componente</button>
+        </div>
+
+        <div class="form-group col-md-6" formArrayName="valNutricionais">
+          <div *ngFor="let val of formulario.get('valNutricionais').controls; index as i">
+            <div class="card" style="width: 18rem;" [formGroup]="val">
+              <div class="card-body">
+                <h5 class="card-title">Valor Nutricional
+                  <button class="btn" (click)="removeValNutricional(i)">Remover</button>
+                </h5>
+                <input type="text" class="form-control" id="nome" formControlName="nome" placeholder="Nome">
+                <input type="number" class="form-control" id="quantidade" formControlName="quantidade" placeholder="quantidade">
+                <input type="text" class="form-control" id="unidade" formControlName="unidade" placeholder="Unidade">
+                <input type="number" class="form-control" id="valorDiario" formControlName="valorDiario" placeholder="valorDiario">
+              </div>
+            </div>
+          </div>
+          <button class="btn" (click)="addValNutricional()" #scrollBottom>Novo valor nutricional</button>
+        </div>
+        
+      </div>
+  
     </div>
 
     <button type="submit" class="btn btn-primary">Finalizar</button>

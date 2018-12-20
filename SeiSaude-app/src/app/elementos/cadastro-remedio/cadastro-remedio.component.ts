@@ -58,7 +58,8 @@ export class CadastroRemedioComponent extends FormBaseComponent implements OnIni
       this.formulario.value.nomeCompleto.complemento,
       this.formulario.value.descricao,
       this.formulario.value.fabricante,
-      this.formulario.value.cadastradoPor
+      this.formulario.value.cadastradoPor,
+      this.formulario.value.componentes
     );
 
     this.http.post(url, remedio).subscribe(result => {
@@ -83,9 +84,9 @@ export class CadastroRemedioComponent extends FormBaseComponent implements OnIni
   addComponente() {
     //this.quantidades.push(new Quantidade("","",""))
     this.componentes.push(new FormGroup({
-      nome: new FormControl(""),
-      unidade: new FormControl(""),
-      valor: new FormControl("")}));
+      nome: new FormControl("", Validators.required),
+      unidade: new FormControl("", Validators.required),
+      valor: new FormControl("", Validators.required)}));
   }
 
   removeComponente(i: number) {

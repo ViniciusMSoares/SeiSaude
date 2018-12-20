@@ -1,7 +1,7 @@
 export class Quantidade {
     nome: string;
     unidade: string;
-    valor: number;
+    valor: string;
 
     public constructor(nome, unidade, valor) {
         this.nome = nome;
