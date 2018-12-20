@@ -78,8 +78,6 @@ export class CadastroAlimentoComponent extends FormBaseComponent implements OnIn
       },
       (error: any) => console.log(error)
     );
-
-    console.log("Alimento:", this.formulario.value);
   }
 
   nomeComplemento: AsyncValidatorFn = (control: FormGroup): Promise<ValidationErrors | null> | Observable<ValidationErrors | null> => {

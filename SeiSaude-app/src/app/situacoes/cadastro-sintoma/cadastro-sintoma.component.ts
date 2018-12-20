@@ -45,7 +45,6 @@ export class CadastroSintomaComponent extends FormBaseComponent implements OnIni
       },
       (error: any) => console.log(error)
     );
-
-    console.log("Sintoma:", this.formulario.value);  }
+  }
 
 }

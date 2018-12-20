@@ -58,7 +58,7 @@ public class SituacaoServiceImpl implements SituacaoService{
 				SintomaDoenca sintomaDoenca;
 				if (sintomas.size() == 0) {//cria novo sintoma caso não encontre um
 					String descSintoma = doencaDTO.getDescSintomas()[i];
-					if (descSintoma.equals("")) {//checa se a descrição do sintoma foi passado no cadastro
+					if (descSintoma.equals("")) {//checa se a descrição do sintoma foi passado no cadastro - acho que pode tirar
 						descSintoma = "Este sintoma ainda não possui uma descrição";
 					}
 					Sintoma sintoma = new Sintoma(doencaDTO.getNomesSintomas()[i], descSintoma, "", "");//falta receber complemento e cadastradoPor

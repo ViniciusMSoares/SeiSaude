@@ -5,6 +5,7 @@ import java.util.List;
 
 import server.entities.Componente;
 import server.entities.Elemento;
+import server.entities.ValorNutricional;
 import server.entities.DTOs.AlimentoDTO;
 import server.entities.DTOs.ComponenteDTO;
 import server.entities.DTOs.ElementoDTO;
@@ -55,6 +56,8 @@ public interface ElementoService {
 	ArrayList<Elemento> findByName(String name);
 	
 	ArrayList<Componente> findComponenteByName(String name);
+	
+	ArrayList<ValorNutricional> findValNutricionalByName(String name);
 	
 	boolean elementoInDataBase(String nome);
 

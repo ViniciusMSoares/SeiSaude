@@ -45,7 +45,6 @@ export class CadastroDoencaComponent extends FormBaseComponent implements OnInit
       },
       (error: any) => console.log(error)
     );
-
-    console.log("Doenca:", this.formulario.value);  }
+  }
 
 }

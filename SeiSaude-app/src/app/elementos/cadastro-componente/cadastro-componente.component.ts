@@ -41,8 +41,6 @@ export class CadastroComponenteComponent extends FormBaseComponent implements On
       },
       (error: any) => console.log(error)
     );
-
-    console.log("Componente:", this.formulario.value);
   }
 
 }

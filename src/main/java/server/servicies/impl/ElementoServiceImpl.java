@@ -87,19 +87,26 @@ public class ElementoServiceImpl implements ElementoService {
 		
 		if (produtoDTO.getComponentes() != null) {
 			for (int i = 0; i < produtoDTO.getComponentes().length; i++) {
-				componente = new Componente(produtoDTO.getComponentes()[i].getNome(), "");//falta complemento
-				componenteRepository.save(componente);
-				quantidade = new Quantidade(componente.getId(), remedio.getId(), Float.parseFloat(produtoDTO.getComponentes()[i].getValor()), produtoDTO.getComponentes()[i].getUnidade());
+				ArrayList<Componente> componentes = findComponenteByName(produtoDTO.getComponentes()[i].getNome());
+				
+				if (componentes.size() == 0) {
+					componente = new Componente(produtoDTO.getComponentes()[i].getNome(), "");//falta complemento
+					componenteRepository.save(componente);
+				} else {
+					componente = componentes.get(0);
+				}
+				quantidade = new Quantidade(componente.getId(), remedio.getId(), Float.parseFloat(produtoDTO.getComponentes()[i].getValor()),
+						produtoDTO.getComponentes()[i].getUnidade());
 				quantidadeRepository.save(quantidade);
 			}
 		}
-		
+
 		/*
-		if (produtoDTO.getUnidadesComponente() != null) {
-			for (int i = 0; i < produtoDTO.getUnidadesComponente().length; i++) {
-				componente = new Componente(produtoDTO.getNomeComponente()[i], "");//falta complemento
+		if (produtoDTO.getComponentes() != null) {
+			for (int i = 0; i < produtoDTO.getComponentes().length; i++) {
+				componente = new Componente(produtoDTO.getComponentes()[i].getNome(), "");//falta complemento
 				componenteRepository.save(componente);
-				quantidade = new Quantidade(componente.getId(), remedio.getId(), Float.parseFloat(produtoDTO.getValoresComponente()[i]), produtoDTO.getUnidadesComponente()[i]);
+				quantidade = new Quantidade(componente.getId(), remedio.getId(), Float.parseFloat(produtoDTO.getComponentes()[i].getValor()), produtoDTO.getComponentes()[i].getUnidade());
 				quantidadeRepository.save(quantidade);
 			}
 		}*/
@@ -116,11 +123,19 @@ public class ElementoServiceImpl implements ElementoService {
 		alimentoRepository.save(alimento);
 		Componente componenteA;
 		Quantidade quantidadeA;
+		
 		if (alimentoDTO.getComponentes() != null) {
 			for (int i = 0; i < alimentoDTO.getComponentes().length; i++) {
-				componenteA = new Componente(alimentoDTO.getComponentes()[i].getNome(), "");//falta complemento
-				componenteRepository.save(componenteA);
-				quantidadeA = new Quantidade(componenteA.getId(), alimento.getId(), Float.parseFloat(alimentoDTO.getComponentes()[i].getValor()), alimentoDTO.getComponentes()[i].getUnidade());
+				ArrayList<Componente> componentes = findComponenteByName(alimentoDTO.getComponentes()[i].getNome());
+				
+				if (componentes.size() == 0) {
+					componenteA = new Componente(alimentoDTO.getComponentes()[i].getNome(), "");//falta complemento
+					componenteRepository.save(componenteA);
+				} else {
+					componenteA = componentes.get(0);
+				}
+				quantidadeA = new Quantidade(componenteA.getId(), alimento.getId(), Float.parseFloat(alimentoDTO.getComponentes()[i].getValor()),
+						alimentoDTO.getComponentes()[i].getUnidade());
 				quantidadeRepository.save(quantidadeA);
 			}
 		}
@@ -130,8 +145,14 @@ public class ElementoServiceImpl implements ElementoService {
 		
 		if (alimentoDTO.getValNutricionais() != null) {
 			for (int i = 0; i < alimentoDTO.getValNutricionais().length; i++) {
-				valorNutricional = new ValorNutricional(alimentoDTO.getValNutricionais()[i].getNome());
-				valorNutricionalRepository.save(valorNutricional);
+				ArrayList<ValorNutricional> valNutricionais = findValNutricionalByName(alimentoDTO.getValNutricionais()[i].getNome());
+				
+				if (valNutricionais.size() == 0) {
+					valorNutricional = new ValorNutricional(alimentoDTO.getValNutricionais()[i].getNome());
+					valorNutricionalRepository.save(valorNutricional);
+				} else {
+					valorNutricional = valNutricionais.get(0);
+				}
 				valor = new Valor(valorNutricional.getId(), alimento.getId(), Float.parseFloat(alimentoDTO.getValNutricionais()[i].getValorDiario()),
 						Float.parseFloat(alimentoDTO.getValNutricionais()[i].getQuantidade()), alimentoDTO.getValNutricionais()[i].getUnidade());
 				valorRepository.save(valor);
@@ -169,6 +190,20 @@ public class ElementoServiceImpl implements ElementoService {
 			String elementoName = componente.getNome().toLowerCase();
 			if (elementoName.equals(name) || elementoName.contains(name)) {
 				result.add(componente);
+			}
+		}
+		return result;
+	}
+	
+	@Override
+	public ArrayList<ValorNutricional> findValNutricionalByName(String name) {
+		ArrayList<ValorNutricional> result = new ArrayList<>();
+		name = name.toLowerCase();
+
+		for (ValorNutricional valNutricional : valorNutricionalRepository.findAll()) {
+			String elementoName = valNutricional.getNome().toLowerCase();
+			if (elementoName.equals(name) || elementoName.contains(name)) {
+				result.add(valNutricional);
 			}
 		}
 		return result;

@@ -42,8 +42,6 @@ export class CadastroRemedioComponent extends FormBaseComponent implements OnIni
   }
 
   buildComponentes() {
-    //this.quantidades.push(new Quantidade("","",""));
-
     const values = this.quantidades.map(v => new FormGroup({
       nome: new FormControl(v.nome),
       unidade: new FormControl(v.unidade),
@@ -67,8 +65,6 @@ export class CadastroRemedioComponent extends FormBaseComponent implements OnIni
       },
       (error: any) => console.log(error)
     );
-
-    console.log("Remedio:", this.formulario.value);
   }
 
   nomeComplemento: AsyncValidatorFn = (control: FormGroup): Promise<ValidationErrors | null> | Observable<ValidationErrors | null> => {
@@ -82,7 +78,6 @@ export class CadastroRemedioComponent extends FormBaseComponent implements OnIni
   get componentes(): FormArray { return this.formulario.get('componentes') as FormArray; }
 
   addComponente() {
-    //this.quantidades.push(new Quantidade("","",""))
     this.componentes.push(new FormGroup({
       nome: new FormControl("", Validators.required),
       unidade: new FormControl("", Validators.required),
@@ -92,7 +87,5 @@ export class CadastroRemedioComponent extends FormBaseComponent implements OnIni
   removeComponente(i: number) {
     this.componentes.removeAt(i);
   }
- 
-  //setPreset() { this.cities.patchValue(['LA', 'MTV']); }
 
 }

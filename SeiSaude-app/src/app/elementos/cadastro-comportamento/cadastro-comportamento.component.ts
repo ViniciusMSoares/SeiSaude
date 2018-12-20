@@ -58,8 +58,6 @@ export class CadastroComportamentoComponent extends FormBaseComponent implements
         this.nomeIndisponivel = true;
       }
     );
-
-    console.log("Comportamento:", this.formulario.value);
   }
 
   /*validarNome(formControl: FormControl) {
@@ -68,7 +66,6 @@ export class CadastroComportamentoComponent extends FormBaseComponent implements
   }*/
 
   nomeComplemento: AsyncValidatorFn = (control: FormGroup): Promise<ValidationErrors | null> | Observable<ValidationErrors | null> => {
-    console.log("entrei nomecomplemento");
     const nome = control.get('nome');
     const complemento = control.get('complemento');
   
