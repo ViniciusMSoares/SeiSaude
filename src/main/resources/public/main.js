@@ -220,7 +220,7 @@ var AppModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<form class=\"form-horizontal\" [formGroup]=\"formulario\" (ngSubmit)=\"onSubmit()\">\n  <div style=\"text-align:center\">\n    <h1>\n      {{ title }}\n    </h1>\n  </div>\n  \n  <div class=\"container\">\n\n    <div class=\"form-row\" formGroupName=\"nomeCompleto\">\n      <div class=\"form-group col-md-6\" [ngClass]=\"aplicaCssErro('nomeCompleto.nome')\">\n        <label for=\"nome\">Nome</label>\n        <input type=\"text\" class=\"form-control\" id=\"nome\" formControlName=\"nome\">\n      </div>\n      <div class=\"form-group col-md-6\">\n        <label for=\"complemento\">Complemento</label>\n        <input type=\"text\" class=\"form-control\" id=\"complemento\" formControlName=\"complemento\">\n      </div>\n    </div>\n    <div class=\"form-group\">\n      <label for=\"descricao\">Descrição</label>\n      <textarea class=\"form-control\" id=\"descricao\" formControlName=\"descricao\" rows=\"3\"></textarea>\n    </div>\n    <div class=\"form-group\">\n      <label for=\"fabricante\">Fabricante</label>\n      <input type=\"text\" class=\"form-control\" id=\"fabricante\" formControlName=\"fabricante\">\n    </div>\n    <div class=\"form-group\">\n      <label for=\"cadastradoPor\">Cadastrado por</label>\n      <input type=\"text\" class=\"form-control\" id=\"cadastradoPor\" formControlName=\"cadastradoPor\">\n    </div>\n\n    <button type=\"submit\" class=\"btn btn-primary\">Finalizar</button>\n  \n    <router-outlet></router-outlet>\n  </div>\n\n  <div style=\"margin-top: 20px\" *ngIf=\"formulario\" >\n    <div>Detalhes do form</div>\n    <pre>Form válido: {{ formulario.status }}</pre>\n    <!--pre>Form submetido: {{ form.submitted }}</pre -->\n    <pre>Valores: <br>{{ formulario.value | json }}</pre>\n  </div>\n</form>"
+module.exports = "<form class=\"form-horizontal\" [formGroup]=\"formulario\" (ngSubmit)=\"onSubmit()\">\n  <div style=\"text-align:center\">\n    <h1>\n      {{ title }}\n    </h1>\n  </div>\n  \n  <div class=\"container\">\n\n    <div class=\"container\">\n\n      <div class=\"form-row\" formGroupName=\"nomeCompleto\">\n        <div class=\"form-group col-md-6\" [ngClass]=\"aplicaCssErro('nomeCompleto.nome')\">\n          <label for=\"nome\">Nome</label>\n          <input type=\"text\" class=\"form-control\" id=\"nome\" formControlName=\"nome\">\n        </div>\n        <div class=\"form-group col-md-6\">\n          <label for=\"complemento\">Complemento</label>\n          <input type=\"text\" class=\"form-control\" id=\"complemento\" formControlName=\"complemento\">\n        </div>\n      </div>\n      <div class=\"form-group\">\n        <label for=\"descricao\">Descrição</label>\n        <textarea class=\"form-control\" id=\"descricao\" formControlName=\"descricao\" rows=\"3\"></textarea>\n      </div>\n      <div class=\"form-group\">\n        <label for=\"fabricante\">Fabricante</label>\n        <input type=\"text\" class=\"form-control\" id=\"fabricante\" formControlName=\"fabricante\">\n      </div>\n      <div class=\"form-group\">\n        <label for=\"cadastradoPor\">Cadastrado por</label>\n        <input type=\"text\" class=\"form-control\" id=\"cadastradoPor\" formControlName=\"cadastradoPor\">\n      </div>\n  \n  \n      <div class=\"form-row\">\n        <div class=\"form-group col-md-6\" formArrayName=\"componentes\">\n          <div *ngFor=\"let componente of formulario.get('componentes').controls; index as i\">\n            <div class=\"card\" [formGroup]=\"componente\">\n              <div class=\"card-body\">\n                <h5 class=\"card-title\">Componente\n                  <button class=\"btn\" (click)=\"removeComponente(i)\">Remover</button>\n                </h5>\n                <div class=\"form-row\">\n                  <input type=\"text\" class=\"form-control\" id=\"nome\" formControlName=\"nome\" placeholder=\"Nome\">\n                  <input type=\"number\" class=\"form-control col\" id=\"valor\" formControlName=\"valor\" placeholder=\"Valor\">\n                  <input type=\"text\" class=\"form-control col\" id=\"unidade\" formControlName=\"unidade\" placeholder=\"Unidade\">\n                </div>\n              </div>\n            </div>\n          </div>\n          <button class=\"btn\" (click)=\"addComponente()\" #scrollBottom>Novo componente</button>\n        </div>\n\n        <div class=\"form-group col-md-6\" formArrayName=\"valNutricionais\">\n          <div *ngFor=\"let val of formulario.get('valNutricionais').controls; index as i\">\n            <div class=\"card\" [formGroup]=\"val\">\n              <div class=\"card-body\">\n                <h5 class=\"card-title\">Valor Nutricional\n                  <button class=\"btn\" (click)=\"removeValNutricional(i)\">Remover</button>\n                </h5>\n                <div class=\"form-row\">\n                  <input type=\"text\" class=\"form-control\" id=\"nome\" formControlName=\"nome\" placeholder=\"Nome\">\n                  <input type=\"number\" class=\"form-control col-md-6\" id=\"quantidade\" formControlName=\"quantidade\" placeholder=\"Quantidade\">\n                  <input type=\"text\" class=\"form-control col-md-6\" id=\"unidade\" formControlName=\"unidade\" placeholder=\"Unidade\">\n                  <div class=\"input-group mb-3\">\n                    <input type=\"number\" class=\"form-control\" id=\"valorDiario\" formControlName=\"valorDiario\" placeholder=\"Valor diario\">\n                    <div class=\"input-group-append\">\n                      <span class=\"input-group-text\">%</span>\n                    </div>\n                  </div>\n                </div>\n              </div>\n            </div>\n          </div>\n          <button class=\"btn\" (click)=\"addValNutricional()\" #scrollBottom>Novo valor nutricional</button>\n        </div>\n        \n      </div>\n  \n    </div>\n\n    <div style=\"text-align:center\">\n      <button type=\"submit\" class=\"btn btn-primary\">Finalizar</button>\n    </div>\n  \n    <router-outlet></router-outlet>\n  </div>\n\n  <div style=\"margin-top: 20px\" *ngIf=\"formulario\" >\n    <div>Detalhes do form</div>\n    <pre>Form válido: {{ formulario.status }}</pre>\n    <!--pre>Form submetido: {{ form.submitted }}</pre -->\n    <pre>Valores: <br>{{ formulario.value | json }}</pre>\n  </div>\n</form>"
 
 /***/ }),
 
@@ -292,6 +292,8 @@ var CadastroAlimentoComponent = /** @class */ (function (_super) {
         _this.verificaNomeService = verificaNomeService;
         _this.title = 'Cadastro de Alimento';
         _this.alimento = {};
+        _this.quantidades = [];
+        _this.valores = [];
         _this.nomeComplemento = function (control) {
             var nome = control.get('nome');
             var complemento = control.get('complemento');
@@ -308,16 +310,65 @@ var CadastroAlimentoComponent = /** @class */ (function (_super) {
             }, { asyncValidator: this.nomeComplemento.bind(this) }),
             descricao: [""],
             fabricante: [""],
-            cadastradoPor: ["", _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required]
+            cadastradoPor: ["", _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required],
+            componentes: this.buildComponentes(),
+            valNutricionais: this.buildValNutricionais()
         });
+    };
+    CadastroAlimentoComponent.prototype.buildComponentes = function () {
+        var values = this.quantidades.map(function (v) { return new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormGroup"]({
+            nome: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](v.nome),
+            unidade: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](v.unidade),
+            valor: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](v.valor)
+        }); });
+        return this.formBuilder.array(values);
+    };
+    CadastroAlimentoComponent.prototype.buildValNutricionais = function () {
+        var values = this.valores.map(function (v) { return new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormGroup"]({
+            nome: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]("", _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required),
+            quantidade: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]("", _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required),
+            unidade: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]("", _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required),
+            valorDiario: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]("", _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required)
+        }); });
+        return this.formBuilder.array(values);
     };
     CadastroAlimentoComponent.prototype.submit = function () {
         var url = _models_url_enum__WEBPACK_IMPORTED_MODULE_5__["Url"].URL_BASE + _models_url_enum__WEBPACK_IMPORTED_MODULE_5__["Url"].CADASTRO_ALIMENTO;
-        var alimento = new _models_alimento__WEBPACK_IMPORTED_MODULE_1__["Alimento"](this.formulario.value.nomeCompleto.nome, this.formulario.value.nomeCompleto.complemento, this.formulario.value.descricao, this.formulario.value.fabricante, this.formulario.value.cadastradoPor);
+        var alimento = new _models_alimento__WEBPACK_IMPORTED_MODULE_1__["Alimento"](this.formulario.value.nomeCompleto.nome, this.formulario.value.nomeCompleto.complemento, this.formulario.value.descricao, this.formulario.value.fabricante, this.formulario.value.cadastradoPor, this.formulario.value.componentes, this.formulario.value.valNutricionais);
         this.http.post(url, alimento).subscribe(function (result) {
             console.log(result);
         }, function (error) { return console.log(error); });
-        console.log("Alimento:", this.formulario.value);
+    };
+    Object.defineProperty(CadastroAlimentoComponent.prototype, "componentes", {
+        get: function () { return this.formulario.get('componentes'); },
+        enumerable: true,
+        configurable: true
+    });
+    CadastroAlimentoComponent.prototype.addComponente = function () {
+        this.componentes.push(new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormGroup"]({
+            nome: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]("", _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required),
+            unidade: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]("", _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required),
+            valor: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]("", _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required)
+        }));
+    };
+    CadastroAlimentoComponent.prototype.removeComponente = function (i) {
+        this.componentes.removeAt(i);
+    };
+    Object.defineProperty(CadastroAlimentoComponent.prototype, "valNutricionais", {
+        get: function () { return this.formulario.get('valNutricionais'); },
+        enumerable: true,
+        configurable: true
+    });
+    CadastroAlimentoComponent.prototype.addValNutricional = function () {
+        this.valNutricionais.push(new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormGroup"]({
+            nome: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]("", _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required),
+            quantidade: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]("", _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required),
+            unidade: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]("", _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required),
+            valorDiario: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]("", _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required)
+        }));
+    };
+    CadastroAlimentoComponent.prototype.removeValNutricional = function (i) {
+        this.valNutricionais.removeAt(i);
     };
     CadastroAlimentoComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -343,7 +394,7 @@ var CadastroAlimentoComponent = /** @class */ (function (_super) {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<form class=\"form-horizontal\" [formGroup]=\"formulario\" (ngSubmit)=\"onSubmit()\">\n  <div style=\"text-align:center\">\n    <h1>\n      {{ title }}\n    </h1>\n  </div>\n  \n  <div class=\"container\">\n\n    <div class=\"form-row\">\n      <div class=\"form-group col-md-6\" [ngClass]=\"aplicaCssErro('nome')\">\n        <label for=\"nome\">Nome</label>\n        <input type=\"text\" class=\"form-control\" id=\"nome\" formControlName=\"nome\">\n      </div>\n      <div class=\"form-group col-md-6\">\n        <label for=\"complemento\">Complemento</label>\n        <input type=\"text\" class=\"form-control\" id=\"complemento\" formControlName=\"complemento\">\n      </div>\n    </div>\n\n    <button type=\"submit\" class=\"btn btn-primary\">Finalizar</button>\n  \n    <router-outlet></router-outlet>\n  </div>\n\n</form>"
+module.exports = "<form class=\"form-horizontal\" [formGroup]=\"formulario\" (ngSubmit)=\"onSubmit()\">\n  <div style=\"text-align:center\">\n    <h1>\n      {{ title }}\n    </h1>\n  </div>\n  \n  <div class=\"container\">\n\n    <div class=\"form-row\">\n      <div class=\"form-group col-md-6\" [ngClass]=\"aplicaCssErro('nome')\">\n        <label for=\"nome\">Nome</label>\n        <input type=\"text\" class=\"form-control\" id=\"nome\" formControlName=\"nome\">\n      </div>\n      <div class=\"form-group col-md-6\">\n        <label for=\"complemento\">Complemento</label>\n        <input type=\"text\" class=\"form-control\" id=\"complemento\" formControlName=\"complemento\">\n      </div>\n    </div>\n\n    <div style=\"text-align:center\">\n      <button type=\"submit\" class=\"btn btn-primary\">Finalizar</button>\n    </div>\n  \n    <router-outlet></router-outlet>\n  </div>\n\n</form>"
 
 /***/ }),
 
@@ -424,7 +475,6 @@ var CadastroComponenteComponent = /** @class */ (function (_super) {
         this.http.post(url, componente).subscribe(function (result) {
             console.log(result);
         }, function (error) { return console.log(error); });
-        console.log("Componente:", this.formulario.value);
     };
     CadastroComponenteComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -449,7 +499,7 @@ var CadastroComponenteComponent = /** @class */ (function (_super) {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<form class=\"form-horizontal\" [formGroup]=\"formulario\" (ngSubmit)=\"onSubmit()\" #formDir=\"ngForm\">\n  <div style=\"text-align:center\">\n    <h1>\n      {{ title }}\n    </h1>\n  </div>\n  \n  <div class=\"container\">\n    <div *ngIf=\"formDir.submitted\">\n      <div class=\"alert alert-success\" role=\"alert\">\n        Comportamento cadastrado com sucesso!\n        <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">\n          <span aria-hidden=\"true\">&times;</span>\n        </button>\n      </div>\n    </div>\n\n    <div class=\"form-row\" formGroupName=\"nomeCompleto\">\n      <div class=\"form-group col-md-6\" [ngClass]=\"aplicaCssErro('nomeCompleto.nome')\">\n        <label for=\"nome\">Nome</label>\n        <input type=\"text\" class=\"form-control\" id=\"nome\" formControlName=\"nome\">\n      </div>\n      <div class=\"form-group col-md-6\">\n        <label for=\"complemento\">Complemento</label>\n        <input type=\"text\" class=\"form-control\" id=\"complemento\" formControlName=\"complemento\">\n      </div>\n    </div>\n    <div class=\"form-group\">\n      <label for=\"descricao\">Descrição</label>\n      <textarea class=\"form-control\" id=\"descricao\" formControlName=\"descricao\" rows=\"3\"></textarea>\n    </div>\n    <div class=\"form-group\">\n      <label for=\"cadastradoPor\">Cadastrado por</label>\n      <input type=\"text\" class=\"form-control\" id=\"cadastradoPor\" formControlName=\"cadastradoPor\">\n    </div>\n\n    <button type=\"submit\" class=\"btn btn-primary\">Finalizar</button>\n  \n    <router-outlet></router-outlet>\n  </div>\n\n  <div style=\"margin-top: 20px\" *ngIf=\"formulario\" >\n    <div>Detalhes do form</div>\n    <pre>Form válido: {{ formulario.status }}</pre>\n    <!--pre>Form submetido: {{ form.submitted }}</pre -->\n    <pre>Valores: <br>{{ formulario.value | json }}</pre>\n  </div>\n</form>"
+module.exports = "<form class=\"form-horizontal\" [formGroup]=\"formulario\" (ngSubmit)=\"onSubmit()\" #formDir=\"ngForm\">\n  <div style=\"text-align:center\">\n    <h1>\n      {{ title }}\n    </h1>\n  </div>\n  \n  <div class=\"container\">\n    <div *ngIf=\"formDir.submitted\">\n      <div class=\"alert alert-success\" role=\"alert\">\n        Comportamento cadastrado com sucesso!\n        <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">\n          <span aria-hidden=\"true\">&times;</span>\n        </button>\n      </div>\n    </div>\n\n    <div class=\"form-row\" formGroupName=\"nomeCompleto\">\n      <div class=\"form-group col-md-6\" [ngClass]=\"aplicaCssErro('nomeCompleto.nome')\">\n        <label for=\"nome\">Nome</label>\n        <input type=\"text\" class=\"form-control\" id=\"nome\" formControlName=\"nome\">\n      </div>\n      <div class=\"form-group col-md-6\">\n        <label for=\"complemento\">Complemento</label>\n        <input type=\"text\" class=\"form-control\" id=\"complemento\" formControlName=\"complemento\">\n      </div>\n    </div>\n    <div class=\"form-group\">\n      <label for=\"descricao\">Descrição</label>\n      <textarea class=\"form-control\" id=\"descricao\" formControlName=\"descricao\" rows=\"3\"></textarea>\n    </div>\n    <div class=\"form-group\">\n      <label for=\"cadastradoPor\">Cadastrado por</label>\n      <input type=\"text\" class=\"form-control\" id=\"cadastradoPor\" formControlName=\"cadastradoPor\">\n    </div>\n\n    <div style=\"text-align:center\">\n      <button type=\"submit\" class=\"btn btn-primary\">Finalizar</button>\n    </div>\n  \n    <router-outlet></router-outlet>\n  </div>\n\n  <div style=\"margin-top: 20px\" *ngIf=\"formulario\" >\n    <div>Detalhes do form</div>\n    <pre>Form válido: {{ formulario.status }}</pre>\n    <!--pre>Form submetido: {{ form.submitted }}</pre -->\n    <pre>Valores: <br>{{ formulario.value | json }}</pre>\n  </div>\n</form>"
 
 /***/ }),
 
@@ -521,12 +571,8 @@ var CadastroComportamentoComponent = /** @class */ (function (_super) {
         _this.verificaNomeService = verificaNomeService;
         _this.title = 'Cadastro de Comportamento';
         _this.comportamento = {};
-        /*validarNome(formControl: FormControl) {
-          return this.verificaNomeService.verificarNome(formControl.value)
-            .pipe(map(nomeExiste => nomeExiste ? { nomeInvalido: true } : null));
-        }*/
+        _this.comportamentos = [];
         _this.nomeComplemento = function (control) {
-            console.log("entrei nomecomplemento");
             var nome = control.get('nome');
             var complemento = control.get('complemento');
             return _this.verificaNomeService.verificarNome(nome.value, complemento.value)
@@ -556,12 +602,15 @@ var CadastroComportamentoComponent = /** @class */ (function (_super) {
             console.log(error);
             _this.nomeIndisponivel = true;
         });
-        console.log("Comportamento:", this.formulario.value);
     };
     CadastroComportamentoComponent.prototype.testaHTTP = function () {
+        var _this = this;
         var url = _models_url_enum__WEBPACK_IMPORTED_MODULE_5__["Url"].URL_BASE + _models_url_enum__WEBPACK_IMPORTED_MODULE_5__["Url"].TODOS_ELEMENTOS;
         this.http.get(url).subscribe(function (result) {
-            console.log(result);
+            var resultList = result;
+            //console.log(result);
+            _this.comportamentos = resultList.map(function (v) { return new _models_comportamento__WEBPACK_IMPORTED_MODULE_1__["Comportamento"](v.name, v.complemento, v.descricao, v.cadastradoPor); });
+            console.log(_this.comportamentos);
         }, function (error) { return alert('erro'); });
     };
     CadastroComportamentoComponent = __decorate([
@@ -588,7 +637,7 @@ var CadastroComportamentoComponent = /** @class */ (function (_super) {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<form class=\"form-horizontal\" [formGroup]=\"formulario\" (ngSubmit)=\"onSubmit()\">\n  <div style=\"text-align:center\">\n    <h1>\n      {{ title }}\n    </h1>\n  </div>\n  \n  <div class=\"container\">\n    <div class=\"container\">\n\n    <div class=\"form-row\" formGroupName=\"nomeCompleto\">\n      <div class=\"form-group col-md-6\" [ngClass]=\"aplicaCssErro('nomeCompleto.nome')\">\n        <label for=\"nome\">Nome</label>\n        <input type=\"text\" class=\"form-control\" id=\"nome\" formControlName=\"nome\">\n      </div>\n      <div class=\"form-group col-md-6\">\n        <label for=\"complemento\">Complemento</label>\n        <input type=\"text\" class=\"form-control\" id=\"complemento\" formControlName=\"complemento\">\n      </div>\n    </div>\n    <div class=\"form-group\">\n      <label for=\"descricao\">Descrição</label>\n      <textarea class=\"form-control\" id=\"descricao\" formControlName=\"descricao\" rows=\"3\"></textarea>\n    </div>\n    <div class=\"form-group\">\n      <label for=\"fabricante\">Fabricante</label>\n      <input type=\"text\" class=\"form-control\" id=\"fabricante\" formControlName=\"fabricante\">\n    </div>\n    <div class=\"form-group\">\n      <label for=\"cadastradoPor\">Cadastrado por</label>\n      <input type=\"text\" class=\"form-control\" id=\"cadastradoPor\" formControlName=\"cadastradoPor\">\n    </div>\n\n\n    <div formArrayName=\"componentes\">\n      <div *ngFor=\"let componente of formulario.get('componentes').controls; index as i\">\n        <div class=\"card\" style=\"width: 18rem;\" [formGroup]=\"componente\">\n          <div class=\"card-body\">\n            <h5 class=\"card-title\">Componente\n              <button class=\"btn\" (click)=\"removeComponente(i)\">Remover</button>\n            </h5>\n            <input type=\"text\" class=\"form-control\" id=\"nome\" formControlName=\"nome\" placeholder=\"Nome\">\n            <input type=\"text\" class=\"form-control\" id=\"unidade\" formControlName=\"unidade\" placeholder=\"Unidade\">\n            <input type=\"number\" class=\"form-control\" id=\"valor\" formControlName=\"valor\" placeholder=\"Valor\">\n          </div>\n        </div>\n      </div>\n    </div>\n      \n    <button class=\"btn\" (click)=\"addComponente()\" #scrollBottom>Novo componente</button>\n\n    </div>\n\n    <div style=\"text-align:center\">\n      <button type=\"submit\" class=\"btn btn-primary\">Finalizar</button>\n    </div>\n  \n    <router-outlet></router-outlet>\n  </div>\n\n  \n  <div style=\"margin-top: 20px\" *ngIf=\"formulario\" >\n    <div>Detalhes do form</div>\n    <pre>Form válido: {{ formulario.status }}</pre>\n    <!--pre>Form submetido: {{ form.submitted }}</pre -->\n    <pre>Valores: <br>{{ formulario.value | json }}</pre>\n  </div>\n</form>"
+module.exports = "<form class=\"form-horizontal\" [formGroup]=\"formulario\" (ngSubmit)=\"onSubmit()\">\n  <div style=\"text-align:center\">\n    <h1>\n      {{ title }}\n    </h1>\n  </div>\n  \n  <div class=\"container\">\n    <div class=\"container\">\n\n    <div class=\"form-row\" formGroupName=\"nomeCompleto\">\n      <div class=\"form-group col-md-6\" [ngClass]=\"aplicaCssErro('nomeCompleto.nome')\">\n        <label for=\"nome\">Nome</label>\n        <input type=\"text\" class=\"form-control\" id=\"nome\" formControlName=\"nome\">\n      </div>\n      <div class=\"form-group col-md-6\">\n        <label for=\"complemento\">Complemento</label>\n        <input type=\"text\" class=\"form-control\" id=\"complemento\" formControlName=\"complemento\">\n      </div>\n    </div>\n    <div class=\"form-group\">\n      <label for=\"descricao\">Descrição</label>\n      <textarea class=\"form-control\" id=\"descricao\" formControlName=\"descricao\" rows=\"3\"></textarea>\n    </div>\n    <div class=\"form-group\">\n      <label for=\"fabricante\">Fabricante</label>\n      <input type=\"text\" class=\"form-control\" id=\"fabricante\" formControlName=\"fabricante\">\n    </div>\n    <div class=\"form-group\">\n      <label for=\"cadastradoPor\">Cadastrado por</label>\n      <input type=\"text\" class=\"form-control\" id=\"cadastradoPor\" formControlName=\"cadastradoPor\">\n    </div>\n\n\n    <div class=\"row\" formArrayName=\"componentes\">\n      <div class=\"col-md-6\">\n        <div *ngFor=\"let componente of formulario.get('componentes').controls; index as i\">\n          <div class=\"card\" [formGroup]=\"componente\">\n            <div class=\"card-body\">\n              <h5 class=\"card-title\">Componente\n                <button class=\"btn\" (click)=\"removeComponente(i)\">Remover</button>\n              </h5>\n              <div class=\"form-row\">\n                <input type=\"text\" class=\"form-control\" id=\"nome\" formControlName=\"nome\" placeholder=\"Nome\">\n                <input type=\"number\" class=\"form-control col\" id=\"valor\" formControlName=\"valor\" placeholder=\"Valor\">\n                <input type=\"text\" class=\"form-control col\" id=\"unidade\" formControlName=\"unidade\" placeholder=\"Unidade\">\n              </div>\n            </div>\n          </div>\n        </div>\n      </div>\n    </div>\n      \n    <button class=\"btn\" (click)=\"addComponente()\" #scrollBottom>Novo componente</button>\n\n    </div>\n\n    <div style=\"text-align:center\">\n      <button type=\"submit\" class=\"btn btn-primary\">Finalizar</button>\n    </div>\n  \n    <router-outlet></router-outlet>\n  </div>\n\n  \n  <div style=\"margin-top: 20px\" *ngIf=\"formulario\" >\n    <div>Detalhes do form</div>\n    <pre>Form válido: {{ formulario.status }}</pre>\n    <!--pre>Form submetido: {{ form.submitted }}</pre -->\n    <pre>Valores: <br>{{ formulario.value | json }}</pre>\n  </div>\n</form>"
 
 /***/ }),
 
@@ -682,7 +731,6 @@ var CadastroRemedioComponent = /** @class */ (function (_super) {
         });
     };
     CadastroRemedioComponent.prototype.buildComponentes = function () {
-        //this.quantidades.push(new Quantidade("","",""));
         var values = this.quantidades.map(function (v) { return new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormGroup"]({
             nome: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](v.nome),
             unidade: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](v.unidade),
@@ -692,11 +740,10 @@ var CadastroRemedioComponent = /** @class */ (function (_super) {
     };
     CadastroRemedioComponent.prototype.submit = function () {
         var url = _models_url_enum__WEBPACK_IMPORTED_MODULE_4__["Url"].URL_BASE + _models_url_enum__WEBPACK_IMPORTED_MODULE_4__["Url"].CADASTRO_REMEDIO;
-        var remedio = new _models_remedio__WEBPACK_IMPORTED_MODULE_5__["Remedio"](this.formulario.value.nomeCompleto.nome, this.formulario.value.nomeCompleto.complemento, this.formulario.value.descricao, this.formulario.value.fabricante, this.formulario.value.cadastradoPor);
+        var remedio = new _models_remedio__WEBPACK_IMPORTED_MODULE_5__["Remedio"](this.formulario.value.nomeCompleto.nome, this.formulario.value.nomeCompleto.complemento, this.formulario.value.descricao, this.formulario.value.fabricante, this.formulario.value.cadastradoPor, this.formulario.value.componentes);
         this.http.post(url, remedio).subscribe(function (result) {
             console.log(result);
         }, function (error) { return console.log(error); });
-        console.log("Remedio:", this.formulario.value);
     };
     Object.defineProperty(CadastroRemedioComponent.prototype, "componentes", {
         get: function () { return this.formulario.get('componentes'); },
@@ -704,11 +751,10 @@ var CadastroRemedioComponent = /** @class */ (function (_super) {
         configurable: true
     });
     CadastroRemedioComponent.prototype.addComponente = function () {
-        //this.quantidades.push(new Quantidade("","",""))
         this.componentes.push(new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormGroup"]({
-            nome: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](""),
-            unidade: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](""),
-            valor: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]("")
+            nome: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]("", _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required),
+            unidade: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]("", _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required),
+            valor: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]("", _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required)
         }));
     };
     CadastroRemedioComponent.prototype.removeComponente = function (i) {
@@ -922,7 +968,6 @@ var FormBaseComponent = /** @class */ (function () {
     FormBaseComponent.prototype.verificaValidacoesForm = function (formGroup) {
         var _this = this;
         Object.keys(formGroup.controls).forEach(function (campo) {
-            console.log(campo);
             var controle = formGroup.get(campo);
             controle.markAsDirty();
             controle.markAsTouched();
@@ -1178,9 +1223,10 @@ var VerificaNomeService = /** @class */ (function () {
         this.http = http;
     }
     VerificaNomeService.prototype.verificarNome = function (nome, complemento) {
-        console.log(nome, complemento);
         return this.http.get(_models_url_enum__WEBPACK_IMPORTED_MODULE_2__["Url"].URL_BASE + _models_url_enum__WEBPACK_IMPORTED_MODULE_2__["Url"].TODOS_ELEMENTOS)
-            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["delay"])(2000), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(function (dados) { return dados.filter(function (v) { return v.name + v.complemento === nome + complemento; }); }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["tap"])(console.log), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(function (dados) { return dados.length > 0; }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["tap"])(console.log));
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["delay"])(2000), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(function (dados) { return dados.filter(function (v) { return v.name + v.complemento === nome + complemento; }); }), 
+        //tap(console.log),
+        Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(function (dados) { return dados.length > 0; }));
     };
     VerificaNomeService = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])({
@@ -1202,7 +1248,7 @@ var VerificaNomeService = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<form class=\"form-horizontal\" [formGroup]=\"formulario\" (ngSubmit)=\"onSubmit()\">\n  <div style=\"text-align:center\">\n    <h1>\n      {{ title }}\n    </h1>\n  </div>\n  \n  <div class=\"container\">\n\n    <div class=\"form-row\">\n      <div class=\"form-group col-md-6\" [ngClass]=\"aplicaCssErro('nome')\">\n        <label for=\"nome\">Nome</label>\n        <input type=\"text\" class=\"form-control\" id=\"nome\" formControlName=\"nome\">\n      </div>\n      <div class=\"form-group col-md-6\">\n        <label for=\"complemento\">Complemento</label>\n        <input type=\"text\" class=\"form-control\" id=\"complemento\" formControlName=\"complemento\">\n      </div>\n    </div>\n    <div class=\"form-group\">\n      <label for=\"descricao\">Descrição</label>\n      <textarea class=\"form-control\" id=\"descricao\" formControlName=\"descricao\" rows=\"3\"></textarea>\n    </div>\n    <div class=\"form-group\">\n      <label for=\"cadastradoPor\">Cadastrado por</label>\n      <input type=\"text\" class=\"form-control\" id=\"cadastradoPor\" formControlName=\"cadastradoPor\">\n    </div>\n\n    <button type=\"submit\" class=\"btn btn-primary\">Finalizar</button>\n  \n    <router-outlet></router-outlet>\n  </div>\n\n</form>"
+module.exports = "<form class=\"form-horizontal\" [formGroup]=\"formulario\" (ngSubmit)=\"onSubmit()\">\n  <div style=\"text-align:center\">\n    <h1>\n      {{ title }}\n    </h1>\n  </div>\n  \n  <div class=\"container\">\n\n    <div class=\"form-row\">\n      <div class=\"form-group col-md-6\" [ngClass]=\"aplicaCssErro('nome')\">\n        <label for=\"nome\">Nome</label>\n        <input type=\"text\" class=\"form-control\" id=\"nome\" formControlName=\"nome\">\n      </div>\n      <div class=\"form-group col-md-6\">\n        <label for=\"complemento\">Complemento</label>\n        <input type=\"text\" class=\"form-control\" id=\"complemento\" formControlName=\"complemento\">\n      </div>\n    </div>\n    <div class=\"form-group\">\n      <label for=\"descricao\">Descrição</label>\n      <textarea class=\"form-control\" id=\"descricao\" formControlName=\"descricao\" rows=\"3\"></textarea>\n    </div>\n    <div class=\"form-group\">\n      <label for=\"cadastradoPor\">Cadastrado por</label>\n      <input type=\"text\" class=\"form-control\" id=\"cadastradoPor\" formControlName=\"cadastradoPor\">\n    </div>\n\n    <div style=\"text-align:center\">\n      <button type=\"submit\" class=\"btn btn-primary\">Finalizar</button>\n    </div>\n  \n    <router-outlet></router-outlet>\n  </div>\n\n</form>"
 
 /***/ }),
 
@@ -1285,7 +1331,6 @@ var CadastroDoencaComponent = /** @class */ (function (_super) {
         this.http.post(url, doenca).subscribe(function (result) {
             console.log(result);
         }, function (error) { return console.log(error); });
-        console.log("Doenca:", this.formulario.value);
     };
     CadastroDoencaComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -1310,7 +1355,7 @@ var CadastroDoencaComponent = /** @class */ (function (_super) {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<form class=\"form-horizontal\" [formGroup]=\"formulario\" (ngSubmit)=\"onSubmit()\">\n  <div style=\"text-align:center\">\n    <h1>\n      {{ title }}\n    </h1>\n  </div>\n  \n  <div class=\"container\">\n\n    <div class=\"form-row\">\n      <div class=\"form-group col-md-6\" [ngClass]=\"aplicaCssErro('nome')\">\n        <label for=\"nome\">Nome</label>\n        <input type=\"text\" class=\"form-control\" id=\"nome\" formControlName=\"nome\">\n      </div>\n      <div class=\"form-group col-md-6\">\n        <label for=\"complemento\">Complemento</label>\n        <input type=\"text\" class=\"form-control\" id=\"complemento\" formControlName=\"complemento\">\n      </div>\n    </div>\n    <div class=\"form-group\">\n      <label for=\"descricao\">Descrição</label>\n      <textarea class=\"form-control\" id=\"descricao\" formControlName=\"descricao\" rows=\"3\"></textarea>\n    </div>\n    <div class=\"form-group\">\n      <label for=\"cadastradoPor\">Cadastrado por</label>\n      <input type=\"text\" class=\"form-control\" id=\"cadastradoPor\" formControlName=\"cadastradoPor\">\n    </div>\n\n    <button type=\"submit\" class=\"btn btn-primary\">Finalizar</button>\n  \n    <router-outlet></router-outlet>\n  </div>\n\n</form>"
+module.exports = "<form class=\"form-horizontal\" [formGroup]=\"formulario\" (ngSubmit)=\"onSubmit()\">\n  <div style=\"text-align:center\">\n    <h1>\n      {{ title }}\n    </h1>\n  </div>\n  \n  <div class=\"container\">\n\n    <div class=\"form-row\">\n      <div class=\"form-group col-md-6\" [ngClass]=\"aplicaCssErro('nome')\">\n        <label for=\"nome\">Nome</label>\n        <input type=\"text\" class=\"form-control\" id=\"nome\" formControlName=\"nome\">\n      </div>\n      <div class=\"form-group col-md-6\">\n        <label for=\"complemento\">Complemento</label>\n        <input type=\"text\" class=\"form-control\" id=\"complemento\" formControlName=\"complemento\">\n      </div>\n    </div>\n    <div class=\"form-group\">\n      <label for=\"descricao\">Descrição</label>\n      <textarea class=\"form-control\" id=\"descricao\" formControlName=\"descricao\" rows=\"3\"></textarea>\n    </div>\n    <div class=\"form-group\">\n      <label for=\"cadastradoPor\">Cadastrado por</label>\n      <input type=\"text\" class=\"form-control\" id=\"cadastradoPor\" formControlName=\"cadastradoPor\">\n    </div>\n\n    <div style=\"text-align:center\">\n      <button type=\"submit\" class=\"btn btn-primary\">Finalizar</button>\n    </div>\n  \n    <router-outlet></router-outlet>\n  </div>\n\n</form>"
 
 /***/ }),
 
@@ -1393,7 +1438,6 @@ var CadastroSintomaComponent = /** @class */ (function (_super) {
         this.http.post(url, sintoma).subscribe(function (result) {
             console.log(result);
         }, function (error) { return console.log(error); });
-        console.log("Sintoma:", this.formulario.value);
     };
     CadastroSintomaComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -1661,12 +1705,14 @@ Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_1__["platformB
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Alimento", function() { return Alimento; });
 var Alimento = /** @class */ (function () {
-    function Alimento(nome, complemento, descricao, fabricante, cadastradoPor) {
+    function Alimento(nome, complemento, descricao, fabricante, cadastradoPor, componentes, valNutricionais) {
         this.nome = nome;
         this.complemento = complemento;
         this.descricao = descricao;
         this.fabricante = fabricante;
         this.cadastradoPor = cadastradoPor;
+        this.componentes = componentes;
+        this.valNutricionais = valNutricionais;
     }
     return Alimento;
 }());
@@ -1756,12 +1802,13 @@ var Doenca = /** @class */ (function () {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Remedio", function() { return Remedio; });
 var Remedio = /** @class */ (function () {
-    function Remedio(nome, complemento, descricao, fabricante, cadastradoPor) {
+    function Remedio(nome, complemento, descricao, fabricante, cadastradoPor, componentes) {
         this.nome = nome;
         this.complemento = complemento;
         this.descricao = descricao;
         this.fabricante = fabricante;
         this.cadastradoPor = cadastradoPor;
+        this.componentes = componentes;
     }
     return Remedio;
 }());

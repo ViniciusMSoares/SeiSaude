@@ -17,6 +17,7 @@ export class CadastroComportamentoComponent extends FormBaseComponent implements
 
   public title = 'Cadastro de Comportamento';
   public comportamento = {} as Comportamento;
+  private comportamentos = [] as Comportamento[];
   public success: boolean;
   public nomeIndisponivel: boolean;
 
@@ -60,11 +61,6 @@ export class CadastroComportamentoComponent extends FormBaseComponent implements
     );
   }
 
-  /*validarNome(formControl: FormControl) {
-    return this.verificaNomeService.verificarNome(formControl.value)
-      .pipe(map(nomeExiste => nomeExiste ? { nomeInvalido: true } : null));
-  }*/
-
   nomeComplemento: AsyncValidatorFn = (control: FormGroup): Promise<ValidationErrors | null> | Observable<ValidationErrors | null> => {
     const nome = control.get('nome');
     const complemento = control.get('complemento');
@@ -76,7 +72,15 @@ export class CadastroComportamentoComponent extends FormBaseComponent implements
   testaHTTP() {
     let url = Url.URL_BASE + Url.TODOS_ELEMENTOS;
     this.http.get(url).subscribe(result => {
-        console.log(result);
+        let resultList = result as any[];
+        //console.log(result);
+        this.comportamentos = resultList.map(v => new Comportamento(
+          v.name,
+          v.complemento,
+          v.descricao,
+          v.cadastradoPor
+        ));
+        console.log(this.comportamentos);
       },
       (error: any) => alert('erro')
     );

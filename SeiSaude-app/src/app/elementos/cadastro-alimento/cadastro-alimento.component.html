@@ -36,14 +36,16 @@
       <div class="form-row">
         <div class="form-group col-md-6" formArrayName="componentes">
           <div *ngFor="let componente of formulario.get('componentes').controls; index as i">
-            <div class="card" style="width: 18rem;" [formGroup]="componente">
+            <div class="card" [formGroup]="componente">
               <div class="card-body">
                 <h5 class="card-title">Componente
                   <button class="btn" (click)="removeComponente(i)">Remover</button>
                 </h5>
-                <input type="text" class="form-control" id="nome" formControlName="nome" placeholder="Nome">
-                <input type="number" class="form-control" id="valor" formControlName="valor" placeholder="Valor">
-                <input type="text" class="form-control" id="unidade" formControlName="unidade" placeholder="Unidade">
+                <div class="form-row">
+                  <input type="text" class="form-control" id="nome" formControlName="nome" placeholder="Nome">
+                  <input type="number" class="form-control col" id="valor" formControlName="valor" placeholder="Valor">
+                  <input type="text" class="form-control col" id="unidade" formControlName="unidade" placeholder="Unidade">
+                </div>
               </div>
             </div>
           </div>
@@ -52,15 +54,22 @@
 
         <div class="form-group col-md-6" formArrayName="valNutricionais">
           <div *ngFor="let val of formulario.get('valNutricionais').controls; index as i">
-            <div class="card" style="width: 18rem;" [formGroup]="val">
+            <div class="card" [formGroup]="val">
               <div class="card-body">
                 <h5 class="card-title">Valor Nutricional
                   <button class="btn" (click)="removeValNutricional(i)">Remover</button>
                 </h5>
-                <input type="text" class="form-control" id="nome" formControlName="nome" placeholder="Nome">
-                <input type="number" class="form-control" id="quantidade" formControlName="quantidade" placeholder="quantidade">
-                <input type="text" class="form-control" id="unidade" formControlName="unidade" placeholder="Unidade">
-                <input type="number" class="form-control" id="valorDiario" formControlName="valorDiario" placeholder="valorDiario">
+                <div class="form-row">
+                  <input type="text" class="form-control" id="nome" formControlName="nome" placeholder="Nome">
+                  <input type="number" class="form-control col-md-6" id="quantidade" formControlName="quantidade" placeholder="Quantidade">
+                  <input type="text" class="form-control col-md-6" id="unidade" formControlName="unidade" placeholder="Unidade">
+                  <div class="input-group mb-3">
+                    <input type="number" class="form-control" id="valorDiario" formControlName="valorDiario" placeholder="Valor diario">
+                    <div class="input-group-append">
+                      <span class="input-group-text">%</span>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

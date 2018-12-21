@@ -32,16 +32,20 @@
     </div>
 
 
-    <div formArrayName="componentes">
-      <div *ngFor="let componente of formulario.get('componentes').controls; index as i">
-        <div class="card" style="width: 18rem;" [formGroup]="componente">
-          <div class="card-body">
-            <h5 class="card-title">Componente
-              <button class="btn" (click)="removeComponente(i)">Remover</button>
-            </h5>
-            <input type="text" class="form-control" id="nome" formControlName="nome" placeholder="Nome">
-            <input type="text" class="form-control" id="unidade" formControlName="unidade" placeholder="Unidade">
-            <input type="number" class="form-control" id="valor" formControlName="valor" placeholder="Valor">
+    <div class="row" formArrayName="componentes">
+      <div class="col-md-6">
+        <div *ngFor="let componente of formulario.get('componentes').controls; index as i">
+          <div class="card" [formGroup]="componente">
+            <div class="card-body">
+              <h5 class="card-title">Componente
+                <button class="btn" (click)="removeComponente(i)">Remover</button>
+              </h5>
+              <div class="form-row">
+                <input type="text" class="form-control" id="nome" formControlName="nome" placeholder="Nome">
+                <input type="number" class="form-control col" id="valor" formControlName="valor" placeholder="Valor">
+                <input type="text" class="form-control col" id="unidade" formControlName="unidade" placeholder="Unidade">
+              </div>
+            </div>
           </div>
         </div>
       </div>
