@@ -61,7 +61,7 @@ public class SituacaoController {
 	
 	@GetMapping("/situacao")
 	public ResponseEntity<ArrayList<Situacao>> getSituacaoByName(@RequestParam(value = "nome") String name) { 
-		return new ResponseEntity<ArrayList<Situacao>>(situacaoService.findByName(name), HttpStatus.FOUND);
+		return new ResponseEntity<ArrayList<Situacao>>(situacaoService.findByName(name), HttpStatus.OK);
 	}
 	
 	@RequestMapping(value = "/all_sintoma", method = RequestMethod.GET)

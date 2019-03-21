@@ -9,6 +9,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { CadastroRemedioComponent } from './cadastro-remedio/cadastro-remedio.component';
 import { CadastroComponenteComponent } from './cadastro-componente/cadastro-componente.component';
+import { ConsultaComponenteComponent } from './consulta-componente/consulta-componente.component';
+import { ConsultaElementoComponent } from './consulta-elemento/consulta-elemento.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +18,9 @@ import { CadastroComponenteComponent } from './cadastro-componente/cadastro-comp
     CadastroComportamentoComponent,
     CadastroAlimentoComponent,
     CadastroRemedioComponent,
-    CadastroComponenteComponent
+    CadastroComponenteComponent,
+    ConsultaComponenteComponent,
+    ConsultaElementoComponent
   ],
   imports: [
     CommonModule,

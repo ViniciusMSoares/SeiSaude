@@ -7,6 +7,9 @@ import { CadastroDoencaComponent } from './situacoes/cadastro-doenca/cadastro-do
 import { CadastroRemedioComponent } from './elementos/cadastro-remedio/cadastro-remedio.component';
 import { CadastroComponenteComponent } from './elementos/cadastro-componente/cadastro-componente.component';
 import { HomePageComponent } from './home-page/home-page.component';
+import { ConsultaComponenteComponent } from './elementos/consulta-componente/consulta-componente.component';
+import { ConsultaElementoComponent } from './elementos/consulta-elemento/consulta-elemento.component';
+import { ConsultaSituacaoComponent } from './situacoes/consulta-situacao/consulta-situacao.component';
 
 const routes: Routes = [
   { path: 'cadastro-alimento', component: CadastroAlimentoComponent },
@@ -15,6 +18,10 @@ const routes: Routes = [
   { path: 'cadastro-sintoma', component: CadastroSintomaComponent },
   { path: 'cadastro-doenca', component: CadastroDoencaComponent },
   { path: 'cadastro-componente', component: CadastroComponenteComponent },
+
+  { path: 'consulta-elemento', component: ConsultaElementoComponent },
+  { path: 'consulta-situacao', component: ConsultaSituacaoComponent },
+  { path: 'consulta-componente', component: ConsultaComponenteComponent },
 
   { path: '', component: HomePageComponent }
 ];

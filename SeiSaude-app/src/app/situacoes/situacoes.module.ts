@@ -8,12 +8,14 @@ import { CadastroSintomaComponent } from './cadastro-sintoma/cadastro-sintoma.co
 import { CadastroDoencaComponent } from './cadastro-doenca/cadastro-doenca.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { ConsultaSituacaoComponent } from './consulta-situacao/consulta-situacao.component';
 
 @NgModule({
   declarations: [SintomasComponent,
                  DoencasComponent,
                  CadastroSintomaComponent,
-                 CadastroDoencaComponent],
+                 CadastroDoencaComponent,
+                 ConsultaSituacaoComponent],
   imports: [
     CommonModule,
     AppRoutingModule,
