@@ -42,12 +42,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _elementos_cadastro_remedio_cadastro_remedio_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./elementos/cadastro-remedio/cadastro-remedio.component */ "./src/app/elementos/cadastro-remedio/cadastro-remedio.component.ts");
 /* harmony import */ var _elementos_cadastro_componente_cadastro_componente_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./elementos/cadastro-componente/cadastro-componente.component */ "./src/app/elementos/cadastro-componente/cadastro-componente.component.ts");
 /* harmony import */ var _home_page_home_page_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./home-page/home-page.component */ "./src/app/home-page/home-page.component.ts");
+/* harmony import */ var _elementos_consulta_componente_consulta_componente_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./elementos/consulta-componente/consulta-componente.component */ "./src/app/elementos/consulta-componente/consulta-componente.component.ts");
+/* harmony import */ var _elementos_consulta_elemento_consulta_elemento_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./elementos/consulta-elemento/consulta-elemento.component */ "./src/app/elementos/consulta-elemento/consulta-elemento.component.ts");
+/* harmony import */ var _situacoes_consulta_situacao_consulta_situacao_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./situacoes/consulta-situacao/consulta-situacao.component */ "./src/app/situacoes/consulta-situacao/consulta-situacao.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
+
+
 
 
 
@@ -64,6 +70,9 @@ var routes = [
     { path: 'cadastro-sintoma', component: _situacoes_cadastro_sintoma_cadastro_sintoma_component__WEBPACK_IMPORTED_MODULE_4__["CadastroSintomaComponent"] },
     { path: 'cadastro-doenca', component: _situacoes_cadastro_doenca_cadastro_doenca_component__WEBPACK_IMPORTED_MODULE_5__["CadastroDoencaComponent"] },
     { path: 'cadastro-componente', component: _elementos_cadastro_componente_cadastro_componente_component__WEBPACK_IMPORTED_MODULE_7__["CadastroComponenteComponent"] },
+    { path: 'consulta-elemento', component: _elementos_consulta_elemento_consulta_elemento_component__WEBPACK_IMPORTED_MODULE_10__["ConsultaElementoComponent"] },
+    { path: 'consulta-situacao', component: _situacoes_consulta_situacao_consulta_situacao_component__WEBPACK_IMPORTED_MODULE_11__["ConsultaSituacaoComponent"] },
+    { path: 'consulta-componente', component: _elementos_consulta_componente_consulta_componente_component__WEBPACK_IMPORTED_MODULE_9__["ConsultaComponenteComponent"] },
     { path: '', component: _home_page_home_page_component__WEBPACK_IMPORTED_MODULE_8__["HomePageComponent"] }
 ];
 var AppRoutingModule = /** @class */ (function () {
@@ -841,6 +850,226 @@ var ComportamentosComponent = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./src/app/elementos/consulta-componente/consulta-componente.component.html":
+/*!**********************************************************************************!*\
+  !*** ./src/app/elementos/consulta-componente/consulta-componente.component.html ***!
+  \**********************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<form class=\"form-horizontal\" [formGroup]=\"formulario\" (ngSubmit)=\"onSubmit()\">\n  <div style=\"text-align:center\">\n    <h1>\n      {{ title }}\n    </h1>\n  </div>\n  \n  <div class=\"container\">\n\n    <div class=\"form-row\">\n      <div class=\"form-group col-md-3\"></div>\n      <div class=\"form-group col-md-6\">\n        <label for=\"nome\"></label>\n        <input type=\"text\" class=\"form-control\" id=\"nome\" formControlName=\"nome\">\n      </div>\n    </div>\n\n    <div style=\"text-align:center\">\n      <button type=\"submit\" class=\"btn btn-primary\">Pesquisar</button>\n    </div>\n\n    <div class=\"row\">\n      <div class=\"list-group col-md-12\">\n        <div *ngFor=\"let componente of componentes; index as i\">\n          <div class=\"list-group-item\">\n            {{ componente.nome }}\n            {{ componente.complemento }}\n          </div>\n        </div>\n      </div>\n    </div>\n  \n    <router-outlet></router-outlet>\n  </div>\n\n</form>"
+
+/***/ }),
+
+/***/ "./src/app/elementos/consulta-componente/consulta-componente.component.scss":
+/*!**********************************************************************************!*\
+  !*** ./src/app/elementos/consulta-componente/consulta-componente.component.scss ***!
+  \**********************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2VsZW1lbnRvcy9jb25zdWx0YS1jb21wb25lbnRlL2NvbnN1bHRhLWNvbXBvbmVudGUuY29tcG9uZW50LnNjc3MifQ== */"
+
+/***/ }),
+
+/***/ "./src/app/elementos/consulta-componente/consulta-componente.component.ts":
+/*!********************************************************************************!*\
+  !*** ./src/app/elementos/consulta-componente/consulta-componente.component.ts ***!
+  \********************************************************************************/
+/*! exports provided: ConsultaComponenteComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ConsultaComponenteComponent", function() { return ConsultaComponenteComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _models_componente__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../models/componente */ "./src/models/componente.ts");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var _models_url_enum__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../models/url.enum */ "./src/models/url.enum.ts");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
+/* harmony import */ var _form_base_form_base_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../form-base/form-base.component */ "./src/app/form-base/form-base.component.ts");
+var __extends = (undefined && undefined.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    }
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+
+var ConsultaComponenteComponent = /** @class */ (function (_super) {
+    __extends(ConsultaComponenteComponent, _super);
+    function ConsultaComponenteComponent(formBuilder, http) {
+        var _this = _super.call(this) || this;
+        _this.formBuilder = formBuilder;
+        _this.http = http;
+        _this.title = 'Consulta de Componentes';
+        _this.componentes = [];
+        return _this;
+    }
+    ConsultaComponenteComponent.prototype.ngOnInit = function () {
+        this.formulario = this.formBuilder.group({
+            nome: [null]
+        });
+    };
+    ConsultaComponenteComponent.prototype.submit = function () {
+        var _this = this;
+        var url = _models_url_enum__WEBPACK_IMPORTED_MODULE_3__["Url"].URL_BASE + _models_url_enum__WEBPACK_IMPORTED_MODULE_3__["Url"].CADASTRO_COMPONENTE;
+        var termo = this.formulario.get("nome").value;
+        var options = termo ?
+            { params: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpParams"]().set('nome', termo) } : {};
+        this.http.get(url, options).subscribe(function (result) {
+            var resultList = result;
+            console.log(result);
+            _this.componentes = resultList.map(function (v) { return new _models_componente__WEBPACK_IMPORTED_MODULE_1__["Componente"](v.nome, v.complemento); });
+            console.log(_this.componentes);
+        }, function (error) { return alert('erro'); });
+    };
+    ConsultaComponenteComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'app-consulta-componente',
+            template: __webpack_require__(/*! ./consulta-componente.component.html */ "./src/app/elementos/consulta-componente/consulta-componente.component.html"),
+            styles: [__webpack_require__(/*! ./consulta-componente.component.scss */ "./src/app/elementos/consulta-componente/consulta-componente.component.scss")]
+        }),
+        __metadata("design:paramtypes", [_angular_forms__WEBPACK_IMPORTED_MODULE_4__["FormBuilder"],
+            _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"]])
+    ], ConsultaComponenteComponent);
+    return ConsultaComponenteComponent;
+}(_form_base_form_base_component__WEBPACK_IMPORTED_MODULE_5__["FormBaseComponent"]));
+
+
+
+/***/ }),
+
+/***/ "./src/app/elementos/consulta-elemento/consulta-elemento.component.html":
+/*!******************************************************************************!*\
+  !*** ./src/app/elementos/consulta-elemento/consulta-elemento.component.html ***!
+  \******************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<form class=\"form-horizontal\" [formGroup]=\"formulario\" (ngSubmit)=\"onSubmit()\">\n  <div style=\"text-align:center\">\n    <h1>\n      {{ title }}\n    </h1>\n  </div>\n  \n  <div class=\"container\">\n\n    <div class=\"form-row\">\n      <div class=\"form-group col-md-3\"></div>\n      <div class=\"form-group col-md-6\">\n        <label for=\"nome\"></label>\n        <input type=\"text\" class=\"form-control\" id=\"nome\" formControlName=\"nome\">\n      </div>\n    </div>\n\n    <div style=\"text-align:center\">\n      <button type=\"submit\" class=\"btn btn-primary\">Pesquisar</button>\n    </div>\n\n    <div class=\"row\">\n      <div class=\"list-group col-md-12\">\n        <div *ngFor=\"let elemento of elementos; index as i\">\n          <div class=\"list-group-item\">\n            {{ elemento.nome }}\n            {{ elemento.complemento }} - {{ elemento.descricao }}\n          </div>\n        </div>\n      </div>\n    </div>\n  \n    <router-outlet></router-outlet>\n  </div>\n\n</form>"
+
+/***/ }),
+
+/***/ "./src/app/elementos/consulta-elemento/consulta-elemento.component.scss":
+/*!******************************************************************************!*\
+  !*** ./src/app/elementos/consulta-elemento/consulta-elemento.component.scss ***!
+  \******************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2VsZW1lbnRvcy9jb25zdWx0YS1lbGVtZW50by9jb25zdWx0YS1lbGVtZW50by5jb21wb25lbnQuc2NzcyJ9 */"
+
+/***/ }),
+
+/***/ "./src/app/elementos/consulta-elemento/consulta-elemento.component.ts":
+/*!****************************************************************************!*\
+  !*** ./src/app/elementos/consulta-elemento/consulta-elemento.component.ts ***!
+  \****************************************************************************/
+/*! exports provided: ConsultaElementoComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ConsultaElementoComponent", function() { return ConsultaElementoComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _form_base_form_base_component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../form-base/form-base.component */ "./src/app/form-base/form-base.component.ts");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var _models_url_enum__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../models/url.enum */ "./src/models/url.enum.ts");
+/* harmony import */ var _models_elemento__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../models/elemento */ "./src/models/elemento.ts");
+var __extends = (undefined && undefined.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    }
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+
+var ConsultaElementoComponent = /** @class */ (function (_super) {
+    __extends(ConsultaElementoComponent, _super);
+    function ConsultaElementoComponent(formBuilder, http) {
+        var _this = _super.call(this) || this;
+        _this.formBuilder = formBuilder;
+        _this.http = http;
+        _this.title = 'Consulta de Elementos';
+        _this.elementos = [];
+        return _this;
+    }
+    ConsultaElementoComponent.prototype.ngOnInit = function () {
+        this.formulario = this.formBuilder.group({
+            nome: [null]
+        });
+    };
+    ConsultaElementoComponent.prototype.submit = function () {
+        var _this = this;
+        var url = _models_url_enum__WEBPACK_IMPORTED_MODULE_4__["Url"].URL_BASE + _models_url_enum__WEBPACK_IMPORTED_MODULE_4__["Url"].ELEMENTO;
+        var termo = this.formulario.get("nome").value;
+        var options = termo ?
+            { params: new _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpParams"]().set('nome', termo) } : {};
+        this.http.get(url, options).subscribe(function (result) {
+            var resultList = result;
+            //console.log(result);
+            _this.elementos = resultList.map(function (v) { return new _models_elemento__WEBPACK_IMPORTED_MODULE_5__["Elemento"](v.name, v.complemento, v.descricao, v.cadastradoPor); });
+            console.log(_this.elementos);
+        }, function (error) { return alert('erro'); });
+    };
+    ConsultaElementoComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'app-consulta-elemento',
+            template: __webpack_require__(/*! ./consulta-elemento.component.html */ "./src/app/elementos/consulta-elemento/consulta-elemento.component.html"),
+            styles: [__webpack_require__(/*! ./consulta-elemento.component.scss */ "./src/app/elementos/consulta-elemento/consulta-elemento.component.scss")]
+        }),
+        __metadata("design:paramtypes", [_angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormBuilder"],
+            _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpClient"]])
+    ], ConsultaElementoComponent);
+    return ConsultaElementoComponent;
+}(_form_base_form_base_component__WEBPACK_IMPORTED_MODULE_1__["FormBaseComponent"]));
+
+
+
+/***/ }),
+
 /***/ "./src/app/elementos/elementos.module.ts":
 /*!***********************************************!*\
   !*** ./src/app/elementos/elementos.module.ts ***!
@@ -861,12 +1090,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
 /* harmony import */ var _cadastro_remedio_cadastro_remedio_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./cadastro-remedio/cadastro-remedio.component */ "./src/app/elementos/cadastro-remedio/cadastro-remedio.component.ts");
 /* harmony import */ var _cadastro_componente_cadastro_componente_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./cadastro-componente/cadastro-componente.component */ "./src/app/elementos/cadastro-componente/cadastro-componente.component.ts");
+/* harmony import */ var _consulta_componente_consulta_componente_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./consulta-componente/consulta-componente.component */ "./src/app/elementos/consulta-componente/consulta-componente.component.ts");
+/* harmony import */ var _consulta_elemento_consulta_elemento_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./consulta-elemento/consulta-elemento.component */ "./src/app/elementos/consulta-elemento/consulta-elemento.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
+
 
 
 
@@ -887,7 +1120,9 @@ var ElementosModule = /** @class */ (function () {
                 _cadastro_comportamento_cadastro_comportamento_component__WEBPACK_IMPORTED_MODULE_3__["CadastroComportamentoComponent"],
                 _cadastro_alimento_cadastro_alimento_component__WEBPACK_IMPORTED_MODULE_5__["CadastroAlimentoComponent"],
                 _cadastro_remedio_cadastro_remedio_component__WEBPACK_IMPORTED_MODULE_8__["CadastroRemedioComponent"],
-                _cadastro_componente_cadastro_componente_component__WEBPACK_IMPORTED_MODULE_9__["CadastroComponenteComponent"]
+                _cadastro_componente_cadastro_componente_component__WEBPACK_IMPORTED_MODULE_9__["CadastroComponenteComponent"],
+                _consulta_componente_consulta_componente_component__WEBPACK_IMPORTED_MODULE_10__["ConsultaComponenteComponent"],
+                _consulta_elemento_consulta_elemento_component__WEBPACK_IMPORTED_MODULE_11__["ConsultaElementoComponent"]
             ],
             imports: [
                 _angular_common__WEBPACK_IMPORTED_MODULE_1__["CommonModule"],
@@ -1167,10 +1402,9 @@ var NavigationComponent = /** @class */ (function () {
             { tipo: "Doença", path: "cadastro-doenca" },
             { tipo: "Indicação", path: "" },
             { tipo: "Paciente", path: "" }];
-        this.consultas = [{ tipo: "Elemento", path: "" },
-            { tipo: "Sintoma", path: "" },
-            { tipo: "Doença", path: "" },
-            { tipo: "Componente", path: "" }];
+        this.consultas = [{ tipo: "Elemento", path: "consulta-elemento" },
+            { tipo: "Sintoma/Doença", path: "consulta-situacao" },
+            { tipo: "Componente", path: "consulta-componente" }];
         this.tratamentos = [{ tipo: "Novo", path: "" },
             { tipo: "Em andamento", path: "" }];
     }
@@ -1455,6 +1689,119 @@ var CadastroSintomaComponent = /** @class */ (function (_super) {
 
 /***/ }),
 
+/***/ "./src/app/situacoes/consulta-situacao/consulta-situacao.component.html":
+/*!******************************************************************************!*\
+  !*** ./src/app/situacoes/consulta-situacao/consulta-situacao.component.html ***!
+  \******************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<form class=\"form-horizontal\" [formGroup]=\"formulario\" (ngSubmit)=\"onSubmit()\">\n  <div style=\"text-align:center\">\n    <h1>\n      {{ title }}\n    </h1>\n  </div>\n  \n  <div class=\"container\">\n\n    <div class=\"form-row\">\n      <div class=\"form-group col-md-3\"></div>\n      <div class=\"form-group col-md-6\">\n        <label for=\"nome\"></label>\n        <input type=\"text\" class=\"form-control\" id=\"nome\" formControlName=\"nome\">\n      </div>\n    </div>\n\n    <div style=\"text-align:center\">\n      <button type=\"submit\" class=\"btn btn-primary\">Pesquisar</button>\n    </div>\n\n    <div class=\"row\">\n      <div class=\"list-group col-md-12\">\n        <div *ngFor=\"let situacao of situacoes; index as i\">\n          <div class=\"list-group-item\">\n            {{ situacao.nome }}\n            {{ situacao.complemento }} - {{ situacao.descricao }}\n          </div>\n        </div>\n      </div>\n    </div>\n  \n    <router-outlet></router-outlet>\n  </div>\n\n</form>"
+
+/***/ }),
+
+/***/ "./src/app/situacoes/consulta-situacao/consulta-situacao.component.scss":
+/*!******************************************************************************!*\
+  !*** ./src/app/situacoes/consulta-situacao/consulta-situacao.component.scss ***!
+  \******************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL3NpdHVhY29lcy9jb25zdWx0YS1zaXR1YWNhby9jb25zdWx0YS1zaXR1YWNhby5jb21wb25lbnQuc2NzcyJ9 */"
+
+/***/ }),
+
+/***/ "./src/app/situacoes/consulta-situacao/consulta-situacao.component.ts":
+/*!****************************************************************************!*\
+  !*** ./src/app/situacoes/consulta-situacao/consulta-situacao.component.ts ***!
+  \****************************************************************************/
+/*! exports provided: ConsultaSituacaoComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ConsultaSituacaoComponent", function() { return ConsultaSituacaoComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
+/* harmony import */ var _form_base_form_base_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../form-base/form-base.component */ "./src/app/form-base/form-base.component.ts");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var _models_situacao__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../models/situacao */ "./src/models/situacao.ts");
+/* harmony import */ var _models_url_enum__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../models/url.enum */ "./src/models/url.enum.ts");
+var __extends = (undefined && undefined.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    }
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+
+var ConsultaSituacaoComponent = /** @class */ (function (_super) {
+    __extends(ConsultaSituacaoComponent, _super);
+    function ConsultaSituacaoComponent(formBuilder, http) {
+        var _this = _super.call(this) || this;
+        _this.formBuilder = formBuilder;
+        _this.http = http;
+        _this.title = 'Consulta de Sintomas e Doenças';
+        _this.situacoes = [];
+        return _this;
+    }
+    ConsultaSituacaoComponent.prototype.ngOnInit = function () {
+        this.formulario = this.formBuilder.group({
+            nome: [null]
+        });
+    };
+    ConsultaSituacaoComponent.prototype.submit = function () {
+        var _this = this;
+        var url = _models_url_enum__WEBPACK_IMPORTED_MODULE_5__["Url"].URL_BASE + _models_url_enum__WEBPACK_IMPORTED_MODULE_5__["Url"].SITUACAO;
+        var termo = this.formulario.get("nome").value;
+        var options = termo ?
+            { params: new _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpParams"]().set('nome', termo) } : {};
+        this.http.get(url, options).subscribe(function (result) {
+            var resultList = result;
+            console.log(result);
+            _this.situacoes = resultList.map(function (v) { return new _models_situacao__WEBPACK_IMPORTED_MODULE_4__["Situacao"](v.name, v.complemento, v.descricao, v.cadastradoPor); });
+            console.log(_this.situacoes);
+        }, function (error) {
+            alert('erro');
+            console.log(error);
+        });
+    };
+    ConsultaSituacaoComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'app-consulta-situacao',
+            template: __webpack_require__(/*! ./consulta-situacao.component.html */ "./src/app/situacoes/consulta-situacao/consulta-situacao.component.html"),
+            styles: [__webpack_require__(/*! ./consulta-situacao.component.scss */ "./src/app/situacoes/consulta-situacao/consulta-situacao.component.scss")]
+        }),
+        __metadata("design:paramtypes", [_angular_forms__WEBPACK_IMPORTED_MODULE_1__["FormBuilder"],
+            _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpClient"]])
+    ], ConsultaSituacaoComponent);
+    return ConsultaSituacaoComponent;
+}(_form_base_form_base_component__WEBPACK_IMPORTED_MODULE_2__["FormBaseComponent"]));
+
+
+
+/***/ }),
+
 /***/ "./src/app/situacoes/doencas/doencas.component.html":
 /*!**********************************************************!*\
   !*** ./src/app/situacoes/doencas/doencas.component.html ***!
@@ -1600,12 +1947,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _cadastro_doenca_cadastro_doenca_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./cadastro-doenca/cadastro-doenca.component */ "./src/app/situacoes/cadastro-doenca/cadastro-doenca.component.ts");
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var _consulta_situacao_consulta_situacao_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./consulta-situacao/consulta-situacao.component */ "./src/app/situacoes/consulta-situacao/consulta-situacao.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -1623,7 +1972,8 @@ var SituacoesModule = /** @class */ (function () {
             declarations: [_sintomas_sintomas_component__WEBPACK_IMPORTED_MODULE_3__["SintomasComponent"],
                 _doencas_doencas_component__WEBPACK_IMPORTED_MODULE_4__["DoencasComponent"],
                 _cadastro_sintoma_cadastro_sintoma_component__WEBPACK_IMPORTED_MODULE_5__["CadastroSintomaComponent"],
-                _cadastro_doenca_cadastro_doenca_component__WEBPACK_IMPORTED_MODULE_6__["CadastroDoencaComponent"]],
+                _cadastro_doenca_cadastro_doenca_component__WEBPACK_IMPORTED_MODULE_6__["CadastroDoencaComponent"],
+                _consulta_situacao_consulta_situacao_component__WEBPACK_IMPORTED_MODULE_9__["ConsultaSituacaoComponent"]],
             imports: [
                 _angular_common__WEBPACK_IMPORTED_MODULE_1__["CommonModule"],
                 _app_routing_module__WEBPACK_IMPORTED_MODULE_2__["AppRoutingModule"],
@@ -1791,6 +2141,30 @@ var Doenca = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./src/models/elemento.ts":
+/*!********************************!*\
+  !*** ./src/models/elemento.ts ***!
+  \********************************/
+/*! exports provided: Elemento */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Elemento", function() { return Elemento; });
+var Elemento = /** @class */ (function () {
+    function Elemento(nome, complemento, descricao, cadastradoPor) {
+        this.nome = nome;
+        this.complemento = complemento;
+        this.descricao = descricao;
+        this.cadastradoPor = cadastradoPor;
+    }
+    return Elemento;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/models/remedio.ts":
 /*!*******************************!*\
   !*** ./src/models/remedio.ts ***!
@@ -1841,6 +2215,30 @@ var Sintoma = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./src/models/situacao.ts":
+/*!********************************!*\
+  !*** ./src/models/situacao.ts ***!
+  \********************************/
+/*! exports provided: Situacao */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Situacao", function() { return Situacao; });
+var Situacao = /** @class */ (function () {
+    function Situacao(nome, complemento, descricao, cadastradoPor) {
+        this.nome = nome;
+        this.complemento = complemento;
+        this.descricao = descricao;
+        this.cadastradoPor = cadastradoPor;
+    }
+    return Situacao;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/models/url.enum.ts":
 /*!********************************!*\
   !*** ./src/models/url.enum.ts ***!
@@ -1853,8 +2251,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Url", function() { return Url; });
 var Url;
 (function (Url) {
-    //URL_BASE = "http://localhost:8080",
-    Url["URL_BASE"] = "https://sei-saude.herokuapp.com";
+    Url["URL_BASE"] = "http://localhost:8080";
+    //URL_BASE = "https://sei-saude.herokuapp.com",
     Url["ELEMENTO"] = "/elemento";
     Url["TODOS_ELEMENTOS"] = "/all_elemento";
     Url["CADASTRO_COMPORTAMENTO"] = "/elemento/comportamento";
