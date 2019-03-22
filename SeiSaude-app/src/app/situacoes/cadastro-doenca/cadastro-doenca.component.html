@@ -7,8 +7,8 @@
   
   <div class="container">
 
-    <div class="form-row">
-      <div class="form-group col-md-6" [ngClass]="aplicaCssErro('nome')">
+    <div class="form-row" formGroupName="nomeCompleto">
+      <div class="form-group col-md-6" [ngClass]="aplicaCssErro('nomeCompleto.nome')">
         <label for="nome">Nome</label>
         <input type="text" class="form-control" id="nome" formControlName="nome">
       </div>
@@ -33,4 +33,10 @@
     <router-outlet></router-outlet>
   </div>
 
+  <div style="margin-top: 20px" *ngIf="formulario" >
+    <div>Detalhes do form</div>
+    <pre>Form válido: {{ formulario.status }}</pre>
+    <!--pre>Form submetido: {{ form.submitted }}</pre -->
+    <pre>Valores: <br>{{ formulario.value | json }}</pre>
+  </div>
 </form>
