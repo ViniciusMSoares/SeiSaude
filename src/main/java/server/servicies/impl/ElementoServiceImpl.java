@@ -296,6 +296,10 @@ public class ElementoServiceImpl implements ElementoService {
 		}
 		return null;
 	}
-	
-	
+
+	@Override
+	public List<Componente> findAllComponente() {
+		return componenteRepository.findAll();
+	}
+
 }

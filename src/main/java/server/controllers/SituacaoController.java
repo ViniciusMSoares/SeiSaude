@@ -74,4 +74,9 @@ public class SituacaoController {
 		return new ResponseEntity<Situacao>(situacaoService.findOneByName(name), HttpStatus.OK);
 	}
 	
+	@RequestMapping(value = "/all_situacao", method = RequestMethod.GET)
+	public ResponseEntity<ArrayList<Situacao>> getAllSituacao() { 
+		return new ResponseEntity<ArrayList<Situacao>>((ArrayList<Situacao>) situacaoService.findAllSituacao(), HttpStatus.OK);
+	}
+	
 }

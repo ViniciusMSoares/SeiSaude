@@ -31,7 +31,7 @@ export class CadastroComponenteComponent extends FormBaseComponent implements On
       nomeCompleto: this.formBuilder.group({
         nome: ["", Validators.required],
         complemento: [""]
-      }, //{ asyncValidator: this.nomeComplemento.bind(this) }
+      }, { asyncValidator: this.nomeComplemento.bind(this) }
     ),
     });
   }
@@ -54,7 +54,7 @@ export class CadastroComponenteComponent extends FormBaseComponent implements On
     const nome = control.get('nome');
     const complemento = control.get('complemento');
   
-    return this.verificaNomeService.verificarNome(nome.value, complemento.value)
+    return this.verificaNomeService.verificarNomeComponente(nome.value, complemento.value)
       .pipe(map(nomeExiste => nomeExiste ? { nomeInvalido: true } : null));
   };
 

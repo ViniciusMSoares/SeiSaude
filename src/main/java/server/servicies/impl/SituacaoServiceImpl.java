@@ -1,6 +1,7 @@
 package server.servicies.impl;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -152,6 +153,11 @@ public class SituacaoServiceImpl implements SituacaoService{
 			}
 		}
 		return null;
+	}
+
+	@Override
+	public List<Situacao> findAllSituacao() {
+		return situacaoRepository.findAll();
 	}
 	
 }

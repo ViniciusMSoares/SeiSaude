@@ -31,7 +31,7 @@ export class CadastroDoencaComponent extends FormBaseComponent implements OnInit
       nomeCompleto: this.formBuilder.group({
         nome: ["", Validators.required],
         complemento: [""]
-      }, //{ asyncValidator: this.nomeComplemento.bind(this) }
+      }, { asyncValidator: this.nomeComplemento.bind(this) }
     ),
       descricao: [""],
       cadastradoPor: ["", Validators.required]
@@ -58,7 +58,7 @@ export class CadastroDoencaComponent extends FormBaseComponent implements OnInit
     const nome = control.get('nome');
     const complemento = control.get('complemento');
   
-    return this.verificaNomeService.verificarNome(nome.value, complemento.value)
+    return this.verificaNomeService.verificarNomeSituacao(nome.value, complemento.value)
       .pipe(map(nomeExiste => nomeExiste ? { nomeInvalido: true } : null));
   };
 

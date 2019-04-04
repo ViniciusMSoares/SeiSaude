@@ -117,4 +117,8 @@ public class ElementoController {
 		return new ResponseEntity<Componente>(elementoService.findOneComponenteByName(name), HttpStatus.OK);
 	}
 	
+	@RequestMapping(value = "/all_componente", method = RequestMethod.GET)
+	public ResponseEntity<ArrayList<Componente>> getAllComponentes() { 
+		return new ResponseEntity<ArrayList<Componente>>((ArrayList<Componente>) elementoService.findAllComponente(), HttpStatus.OK);
+	}
 }

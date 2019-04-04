@@ -68,4 +68,6 @@ public interface ElementoService {
 	Elemento findOneByName(String name);
 	
 	Componente findOneComponenteByName(String name);
+	
+	List<Componente> findAllComponente();
 }

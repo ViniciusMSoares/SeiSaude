@@ -1,6 +1,7 @@
 package server.servicies;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import server.entities.Doenca;
 import server.entities.Sintoma;
@@ -41,4 +42,6 @@ public interface SituacaoService {
 	ArrayList<Sintoma> findAllSintoma();
 	
 	Situacao findOneByName(String name);
+	
+	List<Situacao> findAllSituacao();
 }
