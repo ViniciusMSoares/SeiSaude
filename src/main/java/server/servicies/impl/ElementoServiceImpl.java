@@ -173,7 +173,7 @@ public class ElementoServiceImpl implements ElementoService {
 		name = name.toLowerCase();
 
 		for (Elemento elemento : elementoRepository.findAll()) {
-			String elementoName = elemento.getName().toLowerCase();
+			String elementoName = elemento.getName().toLowerCase() + elemento.getComplemento().toLowerCase();
 			if (elementoName.equals(name) || elementoName.contains(name)) {
 				result.add(elemento);
 			}
@@ -187,7 +187,7 @@ public class ElementoServiceImpl implements ElementoService {
 		name = name.toLowerCase();
 
 		for (Componente componente : componenteRepository.findAll()) {
-			String elementoName = componente.getNome().toLowerCase();
+			String elementoName = componente.getNome().toLowerCase();//+ componente.getComplemento().toLowerCase();
 			if (elementoName.equals(name) || elementoName.contains(name)) {
 				result.add(componente);
 			}
@@ -271,5 +271,31 @@ public class ElementoServiceImpl implements ElementoService {
 		return result;
 		*/
 	}
+
+	public Elemento findOneByName(String name) {
+		name = name.toLowerCase();
+
+		for (Elemento elemento : elementoRepository.findAll()) {
+			String elementoName = elemento.getName().toLowerCase() + elemento.getComplemento().toLowerCase();
+			if (elementoName.equals(name)) {
+				return elemento;
+			}
+		}
+		return null;
+	}
+
+	@Override
+	public Componente findOneComponenteByName(String name) {
+		name = name.toLowerCase();
+
+		for (Componente componente : componenteRepository.findAll()) {
+			String elementoName = componente.getNome().toLowerCase() + componente.getComplemento().toLowerCase();
+			if (elementoName.equals(name)) {
+				return componente;
+			}
+		}
+		return null;
+	}
+	
 	
 }

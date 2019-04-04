@@ -24,10 +24,10 @@ export class CadastroSintomaComponent extends FormBaseComponent implements OnIni
 
   ngOnInit() {
     this.formulario = this.formBuilder.group({
-      nome: [null, Validators.required],
-      complemento: [null],
-      descricao: [null],
-      cadastradoPor: [null, Validators.required]
+      nome: ["", Validators.required],
+      complemento: [""],
+      descricao: [""],
+      cadastradoPor: ["", Validators.required]
     });
   }
 

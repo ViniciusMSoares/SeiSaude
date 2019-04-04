@@ -11,6 +11,8 @@ import { CadastroRemedioComponent } from './cadastro-remedio/cadastro-remedio.co
 import { CadastroComponenteComponent } from './cadastro-componente/cadastro-componente.component';
 import { ConsultaComponenteComponent } from './consulta-componente/consulta-componente.component';
 import { ConsultaElementoComponent } from './consulta-elemento/consulta-elemento.component';
+import { ElementoComponent } from './elemento/elemento.component';
+import { ComponenteComponent } from './componente/componente.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,9 @@ import { ConsultaElementoComponent } from './consulta-elemento/consulta-elemento
     CadastroRemedioComponent,
     CadastroComponenteComponent,
     ConsultaComponenteComponent,
-    ConsultaElementoComponent
+    ConsultaElementoComponent,
+    ElementoComponent,
+    ComponenteComponent
   ],
   imports: [
     CommonModule,

@@ -22,10 +22,10 @@
     <div class="row">
       <div class="list-group col-md-12">
         <div *ngFor="let situacao of situacoes; index as i">
-          <div class="list-group-item">
+          <a href="situacao/{{ situacao.nome }}{{ situacao.complemento }}" class="list-group-item list-group-item-action">
             {{ situacao.nome }}
-            {{ situacao.complemento }} - {{ situacao.descricao }}
-          </div>
+            {{ situacao.complemento }}
+          </a>
         </div>
       </div>
     </div>

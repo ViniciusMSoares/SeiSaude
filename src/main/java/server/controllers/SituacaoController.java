@@ -59,14 +59,19 @@ public class SituacaoController {
 		return new ResponseEntity<>(situacaoService.save(doenca), HttpStatus.CREATED);
 	}
 	
-	@GetMapping("/situacao")
-	public ResponseEntity<ArrayList<Situacao>> getSituacaoByName(@RequestParam(value = "nome") String name) { 
+	@GetMapping("/situacoes")
+	public ResponseEntity<ArrayList<Situacao>> getSituacoesByName(@RequestParam(value = "nome") String name) { 
 		return new ResponseEntity<ArrayList<Situacao>>(situacaoService.findByName(name), HttpStatus.OK);
 	}
 	
 	@RequestMapping(value = "/all_sintoma", method = RequestMethod.GET)
 	public ResponseEntity<ArrayList<Sintoma>> getAllSintomas() { 
 		return new ResponseEntity<ArrayList<Sintoma>>((ArrayList<Sintoma>) situacaoService.findAllSintoma(), HttpStatus.OK);
+	}
+	
+	@GetMapping("/situacao")
+	public ResponseEntity<Situacao> getSituacaoByName(@RequestParam(value = "nome") String name) { 
+		return new ResponseEntity<Situacao>(situacaoService.findOneByName(name), HttpStatus.OK);
 	}
 	
 }

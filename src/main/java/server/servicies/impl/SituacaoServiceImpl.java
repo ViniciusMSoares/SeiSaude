@@ -140,5 +140,18 @@ public class SituacaoServiceImpl implements SituacaoService{
 		
 		return sintomas;
 	}
+
+	@Override
+	public Situacao findOneByName(String name) {
+		name = name.toLowerCase();
+
+		for (Situacao situacao : situacaoRepository.findAll()) {
+			String situacaoName = situacao.getName().toLowerCase();//+ situacao.getComplemento().toLowerCase();
+			if (situacaoName.equals(name)) {
+				return situacao;
+			}
+		}
+		return null;
+	}
 	
 }

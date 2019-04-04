@@ -39,4 +39,6 @@ public interface SituacaoService {
 	boolean doencaInDataBase(String name);
 
 	ArrayList<Sintoma> findAllSintoma();
+	
+	Situacao findOneByName(String name);
 }

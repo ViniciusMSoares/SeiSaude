@@ -10,6 +10,10 @@ import { HomePageComponent } from './home-page/home-page.component';
 import { ConsultaComponenteComponent } from './elementos/consulta-componente/consulta-componente.component';
 import { ConsultaElementoComponent } from './elementos/consulta-elemento/consulta-elemento.component';
 import { ConsultaSituacaoComponent } from './situacoes/consulta-situacao/consulta-situacao.component';
+import { InfoPageComponent } from './info-page/info-page.component';
+import { ElementoComponent } from './elementos/elemento/elemento.component';
+import { SituacaoComponent } from './situacoes/situacao/situacao.component';
+import { ComponenteComponent } from './elementos/componente/componente.component';
 
 const routes: Routes = [
   { path: 'cadastro-alimento', component: CadastroAlimentoComponent },
@@ -22,6 +26,11 @@ const routes: Routes = [
   { path: 'consulta-elemento', component: ConsultaElementoComponent },
   { path: 'consulta-situacao', component: ConsultaSituacaoComponent },
   { path: 'consulta-componente', component: ConsultaComponenteComponent },
+
+  { path: 'info/:nome', component: InfoPageComponent },
+  { path: 'elemento/:nome', component: ElementoComponent },
+  { path: 'componente/:nome', component: ComponenteComponent },
+  { path: 'situacao/:nome', component: SituacaoComponent },
 
   { path: '', component: HomePageComponent }
 ];

@@ -64,4 +64,8 @@ public interface ElementoService {
 	Componente saveComponente(ComponenteDTO componente);
 	
 	boolean componenteInDataBase(String nome);
+	
+	Elemento findOneByName(String name);
+	
+	Componente findOneComponenteByName(String name);
 }

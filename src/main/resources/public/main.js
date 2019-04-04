@@ -45,12 +45,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _elementos_consulta_componente_consulta_componente_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./elementos/consulta-componente/consulta-componente.component */ "./src/app/elementos/consulta-componente/consulta-componente.component.ts");
 /* harmony import */ var _elementos_consulta_elemento_consulta_elemento_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./elementos/consulta-elemento/consulta-elemento.component */ "./src/app/elementos/consulta-elemento/consulta-elemento.component.ts");
 /* harmony import */ var _situacoes_consulta_situacao_consulta_situacao_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./situacoes/consulta-situacao/consulta-situacao.component */ "./src/app/situacoes/consulta-situacao/consulta-situacao.component.ts");
+/* harmony import */ var _info_page_info_page_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./info-page/info-page.component */ "./src/app/info-page/info-page.component.ts");
+/* harmony import */ var _elementos_elemento_elemento_component__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./elementos/elemento/elemento.component */ "./src/app/elementos/elemento/elemento.component.ts");
+/* harmony import */ var _situacoes_situacao_situacao_component__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./situacoes/situacao/situacao.component */ "./src/app/situacoes/situacao/situacao.component.ts");
+/* harmony import */ var _elementos_componente_componente_component__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./elementos/componente/componente.component */ "./src/app/elementos/componente/componente.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
+
+
+
 
 
 
@@ -73,6 +81,10 @@ var routes = [
     { path: 'consulta-elemento', component: _elementos_consulta_elemento_consulta_elemento_component__WEBPACK_IMPORTED_MODULE_10__["ConsultaElementoComponent"] },
     { path: 'consulta-situacao', component: _situacoes_consulta_situacao_consulta_situacao_component__WEBPACK_IMPORTED_MODULE_11__["ConsultaSituacaoComponent"] },
     { path: 'consulta-componente', component: _elementos_consulta_componente_consulta_componente_component__WEBPACK_IMPORTED_MODULE_9__["ConsultaComponenteComponent"] },
+    { path: 'info/:nome', component: _info_page_info_page_component__WEBPACK_IMPORTED_MODULE_12__["InfoPageComponent"] },
+    { path: 'elemento/:nome', component: _elementos_elemento_elemento_component__WEBPACK_IMPORTED_MODULE_13__["ElementoComponent"] },
+    { path: 'componente/:nome', component: _elementos_componente_componente_component__WEBPACK_IMPORTED_MODULE_15__["ComponenteComponent"] },
+    { path: 'situacao/:nome', component: _situacoes_situacao_situacao_component__WEBPACK_IMPORTED_MODULE_14__["SituacaoComponent"] },
     { path: '', component: _home_page_home_page_component__WEBPACK_IMPORTED_MODULE_8__["HomePageComponent"] }
 ];
 var AppRoutingModule = /** @class */ (function () {
@@ -170,12 +182,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _form_base_form_base_module__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./form-base/form-base.module */ "./src/app/form-base/form-base.module.ts");
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
 /* harmony import */ var _home_page_home_page_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./home-page/home-page.component */ "./src/app/home-page/home-page.component.ts");
+/* harmony import */ var _info_page_info_page_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./info-page/info-page.component */ "./src/app/info-page/info-page.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -195,7 +209,8 @@ var AppModule = /** @class */ (function () {
             declarations: [
                 _app_component__WEBPACK_IMPORTED_MODULE_3__["AppComponent"],
                 _navigation_navigation_component__WEBPACK_IMPORTED_MODULE_4__["NavigationComponent"],
-                _home_page_home_page_component__WEBPACK_IMPORTED_MODULE_10__["HomePageComponent"]
+                _home_page_home_page_component__WEBPACK_IMPORTED_MODULE_10__["HomePageComponent"],
+                _info_page_info_page_component__WEBPACK_IMPORTED_MODULE_11__["InfoPageComponent"]
             ],
             imports: [
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__["BrowserModule"],
@@ -800,6 +815,94 @@ var CadastroRemedioComponent = /** @class */ (function (_super) {
 
 /***/ }),
 
+/***/ "./src/app/elementos/componente/componente.component.html":
+/*!****************************************************************!*\
+  !*** ./src/app/elementos/componente/componente.component.html ***!
+  \****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<div *ngIf=\"carregado\">\n\n  <div style=\"text-align:center\">\n    <h1>\n      {{ elemento.name }}\n      {{ elemento.complemento }}\n    </h1>\n  </div>\n\n</div>\n\n"
+
+/***/ }),
+
+/***/ "./src/app/elementos/componente/componente.component.scss":
+/*!****************************************************************!*\
+  !*** ./src/app/elementos/componente/componente.component.scss ***!
+  \****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2VsZW1lbnRvcy9jb21wb25lbnRlL2NvbXBvbmVudGUuY29tcG9uZW50LnNjc3MifQ== */"
+
+/***/ }),
+
+/***/ "./src/app/elementos/componente/componente.component.ts":
+/*!**************************************************************!*\
+  !*** ./src/app/elementos/componente/componente.component.ts ***!
+  \**************************************************************/
+/*! exports provided: ComponenteComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ComponenteComponent", function() { return ComponenteComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var _models_url_enum__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../models/url.enum */ "./src/models/url.enum.ts");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+var ComponenteComponent = /** @class */ (function () {
+    function ComponenteComponent(route, http) {
+        this.route = route;
+        this.http = http;
+        this.componente = {};
+        this.carregado = false;
+    }
+    ComponenteComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.route.params.subscribe(function (params) {
+            _this.carregaElemento(params.nome).subscribe(function (result) {
+                _this.componente = result;
+                console.log(_this.componente);
+                _this.carregado = _this.componente != null;
+            });
+        });
+    };
+    ComponenteComponent.prototype.carregaElemento = function (nome) {
+        var url = _models_url_enum__WEBPACK_IMPORTED_MODULE_3__["Url"].URL_BASE + _models_url_enum__WEBPACK_IMPORTED_MODULE_3__["Url"].CADASTRO_COMPONENTE;
+        var options = nome ?
+            { params: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpParams"]().set('nome', nome) } : {};
+        return this.http.get(url, options);
+    };
+    ComponenteComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'app-componente',
+            template: __webpack_require__(/*! ./componente.component.html */ "./src/app/elementos/componente/componente.component.html"),
+            styles: [__webpack_require__(/*! ./componente.component.scss */ "./src/app/elementos/componente/componente.component.scss")]
+        }),
+        __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_1__["ActivatedRoute"],
+            _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"]])
+    ], ComponenteComponent);
+    return ComponenteComponent;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/elementos/comportamentos/comportamentos.component.html":
 /*!************************************************************************!*\
   !*** ./src/app/elementos/comportamentos/comportamentos.component.html ***!
@@ -871,7 +974,7 @@ var ComportamentosComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<form class=\"form-horizontal\" [formGroup]=\"formulario\" (ngSubmit)=\"onSubmit()\">\n  <div style=\"text-align:center\">\n    <h1>\n      {{ title }}\n    </h1>\n  </div>\n  \n  <div class=\"container\">\n\n    <div class=\"form-row\">\n      <div class=\"form-group col-md-3\"></div>\n      <div class=\"form-group col-md-6\">\n        <label for=\"nome\"></label>\n        <input type=\"text\" class=\"form-control\" id=\"nome\" formControlName=\"nome\">\n      </div>\n    </div>\n\n    <div style=\"text-align:center\">\n      <button type=\"submit\" class=\"btn btn-primary\">Pesquisar</button>\n    </div>\n\n    <div class=\"row\">\n      <div class=\"list-group col-md-12\">\n        <div *ngFor=\"let componente of componentes; index as i\">\n          <div class=\"list-group-item\">\n            {{ componente.nome }}\n            {{ componente.complemento }}\n          </div>\n        </div>\n      </div>\n    </div>\n  \n    <router-outlet></router-outlet>\n  </div>\n\n</form>"
+module.exports = "<form class=\"form-horizontal\" [formGroup]=\"formulario\" (ngSubmit)=\"onSubmit()\">\n  <div style=\"text-align:center\">\n    <h1>\n      {{ title }}\n    </h1>\n  </div>\n  \n  <div class=\"container\">\n\n    <div class=\"form-row\">\n      <div class=\"form-group col-md-3\"></div>\n      <div class=\"form-group col-md-6\">\n        <label for=\"nome\"></label>\n        <input type=\"text\" class=\"form-control\" id=\"nome\" formControlName=\"nome\">\n      </div>\n    </div>\n\n    <div style=\"text-align:center\">\n      <button type=\"submit\" class=\"btn btn-primary\">Pesquisar</button>\n    </div>\n\n    <div class=\"row\">\n      <div class=\"list-group col-md-12\">\n        <div *ngFor=\"let componente of componentes; index as i\">\n          <a href=\"componente/{{ componente.nome }}{{ componente.complemento }}\" class=\"list-group-item list-group-item-action\">\n            {{ componente.nome }}\n            {{ componente.complemento }}\n          </a>\n        </div>\n      </div>\n    </div>\n  \n    <router-outlet></router-outlet>\n  </div>\n\n</form>"
 
 /***/ }),
 
@@ -947,7 +1050,7 @@ var ConsultaComponenteComponent = /** @class */ (function (_super) {
     };
     ConsultaComponenteComponent.prototype.submit = function () {
         var _this = this;
-        var url = _models_url_enum__WEBPACK_IMPORTED_MODULE_3__["Url"].URL_BASE + _models_url_enum__WEBPACK_IMPORTED_MODULE_3__["Url"].CADASTRO_COMPONENTE;
+        var url = _models_url_enum__WEBPACK_IMPORTED_MODULE_3__["Url"].URL_BASE + _models_url_enum__WEBPACK_IMPORTED_MODULE_3__["Url"].COMPONENTES;
         var termo = this.formulario.get("nome").value;
         var options = termo ?
             { params: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpParams"]().set('nome', termo) } : {};
@@ -981,7 +1084,7 @@ var ConsultaComponenteComponent = /** @class */ (function (_super) {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<form class=\"form-horizontal\" [formGroup]=\"formulario\" (ngSubmit)=\"onSubmit()\">\n  <div style=\"text-align:center\">\n    <h1>\n      {{ title }}\n    </h1>\n  </div>\n  \n  <div class=\"container\">\n\n    <div class=\"form-row\">\n      <div class=\"form-group col-md-3\"></div>\n      <div class=\"form-group col-md-6\">\n        <label for=\"nome\"></label>\n        <input type=\"text\" class=\"form-control\" id=\"nome\" formControlName=\"nome\">\n      </div>\n    </div>\n\n    <div style=\"text-align:center\">\n      <button type=\"submit\" class=\"btn btn-primary\">Pesquisar</button>\n    </div>\n\n    <div class=\"row\">\n      <div class=\"list-group col-md-12\">\n        <div *ngFor=\"let elemento of elementos; index as i\">\n          <div class=\"list-group-item\">\n            {{ elemento.nome }}\n            {{ elemento.complemento }} - {{ elemento.descricao }}\n          </div>\n        </div>\n      </div>\n    </div>\n  \n    <router-outlet></router-outlet>\n  </div>\n\n</form>"
+module.exports = "<form class=\"form-horizontal\" [formGroup]=\"formulario\" (ngSubmit)=\"onSubmit()\">\n  <div style=\"text-align:center\">\n    <h1>\n      {{ title }}\n    </h1>\n  </div>\n  \n  <div class=\"container\">\n\n    <div class=\"form-row\">\n      <div class=\"form-group col-md-3\"></div>\n      <div class=\"form-group col-md-6\">\n        <label for=\"nome\"></label>\n        <input type=\"text\" class=\"form-control\" id=\"nome\" formControlName=\"nome\">\n      </div>\n    </div>\n\n    <div style=\"text-align:center\">\n      <button type=\"submit\" class=\"btn btn-primary\">Pesquisar</button>\n    </div>\n\n    <div class=\"row\">\n      <div class=\"list-group col-md-12\">\n        <div *ngFor=\"let elemento of elementos; index as i\">\n          <a href=\"elemento/{{ elemento.nome }}{{ elemento.complemento }}\" class=\"list-group-item list-group-item-action\">\n            {{ elemento.nome }}\n            {{ elemento.complemento }}\n          </a>\n        </div>\n      </div>\n    </div>\n  \n    <router-outlet></router-outlet>\n  </div>\n\n</form>"
 
 /***/ }),
 
@@ -1057,14 +1160,14 @@ var ConsultaElementoComponent = /** @class */ (function (_super) {
     };
     ConsultaElementoComponent.prototype.submit = function () {
         var _this = this;
-        var url = _models_url_enum__WEBPACK_IMPORTED_MODULE_4__["Url"].URL_BASE + _models_url_enum__WEBPACK_IMPORTED_MODULE_4__["Url"].ELEMENTO;
+        var url = _models_url_enum__WEBPACK_IMPORTED_MODULE_4__["Url"].URL_BASE + _models_url_enum__WEBPACK_IMPORTED_MODULE_4__["Url"].ELEMENTOS;
         var termo = this.formulario.get("nome").value;
         var options = termo ?
             { params: new _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpParams"]().set('nome', termo) } : {};
         this.http.get(url, options).subscribe(function (result) {
             var resultList = result;
             //console.log(result);
-            _this.elementos = resultList.map(function (v) { return new _models_elemento__WEBPACK_IMPORTED_MODULE_5__["Elemento"](v.name, v.complemento, v.descricao, v.cadastradoPor); });
+            _this.elementos = resultList.map(function (v) { return new _models_elemento__WEBPACK_IMPORTED_MODULE_5__["Elemento"](v.name, v.complemento, v.descricao, v.cadastradoPor, v.id); });
             console.log(_this.elementos);
         }, function (error) { return alert('erro'); });
     };
@@ -1079,6 +1182,97 @@ var ConsultaElementoComponent = /** @class */ (function (_super) {
     ], ConsultaElementoComponent);
     return ConsultaElementoComponent;
 }(_form_base_form_base_component__WEBPACK_IMPORTED_MODULE_1__["FormBaseComponent"]));
+
+
+
+/***/ }),
+
+/***/ "./src/app/elementos/elemento/elemento.component.html":
+/*!************************************************************!*\
+  !*** ./src/app/elementos/elemento/elemento.component.html ***!
+  \************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<div *ngIf=\"carregado\">\n\n  <div style=\"text-align:center\">\n    <h1>\n      {{ elemento.name }}\n      {{ elemento.complemento }}\n    </h1>\n  </div>\n\n  <h2>\n    Descrição\n  </h2> \n  <h3 *ngIf=\"!descricaoVazia()\">\n      {{ elemento.descricao }}\n  </h3>\n  <h3 *ngIf=\"descricaoVazia()\">\n    Esse elemento ainda não possui uma descrição.\n  </h3>\n\n</div>\n\n"
+
+/***/ }),
+
+/***/ "./src/app/elementos/elemento/elemento.component.scss":
+/*!************************************************************!*\
+  !*** ./src/app/elementos/elemento/elemento.component.scss ***!
+  \************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2VsZW1lbnRvcy9lbGVtZW50by9lbGVtZW50by5jb21wb25lbnQuc2NzcyJ9 */"
+
+/***/ }),
+
+/***/ "./src/app/elementos/elemento/elemento.component.ts":
+/*!**********************************************************!*\
+  !*** ./src/app/elementos/elemento/elemento.component.ts ***!
+  \**********************************************************/
+/*! exports provided: ElementoComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ElementoComponent", function() { return ElementoComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _models_url_enum__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../models/url.enum */ "./src/models/url.enum.ts");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+var ElementoComponent = /** @class */ (function () {
+    function ElementoComponent(route, http) {
+        this.route = route;
+        this.http = http;
+        this.elemento = {};
+        this.carregado = false;
+    }
+    ElementoComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.route.params.subscribe(function (params) {
+            _this.carregaElemento(params.nome).subscribe(function (result) {
+                _this.elemento = result;
+                console.log(_this.elemento);
+                _this.carregado = _this.elemento != null;
+            });
+        });
+    };
+    ElementoComponent.prototype.carregaElemento = function (nome) {
+        var url = _models_url_enum__WEBPACK_IMPORTED_MODULE_2__["Url"].URL_BASE + _models_url_enum__WEBPACK_IMPORTED_MODULE_2__["Url"].ELEMENTO;
+        var options = nome ?
+            { params: new _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpParams"]().set('nome', nome) } : {};
+        return this.http.get(url, options);
+    };
+    ElementoComponent.prototype.descricaoVazia = function () {
+        return this.elemento.descricao == null || this.elemento.descricao == "";
+    };
+    ElementoComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'app-elemento',
+            template: __webpack_require__(/*! ./elemento.component.html */ "./src/app/elementos/elemento/elemento.component.html"),
+            styles: [__webpack_require__(/*! ./elemento.component.scss */ "./src/app/elementos/elemento/elemento.component.scss")]
+        }),
+        __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_1__["ActivatedRoute"],
+            _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpClient"]])
+    ], ElementoComponent);
+    return ElementoComponent;
+}());
 
 
 
@@ -1106,12 +1300,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _cadastro_componente_cadastro_componente_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./cadastro-componente/cadastro-componente.component */ "./src/app/elementos/cadastro-componente/cadastro-componente.component.ts");
 /* harmony import */ var _consulta_componente_consulta_componente_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./consulta-componente/consulta-componente.component */ "./src/app/elementos/consulta-componente/consulta-componente.component.ts");
 /* harmony import */ var _consulta_elemento_consulta_elemento_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./consulta-elemento/consulta-elemento.component */ "./src/app/elementos/consulta-elemento/consulta-elemento.component.ts");
+/* harmony import */ var _elemento_elemento_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./elemento/elemento.component */ "./src/app/elementos/elemento/elemento.component.ts");
+/* harmony import */ var _componente_componente_component__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./componente/componente.component */ "./src/app/elementos/componente/componente.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
+
 
 
 
@@ -1136,7 +1334,9 @@ var ElementosModule = /** @class */ (function () {
                 _cadastro_remedio_cadastro_remedio_component__WEBPACK_IMPORTED_MODULE_8__["CadastroRemedioComponent"],
                 _cadastro_componente_cadastro_componente_component__WEBPACK_IMPORTED_MODULE_9__["CadastroComponenteComponent"],
                 _consulta_componente_consulta_componente_component__WEBPACK_IMPORTED_MODULE_10__["ConsultaComponenteComponent"],
-                _consulta_elemento_consulta_elemento_component__WEBPACK_IMPORTED_MODULE_11__["ConsultaElementoComponent"]
+                _consulta_elemento_consulta_elemento_component__WEBPACK_IMPORTED_MODULE_11__["ConsultaElementoComponent"],
+                _elemento_elemento_component__WEBPACK_IMPORTED_MODULE_12__["ElementoComponent"],
+                _componente_componente_component__WEBPACK_IMPORTED_MODULE_13__["ComponenteComponent"]
             ],
             imports: [
                 _angular_common__WEBPACK_IMPORTED_MODULE_1__["CommonModule"],
@@ -1356,6 +1556,79 @@ var HomePageComponent = /** @class */ (function () {
         __metadata("design:paramtypes", [])
     ], HomePageComponent);
     return HomePageComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/info-page/info-page.component.html":
+/*!****************************************************!*\
+  !*** ./src/app/info-page/info-page.component.html ***!
+  \****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<p>\n  info-page works!\n</p>\n"
+
+/***/ }),
+
+/***/ "./src/app/info-page/info-page.component.scss":
+/*!****************************************************!*\
+  !*** ./src/app/info-page/info-page.component.scss ***!
+  \****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2luZm8tcGFnZS9pbmZvLXBhZ2UuY29tcG9uZW50LnNjc3MifQ== */"
+
+/***/ }),
+
+/***/ "./src/app/info-page/info-page.component.ts":
+/*!**************************************************!*\
+  !*** ./src/app/info-page/info-page.component.ts ***!
+  \**************************************************/
+/*! exports provided: InfoPageComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "InfoPageComponent", function() { return InfoPageComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+var InfoPageComponent = /** @class */ (function () {
+    function InfoPageComponent(route) {
+        this.route = route;
+        this.result = {};
+        this.nome = '';
+    }
+    InfoPageComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.route.params.subscribe(function (params) {
+            _this.nome = params.nome;
+            console.log(_this.nome);
+        });
+    };
+    InfoPageComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'app-info-page',
+            template: __webpack_require__(/*! ./info-page.component.html */ "./src/app/info-page/info-page.component.html"),
+            styles: [__webpack_require__(/*! ./info-page.component.scss */ "./src/app/info-page/info-page.component.scss")]
+        }),
+        __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_1__["ActivatedRoute"]])
+    ], InfoPageComponent);
+    return InfoPageComponent;
 }());
 
 
@@ -1582,8 +1855,8 @@ var CadastroDoencaComponent = /** @class */ (function (_super) {
                 nome: ["", _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required],
                 complemento: [""]
             }),
-            descricao: [null],
-            cadastradoPor: [null, _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required]
+            descricao: [""],
+            cadastradoPor: ["", _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required]
         });
     };
     CadastroDoencaComponent.prototype.submit = function () {
@@ -1688,10 +1961,10 @@ var CadastroSintomaComponent = /** @class */ (function (_super) {
     }
     CadastroSintomaComponent.prototype.ngOnInit = function () {
         this.formulario = this.formBuilder.group({
-            nome: [null, _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required],
-            complemento: [null],
-            descricao: [null],
-            cadastradoPor: [null, _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required]
+            nome: ["", _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required],
+            complemento: [""],
+            descricao: [""],
+            cadastradoPor: ["", _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required]
         });
     };
     CadastroSintomaComponent.prototype.submit = function () {
@@ -1724,7 +1997,7 @@ var CadastroSintomaComponent = /** @class */ (function (_super) {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<form class=\"form-horizontal\" [formGroup]=\"formulario\" (ngSubmit)=\"onSubmit()\">\n  <div style=\"text-align:center\">\n    <h1>\n      {{ title }}\n    </h1>\n  </div>\n  \n  <div class=\"container\">\n\n    <div class=\"form-row\">\n      <div class=\"form-group col-md-3\"></div>\n      <div class=\"form-group col-md-6\">\n        <label for=\"nome\"></label>\n        <input type=\"text\" class=\"form-control\" id=\"nome\" formControlName=\"nome\">\n      </div>\n    </div>\n\n    <div style=\"text-align:center\">\n      <button type=\"submit\" class=\"btn btn-primary\">Pesquisar</button>\n    </div>\n\n    <div class=\"row\">\n      <div class=\"list-group col-md-12\">\n        <div *ngFor=\"let situacao of situacoes; index as i\">\n          <div class=\"list-group-item\">\n            {{ situacao.nome }}\n            {{ situacao.complemento }} - {{ situacao.descricao }}\n          </div>\n        </div>\n      </div>\n    </div>\n  \n    <router-outlet></router-outlet>\n  </div>\n\n</form>"
+module.exports = "<form class=\"form-horizontal\" [formGroup]=\"formulario\" (ngSubmit)=\"onSubmit()\">\n  <div style=\"text-align:center\">\n    <h1>\n      {{ title }}\n    </h1>\n  </div>\n  \n  <div class=\"container\">\n\n    <div class=\"form-row\">\n      <div class=\"form-group col-md-3\"></div>\n      <div class=\"form-group col-md-6\">\n        <label for=\"nome\"></label>\n        <input type=\"text\" class=\"form-control\" id=\"nome\" formControlName=\"nome\">\n      </div>\n    </div>\n\n    <div style=\"text-align:center\">\n      <button type=\"submit\" class=\"btn btn-primary\">Pesquisar</button>\n    </div>\n\n    <div class=\"row\">\n      <div class=\"list-group col-md-12\">\n        <div *ngFor=\"let situacao of situacoes; index as i\">\n          <a href=\"situacao/{{ situacao.nome }}{{ situacao.complemento }}\" class=\"list-group-item list-group-item-action\">\n            {{ situacao.nome }}\n            {{ situacao.complemento }}\n          </a>\n        </div>\n      </div>\n    </div>\n  \n    <router-outlet></router-outlet>\n  </div>\n\n</form>"
 
 /***/ }),
 
@@ -1800,13 +2073,13 @@ var ConsultaSituacaoComponent = /** @class */ (function (_super) {
     };
     ConsultaSituacaoComponent.prototype.submit = function () {
         var _this = this;
-        var url = _models_url_enum__WEBPACK_IMPORTED_MODULE_5__["Url"].URL_BASE + _models_url_enum__WEBPACK_IMPORTED_MODULE_5__["Url"].SITUACAO;
+        var url = _models_url_enum__WEBPACK_IMPORTED_MODULE_5__["Url"].URL_BASE + _models_url_enum__WEBPACK_IMPORTED_MODULE_5__["Url"].SITUACOES;
         var termo = this.formulario.get("nome").value;
         var options = termo ?
             { params: new _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpParams"]().set('nome', termo) } : {};
         this.http.get(url, options).subscribe(function (result) {
             var resultList = result;
-            console.log(result);
+            //console.log(result);
             _this.situacoes = resultList.map(function (v) { return new _models_situacao__WEBPACK_IMPORTED_MODULE_4__["Situacao"](v.name, v.complemento, v.descricao, v.cadastradoPor); });
             console.log(_this.situacoes);
         }, function (error) {
@@ -1956,6 +2229,97 @@ var SintomasComponent = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./src/app/situacoes/situacao/situacao.component.html":
+/*!************************************************************!*\
+  !*** ./src/app/situacoes/situacao/situacao.component.html ***!
+  \************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<div *ngIf=\"carregado\">\n\n    <div style=\"text-align:center\">\n      <h1>\n        {{ situacao.name }}\n        {{ situacao.complemento }}\n      </h1>\n    </div>\n  \n    <h2>\n      Descrição\n    </h2> \n    <h3 *ngIf=\"!descricaoVazia()\">\n        {{ situacao.descricao }}\n    </h3>\n    <h3 *ngIf=\"descricaoVazia()\">\n      Essa situação ainda não possui uma descrição.\n    </h3>\n  \n  </div>\n  \n  "
+
+/***/ }),
+
+/***/ "./src/app/situacoes/situacao/situacao.component.scss":
+/*!************************************************************!*\
+  !*** ./src/app/situacoes/situacao/situacao.component.scss ***!
+  \************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL3NpdHVhY29lcy9zaXR1YWNhby9zaXR1YWNhby5jb21wb25lbnQuc2NzcyJ9 */"
+
+/***/ }),
+
+/***/ "./src/app/situacoes/situacao/situacao.component.ts":
+/*!**********************************************************!*\
+  !*** ./src/app/situacoes/situacao/situacao.component.ts ***!
+  \**********************************************************/
+/*! exports provided: SituacaoComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SituacaoComponent", function() { return SituacaoComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var _models_url_enum__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../models/url.enum */ "./src/models/url.enum.ts");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+var SituacaoComponent = /** @class */ (function () {
+    function SituacaoComponent(route, http) {
+        this.route = route;
+        this.http = http;
+        this.situacao = {};
+        this.carregado = false;
+    }
+    SituacaoComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.route.params.subscribe(function (params) {
+            _this.carregaElemento(params.nome).subscribe(function (result) {
+                _this.situacao = result;
+                console.log(_this.situacao);
+                _this.carregado = _this.situacao != null;
+            });
+        });
+    };
+    SituacaoComponent.prototype.carregaElemento = function (nome) {
+        var url = _models_url_enum__WEBPACK_IMPORTED_MODULE_3__["Url"].URL_BASE + _models_url_enum__WEBPACK_IMPORTED_MODULE_3__["Url"].SITUACAO;
+        var options = nome ?
+            { params: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpParams"]().set('nome', nome) } : {};
+        return this.http.get(url, options);
+    };
+    SituacaoComponent.prototype.descricaoVazia = function () {
+        return this.situacao.descricao == null || this.situacao.descricao == "";
+    };
+    SituacaoComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'app-situacao',
+            template: __webpack_require__(/*! ./situacao.component.html */ "./src/app/situacoes/situacao/situacao.component.html"),
+            styles: [__webpack_require__(/*! ./situacao.component.scss */ "./src/app/situacoes/situacao/situacao.component.scss")]
+        }),
+        __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_1__["ActivatedRoute"],
+            _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"]])
+    ], SituacaoComponent);
+    return SituacaoComponent;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/situacoes/situacoes.module.ts":
 /*!***********************************************!*\
   !*** ./src/app/situacoes/situacoes.module.ts ***!
@@ -1976,12 +2340,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
 /* harmony import */ var _consulta_situacao_consulta_situacao_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./consulta-situacao/consulta-situacao.component */ "./src/app/situacoes/consulta-situacao/consulta-situacao.component.ts");
+/* harmony import */ var _situacao_situacao_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./situacao/situacao.component */ "./src/app/situacoes/situacao/situacao.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -2001,7 +2367,8 @@ var SituacoesModule = /** @class */ (function () {
                 _doencas_doencas_component__WEBPACK_IMPORTED_MODULE_4__["DoencasComponent"],
                 _cadastro_sintoma_cadastro_sintoma_component__WEBPACK_IMPORTED_MODULE_5__["CadastroSintomaComponent"],
                 _cadastro_doenca_cadastro_doenca_component__WEBPACK_IMPORTED_MODULE_6__["CadastroDoencaComponent"],
-                _consulta_situacao_consulta_situacao_component__WEBPACK_IMPORTED_MODULE_9__["ConsultaSituacaoComponent"]],
+                _consulta_situacao_consulta_situacao_component__WEBPACK_IMPORTED_MODULE_9__["ConsultaSituacaoComponent"],
+                _situacao_situacao_component__WEBPACK_IMPORTED_MODULE_10__["SituacaoComponent"]],
             imports: [
                 _angular_common__WEBPACK_IMPORTED_MODULE_1__["CommonModule"],
                 _app_routing_module__WEBPACK_IMPORTED_MODULE_2__["AppRoutingModule"],
@@ -2180,11 +2547,12 @@ var Doenca = /** @class */ (function () {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Elemento", function() { return Elemento; });
 var Elemento = /** @class */ (function () {
-    function Elemento(nome, complemento, descricao, cadastradoPor) {
+    function Elemento(nome, complemento, descricao, cadastradoPor, id) {
         this.nome = nome;
         this.complemento = complemento;
         this.descricao = descricao;
         this.cadastradoPor = cadastradoPor;
+        this.id = id;
     }
     return Elemento;
 }());
@@ -2282,12 +2650,15 @@ var Url;
     //URL_BASE = "http://localhost:8080",
     Url["URL_BASE"] = "https://sei-saude.herokuapp.com";
     Url["ELEMENTO"] = "/elemento";
+    Url["ELEMENTOS"] = "/elementos";
+    Url["COMPONENTES"] = "/elemento/componentes";
     Url["TODOS_ELEMENTOS"] = "/all_elemento";
     Url["CADASTRO_COMPORTAMENTO"] = "/elemento/comportamento";
     Url["CADASTRO_COMPONENTE"] = "/elemento/componente";
     Url["CADASTRO_ALIMENTO"] = "/elemento/alimento";
     Url["CADASTRO_REMEDIO"] = "/elemento/remedio";
     Url["SITUACAO"] = "/situacao";
+    Url["SITUACOES"] = "/situacoes";
     Url["TODOS_SINTOMAS"] = "/all_sintoma";
     Url["CADASTRO_SINTOMA"] = "/situacao/sintoma";
     Url["CADASTRO_DOENCA"] = "/situacao/doenca";

@@ -29,7 +29,7 @@ export class ConsultaSituacaoComponent extends FormBaseComponent implements OnIn
   }
 
   submit() {
-    let url = Url.URL_BASE + Url.SITUACAO;
+    let url = Url.URL_BASE + Url.SITUACOES;
     let termo = this.formulario.get("nome").value;
 
     const options = termo ?
@@ -37,7 +37,7 @@ export class ConsultaSituacaoComponent extends FormBaseComponent implements OnIn
 
     this.http.get(url, options).subscribe(result => {
         let resultList = result as any[];
-        console.log(result);
+        //console.log(result);
         this.situacoes = resultList.map(v => new Situacao(
           v.name,
           v.complemento,

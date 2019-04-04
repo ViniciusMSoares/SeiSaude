@@ -1,0 +1,21 @@
+<div *ngIf="carregado">
+
+  <div style="text-align:center">
+    <h1>
+      {{ elemento.name }}
+      {{ elemento.complemento }}
+    </h1>
+  </div>
+
+  <h2>
+    Descrição
+  </h2> 
+  <h3 *ngIf="!descricaoVazia()">
+      {{ elemento.descricao }}
+  </h3>
+  <h3 *ngIf="descricaoVazia()">
+    Esse elemento ainda não possui uma descrição.
+  </h3>
+
+</div>
+

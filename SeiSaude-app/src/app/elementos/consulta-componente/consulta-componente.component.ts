@@ -29,7 +29,7 @@ export class ConsultaComponenteComponent extends FormBaseComponent implements On
   }
 
   submit() {
-    let url = Url.URL_BASE + Url.CADASTRO_COMPONENTE;
+    let url = Url.URL_BASE + Url.COMPONENTES;
     let termo = this.formulario.get("nome").value;
 
     const options = termo ?

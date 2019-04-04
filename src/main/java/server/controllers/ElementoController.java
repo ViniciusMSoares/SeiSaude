@@ -74,7 +74,7 @@ public class ElementoController {
 		return new ResponseEntity<>(elementoService.save(alimento), HttpStatus.CREATED);
 	}
 	
-	@RequestMapping(value = "/elemento", method = RequestMethod.GET)
+	@RequestMapping(value = "/elementos", method = RequestMethod.GET)
 	public ResponseEntity<ArrayList<Elemento>> getElementosByName(@RequestParam(value = "nome")  String search) { 
 		return new ResponseEntity<ArrayList<Elemento>>(elementoService.findByName(search), HttpStatus.OK);
 	}
@@ -84,7 +84,7 @@ public class ElementoController {
 		return new ResponseEntity<ArrayList<Elemento>>((ArrayList<Elemento>) elementoService.findAll(), HttpStatus.OK);
 	}
 	
-	@GetMapping("/elemento/componente")
+	@GetMapping("/elemento/componentes")
 	public ResponseEntity<ArrayList<Componente>> getComponentesByName(@RequestParam(value = "nome") String name) { 
 		return new ResponseEntity<ArrayList<Componente>>(elementoService.findComponenteByName(name), HttpStatus.OK);
 	}
@@ -101,4 +101,20 @@ public class ElementoController {
 		
 		return new ResponseEntity<>(elementoService.saveComponente(componente), HttpStatus.CREATED);
 	}
+
+	@RequestMapping(value = "/elemento/id", method = RequestMethod.GET)
+	public ResponseEntity<Elemento> getElementoById(@RequestParam(value = "id") Long id) { 
+		return new ResponseEntity<Elemento>(elementoService.findById(id), HttpStatus.OK);
+	}
+	
+	@RequestMapping(value = "/elemento", method = RequestMethod.GET)
+	public ResponseEntity<Elemento> getElementoByName(@RequestParam(value = "nome") String search) { 
+		return new ResponseEntity<Elemento>(elementoService.findOneByName(search), HttpStatus.OK);
+	}
+	
+	@GetMapping("/elemento/componente")
+	public ResponseEntity<Componente> getComponenteByName(@RequestParam(value = "nome") String name) { 
+		return new ResponseEntity<Componente>(elementoService.findOneComponenteByName(name), HttpStatus.OK);
+	}
+	
 }

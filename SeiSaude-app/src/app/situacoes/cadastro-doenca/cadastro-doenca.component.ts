@@ -33,8 +33,8 @@ export class CadastroDoencaComponent extends FormBaseComponent implements OnInit
         complemento: [""]
       }, //{ asyncValidator: this.nomeComplemento.bind(this) }
     ),
-      descricao: [null],
-      cadastradoPor: [null, Validators.required]
+      descricao: [""],
+      cadastradoPor: ["", Validators.required]
     });
   }
 

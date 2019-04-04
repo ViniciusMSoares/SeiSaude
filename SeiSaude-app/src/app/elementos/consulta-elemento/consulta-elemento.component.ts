@@ -4,6 +4,7 @@ import { FormBuilder } from '@angular/forms';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Url } from '../../../models/url.enum';
 import { Elemento } from '../../../models/elemento';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-consulta-elemento',
@@ -29,7 +30,7 @@ export class ConsultaElementoComponent extends FormBaseComponent implements OnIn
   }
 
   submit() {
-    let url = Url.URL_BASE + Url.ELEMENTO;
+    let url = Url.URL_BASE + Url.ELEMENTOS;
     let termo = this.formulario.get("nome").value;
 
     const options = termo ?
@@ -42,7 +43,8 @@ export class ConsultaElementoComponent extends FormBaseComponent implements OnIn
           v.name,
           v.complemento,
           v.descricao,
-          v.cadastradoPor
+          v.cadastradoPor,
+          v.id
         ));
         console.log(this.elementos);
       },
