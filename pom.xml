@@ -3,6 +3,7 @@
   <groupId>com.sei-saude</groupId>
   <artifactId>Sei-Saude</artifactId>
   <version>0.0.1-SNAPSHOT</version>
+  <name>sei-saude</name>
   
   <parent>
     <groupId>org.springframework.boot</groupId>
@@ -73,6 +74,7 @@
   </properties>
   
   <build>
+  	<finalName>sei-saude</finalName>
 	<plugins>
 	  <plugin>
 		<groupId>org.springframework.boot</groupId>
