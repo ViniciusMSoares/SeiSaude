@@ -188,7 +188,7 @@ public class ElementoServiceImpl implements ElementoService {
 		name = name.toLowerCase().replaceAll("\\s", "");
 
 		for (Componente componente : componenteRepository.findAll()) {
-			String elementoName = componente.getNome().toLowerCase().replaceAll("\\s", "");//+ componente.getComplemento().toLowerCase();
+			String elementoName = (componente.getNome() + componente.getComplemento()).toLowerCase().replaceAll("\\s", "");
 			if (elementoName.equals(name) || elementoName.contains(name)) {
 				result.add(componente);
 			}
