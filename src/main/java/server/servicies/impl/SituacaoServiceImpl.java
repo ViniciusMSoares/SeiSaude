@@ -84,10 +84,10 @@ public class SituacaoServiceImpl implements SituacaoService{
 	@Override
 	public ArrayList<Situacao> findByName(String name) {
 		ArrayList<Situacao> result = new ArrayList<>();
-		name = name.toLowerCase();
+		name = name.toLowerCase().replaceAll("\\s", "");
 
 		for (Situacao situacao : situacaoRepository.findAll()) {
-			String situacaoName = situacao.getName().toLowerCase();
+			String situacaoName = (situacao.getName() + situacao.getComplemento()).toLowerCase().replaceAll("\\s", "");
 			if (situacaoName.equals(name) || situacaoName.contains(name)) {
 				result.add(situacao);
 			}
@@ -96,13 +96,14 @@ public class SituacaoServiceImpl implements SituacaoService{
 	}
 	
 	public boolean situacaoInDataBase(String nome) {
-		nome = nome.toLowerCase();
+		nome = nome.toLowerCase().replaceAll("\\s", "");
 		
 		for (Situacao situacao : situacaoRepository.findAll()) {
 			String situacaoName = situacao.getName().toLowerCase();
 			if (situacao.getComplemento() != null) {
 				situacaoName += situacao.getComplemento().toLowerCase();
 			}
+			situacaoName = situacaoName.replaceAll("\\s", "");
 			if (situacaoName.equals(nome)) {
 				return true;
 			}
@@ -112,13 +113,14 @@ public class SituacaoServiceImpl implements SituacaoService{
 	}
 	
 	public boolean doencaInDataBase(String nome) {
-		nome = nome.toLowerCase();
+		nome = nome.toLowerCase().replaceAll("\\s", "");
 		
 		for (Doenca doenca : doencaRepository.findAll()) {
 			String doencaName = doenca.getName().toLowerCase();
 			if (doenca.getComplemento() != null) {
 				doencaName += doenca.getComplemento().toLowerCase();
 			}
+			doencaName = doencaName.replaceAll("\\s", "");
 			if (doencaName.equals(nome)) {
 				return true;
 			}

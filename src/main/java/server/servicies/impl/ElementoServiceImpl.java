@@ -170,10 +170,11 @@ public class ElementoServiceImpl implements ElementoService {
 	@Override
 	public ArrayList<Elemento> findByName(String name) {
 		ArrayList<Elemento> result = new ArrayList<>();
-		name = name.toLowerCase();
-
+		name = name.toLowerCase().replaceAll("\\s", "");
+		
 		for (Elemento elemento : elementoRepository.findAll()) {
 			String elementoName = elemento.getName().toLowerCase() + elemento.getComplemento().toLowerCase();
+			elementoName = elementoName.replaceAll("\\s", "");
 			if (elementoName.equals(name) || elementoName.contains(name)) {
 				result.add(elemento);
 			}
@@ -184,10 +185,10 @@ public class ElementoServiceImpl implements ElementoService {
 	@Override
 	public ArrayList<Componente> findComponenteByName(String name) {
 		ArrayList<Componente> result = new ArrayList<>();
-		name = name.toLowerCase();
+		name = name.toLowerCase().replaceAll("\\s", "");
 
 		for (Componente componente : componenteRepository.findAll()) {
-			String elementoName = componente.getNome().toLowerCase();//+ componente.getComplemento().toLowerCase();
+			String elementoName = componente.getNome().toLowerCase().replaceAll("\\s", "");//+ componente.getComplemento().toLowerCase();
 			if (elementoName.equals(name) || elementoName.contains(name)) {
 				result.add(componente);
 			}
@@ -198,10 +199,10 @@ public class ElementoServiceImpl implements ElementoService {
 	@Override
 	public ArrayList<ValorNutricional> findValNutricionalByName(String name) {
 		ArrayList<ValorNutricional> result = new ArrayList<>();
-		name = name.toLowerCase();
+		name = name.toLowerCase().replaceAll("\\s", "");
 
 		for (ValorNutricional valNutricional : valorNutricionalRepository.findAll()) {
-			String elementoName = valNutricional.getNome().toLowerCase();
+			String elementoName = valNutricional.getNome().toLowerCase().replaceAll("\\s", "");
 			if (elementoName.equals(name) || elementoName.contains(name)) {
 				result.add(valNutricional);
 			}
@@ -210,13 +211,14 @@ public class ElementoServiceImpl implements ElementoService {
 	}
 	
 	public boolean elementoInDataBase(String nome) {
-		nome = nome.toLowerCase();
+		nome = nome.toLowerCase().replaceAll("\\s", "");
 		
 		for (Elemento elemento : elementoRepository.findAll()) {
 			String elementoName = elemento.getName().toLowerCase();
 			if (elemento.getComplemento() != null) {
 				elementoName += elemento.getComplemento().toLowerCase();
 			}
+			elementoName = elementoName.replaceAll("\\s", "");
 			if (elementoName.equals(nome)) {
 				return true;
 			}
@@ -232,13 +234,14 @@ public class ElementoServiceImpl implements ElementoService {
 	}
 	
 	public boolean componenteInDataBase(String nome) {
-		nome = nome.toLowerCase();
+		nome = nome.toLowerCase().replaceAll("\\s", "");
 		
 		for (Componente componente : componenteRepository.findAll()) {
 			String componenteName = componente.getNome().toLowerCase();
 			if (componente.getComplemento() != null) {
 				componenteName += componente.getComplemento().toLowerCase();
 			}
+			componenteName = componenteName.replaceAll("\\s", "");
 			if (componenteName.equals(nome)) {
 				return true;
 			}
