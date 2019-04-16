@@ -149,7 +149,7 @@ public class SituacaoServiceImpl implements SituacaoService{
 		name = name.toLowerCase();
 
 		for (Situacao situacao : situacaoRepository.findAll()) {
-			String situacaoName = situacao.getName().toLowerCase();//+ situacao.getComplemento().toLowerCase();
+			String situacaoName = (situacao.getName() + situacao.getComplemento()).toLowerCase();
 			if (situacaoName.equals(name)) {
 				return situacao;
 			}
