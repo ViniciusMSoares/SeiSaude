@@ -31,7 +31,6 @@ public class Elemento implements Serializable{
 	@Column()
 	private String nome;
 	
-	@NotEmpty()
 	@Column()
 	private String descricao;
 	
@@ -39,11 +38,15 @@ public class Elemento implements Serializable{
 	@Column()
 	private String cadastradoPor;
 	
-	public Elemento(String name, String descricao, String cadastradoPor) {
+	@Column()
+	private String complemento;
+	
+	public Elemento(String name, String descricao, String cadastradoPor, String complemento) {
 		super();
 		this.nome = name;
 		this.descricao = descricao;
 		this.cadastradoPor = cadastradoPor;
+		this.complemento = complemento;
 	}
 
 	public Elemento() {
@@ -80,6 +83,14 @@ public class Elemento implements Serializable{
 
 	public void setCadastradoPor(String cadastradoPor) {
 		this.cadastradoPor = cadastradoPor;
+	}
+
+	public String getComplemento() {
+		return complemento;
+	}
+
+	public void setComplemento(String complemento) {
+		this.complemento = complemento;
 	}
 	
 }

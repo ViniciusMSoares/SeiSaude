@@ -5,6 +5,7 @@ import java.util.List;
 
 import server.entities.Componente;
 import server.entities.Elemento;
+import server.entities.ValorNutricional;
 import server.entities.DTOs.AlimentoDTO;
 import server.entities.DTOs.ComponenteDTO;
 import server.entities.DTOs.ElementoDTO;
@@ -56,9 +57,17 @@ public interface ElementoService {
 	
 	ArrayList<Componente> findComponenteByName(String name);
 	
+	ArrayList<ValorNutricional> findValNutricionalByName(String name);
+	
 	boolean elementoInDataBase(String nome);
 
-	String[] saveComponente(ComponenteDTO componente);
+	Componente saveComponente(ComponenteDTO componente);
 	
-	String[] componenteInDataBase(String[] nome);
+	boolean componenteInDataBase(String nome);
+	
+	Elemento findOneByName(String name);
+	
+	Componente findOneComponenteByName(String name);
+	
+	List<Componente> findAllComponente();
 }

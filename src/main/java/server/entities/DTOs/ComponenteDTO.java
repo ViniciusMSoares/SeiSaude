@@ -2,18 +2,28 @@ package server.entities.DTOs;
 
 public class ComponenteDTO {
 
-	private String[] nomeComponente;
+	private String nome;
+	
+	private String complemento;
 	
 	public ComponenteDTO() {
 		
 	}
 
-	public String[] getNomeComponente() {
-		return nomeComponente;
+	public String getNome() {
+		return nome;
 	}
 
-	public void setNomeComponente(String[] nomeComponente) {
-		this.nomeComponente = nomeComponente;
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public String getComplemento() {
+		return complemento;
+	}
+
+	public void setComplemento(String complemento) {
+		this.complemento = complemento;
 	}
 
 }

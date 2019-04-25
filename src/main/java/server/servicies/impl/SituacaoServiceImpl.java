@@ -1,6 +1,7 @@
 package server.servicies.impl;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -39,7 +40,7 @@ public class SituacaoServiceImpl implements SituacaoService{
 
 	@Override
 	public Situacao save(SituacaoDTO situacaoDTO) {
-		Situacao situacao = new Situacao(situacaoDTO.getName(), situacaoDTO.getDescricao());
+		Situacao situacao = new Situacao(situacaoDTO.getNome(), situacaoDTO.getDescricao(), situacaoDTO.getComplemento(), situacaoDTO.getCadastradoPor());
 		Sintoma sintoma = new Sintoma(situacao);
 		
 		return sintomaRepository.save(sintoma);
@@ -48,26 +49,28 @@ public class SituacaoServiceImpl implements SituacaoService{
 	
 	@Override
 	public Doenca save(DoencaDTO doencaDTO) {
-		Situacao situacao = new Situacao(doencaDTO.getName(), doencaDTO.getDescricao());
-		Doenca doenca = new Doenca(situacao, doencaDTO.getComplemento());
+		Situacao situacao = new Situacao(doencaDTO.getNome(), doencaDTO.getDescricao(), doencaDTO.getComplemento(), doencaDTO.getCadastradoPor());
+		Doenca doenca = new Doenca(situacao);
 		doencaRepository.save(doenca);
 		
-		for (int i = 0; i < doencaDTO.getNomesSintomas().length; i++) {
-			ArrayList<Situacao> sintomas = findByName(doencaDTO.getNomesSintomas()[i]);
-			SintomaDoenca sintomaDoenca;
-			if (sintomas.size() == 0) {//cria novo sintoma caso não encontre um
-				String descSintoma = doencaDTO.getDescSintomas()[i];
-				if (descSintoma.equals("")) {//checa se a descrição do sintoma foi passado no cadastro
-					descSintoma = "Este sintoma ainda não possui uma descrição";
+		if (doencaDTO.getNomesSintomas() != null) {
+			for (int i = 0; i < doencaDTO.getNomesSintomas().length; i++) {
+				ArrayList<Situacao> sintomas = findByName(doencaDTO.getNomesSintomas()[i]);
+				SintomaDoenca sintomaDoenca;
+				if (sintomas.size() == 0) {//cria novo sintoma caso não encontre um
+					String descSintoma = doencaDTO.getDescSintomas()[i];
+					if (descSintoma.equals("")) {//checa se a descrição do sintoma foi passado no cadastro - acho que pode tirar
+						descSintoma = "Este sintoma ainda não possui uma descrição";
+					}
+					Sintoma sintoma = new Sintoma(doencaDTO.getNomesSintomas()[i], descSintoma, "", "");//falta receber complemento e cadastradoPor
+					sintomaRepository.save(sintoma);
+					sintomaDoenca = new SintomaDoenca(sintoma.getId(), doenca.getId());
+				}else {
+					sintomaDoenca = new SintomaDoenca(sintomas.get(0).getId(), doenca.getId());
 				}
-				Sintoma sintoma = new Sintoma(doencaDTO.getNomesSintomas()[i], descSintoma);
-				sintomaRepository.save(sintoma);
-				sintomaDoenca = new SintomaDoenca(sintoma.getId(), doenca.getId());
-			}else {
-				sintomaDoenca = new SintomaDoenca(sintomas.get(0).getId(), doenca.getId());
+				
+				sintomaDoencaRepository.save(sintomaDoenca);
 			}
-			
-			sintomaDoencaRepository.save(sintomaDoenca);
 		}
 		
 		return doencaRepository.save(doenca);
@@ -81,10 +84,10 @@ public class SituacaoServiceImpl implements SituacaoService{
 	@Override
 	public ArrayList<Situacao> findByName(String name) {
 		ArrayList<Situacao> result = new ArrayList<>();
-		name = name.toLowerCase();
+		name = name.toLowerCase().replaceAll("\\s", "");
 
 		for (Situacao situacao : situacaoRepository.findAll()) {
-			String situacaoName = situacao.getName().toLowerCase();
+			String situacaoName = (situacao.getName() + situacao.getComplemento()).toLowerCase().replaceAll("\\s", "");
 			if (situacaoName.equals(name) || situacaoName.contains(name)) {
 				result.add(situacao);
 			}
@@ -93,10 +96,14 @@ public class SituacaoServiceImpl implements SituacaoService{
 	}
 	
 	public boolean situacaoInDataBase(String nome) {
-		nome = nome.toLowerCase();
+		nome = nome.toLowerCase().replaceAll("\\s", "");
 		
 		for (Situacao situacao : situacaoRepository.findAll()) {
 			String situacaoName = situacao.getName().toLowerCase();
+			if (situacao.getComplemento() != null) {
+				situacaoName += situacao.getComplemento().toLowerCase();
+			}
+			situacaoName = situacaoName.replaceAll("\\s", "");
 			if (situacaoName.equals(nome)) {
 				return true;
 			}
@@ -106,13 +113,14 @@ public class SituacaoServiceImpl implements SituacaoService{
 	}
 	
 	public boolean doencaInDataBase(String nome) {
-		nome = nome.toLowerCase();
+		nome = nome.toLowerCase().replaceAll("\\s", "");
 		
 		for (Doenca doenca : doencaRepository.findAll()) {
 			String doencaName = doenca.getName().toLowerCase();
 			if (doenca.getComplemento() != null) {
 				doencaName += doenca.getComplemento().toLowerCase();
 			}
+			doencaName = doencaName.replaceAll("\\s", "");
 			if (doencaName.equals(nome)) {
 				return true;
 			}
@@ -134,6 +142,24 @@ public class SituacaoServiceImpl implements SituacaoService{
 		}
 		
 		return sintomas;
+	}
+
+	@Override
+	public Situacao findOneByName(String name) {
+		name = name.toLowerCase();
+
+		for (Situacao situacao : situacaoRepository.findAll()) {
+			String situacaoName = (situacao.getName() + situacao.getComplemento()).toLowerCase();
+			if (situacaoName.equals(name)) {
+				return situacao;
+			}
+		}
+		return null;
+	}
+
+	@Override
+	public List<Situacao> findAllSituacao() {
+		return situacaoRepository.findAll();
 	}
 	
 }

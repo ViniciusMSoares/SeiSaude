@@ -2,7 +2,7 @@ package server.entities.DTOs;
 
 public class ElementoDTO {
 	
-	private String name;
+	private String nome;
 	
 	private String descricao;
 
@@ -12,17 +12,19 @@ public class ElementoDTO {
 	
 	//Atributos de Produto
 	private String fabricante;
+	
+	private String complemento;
 
 	public ElementoDTO() {
 		
 	}
 
-	public String getName() {
-		return name;
+	public String getNome() {
+		return nome;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 
 	public String getDescricao() {
@@ -55,6 +57,14 @@ public class ElementoDTO {
 
 	public void setFabricante(String fabricante) {
 		this.fabricante = fabricante;
+	}
+
+	public String getComplemento() {
+		return complemento;
+	}
+
+	public void setComplemento(String complemento) {
+		this.complemento = complemento;
 	}
 
 }

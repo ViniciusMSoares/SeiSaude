@@ -27,6 +27,10 @@ public class ValorNutricional implements Serializable{
 	public ValorNutricional(String nome) {
 		this.nome = nome;
 	}
+	
+	public ValorNutricional () {
+		
+	}
 
 	public Long getId() {
 		return id;

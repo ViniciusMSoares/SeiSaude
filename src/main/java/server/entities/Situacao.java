@@ -31,14 +31,21 @@ public class Situacao implements Serializable{
 	@Column()
 	private String nome;
 	
-	@NotEmpty()
 	@Column()
 	private String descricao;
 	
-	public Situacao(String name, String descricao) {
+	@Column()
+	private String complemento;
+	
+	@Column()
+	private String cadastradoPor;
+
+	public Situacao(String name, String descricao, String complemento, String cadastradoPor) {
 		super();
 		this.nome = name;
 		this.descricao = descricao;
+		this.complemento = complemento;
+		this.cadastradoPor = cadastradoPor;
 	}
 
 	public Situacao() {
@@ -67,6 +74,22 @@ public class Situacao implements Serializable{
 
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
+	}
+	
+	public String getComplemento() {
+		return complemento;
+	}
+
+	public void setComplemento(String complemento) {
+		this.complemento = complemento;
+	}
+	
+	public String getCadastradoPor() {
+		return cadastradoPor;
+	}
+
+	public void setCadastradoPor(String cadastradoPor) {
+		this.cadastradoPor = cadastradoPor;
 	}
 	
 }
