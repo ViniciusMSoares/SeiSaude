@@ -12,6 +12,7 @@ import { ConsultaComponenteComponent } from './consulta-componente/consulta-comp
 import { ConsultaElementoComponent } from './consulta-elemento/consulta-elemento.component';
 import { ElementoComponent } from './elemento/elemento.component';
 import { ComponenteComponent } from './componente/componente.component';
+import { FormBaseModule } from '../form-base/form-base.module';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { ComponenteComponent } from './componente/componente.component';
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    FormBaseModule
   ],
   exports: [
   ]

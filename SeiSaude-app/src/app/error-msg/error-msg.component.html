@@ -1,0 +1,7 @@
+<div *ngIf="errorMessage != null" >
+  <span class=".is-invalid form-control-feedback"></span>
+  <span class=".is-invalid sr-only">(error)</span>
+  <div class="alert alert-danger errorDiv" role="alert">
+    {{ errorMessage }}
+  </div>
+</div>

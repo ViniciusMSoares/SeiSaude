@@ -45,17 +45,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _elementos_consulta_componente_consulta_componente_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./elementos/consulta-componente/consulta-componente.component */ "./src/app/elementos/consulta-componente/consulta-componente.component.ts");
 /* harmony import */ var _elementos_consulta_elemento_consulta_elemento_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./elementos/consulta-elemento/consulta-elemento.component */ "./src/app/elementos/consulta-elemento/consulta-elemento.component.ts");
 /* harmony import */ var _situacoes_consulta_situacao_consulta_situacao_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./situacoes/consulta-situacao/consulta-situacao.component */ "./src/app/situacoes/consulta-situacao/consulta-situacao.component.ts");
-/* harmony import */ var _info_page_info_page_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./info-page/info-page.component */ "./src/app/info-page/info-page.component.ts");
-/* harmony import */ var _elementos_elemento_elemento_component__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./elementos/elemento/elemento.component */ "./src/app/elementos/elemento/elemento.component.ts");
-/* harmony import */ var _situacoes_situacao_situacao_component__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./situacoes/situacao/situacao.component */ "./src/app/situacoes/situacao/situacao.component.ts");
-/* harmony import */ var _elementos_componente_componente_component__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./elementos/componente/componente.component */ "./src/app/elementos/componente/componente.component.ts");
+/* harmony import */ var _elementos_elemento_elemento_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./elementos/elemento/elemento.component */ "./src/app/elementos/elemento/elemento.component.ts");
+/* harmony import */ var _situacoes_situacao_situacao_component__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./situacoes/situacao/situacao.component */ "./src/app/situacoes/situacao/situacao.component.ts");
+/* harmony import */ var _elementos_componente_componente_component__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./elementos/componente/componente.component */ "./src/app/elementos/componente/componente.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-
 
 
 
@@ -81,10 +79,9 @@ var routes = [
     { path: 'consulta-elemento', component: _elementos_consulta_elemento_consulta_elemento_component__WEBPACK_IMPORTED_MODULE_10__["ConsultaElementoComponent"] },
     { path: 'consulta-situacao', component: _situacoes_consulta_situacao_consulta_situacao_component__WEBPACK_IMPORTED_MODULE_11__["ConsultaSituacaoComponent"] },
     { path: 'consulta-componente', component: _elementos_consulta_componente_consulta_componente_component__WEBPACK_IMPORTED_MODULE_9__["ConsultaComponenteComponent"] },
-    { path: 'info/:nome', component: _info_page_info_page_component__WEBPACK_IMPORTED_MODULE_12__["InfoPageComponent"] },
-    { path: 'elemento/:nome', component: _elementos_elemento_elemento_component__WEBPACK_IMPORTED_MODULE_13__["ElementoComponent"] },
-    { path: 'componente/:nome', component: _elementos_componente_componente_component__WEBPACK_IMPORTED_MODULE_15__["ComponenteComponent"] },
-    { path: 'situacao/:nome', component: _situacoes_situacao_situacao_component__WEBPACK_IMPORTED_MODULE_14__["SituacaoComponent"] },
+    { path: 'elemento/:nome', component: _elementos_elemento_elemento_component__WEBPACK_IMPORTED_MODULE_12__["ElementoComponent"] },
+    { path: 'componente/:nome', component: _elementos_componente_componente_component__WEBPACK_IMPORTED_MODULE_14__["ComponenteComponent"] },
+    { path: 'situacao/:nome', component: _situacoes_situacao_situacao_component__WEBPACK_IMPORTED_MODULE_13__["SituacaoComponent"] },
     { path: '', component: _home_page_home_page_component__WEBPACK_IMPORTED_MODULE_8__["HomePageComponent"] }
 ];
 var AppRoutingModule = /** @class */ (function () {
@@ -182,14 +179,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _form_base_form_base_module__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./form-base/form-base.module */ "./src/app/form-base/form-base.module.ts");
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
 /* harmony import */ var _home_page_home_page_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./home-page/home-page.component */ "./src/app/home-page/home-page.component.ts");
-/* harmony import */ var _info_page_info_page_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./info-page/info-page.component */ "./src/app/info-page/info-page.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-
 
 
 
@@ -209,8 +204,7 @@ var AppModule = /** @class */ (function () {
             declarations: [
                 _app_component__WEBPACK_IMPORTED_MODULE_3__["AppComponent"],
                 _navigation_navigation_component__WEBPACK_IMPORTED_MODULE_4__["NavigationComponent"],
-                _home_page_home_page_component__WEBPACK_IMPORTED_MODULE_10__["HomePageComponent"],
-                _info_page_info_page_component__WEBPACK_IMPORTED_MODULE_11__["InfoPageComponent"]
+                _home_page_home_page_component__WEBPACK_IMPORTED_MODULE_10__["HomePageComponent"]
             ],
             imports: [
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__["BrowserModule"],
@@ -543,7 +537,7 @@ var CadastroComponenteComponent = /** @class */ (function (_super) {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<form class=\"form-horizontal\" [formGroup]=\"formulario\" (ngSubmit)=\"onSubmit()\" #formDir=\"ngForm\">\n  <div style=\"text-align:center\">\n    <h1>\n      {{ title }}\n    </h1>\n  </div>\n  \n  <div class=\"container\">\n    <div *ngIf=\"formDir.submitted\">\n      <div class=\"alert alert-success\" role=\"alert\">\n        Comportamento cadastrado com sucesso!\n        <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">\n          <span aria-hidden=\"true\">&times;</span>\n        </button>\n      </div>\n    </div>\n\n    <div class=\"form-row\" formGroupName=\"nomeCompleto\">\n      <div class=\"form-group col-md-6\" [ngClass]=\"aplicaCssErro('nomeCompleto.nome')\">\n        <label for=\"nome\">Nome</label>\n        <input type=\"text\" class=\"form-control\" id=\"nome\" formControlName=\"nome\">\n      </div>\n      <div class=\"form-group col-md-6\">\n        <label for=\"complemento\">Complemento</label>\n        <input type=\"text\" class=\"form-control\" id=\"complemento\" formControlName=\"complemento\">\n      </div>\n    </div>\n    <div class=\"form-group\">\n      <label for=\"descricao\">Descrição</label>\n      <textarea class=\"form-control\" id=\"descricao\" formControlName=\"descricao\" rows=\"3\"></textarea>\n    </div>\n    <div class=\"form-group\">\n      <label for=\"cadastradoPor\">Cadastrado por</label>\n      <input type=\"text\" class=\"form-control\" id=\"cadastradoPor\" formControlName=\"cadastradoPor\">\n    </div>\n\n    <div style=\"text-align:center\">\n      <button type=\"submit\" class=\"btn btn-primary\">Finalizar</button>\n    </div>\n\n    <div style=\"text-align:right\">\n      <button class=\"btn btn-secondary\" (click)=\"voltar()\">Voltar</button>\n    </div>\n  \n    <router-outlet></router-outlet>\n  </div>\n\n  <div style=\"margin-top: 20px\" *ngIf=\"formulario\" >\n    <div>Detalhes do form</div>\n    <pre>Form válido: {{ formulario.status }}</pre>\n    <!--pre>Form submetido: {{ form.submitted }}</pre -->\n    <pre>Valores: <br>{{ formulario.value | json }}</pre>\n  </div>\n</form>"
+module.exports = "<form class=\"form-horizontal\" [formGroup]=\"formulario\" (ngSubmit)=\"onSubmit()\" #formDir=\"ngForm\" autocomplete=\"off\">\n  <div style=\"text-align:center\">\n    <h1>\n      {{ title }}\n    </h1>\n  </div>\n  \n  <div class=\"container\">\n\n    <div class=\"form-row\" formGroupName=\"nomeCompleto\">\n      <div class=\"form-group col-md-6\" [ngClass]=\"aplicaCssErro('nomeCompleto.nome')\">\n        <label for=\"nome\">Nome</label>\n        <input type=\"text\" class=\"form-control\" id=\"nome\" formControlName=\"nome\">\n\n        <app-error-msg [control]=\"formulario.get('nomeCompleto.nome')\" label=\"Nome\"></app-error-msg>\n      </div>\n      <div class=\"form-group col-md-6\">\n        <label for=\"complemento\">Complemento</label>\n        <input type=\"text\" class=\"form-control\" id=\"complemento\" formControlName=\"complemento\">\n      </div>\n    </div>\n    <div class=\"form-group\">\n      <label for=\"descricao\">Descrição</label>\n      <textarea class=\"form-control\" id=\"descricao\" formControlName=\"descricao\" rows=\"3\"></textarea>\n    </div>\n    <div class=\"form-group\">\n      <label for=\"cadastradoPor\">Cadastrado por</label>\n      <input type=\"text\" class=\"form-control\" id=\"cadastradoPor\" formControlName=\"cadastradoPor\">\n\n      <app-error-msg [control]=\"formulario.get('cadastradoPor')\" label=\"Cadastrado por\"></app-error-msg>\n    </div>\n\n    <div style=\"text-align:center\">\n      <button type=\"submit\" class=\"btn btn-primary\">Finalizar</button>\n    </div>\n\n    <div style=\"text-align:right\">\n      <button class=\"btn btn-secondary\" (click)=\"voltar()\">Voltar</button>\n    </div>\n  \n    <router-outlet></router-outlet>\n  </div>\n\n  <div style=\"margin-top: 20px\" *ngIf=\"formulario\" >\n    <div>Detalhes do form</div>\n    <pre>Form válido: {{ formulario.status }}</pre>\n    <!--pre>Form submetido: {{ form.submitted }}</pre -->\n    <pre>Valores: <br>{{ formulario.value | json }}</pre>\n  </div>\n</form>"
 
 /***/ }),
 
@@ -1265,12 +1259,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _consulta_elemento_consulta_elemento_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./consulta-elemento/consulta-elemento.component */ "./src/app/elementos/consulta-elemento/consulta-elemento.component.ts");
 /* harmony import */ var _elemento_elemento_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./elemento/elemento.component */ "./src/app/elementos/elemento/elemento.component.ts");
 /* harmony import */ var _componente_componente_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./componente/componente.component */ "./src/app/elementos/componente/componente.component.ts");
+/* harmony import */ var _form_base_form_base_module__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../form-base/form-base.module */ "./src/app/form-base/form-base.module.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -1304,12 +1300,110 @@ var ElementosModule = /** @class */ (function () {
                 _app_routing_module__WEBPACK_IMPORTED_MODULE_3__["AppRoutingModule"],
                 _angular_forms__WEBPACK_IMPORTED_MODULE_5__["FormsModule"],
                 _angular_forms__WEBPACK_IMPORTED_MODULE_5__["ReactiveFormsModule"],
-                _angular_common_http__WEBPACK_IMPORTED_MODULE_6__["HttpClientModule"]
+                _angular_common_http__WEBPACK_IMPORTED_MODULE_6__["HttpClientModule"],
+                _form_base_form_base_module__WEBPACK_IMPORTED_MODULE_13__["FormBaseModule"]
             ],
             exports: []
         })
     ], ElementosModule);
     return ElementosModule;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/error-msg/error-msg.component.html":
+/*!****************************************************!*\
+  !*** ./src/app/error-msg/error-msg.component.html ***!
+  \****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<div *ngIf=\"errorMessage != null\" >\n  <span class=\".is-invalid form-control-feedback\"></span>\n  <span class=\".is-invalid sr-only\">(error)</span>\n  <div class=\"alert alert-danger errorDiv\" role=\"alert\">\n    {{ errorMessage }}\n  </div>\n</div>"
+
+/***/ }),
+
+/***/ "./src/app/error-msg/error-msg.component.scss":
+/*!****************************************************!*\
+  !*** ./src/app/error-msg/error-msg.component.scss ***!
+  \****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = ".errorDiv {\n  margin-bottom: 0px; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9ob21lL3ZpbmljaXVzL2dpdC9TZWlTYXVkZS9TZWlTYXVkZS9TZWlTYXVkZS1hcHAvc3JjL2FwcC9lcnJvci1tc2cvZXJyb3ItbXNnLmNvbXBvbmVudC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0UsbUJBQWtCLEVBQ25CIiwiZmlsZSI6InNyYy9hcHAvZXJyb3ItbXNnL2Vycm9yLW1zZy5jb21wb25lbnQuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbIi5lcnJvckRpdiB7XG4gIG1hcmdpbi1ib3R0b206IDBweDtcbn0iXX0= */"
+
+/***/ }),
+
+/***/ "./src/app/error-msg/error-msg.component.ts":
+/*!**************************************************!*\
+  !*** ./src/app/error-msg/error-msg.component.ts ***!
+  \**************************************************/
+/*! exports provided: ErrorMsgComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ErrorMsgComponent", function() { return ErrorMsgComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+var ErrorMsgComponent = /** @class */ (function () {
+    function ErrorMsgComponent() {
+    }
+    ErrorMsgComponent_1 = ErrorMsgComponent;
+    ErrorMsgComponent.prototype.ngOnInit = function () {
+    };
+    Object.defineProperty(ErrorMsgComponent.prototype, "errorMessage", {
+        get: function () {
+            for (var propertyName in this.control.errors) {
+                if (this.control.errors.hasOwnProperty(propertyName) &&
+                    this.control.touched) {
+                    return ErrorMsgComponent_1.getErrorMsg(this.label, propertyName, this.control.errors[propertyName]);
+                }
+            }
+            return null;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    ErrorMsgComponent.getErrorMsg = function (fieldName, validatorName, validatorValue) {
+        var config = {
+            'required': fieldName + " \u00E9 obrigat\u00F3rio.",
+            'minlength': fieldName + " precisa ter no m\u00EDnimo " + validatorValue.requiredLength + " caracteres.",
+            'maxlength': fieldName + " precisa ter no m\u00E1ximo " + validatorValue.requiredLength + " caracteres.",
+            'pattern': 'Campo inválido'
+        };
+        return config[validatorName];
+    };
+    var ErrorMsgComponent_1;
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
+        __metadata("design:type", _angular_forms__WEBPACK_IMPORTED_MODULE_1__["FormControl"])
+    ], ErrorMsgComponent.prototype, "control", void 0);
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
+        __metadata("design:type", String)
+    ], ErrorMsgComponent.prototype, "label", void 0);
+    ErrorMsgComponent = ErrorMsgComponent_1 = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'app-error-msg',
+            template: __webpack_require__(/*! ./error-msg.component.html */ "./src/app/error-msg/error-msg.component.html"),
+            styles: [__webpack_require__(/*! ./error-msg.component.scss */ "./src/app/error-msg/error-msg.component.scss")]
+        }),
+        __metadata("design:paramtypes", [])
+    ], ErrorMsgComponent);
+    return ErrorMsgComponent;
 }());
 
 
@@ -1438,6 +1532,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm5/common.js");
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
+/* harmony import */ var _error_msg_error_msg_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../error-msg/error-msg.component */ "./src/app/error-msg/error-msg.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1447,16 +1542,22 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 
 
 
+
 var FormBaseModule = /** @class */ (function () {
     function FormBaseModule() {
     }
     FormBaseModule = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["NgModule"])({
-            declarations: [],
+            declarations: [
+                _error_msg_error_msg_component__WEBPACK_IMPORTED_MODULE_3__["ErrorMsgComponent"]
+            ],
             imports: [
                 _angular_common__WEBPACK_IMPORTED_MODULE_1__["CommonModule"],
                 _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormsModule"],
                 _angular_forms__WEBPACK_IMPORTED_MODULE_2__["ReactiveFormsModule"]
+            ],
+            exports: [
+                _error_msg_error_msg_component__WEBPACK_IMPORTED_MODULE_3__["ErrorMsgComponent"]
             ]
         })
     ], FormBaseModule);
@@ -1524,79 +1625,6 @@ var HomePageComponent = /** @class */ (function () {
         __metadata("design:paramtypes", [])
     ], HomePageComponent);
     return HomePageComponent;
-}());
-
-
-
-/***/ }),
-
-/***/ "./src/app/info-page/info-page.component.html":
-/*!****************************************************!*\
-  !*** ./src/app/info-page/info-page.component.html ***!
-  \****************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "<p>\n  info-page works!\n</p>\n"
-
-/***/ }),
-
-/***/ "./src/app/info-page/info-page.component.scss":
-/*!****************************************************!*\
-  !*** ./src/app/info-page/info-page.component.scss ***!
-  \****************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2luZm8tcGFnZS9pbmZvLXBhZ2UuY29tcG9uZW50LnNjc3MifQ== */"
-
-/***/ }),
-
-/***/ "./src/app/info-page/info-page.component.ts":
-/*!**************************************************!*\
-  !*** ./src/app/info-page/info-page.component.ts ***!
-  \**************************************************/
-/*! exports provided: InfoPageComponent */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "InfoPageComponent", function() { return InfoPageComponent; });
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
-var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (undefined && undefined.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-var InfoPageComponent = /** @class */ (function () {
-    function InfoPageComponent(route) {
-        this.route = route;
-        this.result = {};
-        this.nome = '';
-    }
-    InfoPageComponent.prototype.ngOnInit = function () {
-        var _this = this;
-        this.route.params.subscribe(function (params) {
-            _this.nome = params.nome;
-            console.log(_this.nome);
-        });
-    };
-    InfoPageComponent = __decorate([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
-            selector: 'app-info-page',
-            template: __webpack_require__(/*! ./info-page.component.html */ "./src/app/info-page/info-page.component.html"),
-            styles: [__webpack_require__(/*! ./info-page.component.scss */ "./src/app/info-page/info-page.component.scss")]
-        }),
-        __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_1__["ActivatedRoute"]])
-    ], InfoPageComponent);
-    return InfoPageComponent;
 }());
 
 

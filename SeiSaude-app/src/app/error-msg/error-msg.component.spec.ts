@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { InfoPageComponent } from './info-page.component';
+import { ErrorMsgComponent } from './error-msg.component';
 
-describe('InfoPageComponent', () => {
-  let component: InfoPageComponent;
-  let fixture: ComponentFixture<InfoPageComponent>;
+describe('ErrorMsgComponent', () => {
+  let component: ErrorMsgComponent;
+  let fixture: ComponentFixture<ErrorMsgComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ InfoPageComponent ]
+      declarations: [ ErrorMsgComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(InfoPageComponent);
+    fixture = TestBed.createComponent(ErrorMsgComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

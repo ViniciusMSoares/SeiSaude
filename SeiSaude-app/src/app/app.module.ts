@@ -10,14 +10,12 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FormBaseModule } from './form-base/form-base.module';
 import { HttpClientModule } from '@angular/common/http';
 import { HomePageComponent } from './home-page/home-page.component';
-import { InfoPageComponent } from './info-page/info-page.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavigationComponent,
-    HomePageComponent,
-    InfoPageComponent
+    HomePageComponent
   ],
   imports: [
     BrowserModule,
