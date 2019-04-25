@@ -7,6 +7,7 @@ import { Url } from '../../../models/url.enum';
 import { VerificaNomeService } from '../../services/verifica-nome/verifica-nome.service';
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cadastro-comportamento',
@@ -24,9 +25,10 @@ export class CadastroComportamentoComponent extends FormBaseComponent implements
   constructor(
     private formBuilder: FormBuilder,
     private http: HttpClient,
-    private verificaNomeService: VerificaNomeService
+    private verificaNomeService: VerificaNomeService,
+    router: Router
   ) {
-    super();
+    super(router);
   }
 
   ngOnInit() {

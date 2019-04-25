@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Situacao } from '../../../models/situacao';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Url } from '../../../models/url.enum';
 
@@ -16,7 +16,8 @@ export class SituacaoComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private http: HttpClient
+    private http: HttpClient,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -44,6 +45,10 @@ export class SituacaoComponent implements OnInit {
 
   descricaoVazia() {
     return this.situacao.descricao == null || this.situacao.descricao == "";
+  }
+
+  voltar() {
+    this.router.navigate(['consulta-situacao']);
   }
 
 }

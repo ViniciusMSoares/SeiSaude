@@ -7,6 +7,7 @@ import { Url } from '../../../models/url.enum';
 import { VerificaNomeService } from '../../services/verifica-nome/verifica-nome.service';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cadastro-doenca',
@@ -21,9 +22,10 @@ export class CadastroDoencaComponent extends FormBaseComponent implements OnInit
   constructor(
     private formBuilder: FormBuilder,
     private http: HttpClient,
-    private verificaNomeService: VerificaNomeService
+    private verificaNomeService: VerificaNomeService,
+    router: Router
   ) {
-    super();
+    super(router);
   }
 
   ngOnInit() {

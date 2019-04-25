@@ -18,9 +18,10 @@ export class ConsultaElementoComponent extends FormBaseComponent implements OnIn
 
   constructor(
     private formBuilder: FormBuilder,
-    private http: HttpClient
+    private http: HttpClient,
+    router: Router
   ) {
-    super();
+    super(router);
   }
 
   ngOnInit() {

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormArray } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-form-base',
@@ -10,7 +11,9 @@ export abstract class FormBaseComponent implements OnInit {
 
   formulario: FormGroup;
 
-  constructor() { }
+  constructor(
+    private router: Router
+  ) { }
 
   ngOnInit() {
   }
@@ -60,6 +63,11 @@ export abstract class FormBaseComponent implements OnInit {
       'has-error': this.verificaValidTouched(campo),
       'has-feedback': this.verificaValidTouched(campo)
     };
+  }
+
+  voltar() {
+    this.formulario.reset();
+    this.router.navigate(['']);
   }
 
 }

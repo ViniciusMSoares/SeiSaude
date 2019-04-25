@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Elemento } from '../../../models/elemento';
 import { Url } from '../../../models/url.enum';
 import { HttpClient, HttpParams } from '@angular/common/http';
@@ -16,7 +16,8 @@ export class ElementoComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private http: HttpClient
+    private http: HttpClient,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -44,6 +45,10 @@ export class ElementoComponent implements OnInit {
 
   descricaoVazia() {
     return this.elemento.descricao == null || this.elemento.descricao == "";
+  }
+
+  voltar() {
+    this.router.navigate(['consulta-elemento']);
   }
 
 }

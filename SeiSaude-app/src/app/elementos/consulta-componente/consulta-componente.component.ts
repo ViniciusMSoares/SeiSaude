@@ -4,6 +4,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Url } from '../../../models/url.enum';
 import { FormBuilder } from '@angular/forms';
 import { FormBaseComponent } from '../../form-base/form-base.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-consulta-componente',
@@ -17,9 +18,10 @@ export class ConsultaComponenteComponent extends FormBaseComponent implements On
 
   constructor(
     private formBuilder: FormBuilder,
-    private http: HttpClient
+    private http: HttpClient,
+    router: Router
   ) {
-    super();
+    super(router);
   }
 
   ngOnInit() {

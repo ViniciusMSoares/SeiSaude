@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Componente } from '../../../models/componente';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Url } from '../../../models/url.enum';
 
@@ -16,7 +16,8 @@ export class ComponenteComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private http: HttpClient
+    private http: HttpClient,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -40,6 +41,10 @@ export class ComponenteComponent implements OnInit {
     { params: new HttpParams().set('nome', nome) } : {};
 
     return this.http.get(url, options);
+  }
+
+  voltar() {
+    this.router.navigate(['consulta-componente']);
   }
 
 }

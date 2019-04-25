@@ -4,6 +4,7 @@ import { FormBaseComponent } from '../../form-base/form-base.component';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Situacao } from '../../../models/situacao';
 import { Url } from '../../../models/url.enum';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-consulta-situacao',
@@ -17,9 +18,10 @@ export class ConsultaSituacaoComponent extends FormBaseComponent implements OnIn
 
   constructor(
     private formBuilder: FormBuilder,
-    private http: HttpClient
+    private http: HttpClient,
+    router: Router
   ) {
-    super();
+    super(router);
   }
 
   ngOnInit() {
