@@ -13,6 +13,7 @@ import { ConsultaElementoComponent } from './consulta-elemento/consulta-elemento
 import { ElementoComponent } from './elemento/elemento.component';
 import { ComponenteComponent } from './componente/componente.component';
 import { FormBaseModule } from '../form-base/form-base.module';
+import { EditaComportamentoComponent } from './edita-comportamento/edita-comportamento.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { FormBaseModule } from '../form-base/form-base.module';
     ConsultaComponenteComponent,
     ConsultaElementoComponent,
     ElementoComponent,
-    ComponenteComponent
+    ComponenteComponent,
+    EditaComportamentoComponent
   ],
   imports: [
     CommonModule,

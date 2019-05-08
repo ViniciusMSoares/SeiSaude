@@ -41,9 +41,9 @@ public class Elemento implements Serializable{
 	@Column()
 	private String complemento;
 	
-	public Elemento(String name, String descricao, String cadastradoPor, String complemento) {
+	public Elemento(String nome, String descricao, String cadastradoPor, String complemento) {
 		super();
-		this.nome = name;
+		this.nome = nome;
 		this.descricao = descricao;
 		this.cadastradoPor = cadastradoPor;
 		this.complemento = complemento;
@@ -61,12 +61,12 @@ public class Elemento implements Serializable{
 		this.id = id;
 	}
 
-	public String getName() {
+	public String getNome() {
 		return nome;
 	}
 
-	public void setName(String name) {
-		this.nome = name;
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 
 	public String getDescricao() {

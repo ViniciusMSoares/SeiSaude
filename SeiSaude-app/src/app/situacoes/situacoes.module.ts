@@ -8,6 +8,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ConsultaSituacaoComponent } from './consulta-situacao/consulta-situacao.component';
 import { SituacaoComponent } from './situacao/situacao.component';
+import { FormBaseModule } from '../form-base/form-base.module';
 
 @NgModule({
   declarations: [CadastroSintomaComponent,
@@ -19,7 +20,8 @@ import { SituacaoComponent } from './situacao/situacao.component';
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    FormBaseModule
   ]
 })
 export class SituacoesModule { }

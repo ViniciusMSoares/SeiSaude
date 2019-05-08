@@ -41,7 +41,7 @@ export class ConsultaElementoComponent extends FormBaseComponent implements OnIn
         let resultList = result as any[];
         //console.log(result);
         this.elementos = resultList.map(v => new Elemento(
-          v.name,
+          v.nome,
           v.complemento,
           v.descricao,
           v.cadastradoPor,

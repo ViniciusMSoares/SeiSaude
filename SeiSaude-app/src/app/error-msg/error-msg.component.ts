@@ -11,6 +11,8 @@ export class ErrorMsgComponent implements OnInit {
   @Input() control: FormControl;
   @Input() label: string;
 
+  @Input() status2: string;
+
   constructor() { }
 
   ngOnInit() {
@@ -21,6 +23,7 @@ export class ErrorMsgComponent implements OnInit {
     for (const propertyName in this.control.errors) {
       if (this.control.errors.hasOwnProperty(propertyName) &&
         this.control.touched) {
+          console.log(this.control.errors);
           return ErrorMsgComponent.getErrorMsg(this.label, propertyName, this.control.errors[propertyName]);
         }
     }
@@ -31,12 +34,24 @@ export class ErrorMsgComponent implements OnInit {
   static getErrorMsg(fieldName: string, validatorName: string, validatorValue?: any) {
     const config = {
       'required': `${fieldName} é obrigatório.`,
+      'nomeInvalido': `${fieldName} já está em uso. Tente adicionar ou alterar o complemento.`,
       'minlength': `${fieldName} precisa ter no mínimo ${validatorValue.requiredLength} caracteres.`,
       'maxlength': `${fieldName} precisa ter no máximo ${validatorValue.requiredLength} caracteres.`,
       'pattern': 'Campo inválido'
     };
 
     return config[validatorName];
+  }
+
+  get statusMessage() {
+    if (this.control.status == 'PENDING') {
+      return 'Avaliando nome...'
+    }
+    else if (this.control.status == 'VALID') {
+      return 'Nome válido.'
+    }
+
+    return null;
   }
 
 }

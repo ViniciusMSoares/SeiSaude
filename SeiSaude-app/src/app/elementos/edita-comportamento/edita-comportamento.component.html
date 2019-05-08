@@ -1,4 +1,4 @@
-<form class="form-horizontal" [formGroup]="formulario" (ngSubmit)="onSubmit()">
+<form class="form-horizontal" [formGroup]="formulario" (ngSubmit)="onSubmit()" #formDir="ngForm" autocomplete="off">
   <div style="text-align:center">
     <h1>
       {{ title }}
@@ -10,24 +10,21 @@
     <div class="form-row" formGroupName="nomeCompleto">
       <div class="form-group col-md-6" [ngClass]="aplicaCssErro('nomeCompleto.nome')">
         <label for="nome">Nome</label>
-        <input type="text" class="form-control" id="nome" formControlName="nome">
-
-        <app-error-msg [control]="formulario.get('nomeCompleto.nome')" label="Nome"></app-error-msg>
+        <input readonly type="text" class="form-control" id="nome" formControlName="nome">
       </div>
       <div class="form-group col-md-6">
         <label for="complemento">Complemento</label>
-        <input type="text" class="form-control" id="complemento" formControlName="complemento">
+        <input readonly type="text" class="form-control" id="complemento" formControlName="complemento">
       </div>
     </div>
+
     <div class="form-group">
       <label for="descricao">Descrição</label>
       <textarea class="form-control" id="descricao" formControlName="descricao" rows="3"></textarea>
     </div>
     <div class="form-group">
       <label for="cadastradoPor">Cadastrado por</label>
-      <input type="text" class="form-control" id="cadastradoPor" formControlName="cadastradoPor">
-
-      <app-error-msg [control]="formulario.get('cadastradoPor')" label="'Cadastrado por'"></app-error-msg>
+      <input readonly type="text" class="form-control" id="cadastradoPor" formControlName="cadastradoPor">
     </div>
 
     <div style="text-align:center">
@@ -35,12 +32,11 @@
     </div>
 
     <div style="text-align:right">
-      <button type="button" class="btn btn-secondary" (click)="voltar()">Voltar</button>
+      <button class="btn btn-secondary" (click)="voltar()">Voltar</button>
     </div>
   
     <router-outlet></router-outlet>
   </div>
-
 
   <div style="margin-top: 20px" *ngIf="formulario" >
     <div>Detalhes do form</div>

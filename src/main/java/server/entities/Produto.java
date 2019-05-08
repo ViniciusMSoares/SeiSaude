@@ -17,7 +17,7 @@ public class Produto extends Elemento {
 	}
 	
 	public Produto(Elemento elemento, String fabricante) {
-		super(elemento.getName(), elemento.getDescricao(), elemento.getCadastradoPor(), elemento.getComplemento());
+		super(elemento.getNome(), elemento.getDescricao(), elemento.getCadastradoPor(), elemento.getComplemento());
 		this.fabricante = fabricante;
 	}
 

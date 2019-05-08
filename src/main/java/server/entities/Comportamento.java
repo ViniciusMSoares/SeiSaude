@@ -12,7 +12,7 @@ public class Comportamento extends Elemento {
 	}
 	
 	public Comportamento(Elemento elemento) {
-		super(elemento.getName(), elemento.getDescricao(), elemento.getCadastradoPor(), elemento.getComplemento());
+		super(elemento.getNome(), elemento.getDescricao(), elemento.getCadastradoPor(), elemento.getComplemento());
 	}
 
 	public Comportamento() {

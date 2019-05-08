@@ -13,6 +13,7 @@ import { ConsultaSituacaoComponent } from './situacoes/consulta-situacao/consult
 import { ElementoComponent } from './elementos/elemento/elemento.component';
 import { SituacaoComponent } from './situacoes/situacao/situacao.component';
 import { ComponenteComponent } from './elementos/componente/componente.component';
+import { EditaComportamentoComponent } from './elementos/edita-comportamento/edita-comportamento.component';
 
 const routes: Routes = [
   { path: 'cadastro-alimento', component: CadastroAlimentoComponent },
@@ -29,6 +30,8 @@ const routes: Routes = [
   { path: 'elemento/:nome', component: ElementoComponent },
   { path: 'componente/:nome', component: ComponenteComponent },
   { path: 'situacao/:nome', component: SituacaoComponent },
+
+  { path: 'edita-comportamento/:nome', component: EditaComportamentoComponent},
 
   { path: '', component: HomePageComponent }
 ];
