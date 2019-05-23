@@ -52,9 +52,11 @@ export class CadastroComportamentoComponent extends FormBaseComponent implements
       this.formulario.value.cadastradoPor
     );
 
+    this.success = false;
     this.http.post(url, comportamento).subscribe(result => {
       console.log(result);
       this.success = true;
+      this.formulario.reset();
       },
       (error: any) => {
         console.log(error);

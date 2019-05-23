@@ -11,10 +11,16 @@ export class VerificaNomeService {
   constructor(private http: HttpClient) { }
 
   verificarNome(nome: string, complemento: string) {
+    if (nome == null) {
+      nome = "";
+    }
+    if (complemento == null) {
+      complemento = "";
+    }
     return this.http.get(Url.URL_BASE+Url.TODOS_ELEMENTOS)
       .pipe(
         delay(2000),
-        map((dados: {name: string, complemento: string}[]) => dados.filter(v => (v.name + v.complemento).toLowerCase().replace(/\s/g, "") === (nome + complemento).toLowerCase().replace(/\s/g, ""))),
+        map((dados: {nome: string, complemento: string}[]) => dados.filter(v => (v.nome + v.complemento).toLowerCase().replace(/\s/g, "") === (nome + complemento).toLowerCase().replace(/\s/g, ""))),
         tap(console.log),
         map((dados: any[]) => dados.length > 0 ),
         tap(console.log)
@@ -22,10 +28,16 @@ export class VerificaNomeService {
   }
 
   verificarNomeSituacao(nome: string, complemento: string) {
+    if (nome == null) {
+      nome = "";
+    }
+    if (complemento == null) {
+      complemento = "";
+    }
     return this.http.get(Url.URL_BASE+Url.TODAS_SITUACOES)
       .pipe(
         delay(2000),
-        map((dados: {name: string, complemento: string}[]) => dados.filter(v => (v.name + v.complemento).toLowerCase().replace(/\s/g, "") === (nome + complemento).toLowerCase().replace(/\s/g, ""))),
+        map((dados: {nome: string, complemento: string}[]) => dados.filter(v => (v.nome + v.complemento).toLowerCase().replace(/\s/g, "") === (nome + complemento).toLowerCase().replace(/\s/g, ""))),
         tap(console.log),
         map((dados: any[]) => dados.length > 0 ),
         tap(console.log)
@@ -33,6 +45,12 @@ export class VerificaNomeService {
   }
 
   verificarNomeComponente(nome: string, complemento: string) {
+    if (nome == null) {
+      nome = "";
+    }
+    if (complemento == null) {
+      complemento = "";
+    }
     return this.http.get(Url.URL_BASE+Url.TODOS_COMPONENTES)
       .pipe(
         delay(2000),

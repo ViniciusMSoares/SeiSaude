@@ -540,7 +540,7 @@ var CadastroComponenteComponent = /** @class */ (function (_super) {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<form class=\"form-horizontal\" [formGroup]=\"formulario\" (ngSubmit)=\"onSubmit()\" #formDir=\"ngForm\" autocomplete=\"off\">\n  <div style=\"text-align:center\">\n    <h1>\n      {{ title }}\n    </h1>\n  </div>\n  \n  <div class=\"container\">\n\n    <div class=\"form-row\" formGroupName=\"nomeCompleto\">\n      <div class=\"form-group col-md-6\" [ngClass]=\"aplicaCssErro('nomeCompleto.nome')\">\n        <label for=\"nome\">Nome</label>\n        <input type=\"text\" class=\"form-control\" id=\"nome\" formControlName=\"nome\">\n\n        <app-error-msg [control]=\"formulario.get('nomeCompleto.nome')\" label=\"Nome\"></app-error-msg>\n      </div>\n      <div class=\"form-group col-md-6\">\n        <label for=\"complemento\">Complemento</label>\n        <input type=\"text\" class=\"form-control\" id=\"complemento\" formControlName=\"complemento\">\n      </div>\n\n      <app-error-msg [control]=\"formulario.get('nomeCompleto')\" label=\"Nome\"></app-error-msg>\n    </div>\n    <div class=\"form-group\">\n      <label for=\"descricao\">Descrição</label>\n      <textarea class=\"form-control\" id=\"descricao\" formControlName=\"descricao\" rows=\"3\"></textarea>\n    </div>\n    <div class=\"form-group\">\n      <label for=\"cadastradoPor\">Cadastrado por</label>\n      <input type=\"text\" class=\"form-control\" id=\"cadastradoPor\" formControlName=\"cadastradoPor\">\n\n      <app-error-msg [control]=\"formulario.get('cadastradoPor')\" label=\"'Cadastrado por'\"></app-error-msg>\n    </div>\n\n    <div style=\"text-align:center\">\n      <button type=\"submit\" class=\"btn btn-primary\">Finalizar</button>\n    </div>\n\n    <div style=\"text-align:right\">\n      <button type=\"button\" class=\"btn btn-secondary\" (click)=\"voltar()\">Voltar</button>\n    </div>\n  \n    <router-outlet></router-outlet>\n  </div>\n\n  <div style=\"margin-top: 20px\" *ngIf=\"formulario\" >\n    <div>Detalhes do form</div>\n    <pre>Form válido: {{ formulario.status }}</pre>\n    <!--pre>Form submetido: {{ form.submitted }}</pre -->\n    <pre>Valores: <br>{{ formulario.value | json }}</pre>\n  </div>\n</form>"
+module.exports = "<form class=\"form-horizontal\" [formGroup]=\"formulario\" (ngSubmit)=\"onSubmit()\" #formDir=\"ngForm\" autocomplete=\"off\">\n  <div style=\"text-align:center\">\n    <h1>\n      {{ title }}\n    </h1>\n  </div>\n  \n  <div class=\"container\">\n\n    <div *ngIf=\"success\" class=\"alert alert-success alert-dismissible fade show\" role=\"alert\">\n      <strong>Cadastro realizado com sucesso!</strong>\n      <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">\n        <span aria-hidden=\"true\">&times;</span>\n      </button>\n    </div>\n\n    <div class=\"form-row\" formGroupName=\"nomeCompleto\">\n      <div class=\"form-group col-md-6\" [ngClass]=\"aplicaCssErro('nomeCompleto.nome')\">\n        <label for=\"nome\">Nome</label>\n        <input type=\"text\" class=\"form-control\" id=\"nome\" formControlName=\"nome\">\n\n        <app-error-msg [control]=\"formulario.get('nomeCompleto.nome')\" label=\"Nome\"></app-error-msg>\n      </div>\n      <div class=\"form-group col-md-6\">\n        <label for=\"complemento\">Complemento</label>\n        <input type=\"text\" class=\"form-control\" id=\"complemento\" formControlName=\"complemento\">\n      </div>\n\n      <app-error-msg [control]=\"formulario.get('nomeCompleto')\" label=\"Nome\"></app-error-msg>\n    </div>\n    <div class=\"form-group\">\n      <label for=\"descricao\">Descrição</label>\n      <textarea class=\"form-control\" id=\"descricao\" formControlName=\"descricao\" rows=\"3\"></textarea>\n    </div>\n    <div class=\"form-group\">\n      <label for=\"cadastradoPor\">Cadastrado por</label>\n      <input type=\"text\" class=\"form-control\" id=\"cadastradoPor\" formControlName=\"cadastradoPor\">\n\n      <app-error-msg [control]=\"formulario.get('cadastradoPor')\" label=\"'Cadastrado por'\"></app-error-msg>\n    </div>\n\n    <div style=\"text-align:center\">\n      <button type=\"submit\" class=\"btn btn-primary\">Finalizar</button>\n    </div>\n\n    <div style=\"text-align:right\">\n      <button type=\"button\" class=\"btn btn-secondary\" (click)=\"voltar()\">Voltar</button>\n    </div>\n  \n    <router-outlet></router-outlet>\n  </div>\n\n  <div style=\"margin-top: 20px\" *ngIf=\"formulario\" >\n    <div>Detalhes do form</div>\n    <pre>Form válido: {{ formulario.status }}</pre>\n    <!--pre>Form submetido: {{ form.submitted }}</pre -->\n    <pre>Valores: <br>{{ formulario.value | json }}</pre>\n  </div>\n</form>"
 
 /***/ }),
 
@@ -638,9 +638,11 @@ var CadastroComportamentoComponent = /** @class */ (function (_super) {
         var _this = this;
         var url = _models_url_enum__WEBPACK_IMPORTED_MODULE_5__["Url"].URL_BASE + _models_url_enum__WEBPACK_IMPORTED_MODULE_5__["Url"].CADASTRO_COMPORTAMENTO;
         var comportamento = new _models_comportamento__WEBPACK_IMPORTED_MODULE_1__["Comportamento"](this.formulario.value.nomeCompleto.nome, this.formulario.value.nomeCompleto.complemento, this.formulario.value.descricao, this.formulario.value.cadastradoPor);
+        this.success = false;
         this.http.post(url, comportamento).subscribe(function (result) {
             console.log(result);
             _this.success = true;
+            _this.formulario.reset();
         }, function (error) {
             console.log(error);
             _this.nomeIndisponivel = true;
@@ -1930,14 +1932,32 @@ var VerificaNomeService = /** @class */ (function () {
         this.http = http;
     }
     VerificaNomeService.prototype.verificarNome = function (nome, complemento) {
+        if (nome == null) {
+            nome = "";
+        }
+        if (complemento == null) {
+            complemento = "";
+        }
         return this.http.get(_models_url_enum__WEBPACK_IMPORTED_MODULE_2__["Url"].URL_BASE + _models_url_enum__WEBPACK_IMPORTED_MODULE_2__["Url"].TODOS_ELEMENTOS)
-            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["delay"])(2000), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(function (dados) { return dados.filter(function (v) { return (v.name + v.complemento).toLowerCase().replace(/\s/g, "") === (nome + complemento).toLowerCase().replace(/\s/g, ""); }); }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["tap"])(console.log), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(function (dados) { return dados.length > 0; }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["tap"])(console.log));
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["delay"])(2000), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(function (dados) { return dados.filter(function (v) { return (v.nome + v.complemento).toLowerCase().replace(/\s/g, "") === (nome + complemento).toLowerCase().replace(/\s/g, ""); }); }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["tap"])(console.log), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(function (dados) { return dados.length > 0; }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["tap"])(console.log));
     };
     VerificaNomeService.prototype.verificarNomeSituacao = function (nome, complemento) {
+        if (nome == null) {
+            nome = "";
+        }
+        if (complemento == null) {
+            complemento = "";
+        }
         return this.http.get(_models_url_enum__WEBPACK_IMPORTED_MODULE_2__["Url"].URL_BASE + _models_url_enum__WEBPACK_IMPORTED_MODULE_2__["Url"].TODAS_SITUACOES)
-            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["delay"])(2000), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(function (dados) { return dados.filter(function (v) { return (v.name + v.complemento).toLowerCase().replace(/\s/g, "") === (nome + complemento).toLowerCase().replace(/\s/g, ""); }); }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["tap"])(console.log), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(function (dados) { return dados.length > 0; }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["tap"])(console.log));
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["delay"])(2000), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(function (dados) { return dados.filter(function (v) { return (v.nome + v.complemento).toLowerCase().replace(/\s/g, "") === (nome + complemento).toLowerCase().replace(/\s/g, ""); }); }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["tap"])(console.log), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(function (dados) { return dados.length > 0; }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["tap"])(console.log));
     };
     VerificaNomeService.prototype.verificarNomeComponente = function (nome, complemento) {
+        if (nome == null) {
+            nome = "";
+        }
+        if (complemento == null) {
+            complemento = "";
+        }
         return this.http.get(_models_url_enum__WEBPACK_IMPORTED_MODULE_2__["Url"].URL_BASE + _models_url_enum__WEBPACK_IMPORTED_MODULE_2__["Url"].TODOS_COMPONENTES)
             .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["delay"])(2000), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(function (dados) { return dados.filter(function (v) { return (v.nome + v.complemento).toLowerCase().replace(/\s/g, "") === (nome + complemento).toLowerCase().replace(/\s/g, ""); }); }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["tap"])(console.log), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(function (dados) { return dados.length > 0; }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["tap"])(console.log));
     };
