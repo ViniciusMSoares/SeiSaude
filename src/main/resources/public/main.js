@@ -2787,8 +2787,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Url", function() { return Url; });
 var Url;
 (function (Url) {
-    Url["URL_BASE"] = "http://localhost:8080";
-    //URL_BASE = "https://sei-saude.herokuapp.com",
+    //URL_BASE = "http://localhost:8080",
+    Url["URL_BASE"] = "https://sei-saude.herokuapp.com";
     Url["ELEMENTO"] = "/elemento";
     Url["ELEMENTOS"] = "/elementos";
     Url["COMPONENTES"] = "/elemento/componentes";
