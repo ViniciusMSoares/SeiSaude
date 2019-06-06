@@ -9,6 +9,7 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Quantidade } from '../../../models/quantidade';
 import { Router } from '@angular/router';
+import { Componente } from '../../../models/componente';
 
 @Component({
   selector: 'app-cadastro-remedio',
@@ -20,6 +21,7 @@ export class CadastroRemedioComponent extends FormBaseComponent implements OnIni
   public title = 'Cadastro de Remédio';
   public remedio = {} as Remedio;
   public quantidades = [] as Quantidade[];
+  public componentesBD = [] as Componente[];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -41,6 +43,17 @@ export class CadastroRemedioComponent extends FormBaseComponent implements OnIni
       cadastradoPor: ["", Validators.required],
       componentes: this.buildComponentes()
     });
+
+    let url = Url.URL_BASE + Url.TODOS_COMPONENTES;
+    this.http.get(url).subscribe(result => {
+        let resultList = result as any[];
+        this.componentesBD = resultList.map(v => new Componente(
+          v.nome,
+          v.complemento
+        ));
+        console.log(this.componentesBD);
+      }
+    );
   }
 
   buildComponentes() {
@@ -88,6 +101,28 @@ export class CadastroRemedioComponent extends FormBaseComponent implements OnIni
 
   removeComponente(i: number) {
     this.componentes.removeAt(i);
+  }
+
+  suggestions: string[] = [];
+  nomesComponentes: string[] = [];
+
+  suggest(i: number) {
+    this.nomesComponentes = this.componentesBD.map(c => this.nullToBlank(c.nome) + " " + this.nullToBlank(c.complemento));
+    console.log(this.formulario.get('componentes').value);
+    this.suggestions = this.nomesComponentes
+      .filter(c => c.startsWith(this.formulario.get('componentes').value[i].nome))
+      .slice(0, 5);
+  }
+
+  nullToBlank(s: String) {
+    if (s == null) {
+      return "";
+    }
+    return s;
+  }
+
+  fillTextbox(i, string) {  
+    this.formulario.get('componentes').value[i].nome = string;
   }
 
 }
