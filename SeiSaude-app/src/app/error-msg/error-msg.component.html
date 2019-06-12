@@ -3,6 +3,7 @@
   <span class=".is-invalid sr-only">(error)</span>
   <div class="alert alert-danger errorDiv" role="alert">
     {{ errorMessage }}
+    <button *ngIf="nomeInvalido" type="button" class="btn btn-secondary" (click)="bttnAlterar()">Alterar</button>
   </div>
 </div>
 

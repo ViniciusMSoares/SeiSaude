@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-error-msg',
@@ -13,7 +14,7 @@ export class ErrorMsgComponent implements OnInit {
 
   @Input() status2: string;
 
-  constructor() { }
+  constructor(private router : Router) { }
 
   ngOnInit() {
   }
@@ -52,6 +53,15 @@ export class ErrorMsgComponent implements OnInit {
     }
 
     return null;
+  }
+
+  get nomeInvalido() {
+    if (this.control.get('nome') === null) return false;
+    else return true;
+  }
+
+  bttnAlterar() {
+    this.router.navigate([`edita-comportamento/${this.control.get('nome').value}${this.control.get('complemento').value || ''}`]);
   }
 
 }

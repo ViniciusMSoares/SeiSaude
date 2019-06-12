@@ -1,6 +1,6 @@
 export enum Url {
-    URL_BASE = "http://localhost:8080",
-    //URL_BASE = "https://sei-saude.herokuapp.com",
+    //URL_BASE = "http://localhost:8080",
+    URL_BASE = "https://sei-saude.herokuapp.com",
 
     ELEMENTO = "/elemento",
     ELEMENTOS = "/elementos",
@@ -18,7 +18,7 @@ export enum Url {
     CADASTRO_SINTOMA = "/situacao/sintoma",
     CADASTRO_DOENCA = "/situacao/doenca",
     TODAS_SITUACOES = "/all_situacao",
-    
+
     PACIENTE = "/paciente",
 
     INDICACAO = "/indicacao",
