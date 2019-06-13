@@ -18,6 +18,7 @@ export class CadastroDoencaComponent extends FormBaseComponent implements OnInit
 
   public title = 'Cadastro de Doença';
   public doenca = {} as Doenca;
+  public success: boolean;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -49,8 +50,11 @@ export class CadastroDoencaComponent extends FormBaseComponent implements OnInit
       this.formulario.value.cadastradoPor
     );
 
+    this.success = false;
     this.http.post(url, doenca).subscribe(result => {
       console.log(result);
+      this.success = true;
+      this.formulario.reset();
       },
       (error: any) => console.log(error)
     );

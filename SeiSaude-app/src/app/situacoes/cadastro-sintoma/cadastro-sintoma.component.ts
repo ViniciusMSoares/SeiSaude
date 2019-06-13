@@ -18,6 +18,7 @@ export class CadastroSintomaComponent extends FormBaseComponent implements OnIni
 
   public title = 'Cadastro de Sintoma';
   public sintoma = {} as Sintoma;
+  public success: boolean;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -49,8 +50,11 @@ export class CadastroSintomaComponent extends FormBaseComponent implements OnIni
       this.formulario.value.cadastradoPor
     );
 
+    this.success = false;
     this.http.post(url, sintoma).subscribe(result => {
       console.log(result);
+      this.success = true;
+      this.formulario.reset();
       },
       (error: any) => console.log(error)
     );

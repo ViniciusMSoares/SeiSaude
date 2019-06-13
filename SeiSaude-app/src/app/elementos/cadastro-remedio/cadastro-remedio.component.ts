@@ -22,6 +22,7 @@ export class CadastroRemedioComponent extends FormBaseComponent implements OnIni
   public remedio = {} as Remedio;
   public quantidades = [] as Quantidade[];
   public componentesBD = [] as Componente[];
+  public success: boolean;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -75,8 +76,11 @@ export class CadastroRemedioComponent extends FormBaseComponent implements OnIni
       this.formulario.value.componentes
     );
 
+    this.success = false;
     this.http.post(url, remedio).subscribe(result => {
       console.log(result);
+      this.success = true;
+      this.formulario.reset();
       },
       (error: any) => console.log(error)
     );
@@ -105,10 +109,10 @@ export class CadastroRemedioComponent extends FormBaseComponent implements OnIni
 
   suggestions: string[] = [];
   nomesComponentes: string[] = [];
+  componenteFocus = false;
 
   suggest(i: number) {
     this.nomesComponentes = this.componentesBD.map(c => this.nullToBlank(c.nome) + " " + this.nullToBlank(c.complemento));
-    console.log(this.formulario.get('componentes').value);
     this.suggestions = this.nomesComponentes
       .filter(c => c.startsWith(this.formulario.get('componentes').value[i].nome))
       .slice(0, 5);
@@ -121,8 +125,21 @@ export class CadastroRemedioComponent extends FormBaseComponent implements OnIni
     return s;
   }
 
-  fillTextbox(i, string) {  
-    this.formulario.get('componentes').value[i].nome = string;
+  fillTextbox(i, string) {
+    (<FormArray>this.formulario.get('componentes')).at(i).get('nome').setValue(string);
+    this.suggestions = [];
+  }
+
+  onFocus() {
+    this.componenteFocus = true;
+  }
+
+  onBlur() {
+    this.componenteFocus = false;
+  }
+
+  focus() {
+    return this.componenteFocus && (this.suggestions.length > 0);
   }
 
 }

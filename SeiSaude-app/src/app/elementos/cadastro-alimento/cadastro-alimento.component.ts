@@ -22,6 +22,7 @@ export class CadastroAlimentoComponent extends FormBaseComponent implements OnIn
   public alimento = {} as Alimento;
   public quantidades = [] as Quantidade[];
   public valores = [] as Valor[];
+  public success: boolean;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -48,9 +49,9 @@ export class CadastroAlimentoComponent extends FormBaseComponent implements OnIn
 
   buildComponentes() {
     const values = this.quantidades.map(v => new FormGroup({
-      nome: new FormControl(v.nome),
-      unidade: new FormControl(v.unidade),
-      valor: new FormControl(v.valor)}));
+      nome: new FormControl(v.nome, Validators.required),
+      unidade: new FormControl(v.unidade, Validators.required),
+      valor: new FormControl(v.valor, Validators.required)}));
     return this.formBuilder.array(values);
   }
 
@@ -75,8 +76,11 @@ export class CadastroAlimentoComponent extends FormBaseComponent implements OnIn
       this.formulario.value.valNutricionais
     );
 
+    this.success = false;
     this.http.post(url, alimento).subscribe(result => {
       console.log(result);
+      this.success = true;
+      this.formulario.reset();
       },
       (error: any) => console.log(error)
     );

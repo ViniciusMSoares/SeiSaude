@@ -18,6 +18,7 @@ export class CadastroComponenteComponent extends FormBaseComponent implements On
 
   public title = 'Cadastro de Componente';
   public componente = {} as Componente;
+  public success: boolean;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -45,8 +46,11 @@ export class CadastroComponenteComponent extends FormBaseComponent implements On
       this.formulario.value.nomeCompleto.complemento
     );
 
+    this.success = false;
     this.http.post(url, componente).subscribe(result => {
       console.log(result);
+      this.success = true;
+      this.formulario.reset();
       },
       (error: any) => console.log(error)
     );

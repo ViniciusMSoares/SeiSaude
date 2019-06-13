@@ -6,6 +6,14 @@
   </div>
   
   <div class="container">
+
+    <div *ngIf="success" class="alert alert-success alert-dismissible fade show" role="alert">
+      <strong>Cadastro realizado com sucesso!</strong>
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+
     <div class="container">
 
     <div class="form-row" formGroupName="nomeCompleto">
@@ -19,6 +27,8 @@
         <label for="complemento">Complemento</label>
         <input type="text" class="form-control" id="complemento" formControlName="complemento">
       </div>
+
+      <app-error-msg [control]="formulario.get('nomeCompleto')" label="Nome"></app-error-msg>
     </div>
     <div class="form-group">
       <label for="descricao">Descrição</label>
@@ -46,16 +56,18 @@
               </h5>
               <div class="form-row">
                 
-                <input type="text" class="form-control" id="nome" formControlName="nome" placeholder="Nome" (input)="suggest(i)">
-                <div class="" *ngIf="suggestions.length">
+                <input type="text" class="form-control" id="nome" formControlName="nome" placeholder="Nome" (input)="suggest(i)" (focusout)="onBlur()" (focus)="onFocus()">
+                <div class="" *ngIf="focus()">
                   <ul class="list-group" style="position:relative">
-                    <a class="list-group-item" (click)="fillTextbox(i, s)" *ngFor="let s of suggestions">{{s}}</a>
+                    <button type="button" class="list-group-item list-group-item-action" (mousedown)="fillTextbox(i, s)" *ngFor="let s of suggestions">{{s}}</button>
                   </ul>
                 </div>
 
                 <input type="number" class="form-control col" id="valor" formControlName="valor" placeholder="Valor">
                 <input type="text" class="form-control col" id="unidade" formControlName="unidade" placeholder="Unidade">
               </div>
+
+              <app-error-msg [control]="formulario.get('componentes').at(i).get('nome')" label="Componente"></app-error-msg>
             </div>
           </div>
         </div>
