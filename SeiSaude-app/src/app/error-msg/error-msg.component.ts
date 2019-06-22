@@ -1,7 +1,7 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, Output, EventEmitter } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
-
+import { CadastroComportamentoComponent } from '../elementos/cadastro-comportamento/cadastro-comportamento.component';
 @Component({
   selector: 'app-error-msg',
   templateUrl: './error-msg.component.html',
@@ -11,6 +11,8 @@ export class ErrorMsgComponent implements OnInit {
 
   @Input() control: FormControl;
   @Input() label: string;
+  @ViewChild(CadastroComportamentoComponent) comportamento: CadastroComportamentoComponent;
+  @Output() bttnError = new EventEmitter();
 
   @Input() status2: string;
 
@@ -24,7 +26,7 @@ export class ErrorMsgComponent implements OnInit {
     for (const propertyName in this.control.errors) {
       if (this.control.errors.hasOwnProperty(propertyName) &&
         this.control.touched) {
-          console.log(this.control.errors);
+          console.log(propertyName);
           return ErrorMsgComponent.getErrorMsg(this.label, propertyName, this.control.errors[propertyName]);
         }
     }
@@ -35,7 +37,8 @@ export class ErrorMsgComponent implements OnInit {
   static getErrorMsg(fieldName: string, validatorName: string, validatorValue?: any) {
     const config = {
       'required': `${fieldName} é obrigatório.`,
-      'nomeInvalido': `${fieldName} já está em uso. Tente adicionar ou alterar o complemento.`,
+      'nomeInvalido': `${fieldName} já está em uso. Você deseja:`,
+      'nomeComplementoInvalidos': `${fieldName} e complemento já estão em uso. Você deseja:`,
       'minlength': `${fieldName} precisa ter no mínimo ${validatorValue.requiredLength} caracteres.`,
       'maxlength': `${fieldName} precisa ter no máximo ${validatorValue.requiredLength} caracteres.`,
       'pattern': 'Campo inválido'
@@ -56,12 +59,17 @@ export class ErrorMsgComponent implements OnInit {
   }
 
   get nomeInvalido() {
-    if (this.control.get('nome') === null) return false;
-    else return true;
+    if (this.control.errors["nomeInvalido"]) return "nome";
+    else if (this.control.errors["nomeComplementoInvalidos"]) return "complemento";
+    else return null;
   }
 
   bttnAlterar() {
     this.router.navigate([`edita-comportamento/${this.control.get('nome').value}${this.control.get('complemento').value || ''}`]);
   }
 
+
+  bttnFocus(nameElement: String) {
+    this.bttnError.emit(nameElement);
+  }
 }

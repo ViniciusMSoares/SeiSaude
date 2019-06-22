@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, TemplateRef } from '@angular/core';
 import { Comportamento } from '../../../models/comportamento';
 import { FormBaseComponent } from '../../form-base/form-base.component';
 import { FormBuilder, Validators, FormControl, ValidatorFn, FormGroup, ValidationErrors, AsyncValidatorFn } from '@angular/forms';
@@ -8,6 +8,7 @@ import { VerificaNomeService } from '../../services/verifica-nome/verifica-nome.
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
+import { Template } from '@angular/compiler/src/render3/r3_ast';
 
 @Component({
   selector: 'app-cadastro-comportamento',
@@ -68,9 +69,15 @@ export class CadastroComportamentoComponent extends FormBaseComponent implements
   nomeComplemento: AsyncValidatorFn = (control: FormGroup): Promise<ValidationErrors | null> | Observable<ValidationErrors | null> => {
     const nome = control.get('nome');
     const complemento = control.get('complemento');
-  
+
+    if (!complemento.value) {
     return this.verificaNomeService.verificarNome(nome.value, complemento.value)
       .pipe(map(nomeExiste => nomeExiste ? { nomeInvalido: true } : null));
+    }
+    else {
+    return this.verificaNomeService.verificarNome(nome.value, complemento.value)
+      .pipe(map(nomeExiste => nomeExiste ? { nomeComplementoInvalidos: true } : null));
+    }
   };
 
   testaHTTP() {
@@ -90,4 +97,14 @@ export class CadastroComportamentoComponent extends FormBaseComponent implements
     );
   }
 
+  get nameIsSelected() {
+    let nome = $("#nome").is(":focus");
+    let complemento = $("#complemento").is(":focus");
+
+    return !nome && !complemento;
+  }
+
+  focusElement(elementName: String) {
+    $('#' + elementName).trigger("focus");
+  }
 }

@@ -4,7 +4,7 @@
       {{ title }}
     </h1>
   </div>
-  
+
   <div class="container">
 
     <div *ngIf="success" class="alert alert-success alert-dismissible fade show" role="alert">
@@ -19,14 +19,14 @@
         <label for="nome">Nome</label>
         <input type="text" class="form-control" id="nome" formControlName="nome">
 
-        <app-error-msg [control]="formulario.get('nomeCompleto.nome')" label="Nome"></app-error-msg>
+        <app-error-msg *ngIf="nameIsSelected" (bttnError)="focusElement($event)" [control]="formulario.get('nomeCompleto.nome')" label="Nome"></app-error-msg>
       </div>
       <div class="form-group col-md-6">
         <label for="complemento">Complemento</label>
         <input type="text" class="form-control" id="complemento" formControlName="complemento">
       </div>
 
-      <app-error-msg [control]="formulario.get('nomeCompleto')" label="Nome"></app-error-msg>
+      <app-error-msg *ngIf="nameIsSelected" (bttnError)="focusElement($event)" [control]="formulario.get('nomeCompleto')" label="Nome"></app-error-msg>
     </div>
     <div class="form-group">
       <label for="descricao">Descrição</label>
@@ -46,7 +46,7 @@
     <div style="text-align:right">
       <button type="button" class="btn btn-secondary" (click)="voltar()">Voltar</button>
     </div>
-  
+
     <router-outlet></router-outlet>
   </div>
 
@@ -57,3 +57,5 @@
     <pre>Valores: <br>{{ formulario.value | json }}</pre>
   </div>
 </form>
+
+<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>-->

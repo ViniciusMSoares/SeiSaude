@@ -2,8 +2,23 @@
   <span class=".is-invalid form-control-feedback"></span>
   <span class=".is-invalid sr-only">(error)</span>
   <div class="alert alert-danger errorDiv" role="alert">
-    {{ errorMessage }}
-    <button *ngIf="nomeInvalido" type="button" class="btn btn-secondary" (click)="bttnAlterar()">Alterar</button>
+    {{ errorMessage }} <br>
+    <div *ngIf="nomeInvalido">
+    <div *ngIf="nomeInvalido == 'nome'">
+      <span>Adicionar complemento </span>
+      <button class="adicional" id="1" type="button" class="btn btn-secondary" (click)="bttnFocus('complemento')">Adicionar</button>
+    </div>
+
+    <div *ngIf="nomeInvalido == 'complemento'">
+      <span>Trocar o nome e/ou complemento do comportamento inserido </span>
+      <button class="adicional" id="2" type="button" class="btn btn-secondary" (click)="bttnFocus('nome')">Trocar</button>
+    </div>
+
+
+    <br>
+    <span>Alterar informações do já existente </span>
+    <button type="button" class="btn btn-secondary" (click)="bttnAlterar()">Alterar</button>
+    </div>
   </div>
 </div>
 
