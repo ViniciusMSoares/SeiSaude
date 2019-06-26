@@ -41,7 +41,7 @@ export class ConsultaSituacaoComponent extends FormBaseComponent implements OnIn
         let resultList = result as any[];
         //console.log(result);
         this.situacoes = resultList.map(v => new Situacao(
-          v.name,
+          v.nome,
           v.complemento,
           v.descricao,
           v.cadastradoPor

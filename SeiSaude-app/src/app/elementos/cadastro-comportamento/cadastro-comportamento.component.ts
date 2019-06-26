@@ -41,7 +41,7 @@ export class CadastroComportamentoComponent extends FormBaseComponent implements
       descricao: [""],
       cadastradoPor: ["", Validators.required]
     });
-    this.testaHTTP();
+    //this.testaHTTP();
   }
 
   submit() {

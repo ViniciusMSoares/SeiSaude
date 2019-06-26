@@ -12,7 +12,7 @@ public class Sintoma extends Situacao {
 	}
 	
 	public Sintoma(Situacao situacao) {
-		super(situacao.getName(), situacao.getDescricao(), situacao.getComplemento(), situacao.getCadastradoPor());
+		super(situacao.getNome(), situacao.getDescricao(), situacao.getComplemento(), situacao.getCadastradoPor());
 	}
 	
 	public Sintoma() {

@@ -7,6 +7,7 @@ export enum Url {
     COMPONENTES = "/elemento/componentes",
     TODOS_ELEMENTOS = "/all_elemento",
     TODOS_COMPONENTES = "/all_componente",
+    TODOS_VALNUTRI = "/all_valNutri",
     CADASTRO_COMPORTAMENTO = "/elemento/comportamento",
     CADASTRO_COMPONENTE = "/elemento/componente",
     CADASTRO_ALIMENTO = "/elemento/alimento",

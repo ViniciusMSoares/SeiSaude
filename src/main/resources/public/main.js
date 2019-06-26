@@ -241,7 +241,7 @@ var AppModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<form class=\"form-horizontal\" [formGroup]=\"formulario\" (ngSubmit)=\"onSubmit()\" autocomplete=\"off\">\n  <div style=\"text-align:center\">\n    <h1>\n      {{ title }}\n    </h1>\n  </div>\n  \n  <div class=\"container\">\n\n    <div *ngIf=\"success\" class=\"alert alert-success alert-dismissible fade show\" role=\"alert\">\n      <strong>Cadastro realizado com sucesso!</strong>\n      <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">\n        <span aria-hidden=\"true\">&times;</span>\n      </button>\n    </div>\n\n    <div class=\"container\">\n\n      <div class=\"form-row\" formGroupName=\"nomeCompleto\">\n        <div class=\"form-group col-md-6\" [ngClass]=\"aplicaCssErro('nomeCompleto.nome')\">\n          <label for=\"nome\">Nome</label>\n          <input type=\"text\" class=\"form-control\" id=\"nome\" formControlName=\"nome\">\n\n          <app-error-msg [control]=\"formulario.get('nomeCompleto.nome')\" label=\"Nome\"></app-error-msg>\n        </div>\n        <div class=\"form-group col-md-6\">\n          <label for=\"complemento\">Complemento</label>\n          <input type=\"text\" class=\"form-control\" id=\"complemento\" formControlName=\"complemento\">\n        </div>\n\n        <app-error-msg [control]=\"formulario.get('nomeCompleto')\" label=\"Nome\"></app-error-msg>\n      </div>\n      <div class=\"form-group\">\n        <label for=\"descricao\">Descrição</label>\n        <textarea class=\"form-control\" id=\"descricao\" formControlName=\"descricao\" rows=\"3\"></textarea>\n      </div>\n      <div class=\"form-group\">\n        <label for=\"fabricante\">Fabricante</label>\n        <input type=\"text\" class=\"form-control\" id=\"fabricante\" formControlName=\"fabricante\">\n      </div>\n      <div class=\"form-group\">\n        <label for=\"cadastradoPor\">Cadastrado por</label>\n        <input type=\"text\" class=\"form-control\" id=\"cadastradoPor\" formControlName=\"cadastradoPor\">\n\n        <app-error-msg [control]=\"formulario.get('cadastradoPor')\" label=\"'Cadastrado por'\"></app-error-msg>\n      </div>\n  \n  \n      <div class=\"form-row\">\n        <div class=\"form-group col-md-6\" formArrayName=\"componentes\">\n          <div *ngFor=\"let componente of formulario.get('componentes').controls; index as i\">\n            <div class=\"card\" [formGroup]=\"componente\">\n              <div class=\"card-body\">\n                <h5 class=\"card-title\">Componente\n                  <button class=\"btn\" (click)=\"removeComponente(i)\">Remover</button>\n                </h5>\n                <div class=\"form-row\">\n                  <input type=\"text\" class=\"form-control\" id=\"nome\" formControlName=\"nome\" placeholder=\"Nome\">\n                  <input type=\"number\" class=\"form-control col\" id=\"valor\" formControlName=\"valor\" placeholder=\"Valor\">\n                  <input type=\"text\" class=\"form-control col\" id=\"unidade\" formControlName=\"unidade\" placeholder=\"Unidade\">\n                </div>\n\n                <app-error-msg [control]=\"formulario.get('componentes').at(i).get('nome')\" label=\"Componente\"></app-error-msg>\n              </div>\n            </div>\n          </div>\n          <button type=\"button\" class=\"btn\" (click)=\"addComponente()\" #scrollBottom>Novo componente</button>\n        </div>\n\n        <div class=\"form-group col-md-6\" formArrayName=\"valNutricionais\">\n          <div *ngFor=\"let val of formulario.get('valNutricionais').controls; index as i\">\n            <div class=\"card\" [formGroup]=\"val\">\n              <div class=\"card-body\">\n                <h5 class=\"card-title\">Valor Nutricional\n                  <button class=\"btn\" (click)=\"removeValNutricional(i)\">Remover</button>\n                </h5>\n                <div class=\"form-row\">\n                  <input type=\"text\" class=\"form-control\" id=\"nome\" formControlName=\"nome\" placeholder=\"Nome\">\n                  <input type=\"number\" class=\"form-control col-md-6\" id=\"quantidade\" formControlName=\"quantidade\" placeholder=\"Quantidade\">\n                  <input type=\"text\" class=\"form-control col-md-6\" id=\"unidade\" formControlName=\"unidade\" placeholder=\"Unidade\">\n                  <div class=\"input-group mb-3\">\n                    <input type=\"number\" class=\"form-control\" id=\"valorDiario\" formControlName=\"valorDiario\" placeholder=\"Valor diario\">\n                    <div class=\"input-group-append\">\n                      <span class=\"input-group-text\">%</span>\n                    </div>\n                  </div>\n\n                  <app-error-msg [control]=\"formulario.get('valNutricionais').at(i).get('nome')\" label=\"Valor Nutricional\"></app-error-msg>\n                </div>\n              </div>\n            </div>\n          </div>\n          <button type=\"button\" class=\"btn\" (click)=\"addValNutricional()\" #scrollBottom>Novo valor nutricional</button>\n        </div>\n        \n      </div>\n  \n    </div>\n\n    <div style=\"text-align:center\">\n      <button type=\"submit\" class=\"btn btn-primary\">Finalizar</button>\n    </div>\n  \n    <div style=\"text-align:right\">\n      <button type=\"button\" class=\"btn btn-secondary\" (click)=\"voltar()\">Voltar</button>\n    </div>\n\n    <router-outlet></router-outlet>\n  </div>\n\n  <div style=\"margin-top: 20px\" *ngIf=\"formulario\" >\n    <div>Detalhes do form</div>\n    <pre>Form válido: {{ formulario.status }}</pre>\n    <!--pre>Form submetido: {{ form.submitted }}</pre -->\n    <pre>Valores: <br>{{ formulario.value | json }}</pre>\n  </div>\n</form>"
+module.exports = "<form class=\"form-horizontal\" [formGroup]=\"formulario\" (ngSubmit)=\"onSubmit()\" autocomplete=\"off\">\n  <div style=\"text-align:center\">\n    <h1>\n      {{ title }}\n    </h1>\n  </div>\n  \n  <div class=\"container\">\n\n    <div *ngIf=\"success\" class=\"alert alert-success alert-dismissible fade show\" role=\"alert\">\n      <strong>Cadastro realizado com sucesso!</strong>\n      <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">\n        <span aria-hidden=\"true\">&times;</span>\n      </button>\n    </div>\n\n    <div class=\"container\">\n\n      <div class=\"form-row\" formGroupName=\"nomeCompleto\">\n        <div class=\"form-group col-md-6\" [ngClass]=\"aplicaCssErro('nomeCompleto.nome')\">\n          <label for=\"nome\">Nome</label>\n          <input type=\"text\" class=\"form-control\" id=\"nome\" formControlName=\"nome\">\n\n          <app-error-msg [control]=\"formulario.get('nomeCompleto.nome')\" label=\"Nome\"></app-error-msg>\n        </div>\n        <div class=\"form-group col-md-6\">\n          <label for=\"complemento\">Complemento</label>\n          <input type=\"text\" class=\"form-control\" id=\"complemento\" formControlName=\"complemento\">\n        </div>\n\n        <app-error-msg [control]=\"formulario.get('nomeCompleto')\" label=\"Nome\"></app-error-msg>\n      </div>\n      <div class=\"form-group\">\n        <label for=\"descricao\">Descrição</label>\n        <textarea class=\"form-control\" id=\"descricao\" formControlName=\"descricao\" rows=\"3\"></textarea>\n      </div>\n      <div class=\"form-group\">\n        <label for=\"fabricante\">Fabricante</label>\n        <input type=\"text\" class=\"form-control\" id=\"fabricante\" formControlName=\"fabricante\">\n      </div>\n      <div class=\"form-group\">\n        <label for=\"cadastradoPor\">Cadastrado por</label>\n        <input type=\"text\" class=\"form-control\" id=\"cadastradoPor\" formControlName=\"cadastradoPor\">\n\n        <app-error-msg [control]=\"formulario.get('cadastradoPor')\" label=\"'Cadastrado por'\"></app-error-msg>\n      </div>\n  \n  \n      <div class=\"form-row\">\n        <div class=\"form-group col-md-6\" formArrayName=\"componentes\">\n          <div *ngFor=\"let componente of formulario.get('componentes').controls; index as i\">\n            <div class=\"card\" [formGroup]=\"componente\">\n              <div class=\"card-body\">\n                <h5 class=\"card-title\">Componente\n                  <button class=\"btn\" (click)=\"removeComponente(i)\">Remover</button>\n                </h5>\n                <div class=\"form-row\">\n\n                  <input type=\"text\" class=\"form-control\" id=\"nome\" formControlName=\"nome\" placeholder=\"Nome\" (input)=\"suggest(i)\" (focusout)=\"onBlur()\" (focus)=\"onFocus()\">\n                  <div class=\"\" *ngIf=\"focus()\">\n                    <ul class=\"list-group\" style=\"position:relative\">\n                      <button type=\"button\" class=\"list-group-item list-group-item-action\" (mousedown)=\"fillTextbox(i, s)\" *ngFor=\"let s of suggestions\">{{s}}</button>\n                    </ul>\n                  </div>\n\n                  <input type=\"number\" class=\"form-control col\" id=\"valor\" formControlName=\"valor\" placeholder=\"Valor\">\n                  <input type=\"text\" class=\"form-control col\" id=\"unidade\" formControlName=\"unidade\" placeholder=\"Unidade\">\n                </div>\n\n                <app-error-msg [control]=\"formulario.get('componentes').at(i).get('nome')\" label=\"Componente\"></app-error-msg>\n              </div>\n            </div>\n          </div>\n          <button type=\"button\" class=\"btn\" (click)=\"addComponente()\" #scrollBottom>Novo componente</button>\n        </div>\n\n        <div class=\"form-group col-md-6\" formArrayName=\"valNutricionais\">\n          <div *ngFor=\"let val of formulario.get('valNutricionais').controls; index as i\">\n            <div class=\"card\" [formGroup]=\"val\">\n              <div class=\"card-body\">\n                <h5 class=\"card-title\">Valor Nutricional\n                  <button class=\"btn\" (click)=\"removeValNutricional(i)\">Remover</button>\n                </h5>\n                <div class=\"form-row\">\n                  <input type=\"text\" class=\"form-control\" id=\"nome\" formControlName=\"nome\" placeholder=\"Nome\" (input)=\"suggestVal(i)\" (focusout)=\"onBlurVal()\" (focus)=\"onFocusVal()\">\n                  <div class=\"\" *ngIf=\"focusVal()\">\n                    <ul class=\"list-group\" style=\"position:relative\">\n                      <button type=\"button\" class=\"list-group-item list-group-item-action\" (mousedown)=\"fillTextboxVal(i, s)\" *ngFor=\"let s of suggestionsVal\">{{s}}</button>\n                    </ul>\n                  </div>\n                  <input type=\"number\" class=\"form-control col-md-6\" id=\"quantidade\" formControlName=\"quantidade\" placeholder=\"Quantidade\">\n                  <input type=\"text\" class=\"form-control col-md-6\" id=\"unidade\" formControlName=\"unidade\" placeholder=\"Unidade\">\n                  <div class=\"input-group mb-3\">\n                    <input type=\"number\" class=\"form-control\" id=\"valorDiario\" formControlName=\"valorDiario\" placeholder=\"Valor diario\">\n                    <div class=\"input-group-append\">\n                      <span class=\"input-group-text\">%</span>\n                    </div>\n                  </div>\n\n                  <app-error-msg [control]=\"formulario.get('valNutricionais').at(i).get('nome')\" label=\"Valor Nutricional\"></app-error-msg>\n                </div>\n              </div>\n            </div>\n          </div>\n          <button type=\"button\" class=\"btn\" (click)=\"addValNutricional()\" #scrollBottom>Novo valor nutricional</button>\n        </div>\n        \n      </div>\n  \n    </div>\n\n    <div style=\"text-align:center\">\n      <button type=\"submit\" class=\"btn btn-primary\">Finalizar</button>\n    </div>\n  \n    <div style=\"text-align:right\">\n      <button type=\"button\" class=\"btn btn-secondary\" (click)=\"voltar()\">Voltar</button>\n    </div>\n\n    <router-outlet></router-outlet>\n  </div>\n\n  <div style=\"margin-top: 20px\" *ngIf=\"formulario\" >\n    <div>Detalhes do form</div>\n    <pre>Form válido: {{ formulario.status }}</pre>\n    <!--pre>Form submetido: {{ form.submitted }}</pre -->\n    <pre>Valores: <br>{{ formulario.value | json }}</pre>\n  </div>\n</form>"
 
 /***/ }),
 
@@ -275,6 +275,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _services_verifica_nome_verifica_nome_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../services/verifica-nome/verifica-nome.service */ "./src/app/services/verifica-nome/verifica-nome.service.ts");
 /* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _models_componente__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../../models/componente */ "./src/models/componente.ts");
+/* harmony import */ var _models_valorNutricional__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../../models/valorNutricional */ "./src/models/valorNutricional.ts");
 var __extends = (undefined && undefined.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
@@ -306,6 +308,8 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+
+
 var CadastroAlimentoComponent = /** @class */ (function (_super) {
     __extends(CadastroAlimentoComponent, _super);
     function CadastroAlimentoComponent(formBuilder, http, verificaNomeService, router) {
@@ -317,15 +321,24 @@ var CadastroAlimentoComponent = /** @class */ (function (_super) {
         _this.alimento = {};
         _this.quantidades = [];
         _this.valores = [];
+        _this.componentesBD = [];
+        _this.valNutriBD = [];
         _this.nomeComplemento = function (control) {
             var nome = control.get('nome');
             var complemento = control.get('complemento');
             return _this.verificaNomeService.verificarNome(nome.value, complemento.value)
                 .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["map"])(function (nomeExiste) { return nomeExiste ? { nomeInvalido: true } : null; }));
         };
+        _this.suggestions = [];
+        _this.nomesComponentes = [];
+        _this.componenteFocus = false;
+        _this.suggestionsVal = [];
+        _this.nomesValores = [];
+        _this.valFocus = false;
         return _this;
     }
     CadastroAlimentoComponent.prototype.ngOnInit = function () {
+        var _this = this;
         this.formulario = this.formBuilder.group({
             nomeCompleto: this.formBuilder.group({
                 nome: ["", _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required],
@@ -336,6 +349,18 @@ var CadastroAlimentoComponent = /** @class */ (function (_super) {
             cadastradoPor: ["", _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required],
             componentes: this.buildComponentes(),
             valNutricionais: this.buildValNutricionais()
+        });
+        var url = _models_url_enum__WEBPACK_IMPORTED_MODULE_5__["Url"].URL_BASE + _models_url_enum__WEBPACK_IMPORTED_MODULE_5__["Url"].TODOS_COMPONENTES;
+        this.http.get(url).subscribe(function (result) {
+            var resultList = result;
+            _this.componentesBD = resultList.map(function (v) { return new _models_componente__WEBPACK_IMPORTED_MODULE_9__["Componente"](v.nome, v.complemento); });
+            console.log(_this.componentesBD);
+        });
+        var urlVal = _models_url_enum__WEBPACK_IMPORTED_MODULE_5__["Url"].URL_BASE + _models_url_enum__WEBPACK_IMPORTED_MODULE_5__["Url"].TODOS_VALNUTRI;
+        this.http.get(urlVal).subscribe(function (result) {
+            var resultList = result;
+            _this.valNutriBD = resultList.map(function (v) { return new _models_valorNutricional__WEBPACK_IMPORTED_MODULE_10__["ValorNutricional"](v.nome); });
+            console.log(_this.valNutriBD);
         });
     };
     CadastroAlimentoComponent.prototype.buildComponentes = function () {
@@ -396,6 +421,52 @@ var CadastroAlimentoComponent = /** @class */ (function (_super) {
     };
     CadastroAlimentoComponent.prototype.removeValNutricional = function (i) {
         this.valNutricionais.removeAt(i);
+    };
+    CadastroAlimentoComponent.prototype.suggest = function (i) {
+        var _this = this;
+        this.nomesComponentes = this.componentesBD.map(function (c) { return c.nome + _this.nullToBlank(c.complemento); });
+        this.suggestions = this.nomesComponentes
+            .filter(function (c) { return c.startsWith(_this.formulario.get('componentes').value[i].nome); })
+            .slice(0, 5);
+    };
+    CadastroAlimentoComponent.prototype.nullToBlank = function (s) {
+        if (s == null) {
+            return "";
+        }
+        return " " + s;
+    };
+    CadastroAlimentoComponent.prototype.fillTextbox = function (i, string) {
+        this.formulario.get('componentes').at(i).get('nome').setValue(string);
+        this.suggestions = [];
+    };
+    CadastroAlimentoComponent.prototype.onFocus = function () {
+        this.componenteFocus = true;
+    };
+    CadastroAlimentoComponent.prototype.onBlur = function () {
+        this.componenteFocus = false;
+    };
+    CadastroAlimentoComponent.prototype.focus = function () {
+        return this.componenteFocus && (this.suggestions.length > 0);
+    };
+    CadastroAlimentoComponent.prototype.suggestVal = function (i) {
+        var _this = this;
+        this.nomesValores = this.valNutriBD.map(function (v) { return v.nome; });
+        this.suggestionsVal = this.nomesValores
+            .filter(function (c) { return c.startsWith(_this.formulario.get('valNutricionais').value[i].nome); })
+            .slice(0, 5);
+    };
+    CadastroAlimentoComponent.prototype.fillTextboxVal = function (i, string) {
+        this.formulario.get('valNutricionais').at(i).get('nome').setValue(string);
+        this.suggestionsVal = [];
+    };
+    CadastroAlimentoComponent.prototype.onFocusVal = function () {
+        this.valFocus = true;
+    };
+    CadastroAlimentoComponent.prototype.onBlurVal = function () {
+        this.valFocus = false;
+    };
+    CadastroAlimentoComponent.prototype.focusVal = function () {
+        return this.valFocus && (this.suggestionsVal.length > 0);
     };
     CadastroAlimentoComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -548,7 +619,7 @@ var CadastroComponenteComponent = /** @class */ (function (_super) {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<form class=\"form-horizontal\" [formGroup]=\"formulario\" (ngSubmit)=\"onSubmit()\" #formDir=\"ngForm\" autocomplete=\"off\">\n  <div style=\"text-align:center\">\n    <h1>\n      {{ title }}\n    </h1>\n  </div>\n  \n  <div class=\"container\">\n\n    <div *ngIf=\"success\" class=\"alert alert-success alert-dismissible fade show\" role=\"alert\">\n      <strong>Cadastro realizado com sucesso!</strong>\n      <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">\n        <span aria-hidden=\"true\">&times;</span>\n      </button>\n    </div>\n\n    <div class=\"form-row\" formGroupName=\"nomeCompleto\">\n      <div class=\"form-group col-md-6\" [ngClass]=\"aplicaCssErro('nomeCompleto.nome')\">\n        <label for=\"nome\">Nome</label>\n        <input type=\"text\" class=\"form-control\" id=\"nome\" formControlName=\"nome\">\n\n        <app-error-msg [control]=\"formulario.get('nomeCompleto.nome')\" label=\"Nome\"></app-error-msg>\n      </div>\n      <div class=\"form-group col-md-6\">\n        <label for=\"complemento\">Complemento</label>\n        <input type=\"text\" class=\"form-control\" id=\"complemento\" formControlName=\"complemento\">\n      </div>\n\n      <app-error-msg [control]=\"formulario.get('nomeCompleto')\" label=\"Nome\"></app-error-msg>\n    </div>\n    <div class=\"form-group\">\n      <label for=\"descricao\">Descrição</label>\n      <textarea class=\"form-control\" id=\"descricao\" formControlName=\"descricao\" rows=\"3\"></textarea>\n    </div>\n    <div class=\"form-group\">\n      <label for=\"cadastradoPor\">Cadastrado por</label>\n      <input type=\"text\" class=\"form-control\" id=\"cadastradoPor\" formControlName=\"cadastradoPor\">\n\n      <app-error-msg [control]=\"formulario.get('cadastradoPor')\" label=\"'Cadastrado por'\"></app-error-msg>\n    </div>\n\n    <div style=\"text-align:center\">\n      <button type=\"submit\" class=\"btn btn-primary\">Finalizar</button>\n    </div>\n\n    <div style=\"text-align:right\">\n      <button type=\"button\" class=\"btn btn-secondary\" (click)=\"voltar()\">Voltar</button>\n    </div>\n  \n    <router-outlet></router-outlet>\n  </div>\n\n  <div style=\"margin-top: 20px\" *ngIf=\"formulario\" >\n    <div>Detalhes do form</div>\n    <pre>Form válido: {{ formulario.status }}</pre>\n    <!--pre>Form submetido: {{ form.submitted }}</pre -->\n    <pre>Valores: <br>{{ formulario.value | json }}</pre>\n  </div>\n</form>"
+module.exports = "<form class=\"form-horizontal\" [formGroup]=\"formulario\" (ngSubmit)=\"onSubmit()\" #formDir=\"ngForm\" autocomplete=\"off\">\n  <div style=\"text-align:center\">\n    <h1>\n      {{ title }}\n    </h1>\n  </div>\n\n  <div class=\"container\">\n\n    <div *ngIf=\"success\" class=\"alert alert-success alert-dismissible fade show\" role=\"alert\">\n      <strong>Cadastro realizado com sucesso!</strong>\n      <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">\n        <span aria-hidden=\"true\">&times;</span>\n      </button>\n    </div>\n\n    <div class=\"form-row\" formGroupName=\"nomeCompleto\">\n      <div class=\"form-group col-md-6\" [ngClass]=\"aplicaCssErro('nomeCompleto.nome')\">\n        <label for=\"nome\">Nome</label>\n        <input type=\"text\" class=\"form-control\" id=\"nome\" formControlName=\"nome\">\n\n        <app-error-msg *ngIf=\"nameIsSelected\" (bttnError)=\"focusElement($event)\" [control]=\"formulario.get('nomeCompleto.nome')\" label=\"Nome\"></app-error-msg>\n      </div>\n      <div class=\"form-group col-md-6\">\n        <label for=\"complemento\">Complemento</label>\n        <input type=\"text\" class=\"form-control\" id=\"complemento\" formControlName=\"complemento\">\n      </div>\n\n      <app-error-msg *ngIf=\"nameIsSelected\" (bttnError)=\"focusElement($event)\" [control]=\"formulario.get('nomeCompleto')\" label=\"Nome\"></app-error-msg>\n    </div>\n    <div class=\"form-group\">\n      <label for=\"descricao\">Descrição</label>\n      <textarea class=\"form-control\" id=\"descricao\" formControlName=\"descricao\" rows=\"3\"></textarea>\n    </div>\n    <div class=\"form-group\">\n      <label for=\"cadastradoPor\">Cadastrado por</label>\n      <input type=\"text\" class=\"form-control\" id=\"cadastradoPor\" formControlName=\"cadastradoPor\">\n\n      <app-error-msg [control]=\"formulario.get('cadastradoPor')\" label=\"'Cadastrado por'\"></app-error-msg>\n    </div>\n\n    <div style=\"text-align:center\">\n      <button type=\"submit\" class=\"btn btn-primary\">Finalizar</button>\n    </div>\n\n    <div style=\"text-align:right\">\n      <button type=\"button\" class=\"btn btn-secondary\" (click)=\"voltar()\">Voltar</button>\n    </div>\n\n    <router-outlet></router-outlet>\n  </div>\n\n  <div style=\"margin-top: 20px\" *ngIf=\"formulario\" >\n    <div>Detalhes do form</div>\n    <pre>Form válido: {{ formulario.status }}</pre>\n    <!--pre>Form submetido: {{ form.submitted }}</pre -->\n    <pre>Valores: <br>{{ formulario.value | json }}</pre>\n  </div>\n</form>\n\n<!--<script src=\"https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js\"></script>-->\n"
 
 /***/ }),
 
@@ -626,8 +697,14 @@ var CadastroComportamentoComponent = /** @class */ (function (_super) {
         _this.nomeComplemento = function (control) {
             var nome = control.get('nome');
             var complemento = control.get('complemento');
-            return _this.verificaNomeService.verificarNome(nome.value, complemento.value)
-                .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["map"])(function (nomeExiste) { return nomeExiste ? { nomeInvalido: true } : null; }));
+            if (!complemento.value) {
+                return _this.verificaNomeService.verificarNome(nome.value, complemento.value)
+                    .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["map"])(function (nomeExiste) { return nomeExiste ? { nomeInvalido: true } : null; }));
+            }
+            else {
+                return _this.verificaNomeService.verificarNome(nome.value, complemento.value)
+                    .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["map"])(function (nomeExiste) { return nomeExiste ? { nomeComplementoInvalidos: true } : null; }));
+            }
         };
         return _this;
     }
@@ -640,7 +717,7 @@ var CadastroComportamentoComponent = /** @class */ (function (_super) {
             descricao: [""],
             cadastradoPor: ["", _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required]
         });
-        this.testaHTTP();
+        //this.testaHTTP();
     };
     CadastroComportamentoComponent.prototype.submit = function () {
         var _this = this;
@@ -665,6 +742,18 @@ var CadastroComportamentoComponent = /** @class */ (function (_super) {
             _this.comportamentos = resultList.map(function (v) { return new _models_comportamento__WEBPACK_IMPORTED_MODULE_1__["Comportamento"](v.name, v.complemento, v.descricao, v.cadastradoPor); });
             console.log(_this.comportamentos);
         }, function (error) { return alert('erro'); });
+    };
+    Object.defineProperty(CadastroComportamentoComponent.prototype, "nameIsSelected", {
+        get: function () {
+            var nome = $("#nome").is(":focus");
+            var complemento = $("#complemento").is(":focus");
+            return !nome && !complemento;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    CadastroComportamentoComponent.prototype.focusElement = function (elementName) {
+        $('#' + elementName).trigger("focus");
     };
     CadastroComportamentoComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -835,7 +924,7 @@ var CadastroRemedioComponent = /** @class */ (function (_super) {
     };
     CadastroRemedioComponent.prototype.suggest = function (i) {
         var _this = this;
-        this.nomesComponentes = this.componentesBD.map(function (c) { return _this.nullToBlank(c.nome) + " " + _this.nullToBlank(c.complemento); });
+        this.nomesComponentes = this.componentesBD.map(function (c) { return c.nome + _this.nullToBlank(c.complemento); });
         this.suggestions = this.nomesComponentes
             .filter(function (c) { return c.startsWith(_this.formulario.get('componentes').value[i].nome); })
             .slice(0, 5);
@@ -844,7 +933,7 @@ var CadastroRemedioComponent = /** @class */ (function (_super) {
         if (s == null) {
             return "";
         }
-        return s;
+        return " " + s;
     };
     CadastroRemedioComponent.prototype.fillTextbox = function (i, string) {
         this.formulario.get('componentes').at(i).get('nome').setValue(string);
@@ -1544,7 +1633,7 @@ var ElementosModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div *ngIf=\"errorMessage != null\" >\n  <span class=\".is-invalid form-control-feedback\"></span>\n  <span class=\".is-invalid sr-only\">(error)</span>\n  <div class=\"alert alert-danger errorDiv\" role=\"alert\">\n    {{ errorMessage }}\n    <button *ngIf=\"nomeInvalido\" type=\"button\" class=\"btn btn-secondary\" (click)=\"bttnAlterar()\">Alterar</button>\n  </div>\n</div>\n\n<!--div *ngIf=\"statusMessage != null\" >\n  <div class=\"alert alert-danger errorDiv\" role=\"alert\">\n    {{ statusMessage }}\n  </div>\n</div!-->\n\n"
+module.exports = "<div *ngIf=\"errorMessage != null\" >\n  <span class=\".is-invalid form-control-feedback\"></span>\n  <span class=\".is-invalid sr-only\">(error)</span>\n  <div class=\"alert alert-danger errorDiv\" role=\"alert\">\n    {{ errorMessage }} <br>\n    <div *ngIf=\"nomeInvalido\">\n    <div *ngIf=\"nomeInvalido == 'nome'\">\n      <span>Adicionar complemento </span>\n      <button class=\"adicional\" id=\"1\" type=\"button\" class=\"btn btn-secondary\" (click)=\"bttnFocus('complemento')\">Adicionar</button>\n    </div>\n\n    <div *ngIf=\"nomeInvalido == 'complemento'\">\n      <span>Trocar o nome e/ou complemento do comportamento inserido </span>\n      <button class=\"adicional\" id=\"2\" type=\"button\" class=\"btn btn-secondary\" (click)=\"bttnFocus('nome')\">Trocar</button>\n    </div>\n\n\n    <br>\n    <span>Alterar informações do já existente </span>\n    <button type=\"button\" class=\"btn btn-secondary\" (click)=\"bttnAlterar()\">Alterar</button>\n    </div>\n  </div>\n</div>\n\n<!--div *ngIf=\"statusMessage != null\" >\n  <div class=\"alert alert-danger errorDiv\" role=\"alert\">\n    {{ statusMessage }}\n  </div>\n</div!-->\n\n"
 
 /***/ }),
 
@@ -1555,7 +1644,7 @@ module.exports = "<div *ngIf=\"errorMessage != null\" >\n  <span class=\".is-inv
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".errorDiv {\n  margin-bottom: 0px; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9ob21lL3ZpbmljaXVzL2dpdC9TZWlTYXVkZS9TZWlTYXVkZS9TZWlTYXVkZS1hcHAvc3JjL2FwcC9lcnJvci1tc2cvZXJyb3ItbXNnLmNvbXBvbmVudC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0UsbUJBQWtCLEVBQ25CIiwiZmlsZSI6InNyYy9hcHAvZXJyb3ItbXNnL2Vycm9yLW1zZy5jb21wb25lbnQuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbIi5lcnJvckRpdiB7XG4gIG1hcmdpbi1ib3R0b206IDBweDtcbn0iXX0= */"
+module.exports = ".errorDiv {\n  margin-bottom: 0px; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9ob21lL3ZpbmljaXVzL2dpdC9TZWlTYXVkZS9TZWlTYXVkZS9TZWlTYXVkZS1hcHAvc3JjL2FwcC9lcnJvci1tc2cvZXJyb3ItbXNnLmNvbXBvbmVudC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0Usa0JBQWtCLEVBQUEiLCJmaWxlIjoic3JjL2FwcC9lcnJvci1tc2cvZXJyb3ItbXNnLmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLmVycm9yRGl2IHtcbiAgbWFyZ2luLWJvdHRvbTogMHB4O1xufSJdfQ== */"
 
 /***/ }),
 
@@ -1572,6 +1661,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _elementos_cadastro_comportamento_cadastro_comportamento_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../elementos/cadastro-comportamento/cadastro-comportamento.component */ "./src/app/elementos/cadastro-comportamento/cadastro-comportamento.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1584,9 +1674,11 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+
 var ErrorMsgComponent = /** @class */ (function () {
     function ErrorMsgComponent(router) {
         this.router = router;
+        this.bttnError = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
     }
     ErrorMsgComponent_1 = ErrorMsgComponent;
     ErrorMsgComponent.prototype.ngOnInit = function () {
@@ -1596,7 +1688,7 @@ var ErrorMsgComponent = /** @class */ (function () {
             for (var propertyName in this.control.errors) {
                 if (this.control.errors.hasOwnProperty(propertyName) &&
                     this.control.touched) {
-                    console.log(this.control.errors);
+                    //console.log(propertyName);
                     return ErrorMsgComponent_1.getErrorMsg(this.label, propertyName, this.control.errors[propertyName]);
                 }
             }
@@ -1608,7 +1700,8 @@ var ErrorMsgComponent = /** @class */ (function () {
     ErrorMsgComponent.getErrorMsg = function (fieldName, validatorName, validatorValue) {
         var config = {
             'required': fieldName + " \u00E9 obrigat\u00F3rio.",
-            'nomeInvalido': fieldName + " j\u00E1 est\u00E1 em uso. Tente adicionar ou alterar o complemento.",
+            'nomeInvalido': fieldName + " j\u00E1 est\u00E1 em uso. Voc\u00EA deseja:",
+            'nomeComplementoInvalidos': fieldName + " e complemento j\u00E1 est\u00E3o em uso. Voc\u00EA deseja:",
             'minlength': fieldName + " precisa ter no m\u00EDnimo " + validatorValue.requiredLength + " caracteres.",
             'maxlength': fieldName + " precisa ter no m\u00E1ximo " + validatorValue.requiredLength + " caracteres.",
             'pattern': 'Campo inválido'
@@ -1630,16 +1723,21 @@ var ErrorMsgComponent = /** @class */ (function () {
     });
     Object.defineProperty(ErrorMsgComponent.prototype, "nomeInvalido", {
         get: function () {
-            if (this.control.get('nome') === null)
-                return false;
+            if (this.control.errors["nomeInvalido"])
+                return "nome";
+            else if (this.control.errors["nomeComplementoInvalidos"])
+                return "complemento";
             else
-                return true;
+                return null;
         },
         enumerable: true,
         configurable: true
     });
     ErrorMsgComponent.prototype.bttnAlterar = function () {
         this.router.navigate(["edita-comportamento/" + this.control.get('nome').value + (this.control.get('complemento').value || '')]);
+    };
+    ErrorMsgComponent.prototype.bttnFocus = function (nameElement) {
+        this.bttnError.emit(nameElement);
     };
     var ErrorMsgComponent_1;
     __decorate([
@@ -1650,6 +1748,14 @@ var ErrorMsgComponent = /** @class */ (function () {
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
         __metadata("design:type", String)
     ], ErrorMsgComponent.prototype, "label", void 0);
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewChild"])(_elementos_cadastro_comportamento_cadastro_comportamento_component__WEBPACK_IMPORTED_MODULE_3__["CadastroComportamentoComponent"]),
+        __metadata("design:type", _elementos_cadastro_comportamento_cadastro_comportamento_component__WEBPACK_IMPORTED_MODULE_3__["CadastroComportamentoComponent"])
+    ], ErrorMsgComponent.prototype, "comportamento", void 0);
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Output"])(),
+        __metadata("design:type", Object)
+    ], ErrorMsgComponent.prototype, "bttnError", void 0);
     __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
         __metadata("design:type", String)
@@ -1956,7 +2062,7 @@ var NavigationComponent = /** @class */ (function () {
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-navigation',
             template: __webpack_require__(/*! ./navigation.component.html */ "./src/app/navigation/navigation.component.html"),
-            styles: [__webpack_require__(/*! ./navigation.component.scss */ "./src/app/navigation/navigation.component.scss")],
+            styles: [__webpack_require__(/*! ./navigation.component.scss */ "./src/app/navigation/navigation.component.scss")]
         }),
         __metadata("design:paramtypes", [])
     ], NavigationComponent);
@@ -2006,7 +2112,9 @@ var VerificaNomeService = /** @class */ (function () {
             complemento = "";
         }
         return this.http.get(_models_url_enum__WEBPACK_IMPORTED_MODULE_2__["Url"].URL_BASE + _models_url_enum__WEBPACK_IMPORTED_MODULE_2__["Url"].TODOS_ELEMENTOS)
-            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["delay"])(1000), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(function (dados) { return dados.filter(function (v) { return (v.nome + v.complemento).toLowerCase().replace(/\s/g, "") === (nome + complemento).toLowerCase().replace(/\s/g, ""); }); }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["tap"])(console.log), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(function (dados) { return dados.length > 0; }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["tap"])(console.log));
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["delay"])(1000), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(function (dados) { return dados.filter(function (v) { return (v.nome + v.complemento).toLowerCase().replace(/\s/g, "") === (nome + complemento).toLowerCase().replace(/\s/g, ""); }); }), 
+        //tap(console.log),
+        Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(function (dados) { return dados.length > 0; }));
     };
     VerificaNomeService.prototype.verificarNomeSituacao = function (nome, complemento) {
         if (nome == null) {
@@ -2016,7 +2124,9 @@ var VerificaNomeService = /** @class */ (function () {
             complemento = "";
         }
         return this.http.get(_models_url_enum__WEBPACK_IMPORTED_MODULE_2__["Url"].URL_BASE + _models_url_enum__WEBPACK_IMPORTED_MODULE_2__["Url"].TODAS_SITUACOES)
-            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["delay"])(1000), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(function (dados) { return dados.filter(function (v) { return (v.name + v.complemento).toLowerCase().replace(/\s/g, "") === (nome + complemento).toLowerCase().replace(/\s/g, ""); }); }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["tap"])(console.log), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(function (dados) { return dados.length > 0; }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["tap"])(console.log));
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["delay"])(1000), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(function (dados) { return dados.filter(function (v) { return (v.nome + v.complemento).toLowerCase().replace(/\s/g, "") === (nome + complemento).toLowerCase().replace(/\s/g, ""); }); }), 
+        //tap(console.log),
+        Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(function (dados) { return dados.length > 0; }));
     };
     VerificaNomeService.prototype.verificarNomeComponente = function (nome, complemento) {
         if (nome == null) {
@@ -2026,7 +2136,9 @@ var VerificaNomeService = /** @class */ (function () {
             complemento = "";
         }
         return this.http.get(_models_url_enum__WEBPACK_IMPORTED_MODULE_2__["Url"].URL_BASE + _models_url_enum__WEBPACK_IMPORTED_MODULE_2__["Url"].TODOS_COMPONENTES)
-            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["delay"])(1000), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(function (dados) { return dados.filter(function (v) { return (v.nome + v.complemento).toLowerCase().replace(/\s/g, "") === (nome + complemento).toLowerCase().replace(/\s/g, ""); }); }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["tap"])(console.log), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(function (dados) { return dados.length > 0; }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["tap"])(console.log));
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["delay"])(1000), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(function (dados) { return dados.filter(function (v) { return (v.nome + v.complemento).toLowerCase().replace(/\s/g, "") === (nome + complemento).toLowerCase().replace(/\s/g, ""); }); }), 
+        //tap(console.log),
+        Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(function (dados) { return dados.length > 0; }));
     };
     VerificaNomeService = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])({
@@ -2048,7 +2160,7 @@ var VerificaNomeService = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<form class=\"form-horizontal\" [formGroup]=\"formulario\" (ngSubmit)=\"onSubmit()\">\n  <div style=\"text-align:center\">\n    <h1>\n      {{ title }}\n    </h1>\n  </div>\n  \n  <div class=\"container\">\n\n    <div *ngIf=\"success\" class=\"alert alert-success alert-dismissible fade show\" role=\"alert\">\n      <strong>Cadastro realizado com sucesso!</strong>\n      <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">\n        <span aria-hidden=\"true\">&times;</span>\n      </button>\n    </div>\n\n    <div class=\"form-row\" formGroupName=\"nomeCompleto\">\n      <div class=\"form-group col-md-6\" [ngClass]=\"aplicaCssErro('nomeCompleto.nome')\">\n        <label for=\"nome\">Nome</label>\n        <input type=\"text\" class=\"form-control\" id=\"nome\" formControlName=\"nome\">\n\n        <app-error-msg [control]=\"formulario.get('nomeCompleto.nome')\" label=\"Nome\"></app-error-msg>\n      </div>\n      <div class=\"form-group col-md-6\">\n        <label for=\"complemento\">Complemento</label>\n        <input type=\"text\" class=\"form-control\" id=\"complemento\" formControlName=\"complemento\">\n      </div>\n\n      <app-error-msg [control]=\"formulario.get('nomeCompleto')\" label=\"Nome\"></app-error-msg>\n    </div>\n    <div class=\"form-group\">\n      <label for=\"descricao\">Descrição</label>\n      <textarea class=\"form-control\" id=\"descricao\" formControlName=\"descricao\" rows=\"3\"></textarea>\n    </div>\n    <div class=\"form-group\">\n      <label for=\"cadastradoPor\">Cadastrado por</label>\n      <input type=\"text\" class=\"form-control\" id=\"cadastradoPor\" formControlName=\"cadastradoPor\">\n\n      <app-error-msg [control]=\"formulario.get('cadastradoPor')\" label=\"'Cadastrado por'\"></app-error-msg>\n    </div>\n\n    <div style=\"text-align:center\">\n      <button type=\"submit\" class=\"btn btn-primary\">Finalizar</button>\n    </div>\n\n    <div style=\"text-align:right\">\n      <button type=\"button\" class=\"btn btn-secondary\" (click)=\"voltar()\">Voltar</button>\n    </div>\n  \n    <router-outlet></router-outlet>\n  </div>\n\n  <div style=\"margin-top: 20px\" *ngIf=\"formulario\" >\n    <div>Detalhes do form</div>\n    <pre>Form válido: {{ formulario.status }}</pre>\n    <!--pre>Form submetido: {{ form.submitted }}</pre -->\n    <pre>Valores: <br>{{ formulario.value | json }}</pre>\n  </div>\n</form>"
+module.exports = "<form class=\"form-horizontal\" [formGroup]=\"formulario\" (ngSubmit)=\"onSubmit()\" autocomplete=\"off\">\n  <div style=\"text-align:center\">\n    <h1>\n      {{ title }}\n    </h1>\n  </div>\n  \n  <div class=\"container\">\n\n    <div *ngIf=\"success\" class=\"alert alert-success alert-dismissible fade show\" role=\"alert\">\n      <strong>Cadastro realizado com sucesso!</strong>\n      <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">\n        <span aria-hidden=\"true\">&times;</span>\n      </button>\n    </div>\n\n    <div class=\"container\">\n\n    <div class=\"form-row\" formGroupName=\"nomeCompleto\">\n      <div class=\"form-group col-md-6\" [ngClass]=\"aplicaCssErro('nomeCompleto.nome')\">\n        <label for=\"nome\">Nome</label>\n        <input type=\"text\" class=\"form-control\" id=\"nome\" formControlName=\"nome\">\n\n        <app-error-msg [control]=\"formulario.get('nomeCompleto.nome')\" label=\"Nome\"></app-error-msg>\n      </div>\n      <div class=\"form-group col-md-6\">\n        <label for=\"complemento\">Complemento</label>\n        <input type=\"text\" class=\"form-control\" id=\"complemento\" formControlName=\"complemento\">\n      </div>\n\n      <app-error-msg [control]=\"formulario.get('nomeCompleto')\" label=\"Nome\"></app-error-msg>\n    </div>\n    <div class=\"form-group\">\n      <label for=\"descricao\">Descrição</label>\n      <textarea class=\"form-control\" id=\"descricao\" formControlName=\"descricao\" rows=\"3\"></textarea>\n    </div>\n    <div class=\"form-group\">\n      <label for=\"cadastradoPor\">Cadastrado por</label>\n      <input type=\"text\" class=\"form-control\" id=\"cadastradoPor\" formControlName=\"cadastradoPor\">\n\n      <app-error-msg [control]=\"formulario.get('cadastradoPor')\" label=\"'Cadastrado por'\"></app-error-msg>\n    </div>\n\n    <div class=\"row\" formArrayName=\"sintomas\">\n      <div class=\"col-md-6\">\n        <div *ngFor=\"let sintoma of formulario.get('sintomas').controls; index as i\">\n          <div class=\"card\" [formGroup]=\"sintoma\">\n            <div class=\"card-body\">\n              <h5 class=\"card-title\">Sintoma\n                <button class=\"btn\" (click)=\"removeSintoma(i)\">Remover</button>\n              </h5>\n              <div class=\"form-row\">\n                \n                <input type=\"text\" class=\"form-control\" id=\"nome\" formControlName=\"nome\" placeholder=\"Nome\" (input)=\"suggest(i)\" (focusout)=\"onBlur()\" (focus)=\"onFocus()\">\n                <div class=\"\" *ngIf=\"focus()\">\n                  <ul class=\"list-group\" style=\"position:relative\">\n                    <button type=\"button\" class=\"list-group-item list-group-item-action\" (mousedown)=\"fillTextbox(i, s)\" *ngFor=\"let s of suggestions\">{{s}}</button>\n                  </ul>\n                </div>\n              </div>\n\n              <app-error-msg [control]=\"formulario.get('sintomas').at(i).get('nome')\" label=\"Sintoma\"></app-error-msg>\n            </div>\n          </div>\n        </div>\n      </div>\n    </div>\n      \n    <button type=\"button\" class=\"btn\" (click)=\"addSintoma()\" #scrollBottom>Novo sintoma</button>\n\n    </div>\n\n    <div style=\"text-align:center\">\n      <button type=\"submit\" class=\"btn btn-primary\">Finalizar</button>\n    </div>\n\n    <div style=\"text-align:right\">\n      <button type=\"button\" class=\"btn btn-secondary\" (click)=\"voltar()\">Voltar</button>\n    </div>\n  \n    <router-outlet></router-outlet>\n  </div>\n\n  <div style=\"margin-top: 20px\" *ngIf=\"formulario\" >\n    <div>Detalhes do form</div>\n    <pre>Form válido: {{ formulario.status }}</pre>\n    <!--pre>Form submetido: {{ form.submitted }}</pre -->\n    <pre>Valores: <br>{{ formulario.value | json }}</pre>\n  </div>\n</form>"
 
 /***/ }),
 
@@ -2082,6 +2194,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _services_verifica_nome_verifica_nome_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../services/verifica-nome/verifica-nome.service */ "./src/app/services/verifica-nome/verifica-nome.service.ts");
 /* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _models_sintoma__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../../models/sintoma */ "./src/models/sintoma.ts");
 var __extends = (undefined && undefined.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
@@ -2113,6 +2226,7 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+
 var CadastroDoencaComponent = /** @class */ (function (_super) {
     __extends(CadastroDoencaComponent, _super);
     function CadastroDoencaComponent(formBuilder, http, verificaNomeService, router) {
@@ -2122,23 +2236,42 @@ var CadastroDoencaComponent = /** @class */ (function (_super) {
         _this.verificaNomeService = verificaNomeService;
         _this.title = 'Cadastro de Doença';
         _this.doenca = {};
+        _this.sintomaDoenca = [];
+        _this.sintomasBD = [];
         _this.nomeComplemento = function (control) {
             var nome = control.get('nome');
             var complemento = control.get('complemento');
             return _this.verificaNomeService.verificarNomeSituacao(nome.value, complemento.value)
                 .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["map"])(function (nomeExiste) { return nomeExiste ? { nomeInvalido: true } : null; }));
         };
+        _this.suggestions = [];
+        _this.nomesSintomas = [];
+        _this.sintomaFocus = false;
         return _this;
     }
     CadastroDoencaComponent.prototype.ngOnInit = function () {
+        var _this = this;
         this.formulario = this.formBuilder.group({
             nomeCompleto: this.formBuilder.group({
                 nome: ["", _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required],
                 complemento: [""]
             }, { asyncValidator: this.nomeComplemento.bind(this) }),
             descricao: [""],
-            cadastradoPor: ["", _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required]
+            cadastradoPor: ["", _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required],
+            sintomas: this.buildSintomas()
         });
+        var url = _models_url_enum__WEBPACK_IMPORTED_MODULE_5__["Url"].URL_BASE + _models_url_enum__WEBPACK_IMPORTED_MODULE_5__["Url"].TODOS_SINTOMAS;
+        this.http.get(url).subscribe(function (result) {
+            var resultList = result;
+            _this.sintomasBD = resultList.map(function (v) { return new _models_sintoma__WEBPACK_IMPORTED_MODULE_9__["Sintoma"](v.nome, v.complemento, v.descricao, v.cadastradoPor); });
+            console.log(_this.sintomasBD);
+        });
+    };
+    CadastroDoencaComponent.prototype.buildSintomas = function () {
+        var values = this.sintomaDoenca.map(function (v) { return new _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormGroup"]({
+            nome: new _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormControl"](v.nome)
+        }); });
+        return this.formBuilder.array(values);
     };
     CadastroDoencaComponent.prototype.submit = function () {
         var _this = this;
@@ -2150,6 +2283,45 @@ var CadastroDoencaComponent = /** @class */ (function (_super) {
             _this.success = true;
             _this.formulario.reset();
         }, function (error) { return console.log(error); });
+    };
+    Object.defineProperty(CadastroDoencaComponent.prototype, "sintomas", {
+        get: function () { return this.formulario.get('sintomas'); },
+        enumerable: true,
+        configurable: true
+    });
+    CadastroDoencaComponent.prototype.addSintoma = function () {
+        this.sintomas.push(new _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormGroup"]({
+            nome: new _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormControl"]("", _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required)
+        }));
+    };
+    CadastroDoencaComponent.prototype.removeSintoma = function (i) {
+        this.sintomas.removeAt(i);
+    };
+    CadastroDoencaComponent.prototype.suggest = function (i) {
+        var _this = this;
+        this.nomesSintomas = this.sintomasBD.map(function (c) { return c.nome + _this.nullToBlank(c.complemento); });
+        this.suggestions = this.nomesSintomas
+            .filter(function (c) { return c.startsWith(_this.formulario.get('sintomas').value[i].nome); })
+            .slice(0, 5);
+    };
+    CadastroDoencaComponent.prototype.nullToBlank = function (s) {
+        if (s == null) {
+            return "";
+        }
+        return " " + s;
+    };
+    CadastroDoencaComponent.prototype.fillTextbox = function (i, string) {
+        this.formulario.get('sintomas').at(i).get('nome').setValue(string);
+        this.suggestions = [];
+    };
+    CadastroDoencaComponent.prototype.onFocus = function () {
+        this.sintomaFocus = true;
+    };
+    CadastroDoencaComponent.prototype.onBlur = function () {
+        this.sintomaFocus = false;
+    };
+    CadastroDoencaComponent.prototype.focus = function () {
+        return this.sintomaFocus && (this.suggestions.length > 0);
     };
     CadastroDoencaComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -2389,7 +2561,7 @@ var ConsultaSituacaoComponent = /** @class */ (function (_super) {
         this.http.get(url, options).subscribe(function (result) {
             var resultList = result;
             //console.log(result);
-            _this.situacoes = resultList.map(function (v) { return new _models_situacao__WEBPACK_IMPORTED_MODULE_4__["Situacao"](v.name, v.complemento, v.descricao, v.cadastradoPor); });
+            _this.situacoes = resultList.map(function (v) { return new _models_situacao__WEBPACK_IMPORTED_MODULE_4__["Situacao"](v.nome, v.complemento, v.descricao, v.cadastradoPor); });
             console.log(_this.situacoes);
         }, function (error) {
             alert('erro');
@@ -2840,6 +3012,7 @@ var Url;
     Url["COMPONENTES"] = "/elemento/componentes";
     Url["TODOS_ELEMENTOS"] = "/all_elemento";
     Url["TODOS_COMPONENTES"] = "/all_componente";
+    Url["TODOS_VALNUTRI"] = "/all_valNutri";
     Url["CADASTRO_COMPORTAMENTO"] = "/elemento/comportamento";
     Url["CADASTRO_COMPONENTE"] = "/elemento/componente";
     Url["CADASTRO_ALIMENTO"] = "/elemento/alimento";
@@ -2855,6 +3028,27 @@ var Url;
     Url["TRATAMENTO"] = "/tratamento";
     Url["TRATAMENTO_PACIENTE"] = "/tratamento-paciente";
 })(Url || (Url = {}));
+
+
+/***/ }),
+
+/***/ "./src/models/valorNutricional.ts":
+/*!****************************************!*\
+  !*** ./src/models/valorNutricional.ts ***!
+  \****************************************/
+/*! exports provided: ValorNutricional */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ValorNutricional", function() { return ValorNutricional; });
+var ValorNutricional = /** @class */ (function () {
+    function ValorNutricional(nome) {
+        this.nome = nome;
+    }
+    return ValorNutricional;
+}());
+
 
 
 /***/ }),

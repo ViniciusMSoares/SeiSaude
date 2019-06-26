@@ -72,4 +72,6 @@ public interface ElementoService {
 	List<Componente> findAllComponente();
 
 	Elemento update(ElementoDTO elemento);
+
+	List<ValorNutricional> findAllValNutri();
 }

@@ -40,10 +40,13 @@ public class Situacao implements Serializable{
 	@Column()
 	private String cadastradoPor;
 
-	public Situacao(String name, String descricao, String complemento, String cadastradoPor) {
+	public Situacao(String nome, String descricao, String complemento, String cadastradoPor) {
 		super();
-		this.nome = name;
+		this.nome = nome;
 		this.descricao = descricao;
+		if (complemento == null) {
+			complemento = "";
+		}
 		this.complemento = complemento;
 		this.cadastradoPor = cadastradoPor;
 	}
@@ -60,12 +63,12 @@ public class Situacao implements Serializable{
 		this.id = id;
 	}
 
-	public String getName() {
+	public String getNome() {
 		return nome;
 	}
 
-	public void setName(String name) {
-		this.nome = name;
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 
 	public String getDescricao() {

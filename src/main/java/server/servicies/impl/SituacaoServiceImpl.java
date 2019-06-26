@@ -87,7 +87,10 @@ public class SituacaoServiceImpl implements SituacaoService{
 		name = name.toLowerCase().replaceAll("\\s", "");
 
 		for (Situacao situacao : situacaoRepository.findAll()) {
-			String situacaoName = (situacao.getName() + situacao.getComplemento()).toLowerCase().replaceAll("\\s", "");
+			if (situacao.getComplemento() == null) {
+				situacao.setComplemento("");
+			}
+			String situacaoName = (situacao.getNome() + situacao.getComplemento()).toLowerCase().replaceAll("\\s", "");
 			if (situacaoName.equals(name) || situacaoName.contains(name)) {
 				result.add(situacao);
 			}
@@ -99,7 +102,7 @@ public class SituacaoServiceImpl implements SituacaoService{
 		nome = nome.toLowerCase().replaceAll("\\s", "");
 		
 		for (Situacao situacao : situacaoRepository.findAll()) {
-			String situacaoName = situacao.getName().toLowerCase();
+			String situacaoName = situacao.getNome().toLowerCase();
 			if (situacao.getComplemento() != null) {
 				situacaoName += situacao.getComplemento().toLowerCase();
 			}
@@ -116,7 +119,7 @@ public class SituacaoServiceImpl implements SituacaoService{
 		nome = nome.toLowerCase().replaceAll("\\s", "");
 		
 		for (Doenca doenca : doencaRepository.findAll()) {
-			String doencaName = doenca.getName().toLowerCase();
+			String doencaName = doenca.getNome().toLowerCase();
 			if (doenca.getComplemento() != null) {
 				doencaName += doenca.getComplemento().toLowerCase();
 			}
@@ -137,7 +140,7 @@ public class SituacaoServiceImpl implements SituacaoService{
 		for (Situacao situacao : situacoes) {
 			if (ids.contains(situacao.getId())) {
 				sintomas.add((Sintoma) situacao);
-				System.out.println(situacao.getName());
+				System.out.println(situacao.getNome());
 			}
 		}
 		
@@ -149,7 +152,10 @@ public class SituacaoServiceImpl implements SituacaoService{
 		name = name.toLowerCase();
 
 		for (Situacao situacao : situacaoRepository.findAll()) {
-			String situacaoName = (situacao.getName() + situacao.getComplemento()).toLowerCase();
+			if (situacao.getComplemento() == null) {
+				situacao.setComplemento("");
+			}
+			String situacaoName = (situacao.getNome() + situacao.getComplemento()).toLowerCase();
 			if (situacaoName.equals(name)) {
 				return situacao;
 			}

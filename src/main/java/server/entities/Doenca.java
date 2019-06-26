@@ -12,7 +12,7 @@ public class Doenca extends Situacao {
 	}
 	
 	public Doenca(Situacao situacao) {
-		super(situacao.getName(), situacao.getDescricao(), situacao.getComplemento(), situacao.getCadastradoPor());
+		super(situacao.getNome(), situacao.getDescricao(), situacao.getComplemento(), situacao.getCadastradoPor());
 	}
 	
 	public Doenca() {

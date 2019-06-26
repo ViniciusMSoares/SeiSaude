@@ -173,6 +173,9 @@ public class ElementoServiceImpl implements ElementoService {
 		name = name.toLowerCase().replaceAll("\\s", "");
 		
 		for (Elemento elemento : elementoRepository.findAll()) {
+			if (elemento.getComplemento() == null) {
+				elemento.setComplemento("");
+			}
 			String elementoName = elemento.getNome().toLowerCase() + elemento.getComplemento().toLowerCase();
 			elementoName = elementoName.replaceAll("\\s", "");
 			if (elementoName.equals(name) || elementoName.contains(name)) {
@@ -279,6 +282,9 @@ public class ElementoServiceImpl implements ElementoService {
 		name = name.toLowerCase();
 
 		for (Elemento elemento : elementoRepository.findAll()) {
+			if (elemento.getComplemento() == null) {
+				elemento.setComplemento("");
+			}
 			String elementoName = elemento.getNome().toLowerCase() + elemento.getComplemento().toLowerCase();
 			if (elementoName.equals(name)) {
 				return elemento;
@@ -313,6 +319,11 @@ public class ElementoServiceImpl implements ElementoService {
 		elemento.setCadastradoPor(elementoDTO.getCadastradoPor());
 			
 		return elementoRepository.save(elemento);
+	}
+	
+	@Override
+	public List<ValorNutricional> findAllValNutri() {
+		return valorNutricionalRepository.findAll();
 	}
 
 }

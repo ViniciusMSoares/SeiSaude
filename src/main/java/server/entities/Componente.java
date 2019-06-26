@@ -28,6 +28,9 @@ public class Componente implements Serializable{
 
 	public Componente(String nome, String complemento) {
 		this.nome = nome;
+		if (complemento == null) {
+			complemento = "";
+		}
 		this.complemento = complemento;
 	}
 	

@@ -112,7 +112,7 @@ export class CadastroRemedioComponent extends FormBaseComponent implements OnIni
   componenteFocus = false;
 
   suggest(i: number) {
-    this.nomesComponentes = this.componentesBD.map(c => this.nullToBlank(c.nome) + " " + this.nullToBlank(c.complemento));
+    this.nomesComponentes = this.componentesBD.map(c => c.nome + this.nullToBlank(c.complemento));
     this.suggestions = this.nomesComponentes
       .filter(c => c.startsWith(this.formulario.get('componentes').value[i].nome))
       .slice(0, 5);
@@ -122,7 +122,7 @@ export class CadastroRemedioComponent extends FormBaseComponent implements OnIni
     if (s == null) {
       return "";
     }
-    return s;
+    return " " + s;
   }
 
   fillTextbox(i, string) {

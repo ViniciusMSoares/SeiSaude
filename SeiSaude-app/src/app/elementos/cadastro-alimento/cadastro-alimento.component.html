@@ -55,7 +55,14 @@
                   <button class="btn" (click)="removeComponente(i)">Remover</button>
                 </h5>
                 <div class="form-row">
-                  <input type="text" class="form-control" id="nome" formControlName="nome" placeholder="Nome">
+
+                  <input type="text" class="form-control" id="nome" formControlName="nome" placeholder="Nome" (input)="suggest(i)" (focusout)="onBlur()" (focus)="onFocus()">
+                  <div class="" *ngIf="focus()">
+                    <ul class="list-group" style="position:relative">
+                      <button type="button" class="list-group-item list-group-item-action" (mousedown)="fillTextbox(i, s)" *ngFor="let s of suggestions">{{s}}</button>
+                    </ul>
+                  </div>
+
                   <input type="number" class="form-control col" id="valor" formControlName="valor" placeholder="Valor">
                   <input type="text" class="form-control col" id="unidade" formControlName="unidade" placeholder="Unidade">
                 </div>
@@ -75,7 +82,12 @@
                   <button class="btn" (click)="removeValNutricional(i)">Remover</button>
                 </h5>
                 <div class="form-row">
-                  <input type="text" class="form-control" id="nome" formControlName="nome" placeholder="Nome">
+                  <input type="text" class="form-control" id="nome" formControlName="nome" placeholder="Nome" (input)="suggestVal(i)" (focusout)="onBlurVal()" (focus)="onFocusVal()">
+                  <div class="" *ngIf="focusVal()">
+                    <ul class="list-group" style="position:relative">
+                      <button type="button" class="list-group-item list-group-item-action" (mousedown)="fillTextboxVal(i, s)" *ngFor="let s of suggestionsVal">{{s}}</button>
+                    </ul>
+                  </div>
                   <input type="number" class="form-control col-md-6" id="quantidade" formControlName="quantidade" placeholder="Quantidade">
                   <input type="text" class="form-control col-md-6" id="unidade" formControlName="unidade" placeholder="Unidade">
                   <div class="input-group mb-3">

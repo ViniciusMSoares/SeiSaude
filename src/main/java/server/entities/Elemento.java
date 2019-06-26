@@ -46,6 +46,9 @@ public class Elemento implements Serializable{
 		this.nome = nome;
 		this.descricao = descricao;
 		this.cadastradoPor = cadastradoPor;
+		if (complemento == null) {
+			complemento = "";
+		}
 		this.complemento = complemento;
 	}
 

@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import server.entities.Componente;
 import server.entities.Elemento;
+import server.entities.ValorNutricional;
 import server.entities.DTOs.AlimentoDTO;
 import server.entities.DTOs.ComponenteDTO;
 import server.entities.DTOs.ElementoDTO;
@@ -133,5 +134,10 @@ public class ElementoController {
 		}
 		
 		return new ResponseEntity<>(elementoService.update(elemento), HttpStatus.CREATED);
+	}
+	
+	@RequestMapping(value = "/all_valNutri", method = RequestMethod.GET)
+	public ResponseEntity<ArrayList<ValorNutricional>> getAllValNutri() { 
+		return new ResponseEntity<ArrayList<ValorNutricional>>((ArrayList<ValorNutricional>) elementoService.findAllValNutri(), HttpStatus.OK);
 	}
 }

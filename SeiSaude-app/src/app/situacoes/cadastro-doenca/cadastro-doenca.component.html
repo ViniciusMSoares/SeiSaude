@@ -1,4 +1,4 @@
-<form class="form-horizontal" [formGroup]="formulario" (ngSubmit)="onSubmit()">
+<form class="form-horizontal" [formGroup]="formulario" (ngSubmit)="onSubmit()" autocomplete="off">
   <div style="text-align:center">
     <h1>
       {{ title }}
@@ -13,6 +13,8 @@
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
+
+    <div class="container">
 
     <div class="form-row" formGroupName="nomeCompleto">
       <div class="form-group col-md-6" [ngClass]="aplicaCssErro('nomeCompleto.nome')">
@@ -37,6 +39,35 @@
       <input type="text" class="form-control" id="cadastradoPor" formControlName="cadastradoPor">
 
       <app-error-msg [control]="formulario.get('cadastradoPor')" label="'Cadastrado por'"></app-error-msg>
+    </div>
+
+    <div class="row" formArrayName="sintomas">
+      <div class="col-md-6">
+        <div *ngFor="let sintoma of formulario.get('sintomas').controls; index as i">
+          <div class="card" [formGroup]="sintoma">
+            <div class="card-body">
+              <h5 class="card-title">Sintoma
+                <button class="btn" (click)="removeSintoma(i)">Remover</button>
+              </h5>
+              <div class="form-row">
+                
+                <input type="text" class="form-control" id="nome" formControlName="nome" placeholder="Nome" (input)="suggest(i)" (focusout)="onBlur()" (focus)="onFocus()">
+                <div class="" *ngIf="focus()">
+                  <ul class="list-group" style="position:relative">
+                    <button type="button" class="list-group-item list-group-item-action" (mousedown)="fillTextbox(i, s)" *ngFor="let s of suggestions">{{s}}</button>
+                  </ul>
+                </div>
+              </div>
+
+              <app-error-msg [control]="formulario.get('sintomas').at(i).get('nome')" label="Sintoma"></app-error-msg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+      
+    <button type="button" class="btn" (click)="addSintoma()" #scrollBottom>Novo sintoma</button>
+
     </div>
 
     <div style="text-align:center">

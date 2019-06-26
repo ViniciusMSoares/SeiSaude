@@ -10,6 +10,8 @@ import { map } from 'rxjs/operators';
 import { Quantidade } from '../../../models/quantidade';
 import { Valor } from '../../../models/valor';
 import { Router } from '@angular/router';
+import { Componente } from '../../../models/componente';
+import { ValorNutricional } from '../../../models/valorNutricional';
 
 @Component({
   selector: 'app-cadastro-alimento',
@@ -22,6 +24,8 @@ export class CadastroAlimentoComponent extends FormBaseComponent implements OnIn
   public alimento = {} as Alimento;
   public quantidades = [] as Quantidade[];
   public valores = [] as Valor[];
+  public componentesBD = [] as Componente[];
+  public valNutriBD = [] as ValorNutricional[];
   public success: boolean;
 
   constructor(
@@ -45,6 +49,27 @@ export class CadastroAlimentoComponent extends FormBaseComponent implements OnIn
       componentes: this.buildComponentes(),
       valNutricionais: this.buildValNutricionais()
     });
+
+    let url = Url.URL_BASE + Url.TODOS_COMPONENTES;
+    this.http.get(url).subscribe(result => {
+        let resultList = result as any[];
+        this.componentesBD = resultList.map(v => new Componente(
+          v.nome,
+          v.complemento
+        ));
+        console.log(this.componentesBD);
+      }
+    );
+
+    let urlVal = Url.URL_BASE + Url.TODOS_VALNUTRI;
+    this.http.get(urlVal).subscribe(result => {
+        let resultList = result as any[];
+        this.valNutriBD = resultList.map(v => new ValorNutricional(
+          v.nome
+        ));
+        console.log(this.valNutriBD);
+      }
+    );
   }
 
   buildComponentes() {
@@ -119,6 +144,69 @@ export class CadastroAlimentoComponent extends FormBaseComponent implements OnIn
 
   removeValNutricional(i: number) {
     this.valNutricionais.removeAt(i);
+  }
+
+  suggestions: string[] = [];
+  nomesComponentes: string[] = [];
+  componenteFocus = false;
+
+  suggest(i: number) {
+    this.nomesComponentes = this.componentesBD.map(c => c.nome + this.nullToBlank(c.complemento));
+    this.suggestions = this.nomesComponentes
+      .filter(c => c.startsWith(this.formulario.get('componentes').value[i].nome))
+      .slice(0, 5);
+  }
+
+  nullToBlank(s: String) {
+    if (s == null) {
+      return "";
+    }
+    return " " + s;
+  }
+
+  fillTextbox(i, string) {
+    (<FormArray>this.formulario.get('componentes')).at(i).get('nome').setValue(string);
+    this.suggestions = [];
+  }
+
+  onFocus() {
+    this.componenteFocus = true;
+  }
+
+  onBlur() {
+    this.componenteFocus = false;
+  }
+
+  focus() {
+    return this.componenteFocus && (this.suggestions.length > 0);
+  }
+
+  suggestionsVal: string[] = [];
+  nomesValores: string[] = [];
+  valFocus = false;
+
+  suggestVal(i: number) {
+    this.nomesValores = this.valNutriBD.map(v => v.nome);
+    this.suggestionsVal = this.nomesValores
+      .filter(c => c.startsWith(this.formulario.get('valNutricionais').value[i].nome))
+      .slice(0, 5);
+  }
+
+  fillTextboxVal(i, string) {
+    (<FormArray>this.formulario.get('valNutricionais')).at(i).get('nome').setValue(string);
+    this.suggestionsVal = [];
+  }
+
+  onFocusVal() {
+    this.valFocus = true;
+  }
+
+  onBlurVal() {
+    this.valFocus = false;
+  }
+
+  focusVal() {
+    return this.valFocus && (this.suggestionsVal.length > 0);
   }
 
 }

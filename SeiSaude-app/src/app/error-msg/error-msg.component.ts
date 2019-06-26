@@ -26,7 +26,7 @@ export class ErrorMsgComponent implements OnInit {
     for (const propertyName in this.control.errors) {
       if (this.control.errors.hasOwnProperty(propertyName) &&
         this.control.touched) {
-          console.log(propertyName);
+          //console.log(propertyName);
           return ErrorMsgComponent.getErrorMsg(this.label, propertyName, this.control.errors[propertyName]);
         }
     }
