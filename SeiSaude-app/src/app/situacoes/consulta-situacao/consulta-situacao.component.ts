@@ -44,7 +44,8 @@ export class ConsultaSituacaoComponent extends FormBaseComponent implements OnIn
           v.nome,
           v.complemento,
           v.descricao,
-          v.cadastradoPor
+          v.cadastradoPor,
+          v.id
         ));
         console.log(this.situacoes);
       },

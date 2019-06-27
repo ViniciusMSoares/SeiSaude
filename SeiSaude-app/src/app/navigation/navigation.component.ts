@@ -15,7 +15,7 @@ export class NavigationComponent implements OnInit {
                      {tipo: "Componente", path: "cadastro-componente"},
                      {tipo: "Sintoma", path: "cadastro-sintoma"},
                      {tipo: "Doença", path: "cadastro-doenca"},
-                     {tipo: "Indicação", path: ""},
+                     {tipo: "Indicação", path: "cadastro-indicacao"},
                      {tipo: "Paciente", path: ""}];
 
   consultas: {}[] = [{tipo: "Alimento - Remédio - Comportamento", path: "consulta-elemento"},

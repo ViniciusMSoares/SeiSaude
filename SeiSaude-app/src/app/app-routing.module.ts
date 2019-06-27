@@ -14,6 +14,7 @@ import { ElementoComponent } from './elementos/elemento/elemento.component';
 import { SituacaoComponent } from './situacoes/situacao/situacao.component';
 import { ComponenteComponent } from './elementos/componente/componente.component';
 import { EditaComportamentoComponent } from './elementos/edita-comportamento/edita-comportamento.component';
+import { CadastroIndicacaoComponent } from './indicacoes/cadastro-indicacao/cadastro-indicacao.component';
 
 const routes: Routes = [
   { path: 'cadastro-alimento', component: CadastroAlimentoComponent },
@@ -22,6 +23,7 @@ const routes: Routes = [
   { path: 'cadastro-sintoma', component: CadastroSintomaComponent },
   { path: 'cadastro-doenca', component: CadastroDoencaComponent },
   { path: 'cadastro-componente', component: CadastroComponenteComponent },
+  { path: 'cadastro-indicacao', component: CadastroIndicacaoComponent },
 
   { path: 'consulta-elemento', component: ConsultaElementoComponent },
   { path: 'consulta-situacao', component: ConsultaSituacaoComponent },

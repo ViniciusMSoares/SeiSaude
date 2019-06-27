@@ -10,6 +10,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FormBaseModule } from './form-base/form-base.module';
 import { HttpClientModule } from '@angular/common/http';
 import { HomePageComponent } from './home-page/home-page.component';
+import { IndicacoesModule } from './indicacoes/indicacoes.module';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { HomePageComponent } from './home-page/home-page.component';
     FormBaseModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    IndicacoesModule
   ],
   exports: [
     FormsModule,

@@ -49,12 +49,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _situacoes_situacao_situacao_component__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./situacoes/situacao/situacao.component */ "./src/app/situacoes/situacao/situacao.component.ts");
 /* harmony import */ var _elementos_componente_componente_component__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./elementos/componente/componente.component */ "./src/app/elementos/componente/componente.component.ts");
 /* harmony import */ var _elementos_edita_comportamento_edita_comportamento_component__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./elementos/edita-comportamento/edita-comportamento.component */ "./src/app/elementos/edita-comportamento/edita-comportamento.component.ts");
+/* harmony import */ var _indicacoes_cadastro_indicacao_cadastro_indicacao_component__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./indicacoes/cadastro-indicacao/cadastro-indicacao.component */ "./src/app/indicacoes/cadastro-indicacao/cadastro-indicacao.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -78,6 +80,7 @@ var routes = [
     { path: 'cadastro-sintoma', component: _situacoes_cadastro_sintoma_cadastro_sintoma_component__WEBPACK_IMPORTED_MODULE_4__["CadastroSintomaComponent"] },
     { path: 'cadastro-doenca', component: _situacoes_cadastro_doenca_cadastro_doenca_component__WEBPACK_IMPORTED_MODULE_5__["CadastroDoencaComponent"] },
     { path: 'cadastro-componente', component: _elementos_cadastro_componente_cadastro_componente_component__WEBPACK_IMPORTED_MODULE_7__["CadastroComponenteComponent"] },
+    { path: 'cadastro-indicacao', component: _indicacoes_cadastro_indicacao_cadastro_indicacao_component__WEBPACK_IMPORTED_MODULE_16__["CadastroIndicacaoComponent"] },
     { path: 'consulta-elemento', component: _elementos_consulta_elemento_consulta_elemento_component__WEBPACK_IMPORTED_MODULE_10__["ConsultaElementoComponent"] },
     { path: 'consulta-situacao', component: _situacoes_consulta_situacao_consulta_situacao_component__WEBPACK_IMPORTED_MODULE_11__["ConsultaSituacaoComponent"] },
     { path: 'consulta-componente', component: _elementos_consulta_componente_consulta_componente_component__WEBPACK_IMPORTED_MODULE_9__["ConsultaComponenteComponent"] },
@@ -182,12 +185,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _form_base_form_base_module__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./form-base/form-base.module */ "./src/app/form-base/form-base.module.ts");
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
 /* harmony import */ var _home_page_home_page_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./home-page/home-page.component */ "./src/app/home-page/home-page.component.ts");
+/* harmony import */ var _indicacoes_indicacoes_module__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./indicacoes/indicacoes.module */ "./src/app/indicacoes/indicacoes.module.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -217,7 +222,8 @@ var AppModule = /** @class */ (function () {
                 _form_base_form_base_module__WEBPACK_IMPORTED_MODULE_8__["FormBaseModule"],
                 _angular_forms__WEBPACK_IMPORTED_MODULE_7__["FormsModule"],
                 _angular_forms__WEBPACK_IMPORTED_MODULE_7__["ReactiveFormsModule"],
-                _angular_common_http__WEBPACK_IMPORTED_MODULE_9__["HttpClientModule"]
+                _angular_common_http__WEBPACK_IMPORTED_MODULE_9__["HttpClientModule"],
+                _indicacoes_indicacoes_module__WEBPACK_IMPORTED_MODULE_11__["IndicacoesModule"]
             ],
             exports: [
                 _angular_forms__WEBPACK_IMPORTED_MODULE_7__["FormsModule"],
@@ -1996,6 +2002,246 @@ var HomePageComponent = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./src/app/indicacoes/cadastro-indicacao/cadastro-indicacao.component.html":
+/*!*********************************************************************************!*\
+  !*** ./src/app/indicacoes/cadastro-indicacao/cadastro-indicacao.component.html ***!
+  \*********************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<form class=\"form-horizontal\" [formGroup]=\"formulario\" (ngSubmit)=\"onSubmit()\" autocomplete=\"off\">\n    <div style=\"text-align:center\">\n      <h1>\n        {{ title }}\n      </h1>\n    </div>\n    \n    <div class=\"container\">\n  \n      <div *ngIf=\"success\" class=\"alert alert-success alert-dismissible fade show\" role=\"alert\">\n        <strong>Cadastro realizado com sucesso!</strong>\n        <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">\n          <span aria-hidden=\"true\">&times;</span>\n        </button>\n      </div>\n\n      <div class=\"form-group\">\n        <label for=\"situacao\">Situacao</label>\n        <input type=\"text\" class=\"form-control\" id=\"situacao\" formControlName=\"situacao\" (input)=\"suggestSit()\" (focusout)=\"onBlurSit()\" (focus)=\"onFocusSit()\">\n        <div class=\"\" *ngIf=\"focusSit()\">\n          <ul class=\"list-group\" style=\"position:relative\">\n            <button type=\"button\" class=\"list-group-item list-group-item-action\" (mousedown)=\"fillTextboxSit(s)\" *ngFor=\"let s of suggestionsSit\">{{s}}</button>\n          </ul>\n        </div>\n      </div>\n      <app-error-msg [control]=\"formulario.get('situacao')\" label=\"'Situacao'\"></app-error-msg>\n\n      <div class=\"form-group\">\n        <label for=\"elemento\">Elemento</label>\n        <input type=\"text\" class=\"form-control\" id=\"elemento\" formControlName=\"elemento\" (input)=\"suggest()\" (focusout)=\"onBlur()\" (focus)=\"onFocus()\">\n        <div class=\"\" *ngIf=\"focus()\">\n          <ul class=\"list-group\" style=\"position:relative\">\n            <button type=\"button\" class=\"list-group-item list-group-item-action\" (mousedown)=\"fillTextbox(s)\" *ngFor=\"let s of suggestions\">{{s[0]}}</button>\n          </ul>\n        </div>\n      </div>\n      <app-error-msg [control]=\"formulario.get('elemento')\" label=\"'Elemento'\"></app-error-msg>\n\n      <div class=\"form-group\">\n        <label for=\"tipoPessoa\">TipoPessoa</label>\n        <input type=\"text\" class=\"form-control\" id=\"tipoPessoa\" formControlName=\"tipoPessoa\">\n  \n        <app-error-msg [control]=\"formulario.get('tipoPessoa')\" label=\"'TipoPessoa'\"></app-error-msg>\n      </div>\n\n      <div class=\"form-group\">\n        <label for=\"dosagem\">Dosagem</label>\n        <input type=\"number\" class=\"form-control\" id=\"dosagem\" formControlName=\"dosagem\">\n  \n        <app-error-msg [control]=\"formulario.get('dosagem')\" label=\"'Dosagem'\"></app-error-msg>\n      </div>\n\n      <div class=\"form-group\">\n        <label for=\"unidade\">Unidade</label>\n        <input type=\"text\" class=\"form-control\" id=\"unidade\" formControlName=\"unidade\">\n  \n        <app-error-msg [control]=\"formulario.get('unidade')\" label=\"'Unidade'\"></app-error-msg>\n      </div>\n\n      <div class=\"form-group\">\n        <label for=\"efeito\">Efeito</label>\n        <input type=\"text\" class=\"form-control\" id=\"efeito\" formControlName=\"efeito\">\n  \n        <app-error-msg [control]=\"formulario.get('efeito')\" label=\"'Efeito'\"></app-error-msg>\n      </div>\n\n      <div class=\"form-group\">\n        <label for=\"tipo\">Tipo</label>\n        <input type=\"text\" class=\"form-control\" id=\"tipo\" formControlName=\"tipo\">\n  \n        <app-error-msg [control]=\"formulario.get('tipo')\" label=\"'Tipo'\"></app-error-msg>\n      </div>\n  \n      <div style=\"text-align:center\">\n        <button type=\"submit\" class=\"btn btn-primary\">Finalizar</button>\n      </div>\n  \n      <div style=\"text-align:right\">\n        <button type=\"button\" class=\"btn btn-secondary\" (click)=\"voltar()\">Voltar</button>\n      </div>\n    \n      <router-outlet></router-outlet>\n    </div>\n  \n  \n    <div style=\"margin-top: 20px\" *ngIf=\"formulario\" >\n      <div>Detalhes do form</div>\n      <pre>Form válido: {{ formulario.status }}</pre>\n      <!--pre>Form submetido: {{ form.submitted }}</pre -->\n      <pre>Valores: <br>{{ formulario.value | json }}</pre>\n    </div>\n  </form>"
+
+/***/ }),
+
+/***/ "./src/app/indicacoes/cadastro-indicacao/cadastro-indicacao.component.scss":
+/*!*********************************************************************************!*\
+  !*** ./src/app/indicacoes/cadastro-indicacao/cadastro-indicacao.component.scss ***!
+  \*********************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2luZGljYWNvZXMvY2FkYXN0cm8taW5kaWNhY2FvL2NhZGFzdHJvLWluZGljYWNhby5jb21wb25lbnQuc2NzcyJ9 */"
+
+/***/ }),
+
+/***/ "./src/app/indicacoes/cadastro-indicacao/cadastro-indicacao.component.ts":
+/*!*******************************************************************************!*\
+  !*** ./src/app/indicacoes/cadastro-indicacao/cadastro-indicacao.component.ts ***!
+  \*******************************************************************************/
+/*! exports provided: CadastroIndicacaoComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CadastroIndicacaoComponent", function() { return CadastroIndicacaoComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _models_indicacao__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../models/indicacao */ "./src/models/indicacao.ts");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _form_base_form_base_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../form-base/form-base.component */ "./src/app/form-base/form-base.component.ts");
+/* harmony import */ var _models_url_enum__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../models/url.enum */ "./src/models/url.enum.ts");
+/* harmony import */ var _models_elemento__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../../models/elemento */ "./src/models/elemento.ts");
+/* harmony import */ var _models_situacao__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../../models/situacao */ "./src/models/situacao.ts");
+var __extends = (undefined && undefined.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    }
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+
+
+
+
+var CadastroIndicacaoComponent = /** @class */ (function (_super) {
+    __extends(CadastroIndicacaoComponent, _super);
+    function CadastroIndicacaoComponent(formBuilder, http, router) {
+        var _this = _super.call(this, router) || this;
+        _this.formBuilder = formBuilder;
+        _this.http = http;
+        _this.title = 'Cadastro de Indicação';
+        _this.indicacao = {};
+        _this.elementosBD = [];
+        _this.situacoesBD = [];
+        _this.elementoFocus = false;
+        _this.suggestionsSit = [];
+        _this.nomesSituacoes = [];
+        _this.situacaoFocus = false;
+        return _this;
+    }
+    CadastroIndicacaoComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.formulario = this.formBuilder.group({
+            dosagem: ["", _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required],
+            efeito: ["", _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required],
+            tipo: ["", _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required],
+            unidade: ["", _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required],
+            elemento: ["", _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required],
+            situacao: ["", _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required],
+            tipoPessoa: ["", _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required],
+        });
+        var url = _models_url_enum__WEBPACK_IMPORTED_MODULE_6__["Url"].URL_BASE + _models_url_enum__WEBPACK_IMPORTED_MODULE_6__["Url"].TODOS_ELEMENTOS;
+        this.http.get(url).subscribe(function (result) {
+            var resultList = result;
+            _this.elementosBD = resultList.map(function (v) { return new _models_elemento__WEBPACK_IMPORTED_MODULE_7__["Elemento"](v.nome, v.complemento, v.descricao, v.cadastroPor, v.id); });
+            console.log(_this.elementosBD);
+        });
+        var urlS = _models_url_enum__WEBPACK_IMPORTED_MODULE_6__["Url"].URL_BASE + _models_url_enum__WEBPACK_IMPORTED_MODULE_6__["Url"].TODAS_SITUACOES;
+        this.http.get(urlS).subscribe(function (result) {
+            var resultList = result;
+            _this.situacoesBD = resultList.map(function (v) { return new _models_situacao__WEBPACK_IMPORTED_MODULE_8__["Situacao"](v.nome, v.complemento, v.descricao, v.cadastroPor, v.id); });
+            console.log(_this.situacoesBD);
+        });
+    };
+    CadastroIndicacaoComponent.prototype.submit = function () {
+        var _this = this;
+        var url = _models_url_enum__WEBPACK_IMPORTED_MODULE_6__["Url"].URL_BASE + _models_url_enum__WEBPACK_IMPORTED_MODULE_6__["Url"].INDICACAO;
+        var indicacao = new _models_indicacao__WEBPACK_IMPORTED_MODULE_1__["Indicacao"](this.formulario.value.dosagem, this.formulario.value.efeito, this.formulario.value.tipo, this.formulario.value.unidade, this.elementoID, this.situacaoID, this.tipoPessoaID);
+        this.success = false;
+        this.http.post(url, indicacao).subscribe(function (result) {
+            console.log(result);
+            _this.success = true;
+            _this.formulario.reset();
+        }, function (error) { return console.log(error); });
+    };
+    CadastroIndicacaoComponent.prototype.suggest = function () {
+        var _this = this;
+        this.nomesElementos = this.elementosBD.map(function (c) { return [c.nome + _this.nullToBlank(c.complemento), c.id]; });
+        this.suggestions = (this.nomesElementos
+            .filter(function (c) { return c["0"].startsWith(_this.formulario.value.elemento); })
+            .slice(0, 5));
+    };
+    CadastroIndicacaoComponent.prototype.nullToBlank = function (s) {
+        if (s == null) {
+            return "";
+        }
+        return " " + s;
+    };
+    CadastroIndicacaoComponent.prototype.fillTextbox = function (s) {
+        this.formulario.get("elemento").setValue(s[0]);
+        this.suggestions = [["", 0]];
+        this.elementoID = s[1];
+    };
+    CadastroIndicacaoComponent.prototype.onFocus = function () {
+        this.elementoFocus = true;
+    };
+    CadastroIndicacaoComponent.prototype.onBlur = function () {
+        this.elementoFocus = false;
+    };
+    CadastroIndicacaoComponent.prototype.focus = function () {
+        return this.elementoFocus && (this.suggestions.length > 0);
+    };
+    CadastroIndicacaoComponent.prototype.suggestSit = function () {
+        var _this = this;
+        this.nomesSituacoes = this.situacoesBD.map(function (v) { return v.nome; });
+        this.suggestionsSit = this.nomesSituacoes
+            .filter(function (c) { return c.startsWith(_this.formulario.value.situacao); })
+            .slice(0, 5);
+    };
+    CadastroIndicacaoComponent.prototype.fillTextboxSit = function (string) {
+        this.formulario.get("situacao").setValue(string);
+        this.suggestionsSit = [];
+    };
+    CadastroIndicacaoComponent.prototype.onFocusSit = function () {
+        this.situacaoFocus = true;
+    };
+    CadastroIndicacaoComponent.prototype.onBlurSit = function () {
+        this.situacaoFocus = false;
+    };
+    CadastroIndicacaoComponent.prototype.focusSit = function () {
+        return this.situacaoFocus && (this.suggestionsSit.length > 0);
+    };
+    CadastroIndicacaoComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'app-cadastro-indicacao',
+            template: __webpack_require__(/*! ./cadastro-indicacao.component.html */ "./src/app/indicacoes/cadastro-indicacao/cadastro-indicacao.component.html"),
+            styles: [__webpack_require__(/*! ./cadastro-indicacao.component.scss */ "./src/app/indicacoes/cadastro-indicacao/cadastro-indicacao.component.scss")]
+        }),
+        __metadata("design:paramtypes", [_angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormBuilder"],
+            _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpClient"],
+            _angular_router__WEBPACK_IMPORTED_MODULE_4__["Router"]])
+    ], CadastroIndicacaoComponent);
+    return CadastroIndicacaoComponent;
+}(_form_base_form_base_component__WEBPACK_IMPORTED_MODULE_5__["FormBaseComponent"]));
+
+
+
+/***/ }),
+
+/***/ "./src/app/indicacoes/indicacoes.module.ts":
+/*!*************************************************!*\
+  !*** ./src/app/indicacoes/indicacoes.module.ts ***!
+  \*************************************************/
+/*! exports provided: IndicacoesModule */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "IndicacoesModule", function() { return IndicacoesModule; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm5/common.js");
+/* harmony import */ var _cadastro_indicacao_cadastro_indicacao_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./cadastro-indicacao/cadastro-indicacao.component */ "./src/app/indicacoes/cadastro-indicacao/cadastro-indicacao.component.ts");
+/* harmony import */ var _app_routing_module__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../app-routing.module */ "./src/app/app-routing.module.ts");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var _form_base_form_base_module__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../form-base/form-base.module */ "./src/app/form-base/form-base.module.ts");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+
+
+
+
+
+
+var IndicacoesModule = /** @class */ (function () {
+    function IndicacoesModule() {
+    }
+    IndicacoesModule = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["NgModule"])({
+            declarations: [_cadastro_indicacao_cadastro_indicacao_component__WEBPACK_IMPORTED_MODULE_2__["CadastroIndicacaoComponent"]],
+            imports: [
+                _angular_common__WEBPACK_IMPORTED_MODULE_1__["CommonModule"],
+                _app_routing_module__WEBPACK_IMPORTED_MODULE_3__["AppRoutingModule"],
+                _angular_forms__WEBPACK_IMPORTED_MODULE_4__["FormsModule"],
+                _angular_forms__WEBPACK_IMPORTED_MODULE_4__["ReactiveFormsModule"],
+                _angular_common_http__WEBPACK_IMPORTED_MODULE_5__["HttpClientModule"],
+                _form_base_form_base_module__WEBPACK_IMPORTED_MODULE_6__["FormBaseModule"]
+            ]
+        })
+    ], IndicacoesModule);
+    return IndicacoesModule;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/navigation/navigation.component.html":
 /*!******************************************************!*\
   !*** ./src/app/navigation/navigation.component.html ***!
@@ -2048,7 +2294,7 @@ var NavigationComponent = /** @class */ (function () {
             { tipo: "Componente", path: "cadastro-componente" },
             { tipo: "Sintoma", path: "cadastro-sintoma" },
             { tipo: "Doença", path: "cadastro-doenca" },
-            { tipo: "Indicação", path: "" },
+            { tipo: "Indicação", path: "cadastro-indicacao" },
             { tipo: "Paciente", path: "" }];
         this.consultas = [{ tipo: "Alimento - Remédio - Comportamento", path: "consulta-elemento" },
             { tipo: "Sintoma - Doença", path: "consulta-situacao" },
@@ -2561,7 +2807,7 @@ var ConsultaSituacaoComponent = /** @class */ (function (_super) {
         this.http.get(url, options).subscribe(function (result) {
             var resultList = result;
             //console.log(result);
-            _this.situacoes = resultList.map(function (v) { return new _models_situacao__WEBPACK_IMPORTED_MODULE_4__["Situacao"](v.nome, v.complemento, v.descricao, v.cadastradoPor); });
+            _this.situacoes = resultList.map(function (v) { return new _models_situacao__WEBPACK_IMPORTED_MODULE_4__["Situacao"](v.nome, v.complemento, v.descricao, v.cadastradoPor, v.id); });
             console.log(_this.situacoes);
         }, function (error) {
             alert('erro');
@@ -2919,6 +3165,33 @@ var Elemento = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./src/models/indicacao.ts":
+/*!*********************************!*\
+  !*** ./src/models/indicacao.ts ***!
+  \*********************************/
+/*! exports provided: Indicacao */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Indicacao", function() { return Indicacao; });
+var Indicacao = /** @class */ (function () {
+    function Indicacao(dosagem, efeito, unidade, tipo, elementoID, situacaoID, tipoPessoaID) {
+        this.dosagem = dosagem;
+        this.efeito = efeito;
+        this.unidade = unidade;
+        this.tipo = tipo;
+        this.id_elemento = elementoID;
+        this.situacaoID = situacaoID;
+        this.tipoPessoaID = tipoPessoaID;
+    }
+    return Indicacao;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/models/remedio.ts":
 /*!*******************************!*\
   !*** ./src/models/remedio.ts ***!
@@ -2980,11 +3253,12 @@ var Sintoma = /** @class */ (function () {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Situacao", function() { return Situacao; });
 var Situacao = /** @class */ (function () {
-    function Situacao(nome, complemento, descricao, cadastradoPor) {
+    function Situacao(nome, complemento, descricao, cadastradoPor, id) {
         this.nome = nome;
         this.complemento = complemento;
         this.descricao = descricao;
         this.cadastradoPor = cadastradoPor;
+        this.id = id;
     }
     return Situacao;
 }());
@@ -3005,8 +3279,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Url", function() { return Url; });
 var Url;
 (function (Url) {
-    //URL_BASE = "http://localhost:8080",
-    Url["URL_BASE"] = "https://sei-saude.herokuapp.com";
+    Url["URL_BASE"] = "http://localhost:8080";
+    //URL_BASE = "https://sei-saude.herokuapp.com",
     Url["ELEMENTO"] = "/elemento";
     Url["ELEMENTOS"] = "/elementos";
     Url["COMPONENTES"] = "/elemento/componentes";

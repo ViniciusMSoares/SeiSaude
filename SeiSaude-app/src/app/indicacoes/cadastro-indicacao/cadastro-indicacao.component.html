@@ -1,0 +1,92 @@
+<form class="form-horizontal" [formGroup]="formulario" (ngSubmit)="onSubmit()" autocomplete="off">
+    <div style="text-align:center">
+      <h1>
+        {{ title }}
+      </h1>
+    </div>
+    
+    <div class="container">
+  
+      <div *ngIf="success" class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong>Cadastro realizado com sucesso!</strong>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="form-group">
+        <label for="situacao">Situacao</label>
+        <input type="text" class="form-control" id="situacao" formControlName="situacao" (input)="suggestSit()" (focusout)="onBlurSit()" (focus)="onFocusSit()">
+        <div class="" *ngIf="focusSit()">
+          <ul class="list-group" style="position:relative">
+            <button type="button" class="list-group-item list-group-item-action" (mousedown)="fillTextboxSit(s)" *ngFor="let s of suggestionsSit">{{s}}</button>
+          </ul>
+        </div>
+      </div>
+      <app-error-msg [control]="formulario.get('situacao')" label="'Situacao'"></app-error-msg>
+
+      <div class="form-group">
+        <label for="elemento">Elemento</label>
+        <input type="text" class="form-control" id="elemento" formControlName="elemento" (input)="suggest()" (focusout)="onBlur()" (focus)="onFocus()">
+        <div class="" *ngIf="focus()">
+          <ul class="list-group" style="position:relative">
+            <button type="button" class="list-group-item list-group-item-action" (mousedown)="fillTextbox(s)" *ngFor="let s of suggestions">{{s[0]}}</button>
+          </ul>
+        </div>
+      </div>
+      <app-error-msg [control]="formulario.get('elemento')" label="'Elemento'"></app-error-msg>
+
+      <div class="form-group">
+        <label for="tipoPessoa">TipoPessoa</label>
+        <input type="text" class="form-control" id="tipoPessoa" formControlName="tipoPessoa">
+  
+        <app-error-msg [control]="formulario.get('tipoPessoa')" label="'TipoPessoa'"></app-error-msg>
+      </div>
+
+      <div class="form-group">
+        <label for="dosagem">Dosagem</label>
+        <input type="number" class="form-control" id="dosagem" formControlName="dosagem">
+  
+        <app-error-msg [control]="formulario.get('dosagem')" label="'Dosagem'"></app-error-msg>
+      </div>
+
+      <div class="form-group">
+        <label for="unidade">Unidade</label>
+        <input type="text" class="form-control" id="unidade" formControlName="unidade">
+  
+        <app-error-msg [control]="formulario.get('unidade')" label="'Unidade'"></app-error-msg>
+      </div>
+
+      <div class="form-group">
+        <label for="efeito">Efeito</label>
+        <input type="text" class="form-control" id="efeito" formControlName="efeito">
+  
+        <app-error-msg [control]="formulario.get('efeito')" label="'Efeito'"></app-error-msg>
+      </div>
+
+      <div class="form-group">
+        <label for="tipo">Tipo</label>
+        <input type="text" class="form-control" id="tipo" formControlName="tipo">
+  
+        <app-error-msg [control]="formulario.get('tipo')" label="'Tipo'"></app-error-msg>
+      </div>
+  
+      <div style="text-align:center">
+        <button type="submit" class="btn btn-primary">Finalizar</button>
+      </div>
+  
+      <div style="text-align:right">
+        <button type="button" class="btn btn-secondary" (click)="voltar()">Voltar</button>
+      </div>
+    
+      <router-outlet></router-outlet>
+    </div>
+  
+  
+    <div style="margin-top: 20px" *ngIf="formulario" >
+      <div>Detalhes do form</div>
+      <pre>Form válido: {{ formulario.status }}</pre>
+      <!--pre>Form submetido: {{ form.submitted }}</pre -->
+      <pre>Valores: <br>{{ formulario.value | json }}</pre>
+    </div>
+  </form>
