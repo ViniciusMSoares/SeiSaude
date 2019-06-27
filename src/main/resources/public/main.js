@@ -2084,6 +2084,8 @@ var CadastroIndicacaoComponent = /** @class */ (function (_super) {
         _this.indicacao = {};
         _this.elementosBD = [];
         _this.situacoesBD = [];
+        _this.suggestions = [];
+        _this.nomesElementos = [];
         _this.elementoFocus = false;
         _this.suggestionsSit = [];
         _this.nomesSituacoes = [];
@@ -2140,7 +2142,7 @@ var CadastroIndicacaoComponent = /** @class */ (function (_super) {
     };
     CadastroIndicacaoComponent.prototype.fillTextbox = function (s) {
         this.formulario.get("elemento").setValue(s[0]);
-        this.suggestions = [["", 0]];
+        this.suggestions = [];
         this.elementoID = s[1];
     };
     CadastroIndicacaoComponent.prototype.onFocus = function () {
@@ -3279,8 +3281,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Url", function() { return Url; });
 var Url;
 (function (Url) {
-    Url["URL_BASE"] = "http://localhost:8080";
-    //URL_BASE = "https://sei-saude.herokuapp.com",
+    //URL_BASE = "http://localhost:8080",
+    Url["URL_BASE"] = "https://sei-saude.herokuapp.com";
     Url["ELEMENTO"] = "/elemento";
     Url["ELEMENTOS"] = "/elementos";
     Url["COMPONENTES"] = "/elemento/componentes";

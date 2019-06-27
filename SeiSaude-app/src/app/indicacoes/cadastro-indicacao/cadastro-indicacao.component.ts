@@ -94,15 +94,15 @@ export class CadastroIndicacaoComponent extends FormBaseComponent implements OnI
     );
   }
 
-  suggestions: [[string,number]];
-  nomesElementos: [[string,number]];
+  suggestions = [] as any[];
+  nomesElementos = [] as any[];
   elementoFocus = false;
 
   suggest() {
-    this.nomesElementos = this.elementosBD.map(c => [c.nome + this.nullToBlank(c.complemento), c.id]) as [[string,number]];
+    this.nomesElementos = this.elementosBD.map(c => [c.nome + this.nullToBlank(c.complemento), c.id]);
     this.suggestions = (this.nomesElementos
       .filter(c => c["0"].startsWith(this.formulario.value.elemento))
-      .slice(0, 5)) as [[string,number]];
+      .slice(0, 5));
   }
 
   nullToBlank(s: String) {
@@ -114,7 +114,7 @@ export class CadastroIndicacaoComponent extends FormBaseComponent implements OnI
 
   fillTextbox(s) {
     this.formulario.get("elemento").setValue(s[0]);
-    this.suggestions = [["",0]];
+    this.suggestions = [];
     this.elementoID = s[1];
   }
 
