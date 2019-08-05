@@ -1,6 +1,7 @@
 package server.entities;
 
 import java.io.Serializable;
+import java.util.Collection;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -17,7 +18,7 @@ import javax.validation.constraints.NotEmpty;
 @Entity
 @Inheritance(strategy=InheritanceType.JOINED)
 @Table(name = "tb_elemento")
-public class Elemento implements Serializable{
+public class Elemento implements Comparable, Serializable{
 
 	@Transient
 	private static final long serialVersionUID = 1L;
@@ -41,9 +42,9 @@ public class Elemento implements Serializable{
 	@Column()
 	private String complemento;
 	
-	public Elemento(String name, String descricao, String cadastradoPor, String complemento) {
+	public Elemento(String nome, String descricao, String cadastradoPor, String complemento) {
 		super();
-		this.nome = name;
+		this.nome = nome;
 		this.descricao = descricao;
 		this.cadastradoPor = cadastradoPor;
 		this.complemento = complemento;
@@ -61,12 +62,12 @@ public class Elemento implements Serializable{
 		this.id = id;
 	}
 
-	public String getName() {
+	public String getNome() {
 		return nome;
 	}
 
-	public void setName(String name) {
-		this.nome = name;
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 
 	public String getDescricao() {
@@ -92,5 +93,9 @@ public class Elemento implements Serializable{
 	public void setComplemento(String complemento) {
 		this.complemento = complemento;
 	}
+
+	public int compareTo(Elemento elemento) {
+        return this.nome.compareTo(elemento.getNome());
+    }
 	
 }

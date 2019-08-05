@@ -10,6 +10,7 @@ import { HomePageComponent } from './home-page/home-page.component';
 import { ConsultaComponenteComponent } from './elementos/consulta-componente/consulta-componente.component';
 import { ConsultaElementoComponent } from './elementos/consulta-elemento/consulta-elemento.component';
 import { ConsultaSituacaoComponent } from './situacoes/consulta-situacao/consulta-situacao.component';
+import { ConsultaValorComponent } from './elementos/consulta-valor/consulta-valor.component';
 import { InfoPageComponent } from './info-page/info-page.component';
 import { ElementoComponent } from './elementos/elemento/elemento.component';
 import { SituacaoComponent } from './situacoes/situacao/situacao.component';
@@ -26,6 +27,7 @@ const routes: Routes = [
   { path: 'consulta-elemento', component: ConsultaElementoComponent },
   { path: 'consulta-situacao', component: ConsultaSituacaoComponent },
   { path: 'consulta-componente', component: ConsultaComponenteComponent },
+  { path: 'consulta-valor', component: ConsultaValorComponent },
 
   { path: 'info/:nome', component: InfoPageComponent },
   { path: 'elemento/:nome', component: ElementoComponent },

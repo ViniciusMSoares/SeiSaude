@@ -1,6 +1,7 @@
 package server.servicies.impl;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -173,12 +174,20 @@ public class ElementoServiceImpl implements ElementoService {
 		name = name.toLowerCase().replaceAll("\\s", "");
 		
 		for (Elemento elemento : elementoRepository.findAll()) {
-			String elementoName = elemento.getName().toLowerCase() + elemento.getComplemento().toLowerCase();
+			String elementoName = elemento.getNome().toLowerCase() + elemento.getComplemento().toLowerCase();
 			elementoName = elementoName.replaceAll("\\s", "");
 			if (elementoName.equals(name) || elementoName.contains(name)) {
 				result.add(elemento);
 			}
 		}
+
+		Collections.sort(result, new Comparator<Elemento>() {
+		    @Override
+		    public int compare(Elemento elemento2, Elemento elemento1){
+		        return elemento1.nome.compareTo(elemento2.getNome());
+		    }
+		});
+
 		return result;
 	}
 
@@ -193,7 +202,7 @@ public class ElementoServiceImpl implements ElementoService {
 				result.add(componente);
 			}
 		}
-		return result;
+		return Collections.sort(result);
 	}
 	
 	@Override
@@ -207,14 +216,14 @@ public class ElementoServiceImpl implements ElementoService {
 				result.add(valNutricional);
 			}
 		}
-		return result;
+		return Collections.sort(result);
 	}
 	
 	public boolean elementoInDataBase(String nome) {
 		nome = nome.toLowerCase().replaceAll("\\s", "");
 		
 		for (Elemento elemento : elementoRepository.findAll()) {
-			String elementoName = elemento.getName().toLowerCase();
+			String elementoName = elemento.getNome().toLowerCase();
 			if (elemento.getComplemento() != null) {
 				elementoName += elemento.getComplemento().toLowerCase();
 			}
@@ -279,7 +288,7 @@ public class ElementoServiceImpl implements ElementoService {
 		name = name.toLowerCase();
 
 		for (Elemento elemento : elementoRepository.findAll()) {
-			String elementoName = elemento.getName().toLowerCase() + elemento.getComplemento().toLowerCase();
+			String elementoName = elemento.getNome().toLowerCase() + elemento.getComplemento().toLowerCase();
 			if (elementoName.equals(name)) {
 				return elemento;
 			}
@@ -303,6 +312,16 @@ public class ElementoServiceImpl implements ElementoService {
 	@Override
 	public List<Componente> findAllComponente() {
 		return componenteRepository.findAll();
+	}
+
+	@Override
+	public Elemento update(ElementoDTO elementoDTO) {
+		Elemento elemento = findOneByName(elementoDTO.getNome()+elementoDTO.getComplemento());
+		
+		elemento.setDescricao(elementoDTO.getDescricao());
+		elemento.setCadastradoPor(elementoDTO.getCadastradoPor());
+			
+		return elementoRepository.save(elemento);
 	}
 
 }

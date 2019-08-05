@@ -3,11 +3,13 @@ export class Comportamento {
     descricao: string;
     cadastradoPor: string;
     complemento: string;
+    tipo: number;
 
     public constructor(nome, complemento, descricao, cadastradoPor) {
         this.nome = nome;
         this.complemento = complemento;
         this.descricao = descricao;
         this.cadastradoPor = cadastradoPor;
+        this.tipo = 2;
     }
 }

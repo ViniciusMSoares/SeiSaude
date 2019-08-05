@@ -30,21 +30,22 @@ export class ConsultaElementoComponent extends FormBaseComponent implements OnIn
   }
 
   submit() {
-    let url = Url.URL_BASE + Url.ELEMENTOS;
-    let termo = this.formulario.get("nome").value;
+    const url = Url.URL_BASE + Url.ELEMENTOS;
+    const termo = this.formulario.get('nome').value;
 
     const options = termo ?
     { params: new HttpParams().set('nome', termo) } : {};
 
     this.http.get(url, options).subscribe(result => {
-        let resultList = result as any[];
-        //console.log(result);
+        const resultList = result as any[];
+        // console.log(result);
         this.elementos = resultList.map(v => new Elemento(
-          v.name,
+          v.nome,
           v.complemento,
           v.descricao,
           v.cadastradoPor,
-          v.id
+          v.id,
+          v.tipo
         ));
         console.log(this.elementos);
       },

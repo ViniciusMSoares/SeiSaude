@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Componente } from '../../../models/componente';
-import { ActivatedRoute } from '@angular/router';
+import {ActivatedRoute, Params} from '@angular/router';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Url } from '../../../models/url.enum';
 
@@ -17,7 +17,8 @@ export class ComponenteComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private http: HttpClient
-  ) { }
+  ) {
+  }
 
   ngOnInit() {
     this.route.params.subscribe(
@@ -37,9 +38,14 @@ export class ComponenteComponent implements OnInit {
     let url = Url.URL_BASE + Url.CADASTRO_COMPONENTE;
 
     const options = nome ?
-    { params: new HttpParams().set('nome', nome) } : {};
+      {params: new HttpParams().set('nome', nome)} : {};
 
     return this.http.get(url, options);
   }
 
+
+  descricaoVazia() {
+//    return this.componente.descricao == null || this.componente.descricao === '';
+    return false;
+  }
 }

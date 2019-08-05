@@ -23,8 +23,14 @@
       <div class="list-group col-md-12">
         <div *ngFor="let situacao of situacoes; index as i">
           <a href="situacao/{{ situacao.nome }}{{ situacao.complemento }}" class="list-group-item list-group-item-action">
-            {{ situacao.nome }}
-            {{ situacao.complemento }}
+            <div *ngIf="situacao.complemento.length==0; else yesComponent">{{ situacao.nome }} - Cadastrado por: {{situacao.cadastradoPor}} </div>
+            <ng-template #yesComponent>
+              <head><style>p.alinha{padding-left: 1.8em }</style></head>
+              <p class="alinha">
+                {{ situacao.nome }}
+                {{ situacao.complemento }} - Cadastrado por: {{situacao.cadastradoPor}}
+              </p>
+            </ng-template>
           </a>
         </div>
       </div>

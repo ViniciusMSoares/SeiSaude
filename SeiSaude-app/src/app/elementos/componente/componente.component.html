@@ -7,5 +7,14 @@
     </h1>
   </div>
 
+  <h2>
+    Remédios e Alimentos que contém {{componente.nome}}
+  </h2>
+  <h3 *ngIf="!descricaoVazia()">
+    colocar os remedios e alimentos que o contém
+  </h3>
+  <h3 *ngIf="descricaoVazia()">
+    Este componente não é encontrado em nenhum remédio ou alimento cadastrado.
+  </h3>
 </div>
 

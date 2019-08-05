@@ -70,4 +70,6 @@ public interface ElementoService {
 	Componente findOneComponenteByName(String name);
 	
 	List<Componente> findAllComponente();
+
+	Elemento update(ElementoDTO elemento);
 }

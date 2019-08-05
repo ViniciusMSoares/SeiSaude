@@ -2,16 +2,24 @@
 
   <div style="text-align:center">
     <h1>
-      {{ elemento.name }}
+      {{ elemento.nome }}
       {{ elemento.complemento }}
     </h1>
   </div>
 
-  <h2>
-    Descrição
-  </h2> 
   <h3 *ngIf="!descricaoVazia()">
+    <h4 *ngIf="elemento.tipo == 1">
+      Descrição
+      lista de componentes e valores do alimento
+    </h4>
+    <h5 *ngIf="elemento.tipo == 2">
+      Descrição
       {{ elemento.descricao }}
+    </h5>
+    <h6 *ngIf="elemento.tipo == 3">
+      Descrição
+      lista de componentes e quantidades do remédio
+    </h6>
   </h3>
   <h3 *ngIf="descricaoVazia()">
     Esse elemento ainda não possui uma descrição.

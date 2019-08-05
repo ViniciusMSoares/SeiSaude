@@ -9,6 +9,7 @@ export class Alimento {
     cadastradoPor: string;
     componentes: Quantidade[];
     valNutricionais: Valor[];
+    tipo: number;
 
     public constructor(nome, complemento, descricao, fabricante, cadastradoPor, componentes, valNutricionais) {
         this.nome = nome;
@@ -18,5 +19,6 @@ export class Alimento {
         this.cadastradoPor = cadastradoPor;
         this.componentes = componentes;
         this.valNutricionais = valNutricionais;
+        this.tipo = 1;
     }
 }

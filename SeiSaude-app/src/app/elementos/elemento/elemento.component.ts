@@ -34,7 +34,7 @@ export class ElementoComponent implements OnInit {
   }
 
   carregaElemento(nome) {
-    let url = Url.URL_BASE + Url.ELEMENTO;
+    const url = Url.URL_BASE + Url.ELEMENTO;
 
     const options = nome ?
     { params: new HttpParams().set('nome', nome) } : {};
@@ -43,7 +43,7 @@ export class ElementoComponent implements OnInit {
   }
 
   descricaoVazia() {
-    return this.elemento.descricao == null || this.elemento.descricao == "";
+    return this.elemento.descricao == null || this.elemento.descricao === '';
   }
 
 }

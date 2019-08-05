@@ -7,6 +7,7 @@ export class Remedio {
     fabricante: string;
     cadastradoPor: string;
     componentes: Quantidade[];
+    tipo: number;
 
     public constructor(nome, complemento, descricao, fabricante, cadastradoPor, componentes) {
         this.nome = nome;
@@ -15,5 +16,6 @@ export class Remedio {
         this.fabricante = fabricante;
         this.cadastradoPor = cadastradoPor;
         this.componentes = componentes;
+        this.tipo = 3;
     }
 }

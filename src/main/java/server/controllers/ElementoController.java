@@ -121,4 +121,17 @@ public class ElementoController {
 	public ResponseEntity<ArrayList<Componente>> getAllComponentes() { 
 		return new ResponseEntity<ArrayList<Componente>>((ArrayList<Componente>) elementoService.findAllComponente(), HttpStatus.OK);
 	}
+	
+	@RequestMapping(value = "/elemento/comportamento", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	public ResponseEntity<Elemento> editaComportamento(@RequestBody ElementoDTO elemento) {
+		String elementoName = elemento.getNome();
+		if (elemento.getComplemento() != null) {
+			elementoName += elemento.getComplemento();
+		}
+		if (!elementoService.elementoInDataBase(elementoName)) {
+			return new ResponseEntity<>(HttpStatus.MULTIPLE_CHOICES);
+		}
+		
+		return new ResponseEntity<>(elementoService.update(elemento), HttpStatus.CREATED);
+	}
 }

@@ -13,6 +13,7 @@ import { ConsultaComponenteComponent } from './consulta-componente/consulta-comp
 import { ConsultaElementoComponent } from './consulta-elemento/consulta-elemento.component';
 import { ElementoComponent } from './elemento/elemento.component';
 import { ComponenteComponent } from './componente/componente.component';
+import { ConsultaValorComponent } from './consulta-valor/consulta-valor.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { ComponenteComponent } from './componente/componente.component';
     ConsultaComponenteComponent,
     ConsultaElementoComponent,
     ElementoComponent,
-    ComponenteComponent
+    ComponenteComponent,
+    ConsultaValorComponent
   ],
   imports: [
     CommonModule,
